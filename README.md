@@ -23,7 +23,7 @@ we are using the underscore ('_') naming convention with all lowercase letters
 - [ ] heart_button
 - [ ] filter_closed / expanded
 
-****
+**Wine Details**
 - [ ] back_button
 - [ ] description
 - [ ] share_button
