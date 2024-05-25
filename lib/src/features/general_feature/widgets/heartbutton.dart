@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class HeartButton extends StatelessWidget {
   const HeartButton({super.key});
@@ -18,7 +19,7 @@ class HeartButton extends StatelessWidget {
           width: containerSize,
           height: containerSize,
           decoration: const BoxDecoration(
-            color: Colors.grey,
+            color: AppColors.primaryGrey,
             shape: BoxShape.circle,
           ),
           child: Padding(
@@ -26,7 +27,7 @@ class HeartButton extends StatelessWidget {
             child: Center(
               child: Icon(
                 Icons.favorite,
-                color: isLiked ? Colors.red : Colors.white,
+                color: isLiked ? AppColors.heartRed : AppColors.primaryWhite,
                 size: buttonSize, // Set the size of the heart icon
               ),
             ),
