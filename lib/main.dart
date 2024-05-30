@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_home.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TestPage(),
+      home: TastePallet(
+        flavor1: 'Dunkle Beeren',
+        flavor2: 'Zimt',
+        flavor3: 'Leder',
+        fit1: 'Wildschwein',
+        fit2: 'Reh',)
     );
   }
 }
