@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
-class DropDownIndicator extends StatelessWidget {
+class DropDownLine extends StatelessWidget {
   final bool down;
 
-  const DropDownIndicator({Key? key, required this.down}) : super(key: key);
+  const DropDownLine({Key? key, required this.down}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: Spacings.vertical),
-      color: AppColors.primaryWhite,
+      color: AppColors.backgroundColor,
       child: Column(
         children: [
           Icon(

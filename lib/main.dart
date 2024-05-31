@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_home.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+
 
 void main() {
   runApp(const MyApp());

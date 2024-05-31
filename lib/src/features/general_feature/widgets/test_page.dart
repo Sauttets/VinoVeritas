@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/back_button.dart' as bb;
+import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
 
 
@@ -19,14 +21,11 @@ class TestPage extends StatelessWidget {
           padding: const EdgeInsets.all(0.0),
           child: ListView(
             children:  [
-              const DropDownIndicator(down: true),
+             
               const Description(description: "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
-              bb.BackButton(onPressed: () {
-                // Hier wird die Platzhalterfunktionalität ausgeführt
-                print('Back button pressed');
-              },),
-              const HeartButton(),
-              const DropDownIndicator(down: false),
+              
+              FullDescription(),
+              TastePallet(flavor1: 'Leder', fit1: 'Fisch')
              //füge weitere Widgets hinzu
             ],
           ),
