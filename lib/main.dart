@@ -19,12 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TastePallet(
-        flavor1: 'Dunkle Beeren',
-        flavor2: 'Zimt',
-        flavor3: 'Leder',
-        fit1: 'Wildschwein',
-        fit2: 'Reh',)
+      home: TestPage(),
     );
   }
 }

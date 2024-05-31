@@ -25,8 +25,9 @@ class Description extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Spacings.cornerRadius),
             ),
+            color: AppColors.primaryWhite,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(Spacings.horizontal),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class Description extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(height: Spacings.horizontal),
                   Text(
                     description,
                     style: const TextStyle(
