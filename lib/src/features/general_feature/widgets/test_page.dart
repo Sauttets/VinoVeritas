@@ -9,6 +9,11 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart
 
 
 class TestPage extends StatelessWidget {
+
+  final TastePallet tastePallet = TastePallet(flavor1: 'Zimt', flavor2: 'Dunkele Beeren', flavor3: 'Nelke', fit1: 'Wildschwein', fit2: 'Rind', fit3: 'Schwein');
+  final Description description = const Description(description: 'Dies, das, di weiß. Alles doooooo fishdfivezh öudhfgö öeuhh aöoh äu9uf098t evoiyhöogöu räau.');
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +29,7 @@ class TestPage extends StatelessWidget {
              
               const Description(description: "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
               
-              FullDescription(),
+              FullDescription(tastePallet: tastePallet, description: description),
               TastePallet(flavor1: 'Leder', fit1: 'Fisch')
              //füge weitere Widgets hinzu
             ],

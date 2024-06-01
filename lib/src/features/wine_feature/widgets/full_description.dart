@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 
 class FullDescription extends StatefulWidget {
+  final TastePallet tastePallet;
+  final Description description;
+
+  const FullDescription({super.key, 
+  required this.tastePallet, 
+  required this.description
+  });
+
   @override
+  // ignore: library_private_types_in_public_api
   _FullDescriptionState createState() => _FullDescriptionState();
 }
 
@@ -32,8 +40,8 @@ class _FullDescriptionState extends State<FullDescription> {
                 child: const DropDownLine(down: true),
               ),
             if (!_isExpanded) ...[
-              const Description(description: "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
-              TastePallet(flavor1: 'Leder', fit1: 'Fisch'),
+              widget.description,
+              widget.tastePallet,
               GestureDetector(
                 onTap: _toggleExpanded,
                 child: const DropDownLine(down: false),
