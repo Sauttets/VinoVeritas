@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -98,7 +99,7 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
-  const Page3({super.key});
+  const Page3({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +108,7 @@ class Page3 extends StatelessWidget {
         title: const Text('Page 3'),
       ),
       body: const Center(
-        child: Text('This is Page 3'),
-      ),
+          child: SettingsPage()), // Add your DesignSelector widget here
     );
   }
 }
