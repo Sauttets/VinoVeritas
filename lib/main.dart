@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/page5': (context) => const Page5(),
         '/page6': (context) => const Page6(),
         '/page7': (context) => const Page7(),
+        '/page8': (context) => const Page8(),
       },
     );
   }
@@ -89,6 +91,12 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page7');
               },
               child: const Text('Full Description'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page8');
+              },
+              child: const Text('Search bar'),
             ),
           ],
         ),
@@ -218,6 +226,22 @@ class Page7 extends StatelessWidget {
       body: Center(
         child:
             FullDescription(tastePallet: tastePallet, description: description),
+      ),
+    );
+  }
+}
+
+class Page8 extends StatelessWidget {
+  const Page8({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('search bar'),
+      ),
+      body: const Center(
+        child: WineSearchBar(),
       ),
     );
   }
