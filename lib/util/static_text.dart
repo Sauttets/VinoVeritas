@@ -1,10 +1,12 @@
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+
 class StaticText {
   final List<List<Map<String, String>>> wineFactsTabs = [
     [
       {
         'title': 'Ursprung des Weinbaus',
         'content':
-            'Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.'
+            'Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.Der Weinbau hat seinen Ursprung im Kaukasus vor über 8000 Jahren.'
       },
       {
         'title': 'Französische Weinbaugebiete',
@@ -88,4 +90,7 @@ class StaticText {
       },
     ],
   ];
+
+  static String wineFactOTD =
+      "Wusstest du, dass die ältesten Hinweise auf Weinherstellung etwa 8.000 Jahre alt sind? Archäologische Funde deuten darauf hin, dass die Weinproduktion bereits in der Neusteinzeit begann, als Menschen begannen, Trauben anzubauen und zu fermentieren.";
 }

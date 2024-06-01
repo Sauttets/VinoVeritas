@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart'; // Import this for accessing MediaQuery
 import 'package:vinoveritas/util/spacings.dart';
 
 class WineFactCard extends StatelessWidget {
-  final String title;
   final String content;
 
-  const WineFactCard({super.key, required this.title, required this.content});
+  const WineFactCard({Key? key, required this.content}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    double cardWidth = MediaQuery.of(context).size.width;
+    return Container(
+      width: cardWidth,
       padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
       child: Card(
         elevation: 4.0,
@@ -22,9 +24,9 @@ class WineFactCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
+              const Text(
+                "Weinfakt des Tages",
+                style: TextStyle(
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,
                 ),
