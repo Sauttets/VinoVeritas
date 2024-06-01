@@ -5,7 +5,7 @@ import 'package:vinoveritas/util/app_colors.dart';
 class DropDownLine extends StatelessWidget {
   final bool down;
 
-  const DropDownLine({Key? key, required this.down}) : super(key: key);
+  const DropDownLine({super.key, required this.down});
 
   @override
   Widget build(BuildContext context) {
