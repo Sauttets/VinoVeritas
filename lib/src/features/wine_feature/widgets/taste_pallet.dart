@@ -19,7 +19,7 @@ class TastePallet extends StatelessWidget {
     'Unterholz': Icons.restaurant,
   };
 
-  final Map<String, IconData> fitsfor = {
+  final Map<String, IconData> fitsforIcons = {
     'Wildschwein': Icons.cake,
     'Rind': Icons.security,
     'Schwein': Icons.local_bar,
@@ -120,7 +120,7 @@ class TastePallet extends StatelessWidget {
 
   Widget _buildItem(String? item, bool isFlavorColumn) {
     if (item == null) return const SizedBox.shrink();
-    IconData? iconData = isFlavorColumn ? tasteIcons[item] : fitsfor[item];
+    IconData? iconData = isFlavorColumn ? tasteIcons[item] : fitsforIcons[item];
     Color? iconColor = isFlavorColumn ? tasteColors[item] : fitsColors[item];
     return Row(
       children: [

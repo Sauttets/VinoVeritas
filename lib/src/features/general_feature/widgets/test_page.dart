@@ -6,6 +6,7 @@ import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/back_button.dart' as bb;
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart' as sb;
 
 
 class TestPage extends StatelessWidget {
@@ -26,7 +27,7 @@ class TestPage extends StatelessWidget {
           padding: const EdgeInsets.all(0.0),
           child: ListView(
             children:  [
-             
+              const sb.ShareButton(),
               const Description(description: "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
               
               FullDescription(tastePallet: tastePallet, description: description),

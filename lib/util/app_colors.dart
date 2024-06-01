@@ -6,7 +6,7 @@ class AppColors {
   static const Color primaryRed = Color(0xff820000);
   static const Color heartRed = Color(0xffd70000);
   static const Color primaryGrey = Color.fromARGB(255, 182, 182, 182);
-  static const Color secondaryGrey = Color.fromARGB(255, 202, 202, 202);
+  static const Color secondaryGrey = Color.fromARGB(255, 223, 223, 223);
   static const Color primaryWhite = Color(0xffffffff);
   static const Color primaryText = Color(0xff000000);
 }
