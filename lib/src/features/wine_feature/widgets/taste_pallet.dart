@@ -73,7 +73,7 @@ class TastePallet extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(Spacings.horizontal),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 200.0), // Set your desired max height here
+                  constraints: const BoxConstraints(maxHeight: 200.0), // Set your desired max height here
                   child: IntrinsicHeight(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
