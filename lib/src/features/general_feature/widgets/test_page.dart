@@ -3,8 +3,10 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart'
-    as sb;
+import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart' as sb;
+import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
+
 
 class TestPage extends StatelessWidget {
   final TastePallet tastePallet = TastePallet(
@@ -31,16 +33,25 @@ class TestPage extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(0.0),
           child: ListView(
-            children: [
-              const sb.ShareButton(),
-              const Description(
-                  description:
-                      "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
+            children:  [
+              // const sb.ShareButton(),
+              // const Description(description: "description of somthing boring kadf ou ipuehfpaeiufhpiugh phepf9uhadiufhapdiugh puhfpiuaehf piahedfpihapiudghiuahdfpiuhaipdufh   wiufh paiufh piauhdfpahfüawef apdhfpaieuf paiehfp asdhfpiuh apiufh"),
+              
+              FullDescription(tastePallet: tastePallet, description: description),
+              // TastePallet(flavor1: 'Leder', fit1: 'Fisch'),
 
-              FullDescription(
-                  tastePallet: tastePallet, description: description),
-              TastePallet(flavor1: 'Leder', fit1: 'Fisch')
-              //füge weitere Widgets hinzu
+             
+
+              const SupermarketSelector(
+                        name: 'EDEKA BAUR',
+                        address: 'Bodanstraße 20-26',
+                        postalCode: '78462 Konstanz',
+                        price: '12,34€',
+                        distance: '1,8km',
+                        imagePath: 'assets/images/Logo_Edeka.png', // Beispielpfad für das Bild
+                      ),
+
+             //füge weitere Widgets hinzu
             ],
           ),
         ),

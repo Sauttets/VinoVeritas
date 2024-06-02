@@ -37,7 +37,7 @@ class TastePallet extends StatelessWidget {
   };
 
   final Map<String, Color> fitsColors = {
-    'Wildschwein': Colors.pink,
+    'Wildschwein': Colors.green,
     'Rind': Colors.red,
     'Schwein': Colors.pinkAccent,
     'Fisch': Colors.blue,
@@ -65,7 +65,7 @@ class TastePallet extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Card(
-              elevation: 4.0,
+              elevation: 0.0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(Spacings.cornerRadius),
               ),
