@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/import_favorites.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/location_settings.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/set_username.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/design_selector.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/share_favorites.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -35,6 +37,15 @@ class _SettingsPage extends State<SettingsPage> {
                 selectedIndex = index;
               });
             },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child:
+                DisplayAndCopyText(text: '22218db8778892345732845uihfh9823823'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: NewWidget(),
           ),
         ],
       ),
