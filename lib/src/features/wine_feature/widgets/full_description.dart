@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class FullDescription extends StatefulWidget {
   final TastePallet tastePallet;
@@ -40,8 +41,11 @@ class _FullDescriptionState extends State<FullDescription> {
                 child: const DropDownLine(down: true),
               ),
             if (!_isExpanded) ...[
-              widget.description,
+              const SizedBox(
+                height: Spacings.horizontal,
+              ),
               widget.tastePallet,
+              widget.description,
               GestureDetector(
                 onTap: _toggleExpanded,
                 child: const DropDownLine(down: false),

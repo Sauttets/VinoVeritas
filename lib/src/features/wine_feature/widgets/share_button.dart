@@ -28,7 +28,7 @@ class ShareButton extends StatelessWidget {
       ),
       child: Center(
         child: IconButton(
-          icon: const Icon(Icons.share_rounded, color: AppColors.primaryText, size: Spacings.buttonSize),
+          icon: const Icon(Icons.share_rounded, color: AppColors.primaryText, size: Spacings.iconSizeXS),
           onPressed: onPressed,
         ),
       ),

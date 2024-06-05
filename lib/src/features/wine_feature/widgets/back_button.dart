@@ -18,13 +18,6 @@ class BackButton extends StatelessWidget {
       decoration: const BoxDecoration(
         color: AppColors.primaryWhite,
         shape: BoxShape.circle,
-        /* boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 4.0,
-            offset: Offset(0, 2),
-          ),
-        ], */
       ),
       child: Center(
         child: IconButton(
