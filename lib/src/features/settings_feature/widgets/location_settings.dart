@@ -24,10 +24,9 @@ class SetLocationState extends State<SetLocation> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Ort oder PLZ:',
+              '  Ort oder PLZ:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
@@ -36,7 +35,7 @@ class SetLocationState extends State<SetLocation> {
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(color: Colors.black),
@@ -46,10 +45,9 @@ class SetLocationState extends State<SetLocation> {
             ),
             const SizedBox(height: 20), // Add more space
             const Text(
-              'Radius:',
+              '  Radius:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
             Slider(
@@ -58,8 +56,8 @@ class SetLocationState extends State<SetLocation> {
               max: 100,
               divisions: 100,
               label: '${_currentSliderValue.round()} km',
-              activeColor: Colors.grey,
-              inactiveColor: Colors.grey[300],
+              activeColor: AppColors.primaryGrey,
+              inactiveColor: AppColors.secondaryGrey,
               onChanged: (double value) {
                 setState(() {
                   _currentSliderValue = value;

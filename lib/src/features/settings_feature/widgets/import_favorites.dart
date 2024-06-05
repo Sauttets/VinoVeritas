@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class ImportFavorites extends StatelessWidget {
   const ImportFavorites({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Import Favorites'),
-      ),
-      body: const Padding(
+    return const Scaffold(
+      body: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -30,7 +28,7 @@ class NewWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
+        color: AppColors.primaryWhite,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -38,10 +36,9 @@ class NewWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Weincode:',
+              '  Weincode:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
@@ -50,7 +47,7 @@ class NewWidget extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(color: Colors.black),
@@ -60,10 +57,9 @@ class NewWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20), // Add more space
             const Text(
-              'Name der Liste:',
+              '  Name der Liste:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
@@ -72,10 +68,10 @@ class NewWidget extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
@@ -90,7 +86,7 @@ class NewWidget extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          WidgetStateProperty.all<Color>(Colors.grey),
+                          WidgetStateProperty.all<Color>(AppColors.primaryGrey),
                       shape: WidgetStateProperty.all<OutlinedBorder>(
                         const StadiumBorder(),
                       ),
@@ -99,7 +95,7 @@ class NewWidget extends StatelessWidget {
                     child: const Text(
                       'Importieren',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.primaryWhite,
                       ),
                     ),
                   ),

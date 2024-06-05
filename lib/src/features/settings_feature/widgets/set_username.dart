@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class SetUsername extends StatelessWidget {
   const SetUsername({super.key});
@@ -9,10 +10,9 @@ class SetUsername extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Nutzername:',
+          '  Nutzername:',
           style: TextStyle(
             fontSize: 15,
-            fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(
@@ -21,7 +21,7 @@ class SetUsername extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.white,
+              fillColor: AppColors.primaryWhite,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: const BorderSide(color: Colors.black),

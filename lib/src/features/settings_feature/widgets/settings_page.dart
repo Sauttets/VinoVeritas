@@ -20,33 +20,41 @@ class SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SetUsername(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: SetLocation(),
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: SetUsername(),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: SetLocation(),
+              ),
+              DesignSelector(
+                selectedIndex: selectedIndex,
+                onTabSelected: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: DisplayAndCopyText(
+                    text: '22218db8778892345732845uihfh9823823'),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: NewWidget(),
+              ),
+            ],
           ),
-          DesignSelector(
-            selectedIndex: selectedIndex,
-            onTabSelected: (index) {
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: DisplayAndCopyText(text: '22218db8778892345732845uihfh9823823'),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: NewWidget(),
-          ),
-        ],
+        ),
       ),
     );
   }
