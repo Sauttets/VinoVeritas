@@ -8,30 +8,70 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart'
 import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 
 class WineDetailScreen extends StatelessWidget {
-  const WineDetailScreen({super.key});
+  const WineDetailScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(Spacings.horizontal),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return const Padding(
+      padding: EdgeInsets.all(Spacings.horizontal),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
             children: [
-              DetailHeadline(),
+              WineDetail1(),
+              Positioned(
+                top: 265 -
+                    200 +
+                    Spacings.buttonContainerSize /
+                        2, // Position von oben gemessen
+                right: Spacings.horizontal, // Position von rechts gemessen
+                child: Row(
+                  children: [
+                    ShareButton(),
+                    SizedBox(
+                        width: Spacings.horizontal), // Platz zwischen den Icons
+                    HeartButton(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WineDetail1 extends StatelessWidget {
+  const WineDetail1({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 50), // Zusätzlicher Platz für die Flasche
+          Stack(
+            children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  WinePic(),
                   Expanded(
                     child: DetailBox(),
                   ),
                 ],
               ),
+              Positioned(
+                bottom: 0,
+                left: Spacings.vertical,
+                child: WinePic(),
+              ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
@@ -44,7 +84,7 @@ class DetailHeadline extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // Änderung hier
-      padding: EdgeInsets.all(Spacings.horizontal),
+      padding: const EdgeInsets.all(Spacings.horizontal),
       child: const Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -68,36 +108,63 @@ class DetailBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return Padding(
+    return Padding(
       padding: const EdgeInsets.all(Spacings.horizontal),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(Spacings.cornerRadius),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(width: 72),
-             SizedBox(
-              height: 200, // Die Höhe erstreckt sich über die gesamte Höhe des Containers
-              child: Container(
-                width: Spacings.lineHorizontalThickness,
-                color: Colors.grey,
-                margin: const EdgeInsets.symmetric(vertical: Spacings.horizontal),
-                padding: const EdgeInsets.all(Spacings.horizontal),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 265 -
+                (200 -
+                    Spacings.horizontal +
+                    Spacings.textFontSize), // Höhe der DetailBox
+            decoration: const BoxDecoration(
+              color: AppColors.backgroundColor,
+            ),
+            child: const Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: Spacings.horizontal),
+              child: DetailHeadline(),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.primaryWhite,
+              borderRadius: BorderRadius.circular(Spacings.cornerRadius),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(Spacings.horizontal),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(width: 72),
+                  SizedBox(width: Spacings.vertical),
+                  Line(),
+                  SizedBox(
+                      width:
+                          Spacings.horizontal), // Platz zwischen den Elementen
+                  Expanded(
+                    child: DetailText(),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(width: 16),
-            const Expanded(
-              child: DetailText(),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+
 class DetailText extends StatelessWidget {
   const DetailText({
     super.key,
@@ -125,13 +192,13 @@ class DetailText extends StatelessWidget {
             rightLabel: 'Lieblich',
             position: 0.3,
           ),
-          SizedBox(height: Spacings.vertical),
+          SizedBox(height: Spacings.horizontal),
           AttributSlider(
             leftLabel: 'Sauer',
             rightLabel: 'Basisch',
             position: 0.5,
           ),
-          SizedBox(height: Spacings.vertical),
+          SizedBox(height: Spacings.horizontal),
           AttributSlider(
             leftLabel: 'Widerlich',
             rightLabel: 'Lecker',
@@ -151,7 +218,6 @@ class WinePic extends StatelessWidget {
     return Container(
       width: 72,
       height: 265,
-      
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
         child: Image.asset(
@@ -159,6 +225,21 @@ class WinePic extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+    );
+  }
+}
+
+class Line extends StatelessWidget {
+  const Line({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: Spacings.lineHorizontalThickness,
+      height: 5 * Spacings.horizontal + Spacings.titleFontSize + Spacings.textFontSize * 6,
+      color: AppColors.primaryGrey,
+      margin: const EdgeInsets.symmetric(vertical: Spacings.horizontal),
+      padding: const EdgeInsets.all(Spacings.horizontal),
     );
   }
 }
