@@ -7,8 +7,8 @@ class Spacings {
 
   static const double iconSizeXS = 30.0;
   static const double iconSizeSmall = 40.0;
-  static const double buttonSize = 50.0; // Size of the icon
-  static const double buttonContainerSize = 68.0; // Size of the container
+  static const double buttonSize = 40.0; // Size of the icon
+  static const double buttonContainerSize = 50.0; // Size of the container
 
   static const double supermarketLogo = 75.0;
 

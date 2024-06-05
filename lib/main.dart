@@ -4,10 +4,12 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.d
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/wine_details.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() => runApp(const MyApp());
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/page6': (context) => const Page6(),
         '/page7': (context) => const Page7(),
         '/page8': (context) => const Page8(),
+        '/page9': (context) => const Page9(),
       },
     );
   }
@@ -97,6 +100,12 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page8');
               },
               child: const Text('Search bar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page9');
+              },
+              child: const Text('Wine Details'),
             ),
           ],
         ),
@@ -242,6 +251,22 @@ class Page8 extends StatelessWidget {
       ),
       body: const Center(
         child: WineSearchBar(),
+      ),
+    );
+  }
+}
+
+class Page9 extends StatelessWidget {
+  const Page9({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Wine Details'),
+      ),
+      body: const Center(
+        child: WineDetailScreen(),
       ),
     );
   }

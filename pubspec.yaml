@@ -67,6 +67,7 @@ flutter:
 
   assets:
     - assets/images/Logo_Edeka.png
+    - assets/images/wine.png
   #   - images/a_dot_ham.jpeg
 
 
