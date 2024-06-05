@@ -9,7 +9,7 @@ class CustomNavBar extends StatefulWidget {
 }
 
 class _CustomNavBarState extends State<CustomNavBar> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -23,7 +23,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
       constraints: const BoxConstraints.expand(height: 78.0), // Ensures the navbar stretches and has a fixed height
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(color: Colors.black, width: 1),
+          top: BorderSide(color: AppColors.black, width: 1),
         ),
       ),
       child: BottomNavigationBar(
@@ -47,7 +47,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
             label: '',
           ),
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primaryWhite,
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -59,8 +59,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
   Widget _buildIcon(IconData icon, int index) {
     return Container(
       decoration: BoxDecoration(
-        color: _selectedIndex == index ? AppColors.primaryRed : Colors.transparent,
-        shape: BoxShape.circle,
+        color: _selectedIndex == index ? AppColors.primaryRed : AppColors.transparent,
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(14),
       ),
       padding: const EdgeInsets.all(8),
       child: Icon(
