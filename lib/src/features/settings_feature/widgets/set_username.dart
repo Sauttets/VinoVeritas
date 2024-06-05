@@ -8,14 +8,14 @@ class SetUsername extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Nutzername:',
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),
-        Container(
+        SizedBox(
           width: 391.0,
           height: 44.0,
           child: TextField(
@@ -24,7 +24,7 @@ class SetUsername extends StatelessWidget {
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.black),
+                borderSide: const BorderSide(color: Colors.black),
               ),
             ),
           ),

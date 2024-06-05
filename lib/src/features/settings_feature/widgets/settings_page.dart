@@ -7,13 +7,13 @@ import 'package:vinoveritas/src/features/settings_feature/widgets/share_favorite
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
-  _SettingsPage createState() => _SettingsPage();
+  SettingsPageState createState() => SettingsPageState();
 }
 
-class _SettingsPage extends State<SettingsPage> {
+class SettingsPageState extends State<SettingsPage> {
   int selectedIndex = 0;
 
   @override
@@ -22,12 +22,12 @@ class _SettingsPage extends State<SettingsPage> {
       backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: SetUsername(),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: SetLocation(),
           ),
           DesignSelector(
@@ -38,13 +38,12 @@ class _SettingsPage extends State<SettingsPage> {
               });
             },
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child:
-                DisplayAndCopyText(text: '22218db8778892345732845uihfh9823823'),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: DisplayAndCopyText(text: '22218db8778892345732845uihfh9823823'),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: NewWidget(),
           ),
         ],

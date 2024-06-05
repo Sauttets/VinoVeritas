@@ -13,11 +13,10 @@ class ExpandableWineFactCard extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ExpandableWineFactCardState createState() => _ExpandableWineFactCardState();
+  ExpandableWineFactCardState createState() => ExpandableWineFactCardState();
 }
 
-class _ExpandableWineFactCardState extends State<ExpandableWineFactCard> {
+class ExpandableWineFactCardState extends State<ExpandableWineFactCard> {
   bool _isExpanded = false;
 
   void _toggleExpanded() {
@@ -30,11 +29,12 @@ class _ExpandableWineFactCardState extends State<ExpandableWineFactCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: Spacings.horizontal, vertical: 3.0),
-      child: Card(
-        elevation: 4.0,
-        shape: RoundedRectangleBorder(
+          horizontal: 0, vertical: 3.0),
+      child: Container(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Spacings.horizontal),
+          border: Border.all(color: AppColors.primaryGrey, width: 1.0),
+          color: AppColors.primaryWhite,
         ),
         child: InkWell(
           onTap: _toggleExpanded,
@@ -55,8 +55,8 @@ class _ExpandableWineFactCardState extends State<ExpandableWineFactCard> {
                           Text(
                             widget.title,
                             style: const TextStyle(
-                              fontSize: Spacings.titleFontSize,
-                              fontWeight: FontWeight.bold,
+                              fontSize: Spacings.textFontSize,
+                              fontWeight: FontWeight.normal,
                             ),
                           ),
                         ],

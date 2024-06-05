@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ImportFavorites extends StatelessWidget {
-  const ImportFavorites({Key? key}) : super(key: key);
+  const ImportFavorites({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Import Favorites'),
+        title: const Text('Import Favorites'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
             // Your existing widgets here...
@@ -23,7 +23,7 @@ class ImportFavorites extends StatelessWidget {
 }
 
 class NewWidget extends StatelessWidget {
-  const NewWidget({Key? key}) : super(key: key);
+  const NewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +37,14 @@ class NewWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Weincode:',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
@@ -53,20 +53,20 @@ class NewWidget extends StatelessWidget {
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
-            Text(
+            const SizedBox(height: 20), // Add more space
+            const Text(
               'Name der Liste:',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
@@ -75,28 +75,28 @@ class NewWidget extends StatelessWidget {
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
+            const SizedBox(height: 20), // Add more space
             Align(
               alignment: Alignment.centerRight,
               child: FractionallySizedBox(
                 widthFactor: 1 / 3,
-                child: Container(
+                child: SizedBox(
                   height: 30.0,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey),
-                      shape: MaterialStateProperty.all<OutlinedBorder>(
-                        StadiumBorder(),
+                          WidgetStateProperty.all<Color>(Colors.grey),
+                      shape: WidgetStateProperty.all<OutlinedBorder>(
+                        const StadiumBorder(),
                       ),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Importieren',
                       style: TextStyle(
                         color: Colors.white,

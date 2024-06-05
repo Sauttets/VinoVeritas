@@ -5,10 +5,10 @@ class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key});
 
   @override
-  _CustomNavBarState createState() => _CustomNavBarState();
+  CustomNavBarState createState() => CustomNavBarState();
 }
 
-class _CustomNavBarState extends State<CustomNavBar> {
+class CustomNavBarState extends State<CustomNavBar> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {

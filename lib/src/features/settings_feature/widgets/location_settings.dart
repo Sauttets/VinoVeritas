@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SetLocation extends StatefulWidget {
-  const SetLocation({Key? key}) : super(key: key);
+  const SetLocation({super.key});
 
   @override
-  _SetLocationState createState() => _SetLocationState();
+  SetLocationState createState() => SetLocationState();
 }
 
-class _SetLocationState extends State<SetLocation> {
+class SetLocationState extends State<SetLocation> {
   double _currentSliderValue = 0;
 
   @override
@@ -23,14 +23,14 @@ class _SetLocationState extends State<SetLocation> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Ort oder PLZ:',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
@@ -39,13 +39,13 @@ class _SetLocationState extends State<SetLocation> {
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
-            Text(
+            const SizedBox(height: 20), // Add more space
+            const Text(
               'Radius:',
               style: TextStyle(
                 fontSize: 15,
