@@ -9,6 +9,7 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.d
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() => runApp(const MyApp());
@@ -269,6 +270,7 @@ class Page9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
         title: const Text('Settingspage'),
       ),
       body: const Center(child: SettingsPage()),
