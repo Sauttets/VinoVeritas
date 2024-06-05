@@ -103,6 +103,15 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/page9');
               },
+<<<<<<< 21-set_username
+              child: const Text('Settingspage'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page10');
+              },
+=======
+>>>>>>> main
               child: const Text('Navbar'),
             ),
           ],
@@ -261,7 +270,25 @@ class Page9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< 21-set_username
+        title: const Text('Settingspage'),
+      ),
+      body: const Center(child: SettingsPage()),
+    );
+  }
+}
+
+class Page10 extends StatelessWidget {
+  const Page10({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navbar'),
+=======
         title: const Text('search bar'),
+>>>>>>> main
       ),
       body: const Center(
         child: CustomNavBar(),
