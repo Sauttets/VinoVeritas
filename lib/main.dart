@@ -8,6 +8,7 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() => runApp(const MyApp());
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/page7': (context) => const Page7(),
         '/page8': (context) => const Page8(),
         '/page9': (context) => const Page9(),
+        '/page10': (context) => const Page10(),
       },
     );
   }
@@ -103,15 +105,12 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/page9');
               },
-<<<<<<< 21-set_username
               child: const Text('Settingspage'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page10');
               },
-=======
->>>>>>> main
               child: const Text('Navbar'),
             ),
           ],
@@ -270,7 +269,6 @@ class Page9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-<<<<<<< 21-set_username
         title: const Text('Settingspage'),
       ),
       body: const Center(child: SettingsPage()),
@@ -286,9 +284,6 @@ class Page10 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Navbar'),
-=======
-        title: const Text('search bar'),
->>>>>>> main
       ),
       body: const Center(
         child: CustomNavBar(),
