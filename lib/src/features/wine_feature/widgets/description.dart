@@ -21,7 +21,7 @@ class Description extends StatelessWidget {
         SizedBox(
           width: double.infinity, // Breite der Karte auf maximale Breite setzen
           child: Card(
-            elevation: 4.0,
+            elevation: 0.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Spacings.cornerRadius),
             ),

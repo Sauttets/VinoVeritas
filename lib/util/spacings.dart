@@ -10,6 +10,8 @@ class Spacings {
   static const double buttonSize = 50.0; // Size of the icon
   static const double buttonContainerSize = 68.0; // Size of the container
 
+  static const double supermarketLogo = 75.0;
+
   static const double lineVerticalThickness = 2.0;
   static const double lineHorizontalThickness = 2.0;
   static const double lineBorder = 4.0;

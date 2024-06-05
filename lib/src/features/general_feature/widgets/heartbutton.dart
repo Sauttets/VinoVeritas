@@ -1,39 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
-class HeartButton extends StatelessWidget {
-  const HeartButton({super.key});
+class HeartButton extends StatefulWidget {
+  const HeartButton({Key? key}) : super(key: key);
+
+  @override
+  _HeartButtonState createState() => _HeartButtonState();
+}
+
+class _HeartButtonState extends State<HeartButton> {
+  bool isLiked = false;
+
+  void toggleLike() {
+    setState(() {
+      isLiked = !isLiked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = 50.0; // Size of the heart icon
-    double containerSize = 68.0; // Size of the container
+    double buttonSize = 60.0; // Increase the size of the heart icon
+    double containerSize = 80.0; // Adjust the size of the container
 
-    return LikeButton(
-      size: containerSize, // Increase the size of the button
-      isLiked: false,
-      animationDuration: const Duration(milliseconds: 0),
-      likeBuilder: (bool isLiked) {
-        return Container(
-          width: containerSize,
-          height: containerSize,
-          decoration: const BoxDecoration(
-            color: AppColors.primaryGrey,
-            shape: BoxShape.circle,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 4.0), // Add padding at the top
-            child: Center(
-              child: Icon(
-                Icons.favorite,
-                color: isLiked ? AppColors.heartRed : AppColors.primaryWhite,
-                size: buttonSize, // Set the size of the heart icon
-              ),
+    return GestureDetector(
+      onTap: toggleLike,
+      child: Container(
+        width: containerSize,
+        height: containerSize,
+        decoration: const BoxDecoration(
+          color: AppColors.primaryGrey,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+          child: Transform.translate(
+            offset: const Offset(0, 2), // move the heart a little bit down
+            child: Icon(
+              Icons.favorite,
+              color: isLiked ? AppColors.heartRed : AppColors.primaryWhite,
+              size: buttonSize, // Set the size of the heart icon
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

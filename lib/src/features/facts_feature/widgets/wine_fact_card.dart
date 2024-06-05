@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart'; // Import this for accessing MediaQuery
 import 'package:vinoveritas/util/spacings.dart';
 
 class WineFactCard extends StatelessWidget {
   final String content;
 
-  const WineFactCard({Key? key, required this.content}) : super(key: key);
+  const WineFactCard({super.key, required this.content});
 
   @override
   Widget build(BuildContext context) {
