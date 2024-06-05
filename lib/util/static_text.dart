@@ -1,5 +1,3 @@
-import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
-
 class StaticText {
   final List<List<Map<String, String>>> wineFactsTabs = [
     [
