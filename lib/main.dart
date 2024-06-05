@@ -105,8 +105,8 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/page9');
               },
-              child: const Text('Design Selector'),
-              ),
+              child: const Text('Settingspage'),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page10');
@@ -274,18 +274,20 @@ class Page9 extends StatelessWidget {
       body: const Center(child: SettingsPage()),
     );
   }
-  
-  class Page10 extends StatelessWidget {
+}
+
+class Page10 extends StatelessWidget {
   const Page10({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('search bar'),
+        title: const Text('Navbar'),
       ),
       body: const Center(
         child: CustomNavBar(),
       ),
     );
+  }
 }
