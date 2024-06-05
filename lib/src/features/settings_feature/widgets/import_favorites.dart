@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class ImportFavorites extends StatelessWidget {
-  const ImportFavorites({Key? key}) : super(key: key);
+  const ImportFavorites({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Import Favorites'),
-      ),
+    return const Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
             // Your existing widgets here...
@@ -23,83 +21,81 @@ class ImportFavorites extends StatelessWidget {
 }
 
 class NewWidget extends StatelessWidget {
-  const NewWidget({Key? key}) : super(key: key);
+  const NewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
+        color: AppColors.primaryWhite,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Weincode:',
+            const Text(
+              '  Weincode:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
-            Text(
-              'Name der Liste:',
+            const SizedBox(height: 20), // Add more space
+            const Text(
+              '  Name der Liste:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
+            const SizedBox(height: 20), // Add more space
             Align(
               alignment: Alignment.centerRight,
               child: FractionallySizedBox(
                 widthFactor: 1 / 3,
-                child: Container(
+                child: SizedBox(
                   height: 30.0,
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey),
-                      shape: MaterialStateProperty.all<OutlinedBorder>(
-                        StadiumBorder(),
+                          WidgetStateProperty.all<Color>(AppColors.primaryGrey),
+                      shape: WidgetStateProperty.all<OutlinedBorder>(
+                        const StadiumBorder(),
                       ),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Importieren',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.primaryWhite,
                       ),
                     ),
                   ),

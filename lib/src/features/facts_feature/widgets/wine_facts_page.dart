@@ -7,10 +7,10 @@ class WineFactsPage extends StatefulWidget {
   const WineFactsPage({super.key});
 
   @override
-  _WineFactsPageState createState() => _WineFactsPageState();
+  WineFactsPageState createState() => WineFactsPageState();
 }
 
-class _WineFactsPageState extends State<WineFactsPage> {
+class WineFactsPageState extends State<WineFactsPage> {
   int selectedIndex = 0;
 
   List<List<Map<String, String>>> wineFactsTab = StaticText().wineFactsTabs;

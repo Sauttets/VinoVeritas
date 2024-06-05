@@ -47,7 +47,7 @@ class WineFactsSelector extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: isSelected ? AppColors.primaryWhite : Colors.black,
+            color: isSelected ? AppColors.primaryWhite : AppColors.black,
           ),
         ),
       ),

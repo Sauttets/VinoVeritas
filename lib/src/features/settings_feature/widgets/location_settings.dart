@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SetLocation extends StatefulWidget {
-  const SetLocation({Key? key}) : super(key: key);
+  const SetLocation({super.key});
 
   @override
-  _SetLocationState createState() => _SetLocationState();
+  SetLocationState createState() => SetLocationState();
 }
 
-class _SetLocationState extends State<SetLocation> {
+class SetLocationState extends State<SetLocation> {
   double _currentSliderValue = 0;
 
   @override
@@ -23,33 +23,31 @@ class _SetLocationState extends State<SetLocation> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Ort oder PLZ:',
+            const Text(
+              '  Ort oder PLZ:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
+            SizedBox(
               width: 391.0,
               height: 44.0,
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add more space
-            Text(
-              'Radius:',
+            const SizedBox(height: 20), // Add more space
+            const Text(
+              '  Radius:',
               style: TextStyle(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
               ),
             ),
             Slider(
@@ -58,8 +56,8 @@ class _SetLocationState extends State<SetLocation> {
               max: 100,
               divisions: 100,
               label: '${_currentSliderValue.round()} km',
-              activeColor: Colors.grey,
-              inactiveColor: Colors.grey[300],
+              activeColor: AppColors.primaryGrey,
+              inactiveColor: AppColors.secondaryGrey,
               onChanged: (double value) {
                 setState(() {
                   _currentSliderValue = value;

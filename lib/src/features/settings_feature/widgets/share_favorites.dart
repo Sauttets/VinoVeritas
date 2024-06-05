@@ -1,46 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class DisplayAndCopyText extends StatelessWidget {
   final String text;
 
-  const DisplayAndCopyText({Key? key, required this.text}) : super(key: key);
+  const DisplayAndCopyText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Teile deine Favoriten:',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0), // Add top and bottom padding
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '   Teile deine Favoriten:',
+            style: TextStyle(
+              fontSize: 15,
+            ),
           ),
-        ),
-        Container(
-          width: 391.0,
-          height: 44.0,
-          padding: EdgeInsets.symmetric(horizontal: 10.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(text),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: Container(
+              height: 44.0,
+                padding: const EdgeInsets.only(left: 10.0),
+              decoration: BoxDecoration(
+                color: AppColors.primaryWhite,
+                borderRadius: BorderRadius.circular(Spacings.cornerRadius),
               ),
-              IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: text));
-                },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(text),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.copy),
+                    onPressed: () {
+                      Clipboard.setData(ClipboardData(text: text));
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
