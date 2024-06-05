@@ -12,8 +12,10 @@ class AttributSlider extends StatelessWidget {
       required this.leftLabel,
       required this.rightLabel,
       required this.position})
-      : assert(position >= 0.0 && position <= 1.0,
-            'Position must be between 0 and 1');
+      ;
+
+//: assert(position >= 0.0 && position <= 1.0,
+//            'Position must be between 0 and 1')
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class AttributSlider extends StatelessWidget {
               Container(
                 height: 5,
                 decoration: BoxDecoration(
-                  color: AppColors.primaryGrey,
+                  color: Colors.black,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),

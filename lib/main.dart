@@ -8,8 +8,10 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dar
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/wine_details.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() => runApp(const MyApp());
@@ -104,6 +106,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page9');
+              },
+              child: const Text('Wine Details upper Part'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page10');
               },
               child: const Text('Wine Details'),
             ),
@@ -261,13 +269,49 @@ class Page9 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TastePallet t = TastePallet(
+        flavor1: 'Zimt',
+        flavor2: 'Dunkele Beeren',
+        flavor3: 'Nelke',
+        fit1: 'Wildschwein',
+        fit2: 'Rind',
+        fit3: 'Schwein');
+    Description description = const Description(
+        description:
+            'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.');
+    SupermarketSelector s = const SupermarketSelector(
+      name: 'EDEKA BAUR',
+      address: 'Bodanstraße 20-26',
+      postalCode: '78462 Konstanz',
+      price: '12,34€',
+      distance: '1,8km',
+      imagePath: 'assets/images/Logo_Edeka.png', // Beispielpfad für das Bild
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wine Details'),
       ),
-      body: const Center(
-        child: WineDetailScreen(),
+      backgroundColor: AppColors.backgroundColor, // Hintergrundfarbe hinzufügen
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              WineDetails(
+                  name: "Aller bester super Wein",
+                  price: "5.00",
+                  volume: "3",
+                  dryness: 0.8,
+                  acidity: 0.3,
+                  taste: 0.1,
+                  image: "assets/images/wine4.jpg",
+                  tastePallet: t,
+                description: description,
+                supermarket: s,), 
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+

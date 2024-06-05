@@ -1,30 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/back_button.dart'
-    as bb;
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 
-class WineDetailScreen extends StatelessWidget {
-  const WineDetailScreen({Key? key});
+const double wine_wight = 100;
+const double wine_height = 368;
+const double detailbox_hight = wine_height -
+    (10 * Spacings.horizontal +
+        Spacings.titleFontSize +
+        Spacings.textFontSize * 6 +
+        2 * Spacings.vertical);
+
+class WineDetails extends StatelessWidget {
+  final String name;
+  final String price;
+  final String volume;
+  final double dryness;
+  final double acidity;
+  final double taste;
+  final String image;
+  final TastePallet tastePallet;
+  final Description description;
+  final SupermarketSelector supermarket;
+
+  const WineDetails(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.volume,
+      required this.dryness,
+      required this.acidity,
+      required this.taste,
+      required this.image,
+      required this.tastePallet,
+      required this.description,
+      required this.supermarket});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(Spacings.horizontal),
+    return Padding(
+      padding: const EdgeInsets.all(Spacings.horizontal),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              WineDetail1(),
-              Positioned(
-                top: 265 -
-                    200 +
-                    Spacings.buttonContainerSize /
-                        2, // Position von oben gemessen
+              WineDetail1(
+                  name: name,
+                  price: price,
+                  volume: volume,
+                  dryness: dryness,
+                  acidity: acidity,
+                  taste: taste,
+                  image: image),
+              const Positioned(
+                top: detailbox_hight +
+                    Spacings.buttonContainerSize / 2 +
+                    Spacings.horizontal, // Position von oben gemessen
                 right: Spacings.horizontal, // Position von rechts gemessen
                 child: Row(
                   children: [
@@ -37,6 +75,8 @@ class WineDetailScreen extends StatelessWidget {
               ),
             ],
           ),
+          FullDescription(tastePallet: tastePallet, description: description),
+          supermarket,
         ],
       ),
     );
@@ -44,30 +84,54 @@ class WineDetailScreen extends StatelessWidget {
 }
 
 class WineDetail1 extends StatelessWidget {
-  const WineDetail1({Key? key});
+  final String name;
+  final String price;
+  final String volume;
+  final double dryness;
+  final double acidity;
+  final double taste;
+  final String image;
+
+  const WineDetail1(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.volume,
+      required this.dryness,
+      required this.acidity,
+      required this.taste,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(0),
+    return Padding(
+      padding: const EdgeInsets.all(0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 50), // Zusätzlicher Platz für die Flasche
+          const SizedBox(height: 50), // Zusätzlicher Platz für die Flasche
           Stack(
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: DetailBox(),
+                    child: DetailBox(
+                        name: name,
+                        price: price,
+                        volume: volume,
+                        dryness: dryness,
+                        acidity: acidity,
+                        taste: taste),
                   ),
                 ],
               ),
               Positioned(
                 bottom: 0,
                 left: Spacings.vertical,
-                child: WinePic(),
+                child: WinePic(
+                  image: image,
+                ),
               ),
             ],
           ),
@@ -77,34 +141,22 @@ class WineDetail1 extends StatelessWidget {
   }
 }
 
-class DetailHeadline extends StatelessWidget {
-  const DetailHeadline({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // Änderung hier
-      padding: const EdgeInsets.all(Spacings.horizontal),
-      child: const Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-              width: 72 + Spacings.vertical + Spacings.lineHorizontalThickness),
-          Text(
-            'Weinname',
-            style: TextStyle(
-              fontSize: Spacings.titleFontSize,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class DetailBox extends StatelessWidget {
-  const DetailBox({Key? key});
+  final String name;
+  final String price;
+  final String volume;
+  final double dryness;
+  final double acidity;
+  final double taste;
+
+  const DetailBox(
+      {super.key,
+      required this.name,
+      required this.price,
+      required this.volume,
+      required this.dryness,
+      required this.acidity,
+      required this.taste});
 
   @override
   Widget build(BuildContext context) {
@@ -114,17 +166,14 @@ class DetailBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 265 -
-                (200 -
-                    Spacings.horizontal +
-                    Spacings.textFontSize), // Höhe der DetailBox
+            height: detailbox_hight, // Höhe der DetailBox
             decoration: const BoxDecoration(
               color: AppColors.backgroundColor,
             ),
-            child: const Padding(
+            child: Padding(
               padding:
-                  EdgeInsets.symmetric(horizontal: Spacings.horizontal),
-              child: DetailHeadline(),
+                  const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
+              child: DetailHeadline(name: name),
             ),
           ),
           Container(
@@ -140,19 +189,24 @@ class DetailBox extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(Spacings.horizontal),
+            child: Padding(
+              padding: const EdgeInsets.all(Spacings.horizontal),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(width: 72),
-                  SizedBox(width: Spacings.vertical),
-                  Line(),
-                  SizedBox(
+                  const SizedBox(width: wine_wight),
+                  const SizedBox(width: Spacings.vertical),
+                  const Line(),
+                  const SizedBox(
                       width:
                           Spacings.horizontal), // Platz zwischen den Elementen
                   Expanded(
-                    child: DetailText(),
+                    child: DetailText(
+                        price: price,
+                        volume: volume,
+                        dryness: dryness,
+                        acidity: acidity,
+                        taste: taste),
                   ),
                 ],
               ),
@@ -164,45 +218,37 @@ class DetailBox extends StatelessWidget {
   }
 }
 
+class DetailHeadline extends StatelessWidget {
+  final String name;
 
-class DetailText extends StatelessWidget {
-  const DetailText({
-    super.key,
-  });
+  const DetailHeadline({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Änderung hier
-      padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
-      child: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+      padding: const EdgeInsets.all(Spacings.horizontal),
+      alignment: Alignment.center, // Center the content vertically
+      child: Row(
+        crossAxisAlignment:
+            CrossAxisAlignment.center, // Center the content vertically
         children: [
-          Text(
-            '42,00€ – 850ml',
-            style: TextStyle(
-              fontSize: Spacings.titleFontSize,
-              fontWeight: FontWeight.bold,
+          const SizedBox(
+              width: wine_wight +
+                  Spacings.vertical +
+                  Spacings.lineHorizontalThickness),
+          Expanded(
+            // Wrap the Text widget with Expanded to enable wrapping
+            child: Text(
+              name,
+              style: const TextStyle(
+                fontSize: Spacings.titleFontSize,
+                fontWeight: FontWeight.bold,
+              ),
+              softWrap: true,
+              maxLines: 2, // Allow a maximum of 2 lines
+              overflow:
+                  TextOverflow.ellipsis, // Show ellipsis if text is too long
             ),
-          ),
-          SizedBox(height: Spacings.horizontal),
-          AttributSlider(
-            leftLabel: 'Trocken',
-            rightLabel: 'Lieblich',
-            position: 0.3,
-          ),
-          SizedBox(height: Spacings.horizontal),
-          AttributSlider(
-            leftLabel: 'Sauer',
-            rightLabel: 'Basisch',
-            position: 0.5,
-          ),
-          SizedBox(height: Spacings.horizontal),
-          AttributSlider(
-            leftLabel: 'Widerlich',
-            rightLabel: 'Lecker',
-            position: 0.9,
           ),
         ],
       ),
@@ -210,18 +256,84 @@ class DetailText extends StatelessWidget {
   }
 }
 
+class DetailText extends StatelessWidget {
+  final String price;
+  final String volume;
+  final double dryness;
+  final double acidity;
+  final double taste;
+
+  const DetailText({
+    super.key,
+    required this.price,
+    required this.volume,
+    required this.dryness,
+    required this.acidity,
+    required this.taste,
+  })  : assert(dryness >= 0.0 && dryness <= 1.0,
+            'Dryness must be between 0 and 1'),
+        assert(acidity >= 0.0 && acidity <= 1.0,
+            'Acidity must be between 0 and 1'),
+        assert(taste >= 0.0 && taste <= 1.0, 'Taste must be between 0 and 1');
+
+  @override
+  Widget build(BuildContext context) {
+    String description = '$price € – $volume ml';
+
+    return Container(
+      // Änderung hier
+      padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: Spacings.horizontal),
+          Text(
+            description,
+            style: const TextStyle(
+              fontSize: Spacings.titleFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: Spacings.horizontal),
+          AttributSlider(
+            leftLabel: 'Trocken',
+            rightLabel: 'Lieblich',
+            position: dryness,
+          ),
+          const SizedBox(height: Spacings.horizontal),
+          AttributSlider(
+            leftLabel: 'Sauer',
+            rightLabel: 'Basisch',
+            position: acidity,
+          ),
+          const SizedBox(height: Spacings.horizontal),
+          AttributSlider(
+            leftLabel: 'Widerlich',
+            rightLabel: 'Lecker',
+            position: taste,
+          ),
+          const SizedBox(height: Spacings.horizontal),
+        ],
+      ),
+    );
+  }
+}
+
 class WinePic extends StatelessWidget {
-  const WinePic({super.key});
+  final String image;
+
+  const WinePic({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 72,
-      height: 265,
+      width: wine_wight,
+      height: wine_height,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
         child: Image.asset(
-          'assets/images/wine.png',
+          image,
           fit: BoxFit.cover,
         ),
       ),
@@ -236,7 +348,9 @@ class Line extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Spacings.lineHorizontalThickness,
-      height: 5 * Spacings.horizontal + Spacings.titleFontSize + Spacings.textFontSize * 6,
+      height: 5 * Spacings.horizontal +
+          Spacings.titleFontSize +
+          Spacings.textFontSize * 6,
       color: AppColors.primaryGrey,
       margin: const EdgeInsets.symmetric(vertical: Spacings.horizontal),
       padding: const EdgeInsets.all(Spacings.horizontal),
