@@ -6,14 +6,14 @@ class DesignSelector extends StatelessWidget {
   final ValueChanged<int> onTabSelected;
 
   const DesignSelector({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onTabSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 391,
       height: 66,
       child: Column(
@@ -34,7 +34,7 @@ class DesignSelector extends StatelessWidget {
           const SizedBox(
               height:
                   6), // Add some spacing between the heading and the selector
-          Container(
+          SizedBox(
             width: 391,
             height: 42,
             child: Container(

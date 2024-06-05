@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/settings_feature/widgets/design_selector.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 void main() => runApp(const MyApp());
 
@@ -140,7 +141,7 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
-  const Page3({Key? key}) : super(key: key);
+  const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +149,15 @@ class Page3 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Weinfakt des Tages'),
       ),
-      body: const Center(
-          child: SettingsPage()), // Add your DesignSelector widget here
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          WineFactCard(content: StaticText.wineFactOTD),
+          const WineFactCard(
+            content: "x",
+          ),
+        ],
+      ),
     );
   }
 }
@@ -253,7 +261,7 @@ class Page9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Design Selector'),
+        title: const Text('Settingspage'),
       ),
       body: const Center(child: SettingsPage()),
     );
