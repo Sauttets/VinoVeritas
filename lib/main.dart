@@ -4,14 +4,12 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.d
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_details.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
@@ -39,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/page8': (context) => const Page8(),
         '/page9': (context) => const Page9(),
         '/page10': (context) => const Page10(),
+        '/page11': (context) => const Page11(),
       },
     );
   }
@@ -114,6 +113,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page10');
+              },
+              child: const Text('Navbar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page11');
               },
               child: const Text('Navbar'),
             ),
@@ -296,3 +301,30 @@ class Page10 extends StatelessWidget {
     );
   }
 }
+
+
+class Page11 extends StatelessWidget {
+  const Page11({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navbar'),
+      ),
+      body: Center(
+        child: WineCard(
+          year: '2019',
+          name: 'Château Migraine',
+          volume: '750ml',
+          price: '13,37€',
+          glassImageIndex: 0, // Index of the glass image to use
+          bottleImageIndex: 0, // Index of the bottle image to use
+        ),
+      ),
+    );
+  }
+}
+
+
+

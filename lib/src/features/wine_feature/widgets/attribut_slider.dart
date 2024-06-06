@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class AttributSlider extends StatelessWidget {
