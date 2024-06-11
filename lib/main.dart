@@ -4,12 +4,13 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.d
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/wine_details.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
@@ -120,7 +121,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/page11');
               },
-              child: const Text('Navbar'),
+              child: const Text('WineDetails'),
             ),
           ],
         ),
@@ -302,7 +303,7 @@ class Page10 extends StatelessWidget {
   }
 }
 
-
+/*
 class Page11 extends StatelessWidget {
   const Page11({super.key});
 
@@ -325,6 +326,52 @@ class Page11 extends StatelessWidget {
     );
   }
 }
+*/
 
 
 
+final TastePallet tp = TastePallet(
+    flavor1: 'Zimt',
+    flavor2: 'Dunkele Beeren',
+    flavor3: 'Nelke',
+    fit1: 'Wildschwein',
+    fit2: 'Rind',
+    fit3: 'Schwein');
+
+
+const SupermarketSelector sms = SupermarketSelector(
+    name: 'EDEKA BAUR',
+    address: 'Bodanstraße 20-26',
+    postalCode: '78462 Konstanz',
+    price: '12,34€',
+    distance: '1,8km',
+    imagePath: 'assets/images/Logo_Edeka.png');
+
+class Page11 extends StatelessWidget {
+  const Page11({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navbar'),
+      ),
+      body: Center(
+        child: WineDetails(
+          name: 'Château Migraine',
+          volume: '750ml',
+          price: '13,37€',
+          dryness: 0.5,
+          acidity: 0.7,
+          taste: 0.8,
+          image: 'assets/images/wine.png',
+          tastePallet: tp,
+          description: const Description(
+              description:
+                  'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.'),
+          supermarket: sms,
+        ),
+      ),
+    );
+  }
+}

@@ -44,41 +44,39 @@ class WineDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(Spacings.horizontal),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              WineDetail1(
-                  name: name,
-                  price: price,
-                  volume: volume,
-                  dryness: dryness,
-                  acidity: acidity,
-                  taste: taste,
-                  image: image),
-              const Positioned(
-                top: detailboxHeight +
-                    Spacings.buttonContainerSize / 2 +
-                    Spacings.horizontal, // Position von oben gemessen
-                right: Spacings.horizontal, // Position von rechts gemessen
-                child: Row(
-                  children: [
-                    ShareButton(),
-                    SizedBox(
-                        width: Spacings.horizontal), // Platz zwischen den Icons
-                    HeartButton(),
-                  ],
+    return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                WineDetail1(
+                    name: name,
+                    price: price,
+                    volume: volume,
+                    dryness: dryness,
+                    acidity: acidity,
+                    taste: taste,
+                    image: image),
+                 Positioned(
+                  top: detailboxHeight +10,
+                  right: Spacings.horizontal -10, // Position von rechts gemessen
+                  child: Row(
+                    children: [
+                      const ShareButton(),// Platz zwischen den Icons
+                      Transform.scale(
+                        scale: 0.50, // Scale down to 25%
+                        child: const HeartButton(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          FullDescription(tastePallet: tastePallet, description: description),
-          supermarket,
-        ],
-      ),
+              ],
+            ),
+            FullDescription(tastePallet: tastePallet, description: description),
+            supermarket,
+          ],
+        ),
     );
   }
 }
