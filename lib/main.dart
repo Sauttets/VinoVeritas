@@ -4,6 +4,7 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.d
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/page9': (context) => const Page9(),
         '/page10': (context) => const Page10(),
         '/page11': (context) => const Page11(),
+        '/page12': (context) => const Page12(),
       },
     );
   }
@@ -122,6 +124,12 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page11');
               },
               child: const Text('WineDetails'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page12');
+              },
+              child: const Text('WineCard'),
             ),
           ],
         ),
@@ -303,9 +311,27 @@ class Page10 extends StatelessWidget {
   }
 }
 
-/*
-class Page11 extends StatelessWidget {
-  const Page11({super.key});
+
+final wineEntries = [
+    WineEntry(
+      year: '2019',
+      name: 'Châteauneuf-du-Pape',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Château Migraine',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    // Add more entries as needed
+  ];
+
+class Page12 extends StatelessWidget {
+  const Page12({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -314,19 +340,12 @@ class Page11 extends StatelessWidget {
         title: const Text('Navbar'),
       ),
       body: Center(
-        child: WineCard(
-          year: '2019',
-          name: 'Château Migraine',
-          volume: '750ml',
-          price: '13,37€',
-          glassImageIndex: 0, // Index of the glass image to use
-          bottleImageIndex: 0, // Index of the bottle image to use
-        ),
+        child: WineListPage(wineEntries: wineEntries)
       ),
     );
   }
 }
-*/
+
 
 
 
@@ -353,23 +372,25 @@ class Page11 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Navbar'),
-      ),
-      body: Center(
-        child: WineDetails(
-          name: 'Château Migraine',
-          volume: '750ml',
-          price: '13,37€',
-          dryness: 0.5,
-          acidity: 0.7,
-          taste: 0.8,
-          image: 'assets/images/wine.png',
-          tastePallet: tp,
-          description: const Description(
-              description:
-                  'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.'),
-          supermarket: sms,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            WineDetails(
+              name: 'Château Migraine',
+              volume: '750ml',
+              price: '13,37€',
+              dryness: 0.5,
+              acidity: 0.7,
+              taste: 0.8,
+              image: 'assets/images/wine.png',
+              tastePallet: tp,
+              description: const Description(
+                description:
+                    'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.'),
+              supermarket: sms,
+            ),
+          ],
         ),
       ),
     );

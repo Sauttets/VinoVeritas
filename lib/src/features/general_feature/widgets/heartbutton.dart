@@ -24,7 +24,7 @@ class HeartButtonState extends State<HeartButton> {
         height: 100,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.grey,
+          color: AppColors.primaryGrey,
         ),
         child: Center(
           child: Transform.translate(
