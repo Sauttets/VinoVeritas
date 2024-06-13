@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
+import 'package:vinoveritas/src/features/general_feature/filter_feature.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 //import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
@@ -39,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/page8': (context) => const Page8(),
         '/page9': (context) => const Page9(),
         '/page10': (context) => const Page10(),
+        '/page14': (context) => const Page14(),
       },
     );
   }
@@ -122,6 +126,12 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page11');
               },
               child: const Text('Navbar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page14');
+              },
+              child: const Text('Filter Options'),
             ),
           ],
         ),
@@ -439,3 +449,19 @@ class Page11 extends StatelessWidget {
     );
   }
 } */
+
+class Page14 extends StatelessWidget {
+  const Page14({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Filter Options'),
+      ),
+      body: const Center(
+        child: FilterSort()
+      ),
+    );
+  }
+}
