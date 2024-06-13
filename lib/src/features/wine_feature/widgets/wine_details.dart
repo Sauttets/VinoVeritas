@@ -6,7 +6,6 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart'
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/attribut_slider.dart';
 
 const double wineWight = 100;
@@ -63,7 +62,6 @@ class WineDetails extends StatelessWidget {
                   right: Spacings.horizontal -10, // Position von rechts gemessen
                   child: Row(
                     children: [
-                      const ShareButton(),// Platz zwischen den Icons
                       Transform.scale(
                         scale: 0.50, // Scale down to 25%
                         child: const HeartButton(),
