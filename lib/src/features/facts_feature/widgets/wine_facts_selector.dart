@@ -13,25 +13,33 @@ class WineFactsSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildButton(0, 'Weinbau'),
-          _buildButton(1, 'Kellerei'),
-          _buildButton(2, 'Geschmack'),
-          _buildButton(3, 'Sonstiges'),
-        ],
-      ),
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double buttonWidth = screenWidth / 4 - 5; 
+
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildButton(0, 'Weinbau', buttonWidth),
+              _buildButton(1, 'Kellerei', buttonWidth),
+              _buildButton(2, 'Geschmack', buttonWidth),
+              _buildButton(3, 'Sonstiges', buttonWidth),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 
-  Widget _buildButton(int index, String text) {
+  Widget _buildButton(int index, String text, double width) {
     bool isSelected = selectedIndex == index;
 
     return GestureDetector(
@@ -39,15 +47,18 @@ class WineFactsSelector extends StatelessWidget {
         onTabSelected(index);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        width: width,
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.primaryWhite,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: isSelected ? AppColors.primaryWhite : AppColors.black,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: isSelected ? AppColors.primaryWhite : AppColors.black,
+            ),
           ),
         ),
       ),

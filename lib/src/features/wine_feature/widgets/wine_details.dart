@@ -6,12 +6,11 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart'
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/share_button.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/attribut_slider.dart';
 
-const double wine_wight = 100;
-const double wine_height = 368;
-const double detailbox_hight = wine_height -
+const double wineWight = 100;
+const double wineHeight = 368;
+const double detailboxHeight = wineHeight -
     (10 * Spacings.horizontal +
         Spacings.titleFontSize +
         Spacings.textFontSize * 6 +
@@ -44,41 +43,38 @@ class WineDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(Spacings.horizontal),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              WineDetail1(
-                  name: name,
-                  price: price,
-                  volume: volume,
-                  dryness: dryness,
-                  acidity: acidity,
-                  taste: taste,
-                  image: image),
-              const Positioned(
-                top: detailbox_hight +
-                    Spacings.buttonContainerSize / 2 +
-                    Spacings.horizontal, // Position von oben gemessen
-                right: Spacings.horizontal, // Position von rechts gemessen
-                child: Row(
-                  children: [
-                    ShareButton(),
-                    SizedBox(
-                        width: Spacings.horizontal), // Platz zwischen den Icons
-                    HeartButton(),
-                  ],
+    return SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                WineDetail1(
+                    name: name,
+                    price: price,
+                    volume: volume,
+                    dryness: dryness,
+                    acidity: acidity,
+                    taste: taste,
+                    image: image),
+                 Positioned(
+                  top: detailboxHeight +10,
+                  right: Spacings.horizontal -10, // Position von rechts gemessen
+                  child: Row(
+                    children: [
+                      Transform.scale(
+                        scale: 0.50, // Scale down to 25%
+                        child: const HeartButton(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          FullDescription(tastePallet: tastePallet, description: description),
-          supermarket,
-        ],
-      ),
+              ],
+            ),
+            FullDescription(tastePallet: tastePallet, description: description),
+            supermarket,
+          ],
+        ),
     );
   }
 }
@@ -166,7 +162,7 @@ class DetailBox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: detailbox_hight, // Höhe der DetailBox
+            height: detailboxHeight, // Höhe der DetailBox
             decoration: const BoxDecoration(
               color: AppColors.backgroundColor,
             ),
@@ -194,7 +190,7 @@ class DetailBox extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(width: wine_wight),
+                  const SizedBox(width: wineWight),
                   const SizedBox(width: Spacings.vertical),
                   const Line(),
                   const SizedBox(
@@ -233,7 +229,7 @@ class DetailHeadline extends StatelessWidget {
             CrossAxisAlignment.center, // Center the content vertically
         children: [
           const SizedBox(
-              width: wine_wight +
+              width: wineWight +
                   Spacings.vertical +
                   Spacings.lineHorizontalThickness),
           Expanded(
@@ -327,9 +323,9 @@ class WinePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: wine_wight,
-      height: wine_height,
+    return SizedBox(
+      width: wineWight,
+      height: wineHeight,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
         child: Image.asset(

@@ -37,9 +37,6 @@ class TestPage extends StatelessWidget {
               
               FullDescription(tastePallet: tastePallet, description: description),
               // TastePallet(flavor1: 'Leder', fit1: 'Fisch'),
-
-             
-
               const SupermarketSelector(
                         name: 'EDEKA BAUR',
                         address: 'Bodanstraße 20-26',

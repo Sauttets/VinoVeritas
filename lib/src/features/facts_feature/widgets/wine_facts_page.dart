@@ -31,7 +31,10 @@ class WineFactsPageState extends State<WineFactsPage> {
           ),
         ),
       ),
-      body: WineFactsTab(wineFacts: wineFactsTab[selectedIndex]),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
+        child: WineFactsTab(wineFacts: wineFactsTab[selectedIndex]),
+      ),
     );
   }
 }

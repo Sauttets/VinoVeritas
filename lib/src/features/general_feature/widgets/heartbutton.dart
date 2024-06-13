@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/util/spacings.dart';
 
 class HeartButton extends StatefulWidget {
   const HeartButton({super.key});
@@ -10,35 +9,30 @@ class HeartButton extends StatefulWidget {
 }
 
 class HeartButtonState extends State<HeartButton> {
-  bool isLiked = false;
-
-  void toggleLike() {
-    setState(() {
-      isLiked = !isLiked;
-    });
-  }
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = 60.0; // Increase the size of the heart icon
-    double containerSize = 80.0; // Adjust the size of the container
-
     return GestureDetector(
-      onTap: toggleLike,
+      onTap: () {
+        setState(() {
+          isPressed = !isPressed;
+        });
+      },
       child: Container(
-        width: containerSize,
-        height: containerSize,
+        width: 100,
+        height: 100,
         decoration: const BoxDecoration(
-          color: AppColors.primaryGrey,
           shape: BoxShape.circle,
+          color: AppColors.primaryGrey,
         ),
         child: Center(
           child: Transform.translate(
-            offset: const Offset(0, 2), // move the heart a little bit down
+            offset: const Offset(0, 3), // Move the heart 2 pixels down
             child: Icon(
               Icons.favorite,
-              color: isLiked ? AppColors.heartRed : AppColors.primaryWhite,
-              size: buttonSize, // Set the size of the heart icon
+              color: isPressed ? AppColors.heartRed : AppColors.primaryWhite,
+              size: 80, // Increase the size of the heart
             ),
           ),
         ),

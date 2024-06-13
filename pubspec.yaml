@@ -71,6 +71,12 @@ flutter:
     - assets/images/wine2.jpg
     - assets/images/wine3.jpg
     - assets/images/wine4.jpg
+    - assets/images/RotweinGlas.png
+    - assets/images/WeißweinGlas.png
+    - assets/images/RoseweinGlas.png
+    - assets/images/RotweinFlasche.png
+    - assets/images/RoseweinFlasche.png
+    - assets/images/WeißweinFlasche.png
   #   - images/a_dot_ham.jpeg
 
 
