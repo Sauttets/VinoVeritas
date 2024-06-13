@@ -5,6 +5,7 @@ import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dar
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/page8': (context) => const Page8(),
         '/page9': (context) => const Page9(),
         '/page10': (context) => const Page10(),
+        '/page11': (context) => const Page10(),
       },
     );
   }
@@ -114,6 +116,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page10');
+              },
+              child: const Text('Navbar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page11');
               },
               child: const Text('Navbar'),
             ),
@@ -296,3 +304,55 @@ class Page10 extends StatelessWidget {
     );
   }
 }
+
+class Page11 extends StatelessWidget {
+  const Page11({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    TastePallet t = TastePallet(
+        flavor1: 'Zimt',
+        flavor2: 'Dunkele Beeren',
+        flavor3: 'Nelke',
+        fit1: 'Wildschwein',
+        fit2: 'Rind',
+        fit3: 'Schwein');
+    Description description = const Description(
+        description:
+            'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.');
+    SupermarketSelector s = const SupermarketSelector(
+      name: 'EDEKA BAUR',
+      address: 'Bodanstraße 20-26',
+      postalCode: '78462 Konstanz',
+      price: '12,34€',
+      distance: '1,8km',
+      imagePath: 'assets/images/Logo_Edeka.png', // Beispielpfad für das Bild
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Wine Details'),
+      ),
+      backgroundColor: AppColors.backgroundColor, // Hintergrundfarbe hinzufügen
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              WineDetails(
+                  name: "Aller bester super Wein",
+                  price: "5.00",
+                  volume: "3",
+                  dryness: 0.8,
+                  acidity: 0.3,
+                  taste: 0.1,
+                  image: "assets/images/wine4.jpg",
+                  tastePallet: t,
+                description: description,
+                supermarket: s,), 
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
