@@ -3,6 +3,7 @@ import 'package:vinoveritas/main.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
+import 'package:vinoveritas/src/features/general_feature/filter_feature.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/page11': (context) => const Page11(),
         '/page12': (context) => const Page12(),
         '/page13': (context) => const Page13(),
+        '/page14': (context) => const Page14(),
       },
     );
   }
@@ -141,6 +143,12 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page13');
               },
               child: const Text('Fav Selcet'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page14');
+              },
+              child: const Text('Filter Options'),
             ),
           ],
         ),
@@ -564,6 +572,22 @@ class Page13 extends StatelessWidget {
         title: const Text('Settingspage'),
       ),
       body:  Center(child: WineListSelector(wineFavLists: wineFavLists, selfName: 'Gandalf')),
+    );
+  }
+}
+
+class Page14 extends StatelessWidget {
+  const Page14({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Filter Options'),
+      ),
+      body: const Center(
+        child: FilterSort()
+      ),
     );
   }
 }
