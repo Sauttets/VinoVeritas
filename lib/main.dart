@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/main.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
+import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 //import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
@@ -39,6 +43,9 @@ class MyApp extends StatelessWidget {
         '/page8': (context) => const Page8(),
         '/page9': (context) => const Page9(),
         '/page10': (context) => const Page10(),
+        '/page11': (context) => const Page11(),
+        '/page12': (context) => const Page12(),
+        '/page13': (context) => const Page13(),
       },
     );
   }
@@ -122,6 +129,18 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/page11');
               },
               child: const Text('Navbar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page12');
+              },
+              child: const Text('Wine Details'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/page13');
+              },
+              child: const Text('Fav Selcet'),
             ),
           ],
         ),
@@ -322,8 +341,8 @@ final wineEntries = [
     // Add more entries as needed
   ];
 
-class Page12 extends StatelessWidget {
-  const Page12({super.key});
+class Page11 extends StatelessWidget {
+  const Page11({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -358,8 +377,8 @@ const SupermarketSelector sms = SupermarketSelector(
     distance: '1,8km',
     imagePath: 'assets/images/Logo_Edeka.png');
 
-class Page11 extends StatelessWidget {
-  const Page11({super.key});
+class Page12 extends StatelessWidget {
+  const Page12({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -439,3 +458,112 @@ class Page11 extends StatelessWidget {
     );
   }
 } */
+
+final wineEntries1 = [
+    WineEntry(
+      year: '2019',
+      name: 'Châteauneuf-du-Pape',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Château Migraine',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Châteauneuf-du-Pape',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Château Migraine',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    // Add more entries as needed
+  ];
+
+final wineEntries2 = [
+    WineEntry(
+      year: '2019',
+      name: 'Blabla',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Blubblub',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    // Add more entries as needed
+  ];
+
+final wineEntries3 = [
+    WineEntry(
+      year: '2019',
+      name: 'Frosch',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Kerbel',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    // Add more entries as needed
+  ];
+
+final wineEntries4 = [
+    WineEntry(
+      year: '2019',
+      name: 'Papagei',
+      volume: '850ml',
+      price: '42,00€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    WineEntry(
+      year: '2019',
+      name: 'Mandarine',
+      volume: '750ml',
+      price: '13,37€',
+      imagePath: 'assets/images/wine.png',
+    ),
+    // Add more entries as needed
+  ];
+
+final List<WineFavList> wineFavLists = [
+    WineFavList(name: 'Gandalf', wineEntries: wineEntries1),
+    WineFavList(name: 'Bilbo', wineEntries: wineEntries2),
+    WineFavList(name: 'Frodo', wineEntries: wineEntries3),
+    WineFavList(name: 'Sam', wineEntries: wineEntries4),
+  ];
+  
+
+class Page13 extends StatelessWidget {
+  const Page13({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+        title: const Text('Settingspage'),
+      ),
+      body:  Center(child: WineListSelector(wineFavLists: wineFavLists, selfName: 'Gandalf')),
+    );
+  }
+}
