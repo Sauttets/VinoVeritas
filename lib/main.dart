@@ -6,39 +6,43 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final AppRouter _appRouter = AppRouter();
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final AppRouter _appRouter;
+
+  @override
+  void initState() {
+    super.initState();
+    _appRouter = AppRouter();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Check if _appRouter or its router is null and print a message
-    if (_appRouter.router == null) {
-      print('AppRouter or its router is null');
-    }
-
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'My App',
-      home: Builder(
-        builder: (context) {
-          return Scaffold(
-            body: _appRouter.router != null
-                ? Router(
-                    routerDelegate: _appRouter.router.routerDelegate,
-                    routeInformationParser:
-                        _appRouter.router.routeInformationParser,
-                    routeInformationProvider: PlatformRouteInformationProvider(
-                      initialRouteInformation:
-                          RouteInformation(uri: Uri.parse('/'), state: {}),
-                    ),
-                    backButtonDispatcher: RootBackButtonDispatcher(),
-                  )
-                : Center(
-                    child: Text('Error: AppRouter or its router is null'),
-                  ), // Display a message when _appRouter or its router is null
-            bottomNavigationBar: CustomNavBar(appRouter: _appRouter),
-          );
-        },
+      routerDelegate: _appRouter.router.routerDelegate,
+      routeInformationParser: _appRouter.router.routeInformationParser,
+      backButtonDispatcher: RootBackButtonDispatcher(),
+      routeInformationProvider: PlatformRouteInformationProvider(
+        initialRouteInformation: RouteInformation(uri: Uri.parse('/')),
       ),
+      builder: (context, router) {
+        return Overlay(
+          initialEntries: [
+            OverlayEntry(
+              builder: (context) => Scaffold(
+                body:
+                    router ?? const Center(child: CircularProgressIndicator()),
+                bottomNavigationBar: CustomNavBar(appRouter: _appRouter),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

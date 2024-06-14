@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 
 class AppRouter {
-  late final GoRouter _router;
+  late final GoRouter router;
 
   AppRouter() {
-    _router = GoRouter(
+    router = GoRouter(
       routes: [
         GoRoute(
           path: '/',
@@ -33,8 +33,6 @@ class AppRouter {
       debugLogDiagnostics: true,
     );
   }
-
-  GoRouter get router => _router;
 
   static Widget placeholderPage(String pageName) {
     return Scaffold(
