@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/app_router.dart';
 
 class CustomNavBar extends StatefulWidget {
-  const CustomNavBar({super.key});
+  final AppRouter appRouter;
+
+  const CustomNavBar({Key? key, required this.appRouter}) : super(key: key);
 
   @override
   CustomNavBarState createState() => CustomNavBarState();
@@ -15,12 +19,28 @@ class CustomNavBarState extends State<CustomNavBar> {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (index) {
+      case 0:
+        widget.appRouter.router.go('/');
+        break;
+      case 1:
+        widget.appRouter.router.go('/page2');
+        break;
+      case 2:
+        widget.appRouter.router.go('/page3');
+        break;
+      case 3:
+        widget.appRouter.router.go('/page4');
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(height: 78.0), // Ensures the navbar stretches and has a fixed height
+      constraints: const BoxConstraints.expand(
+          height: 78.0), // Ensures the navbar stretches and has a fixed height
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: AppColors.black, width: 1),
@@ -59,7 +79,9 @@ class CustomNavBarState extends State<CustomNavBar> {
   Widget _buildIcon(IconData icon, int index) {
     return Container(
       decoration: BoxDecoration(
-        color: _selectedIndex == index ? AppColors.primaryRed : AppColors.transparent,
+        color: _selectedIndex == index
+            ? AppColors.primaryRed
+            : AppColors.transparent,
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(14),
       ),
