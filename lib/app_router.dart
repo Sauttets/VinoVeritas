@@ -5,16 +5,20 @@ import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.
 final GoRouter router = GoRouter(
   routes: [
     GoRoute(
+      path: '/',
+      builder: (context, state) => placeholderPage('WhateverPage'),
+    ),
+    GoRoute(
       path: '/home',
-      builder: (context, state) => const Placeholder(),
+      builder: (context, state) => placeholderPage('HomePage'),
     ),
     GoRoute(
       path: '/page1',
-      builder: (context, state) => const Placeholder(),
+      builder: (context, state) => placeholderPage('WineFactsPage'),
     ),
     GoRoute(
       path: '/page2',
-      builder: (context, state) => const Placeholder(),
+      builder: (context, state) => placeholderPage('FavoritesPage'),
     ),
     GoRoute(
       path: '/page3',
