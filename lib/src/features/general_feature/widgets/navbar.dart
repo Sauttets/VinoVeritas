@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/app_router.dart';
 
 class CustomNavBar extends StatefulWidget {
-  final AppRouter appRouter;
+  final GoRouter goRouter;
 
-  const CustomNavBar({Key? key, required this.appRouter}) : super(key: key);
+  const CustomNavBar({super.key, required this.goRouter});
 
   @override
   CustomNavBarState createState() => CustomNavBarState();
@@ -22,16 +21,16 @@ class CustomNavBarState extends State<CustomNavBar> {
 
     switch (index) {
       case 0:
-        widget.appRouter.router.go('/');
+        widget.goRouter.go('/home');
         break;
       case 1:
-        widget.appRouter.router.go('/page2');
+        widget.goRouter.go('/page1');
         break;
       case 2:
-        widget.appRouter.router.go('/page3');
+        widget.goRouter.go('/page2');
         break;
       case 3:
-        widget.appRouter.router.go('/page4');
+        widget.goRouter.go('/page3');
         break;
     }
   }
@@ -39,8 +38,7 @@ class CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(
-          height: 78.0), // Ensures the navbar stretches and has a fixed height
+      constraints: const BoxConstraints.expand(height: 78.0),
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: AppColors.black, width: 1),

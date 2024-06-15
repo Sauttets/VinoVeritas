@@ -1,48 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
-import 'app_router.dart';
+import 'package:vinoveritas/app_router.dart' as app_router;
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late final AppRouter _appRouter;
-
-  @override
-  void initState() {
-    super.initState();
-    _appRouter = AppRouter();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'My App',
-      routerDelegate: _appRouter.router.routerDelegate,
-      routeInformationParser: _appRouter.router.routeInformationParser,
-      backButtonDispatcher: RootBackButtonDispatcher(),
-      routeInformationProvider: PlatformRouteInformationProvider(
-        initialRouteInformation: RouteInformation(uri: Uri.parse('/')),
-      ),
-      builder: (context, router) {
-        return Overlay(
-          initialEntries: [
-            OverlayEntry(
-              builder: (context) => Scaffold(
-                body:
-                    router ?? const Center(child: CircularProgressIndicator()),
-                bottomNavigationBar: CustomNavBar(appRouter: _appRouter),
-              ),
+    return MaterialApp(
+      home: MaterialApp.router(
+        routerConfig: app_router.router,
+        builder: (context, router) {
+          return Scaffold(
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: router!,
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: CustomNavBar(goRouter: app_router.router),
+                ),
+              ],
             ),
-          ],
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
