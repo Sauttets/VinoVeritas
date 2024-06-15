@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 
 final GoRouter router = GoRouter(
@@ -14,7 +15,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/page1',
-      builder: (context, state) => placeholderPage('WineFactsPage'),
+      builder: (context, state) => const WineFactsPage(),
     ),
     GoRoute(
       path: '/page2',
