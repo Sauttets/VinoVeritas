@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class CustomNavBar extends StatefulWidget {
-  const CustomNavBar({super.key});
+  final GoRouter goRouter;
+
+  const CustomNavBar({super.key, required this.goRouter});
 
   @override
   CustomNavBarState createState() => CustomNavBarState();
@@ -15,12 +18,27 @@ class CustomNavBarState extends State<CustomNavBar> {
     setState(() {
       _selectedIndex = index;
     });
+
+    switch (index) {
+      case 0:
+        widget.goRouter.go('/home');
+        break;
+      case 1:
+        widget.goRouter.go('/page1');
+        break;
+      case 2:
+        widget.goRouter.go('/page2');
+        break;
+      case 3:
+        widget.goRouter.go('/page3');
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(height: 78.0), // Ensures the navbar stretches and has a fixed height
+      constraints: const BoxConstraints.expand(height: 78.0),
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: AppColors.black, width: 1),
@@ -59,7 +77,9 @@ class CustomNavBarState extends State<CustomNavBar> {
   Widget _buildIcon(IconData icon, int index) {
     return Container(
       decoration: BoxDecoration(
-        color: _selectedIndex == index ? AppColors.primaryRed : AppColors.transparent,
+        color: _selectedIndex == index
+            ? AppColors.primaryRed
+            : AppColors.transparent,
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(14),
       ),
