@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         routerConfig: app_router.router,
         builder: (context, router) {
           return Scaffold(
+            resizeToAvoidBottomInset: false,
             body: Stack(
               children: [
                 Positioned.fill(

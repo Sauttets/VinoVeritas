@@ -3,17 +3,18 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/expandable_wine_f
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_selector.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
-class WineFactsPage extends StatefulWidget {
-  const WineFactsPage({super.key});
+class StaticWineFacts extends StatefulWidget {
+  const StaticWineFacts({super.key});
 
   @override
-  WineFactsPageState createState() => WineFactsPageState();
+  StaticWineFactsState createState() => StaticWineFactsState();
 }
 
-class WineFactsPageState extends State<WineFactsPage> {
+class StaticWineFactsState extends State<StaticWineFacts> {
   int selectedIndex = 0;
 
   List<List<Map<String, String>>> wineFactsTab = StaticText().wineFactsTabs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,7 @@ class WineFactsPageState extends State<WineFactsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
-        child: WineFactsTab(wineFacts: wineFactsTab[selectedIndex]),
+        child: WineFactsTab(wineFacts: wineFactsTab[selectedIndex], tabIndex: selectedIndex),
       ),
     );
   }
