@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
-import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
+import 'package:vinoveritas/src/screens/settings_page.dart';
+import 'package:vinoveritas/src/screens/lexikon_page.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -15,7 +15,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/page1',
-      builder: (context, state) => const WineFactsPage(),
+      builder: (context, state) => const LexiconPage(fact: 'Some fact'),
     ),
     GoRoute(
       path: '/page2',
