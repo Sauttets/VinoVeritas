@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/main.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
-import 'package:vinoveritas/src/features/general_feature/filter_feature.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/filter_feature.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/test_page.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/settings_page.dart';
 //import 'package:vinoveritas/src/features/wine_feature/widgets/attributSlider.dart';
@@ -558,6 +556,9 @@ final List<WineFavList> wineFavLists = [
     WineFavList(name: 'Bilbo', wineEntries: wineEntries2),
     WineFavList(name: 'Frodo', wineEntries: wineEntries3),
     WineFavList(name: 'Sam', wineEntries: wineEntries4),
+    WineFavList(name: 'Saroman', wineEntries: wineEntries1),
+    WineFavList(name: 'Gollum oder Smeagol', wineEntries: wineEntries2),
+    WineFavList(name: 'Legolas', wineEntries: wineEntries3),
   ];
   
 
