@@ -27,34 +27,39 @@ class SettingsPageState extends State<SettingsPage> {
               top: 16.0, // Add padding above the content
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: SetUsername(),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: SetLocation(),
-                ),
-                DesignSelector(
-                  selectedIndex: selectedIndex,
-                  onTabSelected: (index) {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: DisplayAndCopyText(
-                      text: '22218db8778892345732845uihfh9823823'),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: NewWidget(),
-                ),
-              ],
+            child: Center(
+              // Wrap the Column with a Center widget
+              child: Column(
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Center the children vertically
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SetUsername(),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SetLocation(),
+                  ),
+                  DesignSelector(
+                    selectedIndex: selectedIndex,
+                    onTabSelected: (index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: DisplayAndCopyText(
+                        text: '22218db8778892345732845uihfh9823823'),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: NewWidget(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
