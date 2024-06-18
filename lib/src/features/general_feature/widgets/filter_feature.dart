@@ -63,7 +63,7 @@ class FilterSortState extends State<FilterSort> {
                       children: [
                         Text(
                           'Sortieren  ',
-                          style: TextStyle(fontSize: Spacings.textFontSize, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: Spacings.textFontSize),
                         ),
                         Icon(Icons.tune, color: AppColors.primaryGrey),
                       ],

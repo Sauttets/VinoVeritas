@@ -46,7 +46,6 @@ class TasteMenuState extends State<TasteMenu> {
               option,
               style: TextStyle(
                 color: isSelected ? AppColors.primaryWhite : Colors.black,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ],
