@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/FilterSortTaste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/screens/home_page.dart';
 import 'package:vinoveritas/src/screens/settings_page.dart';
 import 'package:vinoveritas/src/screens/lexikon_page.dart';
 
@@ -12,7 +14,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/home',
-      builder: (context, state) => WinePage(wineEntries: wineEntries),
+      builder: (context, state) => WinePageLayout(wineEntries: wineEntries),
     ),
     GoRoute(
       path: '/page1',
@@ -59,6 +61,38 @@ final wineEntries = [
         glassImagePath: 'assets/images/RotweinGlas.png',
       ),
       WineEntry(
+        year: '2018',
+        name: 'Weißwein Wunder',
+        volume: '750ml',
+        price: '29,00€',
+        wineImagePath: 'assets/images/WeißweinFlasche.png',
+        glassImagePath: 'assets/images/WeißweinGlas.png',
+      ),
+            WineEntry(
+        year: '2018',
+        name: 'Weißwein Wunder',
+        volume: '750ml',
+        price: '29,00€',
+        wineImagePath: 'assets/images/WeißweinFlasche.png',
+        glassImagePath: 'assets/images/WeißweinGlas.png',
+      ),
+            WineEntry(
+        year: '2018',
+        name: 'Weißwein Wunder',
+        volume: '750ml',
+        price: '29,00€',
+        wineImagePath: 'assets/images/WeißweinFlasche.png',
+        glassImagePath: 'assets/images/WeißweinGlas.png',
+      ),
+            WineEntry(
+        year: '2018',
+        name: 'Weißwein Wunder',
+        volume: '750ml',
+        price: '29,00€',
+        wineImagePath: 'assets/images/WeißweinFlasche.png',
+        glassImagePath: 'assets/images/WeißweinGlas.png',
+      ),
+            WineEntry(
         year: '2018',
         name: 'Weißwein Wunder',
         volume: '750ml',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class WineEntry {
   final String year;
@@ -67,7 +68,7 @@ class WineCard extends StatelessWidget {
                 Text(
                   year,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: Spacings.textFontSize,
                     color: Colors.grey,
                   ),
                 ),
@@ -75,7 +76,7 @@ class WineCard extends StatelessWidget {
                 Text(
                   name,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: Spacings.titleFontSize,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -83,7 +84,7 @@ class WineCard extends StatelessWidget {
                 Text(
                   volume,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: Spacings.textFontSize,
                     color: Colors.grey,
                   ),
                 ),
@@ -96,7 +97,7 @@ class WineCard extends StatelessWidget {
             child: Text(
               price,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: Spacings.titleFontSize,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -138,9 +139,8 @@ class WinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GridView.builder(
-          padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+        body: GridView.builder(
+          padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 16.0,
@@ -160,7 +160,6 @@ class WinePage extends StatelessWidget {
             );
           },
         ),
-      )
-    );
+      );
   }
 }
