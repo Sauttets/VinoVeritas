@@ -573,7 +573,7 @@ class Page13 extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         title: const Text('Settingspage'),
       ),
-      body:  Center(child: WineListSelector(wineFavLists: wineFavLists, selfName: 'Gandalf')),
+      body:  const Center(child: TasteMenu()),
     );
   }
 }
@@ -588,7 +588,7 @@ class Page14 extends StatelessWidget {
         title: const Text('Filter Options'),
       ),
       body:  const Center(
-        child: TasteMenue()
+        child: FilterSort()
       ),
     );
   }

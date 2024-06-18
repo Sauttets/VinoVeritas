@@ -111,7 +111,6 @@ class FilterSortState extends State<FilterSort> {
                             const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Preis (Niedrig - Hoch)', selectedSortOption, selectSortOption),
                             const SizedBox(height: Spacings.buttonSpacing),
-
                             buildFilterOption('Preis (Hoch - Niedrig)', selectedSortOption, selectSortOption),
                           ],
                         ),
