@@ -1,155 +1,166 @@
-
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/util/app_colors.dart';
-
-class WineItemCard extends StatelessWidget {
-  final String year;
-  final String name;
-  final String volume;
-  final String price;
-  final String? imagePath;
-
-  const WineItemCard({
-    super.key,
-    required this.year,
-    required this.name,
-    required this.volume,
-    required this.price,
-    this.imagePath,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double cardWidth = (screenWidth / 2) - 16; // Adjust padding as needed
-
-    return SizedBox(
-      width: cardWidth,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        elevation: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                year,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryGrey,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                volume,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryGrey,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Row(
-                children: [
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Divider(
-                          color: AppColors.primaryGrey,
-                          thickness: 1,
-                          endIndent: 20, // Shorten the line
-                        ),
-                      ],
-                    ),
-                  ),
-                  Image.asset(
-                    imagePath ?? 'assets/images/wine.png',
-                    height: 135, // Adjusted image size to fit better
-                    width: 50,
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 2.0), // Reduced padding at the bottom
-                child: Text(
-                  price,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class WineEntry {
   final String year;
   final String name;
   final String volume;
   final String price;
-  final String? imagePath;
+  final String? wineImagePath;
+  final String? glassImagePath;
 
   WineEntry({
     required this.year,
     required this.name,
     required this.volume,
     required this.price,
-    this.imagePath,
+    this.wineImagePath,
+    this.glassImagePath,
   });
 }
 
+class WineCard extends StatelessWidget {
+  final String year;
+  final String name;
+  final String volume;
+  final String price;
+  final String? wineImagePath;
+  final String? overlayImagePath;
 
-class WineListPage extends StatelessWidget {
-  final List<WineEntry> wineEntries;
-
-  const WineListPage({
+  const WineCard({
     super.key,
-    required this.wineEntries,
+    required this.year,
+    required this.name,
+    required this.volume,
+    required this.price,
+    this.wineImagePath,
+    this.overlayImagePath,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.all(8.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
-          childAspectRatio: 0.75,
-        ),
-        itemCount: wineEntries.length,
-        itemBuilder: (context, index) {
-          final wine = wineEntries[index];
-          return WineItemCard(
-            year: wine.year,
-            name: wine.name,
-            volume: wine.volume,
-            price: wine.price,
-            imagePath: wine.imagePath,
-          );
-        },
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = screenWidth / 2;
+    final cardHeight = cardWidth * 6 / 5;
+
+    return Container(
+      width: cardWidth,
+      height: cardHeight,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  year,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  volume,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 16,
+            left: 16,
+            child: Text(
+              price,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 50.0, bottom: 12.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Image.asset(
+                overlayImagePath ?? 'assets/images/RotweinGlas.png',
+                height: cardHeight * 3 / 10,
+                fit: BoxFit.contain,
+                colorBlendMode: BlendMode.modulate,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 25.0, bottom: 12.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Image.asset(
+                wineImagePath ?? 'assets/images/RotweinFlasche.png',
+                height: cardHeight * 10 / 20,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WinePage extends StatelessWidget {
+  final List<WineEntry> wineEntries;
+
+  const WinePage({super.key, required this.wineEntries});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: GridView.builder(
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16.0,
+            mainAxisSpacing: 16.0,
+            childAspectRatio: 0.83, // 5:6 aspect ratio
+          ),
+          itemCount: wineEntries.length,
+          itemBuilder: (context, index) {
+            final wineEntry = wineEntries[index];
+            return WineCard(
+              year: wineEntry.year,
+              name: wineEntry.name,
+              volume: wineEntry.volume,
+              price: wineEntry.price,
+              wineImagePath: wineEntry.wineImagePath,
+              overlayImagePath: wineEntry.glassImagePath,
+            );
+          },
+        ),
+      )
     );
   }
 }
