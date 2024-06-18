@@ -7,11 +7,11 @@ class WineListSelector extends StatefulWidget {
   final String selfName;
   final List<WineFavList> wineFavLists;
 
-  WineListSelector({
-    Key? key,
+  const WineListSelector({
+    super.key,
     required this.wineFavLists,
     required this.selfName,
-  }) : super(key: key);
+  });
 
   @override
   _WineListSelectorState createState() => _WineListSelectorState();
@@ -24,6 +24,8 @@ class _WineListSelectorState extends State<WineListSelector> {
   bool isFilterExpanded = false;
   String? selectedWineType;
   String? selectedSortOption;
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
 
   @override
   void initState() {
@@ -52,6 +54,141 @@ class _WineListSelectorState extends State<WineListSelector> {
     });
   }
 
+  void _toggleDropdown() {
+    if (isExpanded) {
+      _closeDropdown();
+    } else {
+      _openDropdown();
+    }
+  }
+
+  void _openDropdown() {
+    _overlayEntry = _createOverlayEntry();
+    Overlay.of(context).insert(_overlayEntry!);
+    setState(() {
+      isExpanded = true;
+    });
+  }
+
+  void _closeDropdown() {
+    _overlayEntry?.remove();
+    setState(() {
+      isExpanded = false;
+    });
+  }
+
+  OverlayEntry _createOverlayEntry() {
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
+    var size = renderBox.size;
+    var offset = renderBox.localToGlobal(Offset.zero);
+
+    return OverlayEntry(
+      builder: (context) => Positioned(
+        width: size.width,
+        left: offset.dx,
+        top: offset.dy + size.height,
+        child: CompositedTransformFollower(
+          link: _layerLink,
+          showWhenUnlinked: false,
+          offset: Offset(0, size.height),
+          child: Material(
+            elevation: 4.0,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: wineFavLists.length > 4 ? 200.0 : double.infinity,
+              ),
+              child: wineFavLists.length > 4
+                  ? Scrollbar(
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        children: wineFavLists.map((WineFavList list) {
+                          return Column(
+                            children: [
+                              if (list.name != selectedList)
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedList = list.name;
+                                      wineFavLists.remove(list);
+                                      wineFavLists.insert(0, list);
+                                      _closeDropdown();
+                                    });
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
+                                    child: Text(
+                                      list.name,
+                                      style: TextStyle(
+                                        fontWeight: list.name == selectedList
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                      ),
+                                      softWrap: true,
+                                    ),
+                                  ),
+                                ),
+                              if (list != wineFavLists.last)
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 7.0),
+                                  child: Divider(
+                                    color: AppColors.primaryGrey,
+                                    thickness: Spacings.lineHorizontalThickness,
+                                  ),
+                                ),
+                            ],
+                          );
+                        }).toList(),
+                      ),
+                    )
+                  : Column(
+                      children: wineFavLists.map((WineFavList list) {
+                        return Column(
+                          children: [
+                            if (list.name != selectedList)
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedList = list.name;
+                                    wineFavLists.remove(list);
+                                    wineFavLists.insert(0, list);
+                                    _closeDropdown();
+                                  });
+                                },
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
+                                  child: Text(
+                                    list.name,
+                                    style: TextStyle(
+                                      fontWeight: list.name == selectedList
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
+                                    ),
+                                    softWrap: true,
+                                  ),
+                                ),
+                              ),
+                            if (list != wineFavLists.last)
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 7.0),
+                                child: Divider(
+                                  color: AppColors.primaryGrey,
+                                  thickness: Spacings.lineHorizontalThickness,
+                                ),
+                              ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,133 +201,40 @@ class _WineListSelectorState extends State<WineListSelector> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.5 - 2 * Spacings.horizontal,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.primaryGrey),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                    CompositedTransformTarget(
+                      link: _layerLink,
                       child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isExpanded = !isExpanded;
-                            if (isExpanded) isFilterExpanded = false;
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.horizontal),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      selectedList,
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Icon(
-                                    isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                                    color: AppColors.primaryGrey,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (isExpanded)
-                              ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  maxHeight: wineFavLists.length > 4 ? 200.0 : double.infinity,
-                                ),
-                                child: wineFavLists.length > 4
-                                    ? Scrollbar(
-                                        child: ListView(
-                                          padding: EdgeInsets.zero,
-                                          shrinkWrap: true,
-                                          children: wineFavLists.map((WineFavList list) {
-                                            return Column(
-                                              children: [
-                                                if (list.name != selectedList)
-                                                  InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        selectedList = list.name;
-                                                        wineFavLists.remove(list);
-                                                        wineFavLists.insert(0, list);
-                                                        isExpanded = false;
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      alignment: Alignment.centerLeft,
-                                                      padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
-                                                      child: Text(
-                                                        list.name,
-                                                        style: TextStyle(
-                                                          fontWeight: list.name == selectedList
-                                                              ? FontWeight.bold
-                                                              : FontWeight.normal,
-                                                        ),
-                                                        softWrap: true,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                if (list != wineFavLists.last)
-                                                  const Padding(
-                                                    padding: EdgeInsets.symmetric(horizontal: 7.0),
-                                                    child: Divider(
-                                                      color: AppColors.primaryGrey,
-                                                      thickness: Spacings.lineHorizontalThickness,
-                                                    ),
-                                                  ),
-                                              ],
-                                            );
-                                          }).toList(),
-                                        ),
-                                      )
-                                    : Column(
-                                        children: wineFavLists.map((WineFavList list) {
-                                          return Column(
-                                            children: [
-                                              if (list.name != selectedList)
-                                                InkWell(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selectedList = list.name;
-                                                      wineFavLists.remove(list);
-                                                      wineFavLists.insert(0, list);
-                                                      isExpanded = false;
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    alignment: Alignment.centerLeft,
-                                                    padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
-                                                    child: Text(
-                                                      list.name,
-                                                      style: TextStyle(
-                                                        fontWeight: list.name == selectedList
-                                                            ? FontWeight.bold
-                                                            : FontWeight.normal,
-                                                      ),
-                                                      softWrap: true,
-                                                    ),
-                                                  ),
-                                                ),
-                                              if (list != wineFavLists.last)
-                                                const Padding(
-                                                  padding: EdgeInsets.symmetric(horizontal: 7.0),
-                                                  child: Divider(
-                                                    color: AppColors.primaryGrey,
-                                                    thickness: Spacings.lineHorizontalThickness,
-                                                  ),
-                                                ),
-                                            ],
-                                          );
-                                        }).toList(),
+                        onTap: _toggleDropdown,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.5 - 2 * Spacings.horizontal,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.primaryGrey),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.horizontal),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        selectedList,
+                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
+                                    ),
+                                    Icon(
+                                      isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                                      color: AppColors.primaryGrey,
+                                    ),
+                                  ],
+                                ),
                               ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -331,6 +375,8 @@ class _WineListSelectorState extends State<WineListSelector> {
     );
   }
 }
+
+
 class WineFavList {
   final String name;
   final List<WineEntry> wineEntries;

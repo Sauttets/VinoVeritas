@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_page.dart';
 import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
+import 'package:vinoveritas/src/features/fav_feature/widgets/food_and_taste_filter.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/filter_feature.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
@@ -246,14 +247,14 @@ class Page6 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Taste Pallet'),
       ),
-      body: Center(
+      body: const Center(
         child: TastePallet(flavor1: 'Leder', fit1: 'Fisch'),
       ),
     );
   }
 }
 
-final TastePallet tastePallet = TastePallet(
+const TastePallet tastePallet = TastePallet(
     flavor1: 'Zimt',
     flavor2: 'Dunkele Beeren',
     flavor3: 'Nelke',
@@ -273,7 +274,7 @@ class Page7 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('full Description'),
       ),
-      body: Center(
+      body: const Center(
         child:
             FullDescription(tastePallet: tastePallet, description: description),
       ),
@@ -366,7 +367,7 @@ class Page11 extends StatelessWidget {
 
 
 
-final TastePallet tp = TastePallet(
+const TastePallet tp = TastePallet(
     flavor1: 'Zimt',
     flavor2: 'Dunkele Beeren',
     flavor3: 'Nelke',
@@ -388,7 +389,7 @@ class Page12 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -402,7 +403,7 @@ class Page12 extends StatelessWidget {
               taste: 0.8,
               image: 'assets/images/wine.png',
               tastePallet: tp,
-              description: const Description(
+              description: Description(
                 description:
                     'Ein lebendiger Riesling aus dem deutschen Rheingau, mit blumigen Noten von Aprikose und Pfirsich, begleitet von einer frischen Säure und einer subtilen Mineralität. Ein wahrer Genuss für die Sinne.'),
               supermarket: sms,
@@ -586,8 +587,8 @@ class Page14 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Filter Options'),
       ),
-      body: const Center(
-        child: FilterSort()
+      body:  const Center(
+        child: TasteMenue()
       ),
     );
   }
