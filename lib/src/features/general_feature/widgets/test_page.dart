@@ -7,7 +7,7 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_select
 
 
 class TestPage extends StatelessWidget {
-  final TastePallet tastePallet = TastePallet(
+  final TastePallet tastePallet = const TastePallet(
       flavor1: 'Zimt',
       flavor2: 'Dunkele Beeren',
       flavor3: 'Nelke',
@@ -18,7 +18,7 @@ class TestPage extends StatelessWidget {
       description:
           'Dies, das, di weiß. Alles doooooo fishdfivezh öudhfgö öeuhh aöoh äu9uf098t evoiyhöogöu räau.');
 
-  TestPage({super.key});
+  const TestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
