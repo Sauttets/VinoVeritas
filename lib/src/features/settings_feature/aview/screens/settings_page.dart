@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/import_favorites.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/location_settings.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_username.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/design_selector.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/bloc/settings_bloc.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
-
-  @override
-  SettingsPageState createState() => SettingsPageState();
-}
-
-class SettingsPageState extends State<SettingsPage> {
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +36,15 @@ class SettingsPageState extends State<SettingsPage> {
                     padding: EdgeInsets.all(8.0),
                     child: SetLocation(),
                   ),
-                  DesignSelector(
-                    selectedIndex: selectedIndex,
-                    onTabSelected: (index) {
-                      setState(() {
-                        selectedIndex = index;
-                      });
+                  BlocBuilder<SettingsBloc, SettingsState>(
+                    builder: (context, state) {
+                      return DesignSelector(
+                        selectedIndex: state.selectedIndex,
+                        onTabSelected: (index) {
+                          context.read<SettingsBloc>().add(SelectIndex(index));
+                          print(index);
+                        },
+                      );
                     },
                   ),
                   const Padding(
