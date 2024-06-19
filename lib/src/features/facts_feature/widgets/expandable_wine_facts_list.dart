@@ -3,8 +3,9 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/expandable_wine_f
 
 class WineFactsTab extends StatelessWidget {
   final List<Map<String, String>> wineFacts;
+  final int tabIndex;
 
-  const WineFactsTab({super.key, required this.wineFacts});
+  const WineFactsTab({super.key, required this.wineFacts, required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class WineFactsTab extends StatelessWidget {
       itemCount: wineFacts.length,
       itemBuilder: (context, index) {
         return ExpandableWineFactCard(
+          key: ValueKey('$tabIndex-$index'),
           title: wineFacts[index]['title']!,
           content: wineFacts[index]['content']!,
         );

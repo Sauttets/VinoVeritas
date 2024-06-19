@@ -6,18 +6,18 @@ class FilterSort extends StatefulWidget {
   const FilterSort({super.key});
 
   @override
-  _FilterSortState createState() => _FilterSortState();
+  FilterSortState createState() => FilterSortState();
 }
 
-class _FilterSortState extends State<FilterSort> {
-  String? selectedWineType;
-  String? selectedSortOption;
+class FilterSortState extends State<FilterSort> {
+  String? selectedWineType = 'Alle';
+  String? selectedSortOption = 'Beliebteste zuerst';
   bool isExpanded = false;
 
   void selectWineType(String type) {
     setState(() {
       if (selectedWineType == type) {
-        selectedWineType = null; // Deselection
+        selectedWineType = 'Alle'; // Default selection
       } else {
         selectedWineType = type; // Selection
       }
@@ -27,7 +27,7 @@ class _FilterSortState extends State<FilterSort> {
   void selectSortOption(String option) {
     setState(() {
       if (selectedSortOption == option) {
-        selectedSortOption = null; // Deselection
+        selectedSortOption = 'Beliebteste zuerst'; // Default selection
       } else {
         selectedSortOption = option; // Selection
       }
@@ -44,29 +44,30 @@ class _FilterSortState extends State<FilterSort> {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.5 - Spacings.horizontal * 2,
-                padding: const EdgeInsets.all(Spacings.horizontal),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: AppColors.primaryGrey),
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Filter & Sortieren',
-                        style: TextStyle(fontSize: Spacings.textFontSize, fontWeight: FontWeight.bold),
-                      ),
-                      Icon(Icons.tune, color: AppColors.primaryGrey),
-                    ],
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isExpanded = !isExpanded;
+                  });
+                },
+                child: IntrinsicWidth(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 15, right: 15, top: 6, bottom: 6),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryWhite,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: AppColors.primaryGrey),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Sortieren  ',
+                          style: TextStyle(fontSize: Spacings.textFontSize),
+                        ),
+                        Icon(Icons.tune, color: AppColors.primaryGrey),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -88,10 +89,12 @@ class _FilterSortState extends State<FilterSort> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            buildFilterOption('Alle', selectedWineType, selectWineType),
+                            const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Rotwein', selectedWineType, selectWineType),
-                            const SizedBox(height: Spacings.horizontal),
+                            const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Weißwein', selectedWineType, selectWineType),
-                            const SizedBox(height: Spacings.horizontal),
+                            const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Rosé', selectedWineType, selectWineType),
                           ],
                         ),
@@ -104,8 +107,10 @@ class _FilterSortState extends State<FilterSort> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            buildFilterOption('Beliebteste zuerst', selectedSortOption, selectSortOption),
+                            const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Preis (Niedrig - Hoch)', selectedSortOption, selectSortOption),
-                            const SizedBox(height: Spacings.horizontal),
+                            const SizedBox(height: Spacings.buttonSpacing),
                             buildFilterOption('Preis (Hoch - Niedrig)', selectedSortOption, selectSortOption),
                           ],
                         ),
@@ -126,7 +131,7 @@ class _FilterSortState extends State<FilterSort> {
     return GestureDetector(
       onTap: () => onSelect(text),
       child: Container(
-        padding: const EdgeInsets.all(Spacings.horizontal),
+        padding: const EdgeInsets.only(left: 15, right: 15, top: Spacings.buttonSpacing, bottom: Spacings.buttonSpacing),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.primaryWhite,
@@ -137,7 +142,6 @@ class _FilterSortState extends State<FilterSort> {
           text,
           style: TextStyle(
             color: isSelected ? AppColors.primaryWhite : Colors.black,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),
