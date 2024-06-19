@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/static_wine_facts.dart';
 import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/food_and_taste_filter.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+
 
 class FavoritePage extends StatelessWidget {
   final String user;
