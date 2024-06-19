@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/FilterSortTaste.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/filter_sort_taste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
 
