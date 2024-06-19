@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
 class WineEntry {
@@ -60,11 +61,21 @@ class WineCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              HeartButton(),
+            ],
+            )
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                
                 Text(
                   year,
                   style: const TextStyle(
