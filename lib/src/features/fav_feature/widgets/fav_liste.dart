@@ -5,11 +5,11 @@ import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart'
 
 class WineListSelector extends StatefulWidget {
   final String selfName;
-  final List<WineFavList> wineFavLists;
+  final WineFavList wineFavList;
 
   const WineListSelector({
     super.key,
-    required this.wineFavLists,
+    required this.wineFavList,
     required this.selfName,
   });
 
@@ -19,7 +19,7 @@ class WineListSelector extends StatefulWidget {
 
 class _WineListSelectorState extends State<WineListSelector> {
   late String selectedList;
-  late List<WineFavList> wineFavLists;
+  late WineFavList wineFavList;
   bool isExpanded = false;
   bool isFilterExpanded = false;
   String? selectedWineType;
@@ -30,8 +30,11 @@ class _WineListSelectorState extends State<WineListSelector> {
   @override
   void initState() {
     super.initState();
-    wineFavLists = widget.wineFavLists;
-    selectedList = wineFavLists.first.name;
+    wineFavList = widget.wineFavList;
+    selectedList = wineFavList.attributes.keys.firstWhere(
+      (key) => key == widget.selfName,
+      orElse: () => wineFavList.attributes.keys.first,
+    );
   }
 
   void selectWineType(String type) {
@@ -95,33 +98,33 @@ class _WineListSelectorState extends State<WineListSelector> {
             elevation: 4.0,
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: wineFavLists.length > 4 ? 200.0 : double.infinity,
+                maxHeight: wineFavList.attributes.length > 4 ? 200.0 : double.infinity,
               ),
-              child: wineFavLists.length > 4
+              child: wineFavList.attributes.length > 4
                   ? Scrollbar(
                       child: ListView(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
-                        children: wineFavLists.map((WineFavList list) {
+                        children: wineFavList.attributes.keys.map((String key) {
                           return Column(
                             children: [
-                              if (list.name != selectedList)
+                              if (key != selectedList)
                                 InkWell(
                                   onTap: () {
                                     setState(() {
-                                      selectedList = list.name;
-                                      wineFavLists.remove(list);
-                                      wineFavLists.insert(0, list);
+                                      selectedList = key;
                                       _closeDropdown();
                                     });
                                   },
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: Spacings.horizontal,
+                                        vertical: Spacings.vertical),
                                     child: Text(
-                                      list.name,
+                                      key,
                                       style: TextStyle(
-                                        fontWeight: list.name == selectedList
+                                        fontWeight: key == selectedList
                                             ? FontWeight.bold
                                             : FontWeight.normal,
                                       ),
@@ -129,7 +132,7 @@ class _WineListSelectorState extends State<WineListSelector> {
                                     ),
                                   ),
                                 ),
-                              if (list != wineFavLists.last)
+                              if (key != wineFavList.attributes.keys.last)
                                 const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 7.0),
                                   child: Divider(
@@ -143,26 +146,26 @@ class _WineListSelectorState extends State<WineListSelector> {
                       ),
                     )
                   : Column(
-                      children: wineFavLists.map((WineFavList list) {
+                      children: wineFavList.attributes.keys.map((String key) {
                         return Column(
                           children: [
-                            if (list.name != selectedList)
+                            if (key != selectedList)
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    selectedList = list.name;
-                                    wineFavLists.remove(list);
-                                    wineFavLists.insert(0, list);
+                                    selectedList = key;
                                     _closeDropdown();
                                   });
                                 },
                                 child: Container(
                                   alignment: Alignment.centerLeft,
-                                  padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.vertical),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: Spacings.horizontal,
+                                      vertical: Spacings.vertical),
                                   child: Text(
-                                    list.name,
+                                    key,
                                     style: TextStyle(
-                                      fontWeight: list.name == selectedList
+                                      fontWeight: key == selectedList
                                           ? FontWeight.bold
                                           : FontWeight.normal,
                                     ),
@@ -170,7 +173,7 @@ class _WineListSelectorState extends State<WineListSelector> {
                                   ),
                                 ),
                               ),
-                            if (list != wineFavLists.last)
+                            if (key != wineFavList.attributes.keys.last)
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 7.0),
                                 child: Divider(
@@ -206,7 +209,8 @@ class _WineListSelectorState extends State<WineListSelector> {
                       child: GestureDetector(
                         onTap: _toggleDropdown,
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.5 - 2 * Spacings.horizontal,
+                          width: MediaQuery.of(context).size.width * 0.5 -
+                              2 * Spacings.horizontal,
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.primaryGrey),
                             borderRadius: BorderRadius.circular(30),
@@ -215,19 +219,25 @@ class _WineListSelectorState extends State<WineListSelector> {
                             children: [
                               Container(
                                 alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal, vertical: Spacings.horizontal),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: Spacings.horizontal,
+                                    vertical: Spacings.horizontal),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
                                         selectedList,
-                                        style: const TextStyle(fontWeight: FontWeight.bold),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     Icon(
-                                      isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                                      isExpanded
+                                          ? Icons.arrow_drop_up
+                                          : Icons.arrow_drop_down,
                                       color: AppColors.primaryGrey,
                                     ),
                                   ],
@@ -247,7 +257,8 @@ class _WineListSelectorState extends State<WineListSelector> {
                         });
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5 - 2 * Spacings.horizontal,
+                        width: MediaQuery.of(context).size.width * 0.5 -
+                            2 * Spacings.horizontal,
                         padding: const EdgeInsets.all(Spacings.horizontal),
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -259,7 +270,9 @@ class _WineListSelectorState extends State<WineListSelector> {
                           children: [
                             Text(
                               'Filter & Sortieren',
-                              style: TextStyle(fontSize: Spacings.textFontSize, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: Spacings.textFontSize,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Icon(Icons.tune, color: AppColors.primaryGrey),
                           ],
@@ -284,11 +297,14 @@ class _WineListSelectorState extends State<WineListSelector> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                buildFilterOption('Rotwein', selectedWineType, selectWineType),
+                                buildFilterOption('Rotwein', selectedWineType,
+                                    selectWineType),
                                 const SizedBox(height: Spacings.horizontal),
-                                buildFilterOption('Weißwein', selectedWineType, selectWineType),
+                                buildFilterOption('Weißwein', selectedWineType,
+                                    selectWineType),
                                 const SizedBox(height: Spacings.horizontal),
-                                buildFilterOption('Rosé', selectedWineType, selectWineType),
+                                buildFilterOption(
+                                    'Rosé', selectedWineType, selectWineType),
                               ],
                             ),
                           ),
@@ -300,9 +316,11 @@ class _WineListSelectorState extends State<WineListSelector> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                buildFilterOption('Preis (Niedrig - Hoch)', selectedSortOption, selectSortOption),
+                                buildFilterOption('Preis (Niedrig - Hoch)',
+                                    selectedSortOption, selectSortOption),
                                 const SizedBox(height: Spacings.horizontal),
-                                buildFilterOption('Preis (Hoch - Niedrig)', selectedSortOption, selectSortOption),
+                                buildFilterOption('Preis (Hoch - Niedrig)',
+                                    selectedSortOption, selectSortOption),
                               ],
                             ),
                           ),
@@ -312,8 +330,8 @@ class _WineListSelectorState extends State<WineListSelector> {
                   ),
                 const SizedBox(height: Spacings.horizontal),
                 Expanded(
-                  child: WineListPage(
-                    wineEntries: wineFavLists.firstWhere((list) => list.name == selectedList).wineEntries,
+                  child: WinePage(
+                    wineEntries: wineFavList.attributes[selectedList]!,
                   ),
                 ),
               ],
@@ -324,7 +342,8 @@ class _WineListSelectorState extends State<WineListSelector> {
     );
   }
 
-  Widget buildFilterOption(String text, String? selectedValue, Function(String) onSelect) {
+  Widget buildFilterOption(
+      String text, String? selectedValue, Function(String) onSelect) {
     bool isSelected = text == selectedValue;
     return GestureDetector(
       onTap: () => onSelect(text),
@@ -334,7 +353,8 @@ class _WineListSelectorState extends State<WineListSelector> {
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.primaryWhite,
           borderRadius: BorderRadius.circular(30),
-          border: Border.all(color: isSelected ? AppColors.primaryRed : AppColors.primaryGrey),
+          border: Border.all(
+              color: isSelected ? AppColors.primaryRed : AppColors.primaryGrey),
         ),
         child: Text(
           text,
@@ -362,7 +382,8 @@ class _WineListSelectorState extends State<WineListSelector> {
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.grey, fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -372,11 +393,6 @@ class _WineListSelectorState extends State<WineListSelector> {
 
 
 class WineFavList {
-  final String name;
-  final List<WineEntry> wineEntries;
-
-  WineFavList({
-    required this.name,
-    required this.wineEntries,
-  });
+  final Map<String, List<WineEntry>> attributes;
+  WineFavList(this.attributes);
 }

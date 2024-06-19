@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/fav_feature/widgets/fav_liste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/screens/favorites_page.dart';
 import 'package:vinoveritas/src/screens/settings_page.dart';
 import 'package:vinoveritas/src/screens/lexikon_page.dart';
 
@@ -19,9 +21,11 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const LexiconPage(fact: 'Some fact'),
     ),
     GoRoute(
-      path: '/page2',
-      builder: (context, state) => placeholderPage('FavoritesPage'),
-    ),
+        path: '/page2',
+        builder: (context, state) => FavoritePage(
+            user: 'Gandalf',
+            wineFavList: fav_list), //placeholderPage('FavoritesPage'),
+        ),
     GoRoute(
       path: '/page3',
       builder: (context, state) => const SettingsPage(),
@@ -40,32 +44,43 @@ Widget placeholderPage(String pageName) {
   );
 }
 
-
 final wineEntries = [
-      WineEntry(
-        year: '2019',
-        name: 'Tanz der Tanine',
-        volume: '750ml',
-        price: '34,00€',
-        wineImagePath: 'assets/images/RotweinFlasche.png',
-        glassImagePath: 'assets/images/RotweinGlas.png',
-      ),
-      WineEntry(
-        year: '2019',
-        name: 'Tanz der Tanine',
-        volume: '750ml',
-        price: '34,00€',
-        wineImagePath: 'assets/images/RotweinFlasche.png',
-        glassImagePath: 'assets/images/RotweinGlas.png',
-      ),
-      WineEntry(
-        year: '2018',
-        name: 'Weißwein Wunder',
-        volume: '750ml',
-        price: '29,00€',
-        wineImagePath: 'assets/images/WeißweinFlasche.png',
-        glassImagePath: 'assets/images/WeißweinGlas.png',
-      ),
-      
-      // Add more WineEntry objects here
-    ];
+  WineEntry(
+    year: '2019',
+    name: 'Tanz der Tanine',
+    volume: '750ml',
+    price: '34,00€',
+    wineImagePath: 'assets/images/RotweinFlasche.png',
+    glassImagePath: 'assets/images/RotweinGlas.png',
+  ),
+  WineEntry(
+    year: '2019',
+    name: 'Tanz der Tanine',
+    volume: '750ml',
+    price: '34,00€',
+    wineImagePath: 'assets/images/RotweinFlasche.png',
+    glassImagePath: 'assets/images/RotweinGlas.png',
+  ),
+  WineEntry(
+    year: '2018',
+    name: 'Weißwein Wunder',
+    volume: '750ml',
+    price: '29,00€',
+    wineImagePath: 'assets/images/WeißweinFlasche.png',
+    glassImagePath: 'assets/images/WeißweinGlas.png',
+  ),
+
+  // Add more WineEntry objects here
+];
+
+final WineFavList fav_list = WineFavList({
+  'Gandalf': wineEntries,
+  'Frodo': wineEntries,
+  'Sam': wineEntries,
+  'Aragorn': wineEntries,
+  'Legolas': wineEntries,
+  'Gimli': wineEntries,
+  'Boromir': wineEntries,
+  'Pippin': wineEntries,
+  'Merry': wineEntries,
+});
