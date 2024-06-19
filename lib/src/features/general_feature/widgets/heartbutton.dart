@@ -20,8 +20,8 @@ class HeartButtonState extends State<HeartButton> {
         });
       },
       child: Container(
-        width: 100,
-        height: 100,
+        width: 40,
+        height: 40,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.primaryGrey,
@@ -32,7 +32,7 @@ class HeartButtonState extends State<HeartButton> {
             child: Icon(
               Icons.favorite,
               color: isPressed ? AppColors.heartRed : AppColors.primaryWhite,
-              size: 80, // Increase the size of the heart
+              size: 25, // Increase the size of the heart
             ),
           ),
         ),
