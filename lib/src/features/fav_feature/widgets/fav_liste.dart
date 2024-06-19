@@ -318,7 +318,7 @@ class _WineListSelectorState extends State<WineListSelector> {
                   ),
                 const SizedBox(height: Spacings.horizontal),
                 Expanded(
-                  child: WinePage(
+                  child: WineListPage(
                     wineEntries: wineFavLists.firstWhere((list) => list.name == selectedList).wineEntries,
                   ),
                 ),
