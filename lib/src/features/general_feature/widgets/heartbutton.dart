@@ -20,15 +20,15 @@ class HeartButtonState extends State<HeartButton> {
         });
       },
       child: Container(
-        width: 40,
-        height: 40,
+        width: 33,
+        height: 33,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.primaryGrey,
         ),
         child: Center(
           child: Transform.translate(
-            offset: const Offset(0, 3), // Move the heart 2 pixels down
+            offset: const Offset(0, 1), // Move the heart 2 pixels down
             child: Icon(
               Icons.favorite,
               color: isPressed ? AppColors.heartRed : AppColors.primaryWhite,

@@ -11,16 +11,18 @@ class WinePageLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const WineSearchBar(),
-            const FilterSortTaste(),
-            Expanded(
-              child: WinePage(wineEntries: wineEntries),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              const WineSearchBar(),
+              const FilterSortTaste(),
+              Expanded(
+                child: WinePage(wineEntries: wineEntries),
+              ),
+            ],
+          ),
         ),
       ),
     );
