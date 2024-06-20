@@ -1,4 +1,5 @@
 class Spacings {
+  static const double buttonSpacing = 8;
   static const double horizontal = 12.0;
   static const double vertical = 12.0;
   static const double cornerRadius = 12.0;

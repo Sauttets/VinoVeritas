@@ -3,25 +3,24 @@ import 'package:vinoveritas/src/features/facts_feature/widgets/wine_fact_card.da
 import 'package:vinoveritas/src/features/facts_feature/widgets/static_wine_facts.dart';
 
 class LexiconPage extends StatelessWidget {
-  final String fact;
 
-  const LexiconPage({super.key, required this.fact});
+  const LexiconPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16.0), // Additional padding above
+          padding: EdgeInsets.only(top: 16.0), // Additional padding above
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: WineFactCard(
                   fact: fact, // Use the fact passed to the constructor
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: StaticWineFacts(),
               ),
             ],
@@ -31,3 +30,5 @@ class LexiconPage extends StatelessWidget {
     );
   }
 }
+
+const String fact = 'The color of a wine is determined by the grape variety and the winemaking process.';

@@ -20,19 +20,19 @@ class HeartButtonState extends State<HeartButton> {
         });
       },
       child: Container(
-        width: 100,
-        height: 100,
+        width: 33,
+        height: 33,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.primaryGrey,
         ),
         child: Center(
           child: Transform.translate(
-            offset: const Offset(0, 3), // Move the heart 2 pixels down
+            offset: const Offset(0, 1), // Move the heart 2 pixels down
             child: Icon(
               Icons.favorite,
               color: isPressed ? AppColors.heartRed : AppColors.primaryWhite,
-              size: 80, // Increase the size of the heart
+              size: 25, // Increase the size of the heart
             ),
           ),
         ),
