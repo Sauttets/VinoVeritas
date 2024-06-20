@@ -14,21 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SettingsModel _$SettingsModelFromJson(Map<String, dynamic> json) {
-  return _SettingsModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$SettingsModel {
   String get username => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
-  double get radius => throw _privateConstructorUsedError;
   int get designIndex => throw _privateConstructorUsedError;
-  String get shareFavoritesCodeIdentifier => throw _privateConstructorUsedError;
-  String get listNameToImport => throw _privateConstructorUsedError;
-  String get importCode => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SettingsModelCopyWith<SettingsModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -40,14 +31,7 @@ abstract class $SettingsModelCopyWith<$Res> {
           SettingsModel value, $Res Function(SettingsModel) then) =
       _$SettingsModelCopyWithImpl<$Res, SettingsModel>;
   @useResult
-  $Res call(
-      {String username,
-      String location,
-      double radius,
-      int designIndex,
-      String shareFavoritesCodeIdentifier,
-      String listNameToImport,
-      String importCode});
+  $Res call({String username, String location, int designIndex});
 }
 
 /// @nodoc
@@ -65,11 +49,7 @@ class _$SettingsModelCopyWithImpl<$Res, $Val extends SettingsModel>
   $Res call({
     Object? username = null,
     Object? location = null,
-    Object? radius = null,
     Object? designIndex = null,
-    Object? shareFavoritesCodeIdentifier = null,
-    Object? listNameToImport = null,
-    Object? importCode = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -80,26 +60,10 @@ class _$SettingsModelCopyWithImpl<$Res, $Val extends SettingsModel>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      radius: null == radius
-          ? _value.radius
-          : radius // ignore: cast_nullable_to_non_nullable
-              as double,
       designIndex: null == designIndex
           ? _value.designIndex
           : designIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      shareFavoritesCodeIdentifier: null == shareFavoritesCodeIdentifier
-          ? _value.shareFavoritesCodeIdentifier
-          : shareFavoritesCodeIdentifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      listNameToImport: null == listNameToImport
-          ? _value.listNameToImport
-          : listNameToImport // ignore: cast_nullable_to_non_nullable
-              as String,
-      importCode: null == importCode
-          ? _value.importCode
-          : importCode // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -112,14 +76,7 @@ abstract class _$$SettingsModelImplCopyWith<$Res>
       __$$SettingsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String username,
-      String location,
-      double radius,
-      int designIndex,
-      String shareFavoritesCodeIdentifier,
-      String listNameToImport,
-      String importCode});
+  $Res call({String username, String location, int designIndex});
 }
 
 /// @nodoc
@@ -135,11 +92,7 @@ class __$$SettingsModelImplCopyWithImpl<$Res>
   $Res call({
     Object? username = null,
     Object? location = null,
-    Object? radius = null,
     Object? designIndex = null,
-    Object? shareFavoritesCodeIdentifier = null,
-    Object? listNameToImport = null,
-    Object? importCode = null,
   }) {
     return _then(_$SettingsModelImpl(
       username: null == username
@@ -150,46 +103,23 @@ class __$$SettingsModelImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
-      radius: null == radius
-          ? _value.radius
-          : radius // ignore: cast_nullable_to_non_nullable
-              as double,
       designIndex: null == designIndex
           ? _value.designIndex
           : designIndex // ignore: cast_nullable_to_non_nullable
               as int,
-      shareFavoritesCodeIdentifier: null == shareFavoritesCodeIdentifier
-          ? _value.shareFavoritesCodeIdentifier
-          : shareFavoritesCodeIdentifier // ignore: cast_nullable_to_non_nullable
-              as String,
-      listNameToImport: null == listNameToImport
-          ? _value.listNameToImport
-          : listNameToImport // ignore: cast_nullable_to_non_nullable
-              as String,
-      importCode: null == importCode
-          ? _value.importCode
-          : importCode // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$SettingsModelImpl
     with DiagnosticableTreeMixin
     implements _SettingsModel {
   const _$SettingsModelImpl(
       {this.username = 'user',
-      this.location = '',
-      this.radius = 0,
-      this.designIndex = 0,
-      this.shareFavoritesCodeIdentifier = '',
-      this.listNameToImport = 'friends favorites',
-      this.importCode = ''});
-
-  factory _$SettingsModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SettingsModelImplFromJson(json);
+      this.location = 'nowhere',
+      this.designIndex = 1});
 
   @override
   @JsonKey()
@@ -199,23 +129,11 @@ class _$SettingsModelImpl
   final String location;
   @override
   @JsonKey()
-  final double radius;
-  @override
-  @JsonKey()
   final int designIndex;
-  @override
-  @JsonKey()
-  final String shareFavoritesCodeIdentifier;
-  @override
-  @JsonKey()
-  final String listNameToImport;
-  @override
-  @JsonKey()
-  final String importCode;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SettingsModel(username: $username, location: $location, radius: $radius, designIndex: $designIndex, shareFavoritesCodeIdentifier: $shareFavoritesCodeIdentifier, listNameToImport: $listNameToImport, importCode: $importCode)';
+    return 'SettingsModel(username: $username, location: $location, designIndex: $designIndex)';
   }
 
   @override
@@ -225,12 +143,7 @@ class _$SettingsModelImpl
       ..add(DiagnosticsProperty('type', 'SettingsModel'))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('location', location))
-      ..add(DiagnosticsProperty('radius', radius))
-      ..add(DiagnosticsProperty('designIndex', designIndex))
-      ..add(DiagnosticsProperty(
-          'shareFavoritesCodeIdentifier', shareFavoritesCodeIdentifier))
-      ..add(DiagnosticsProperty('listNameToImport', listNameToImport))
-      ..add(DiagnosticsProperty('importCode', importCode));
+      ..add(DiagnosticsProperty('designIndex', designIndex));
   }
 
   @override
@@ -242,65 +155,32 @@ class _$SettingsModelImpl
                 other.username == username) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.radius, radius) || other.radius == radius) &&
             (identical(other.designIndex, designIndex) ||
-                other.designIndex == designIndex) &&
-            (identical(other.shareFavoritesCodeIdentifier,
-                    shareFavoritesCodeIdentifier) ||
-                other.shareFavoritesCodeIdentifier ==
-                    shareFavoritesCodeIdentifier) &&
-            (identical(other.listNameToImport, listNameToImport) ||
-                other.listNameToImport == listNameToImport) &&
-            (identical(other.importCode, importCode) ||
-                other.importCode == importCode));
+                other.designIndex == designIndex));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, username, location, radius,
-      designIndex, shareFavoritesCodeIdentifier, listNameToImport, importCode);
+  int get hashCode => Object.hash(runtimeType, username, location, designIndex);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SettingsModelImplCopyWith<_$SettingsModelImpl> get copyWith =>
       __$$SettingsModelImplCopyWithImpl<_$SettingsModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SettingsModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _SettingsModel implements SettingsModel {
   const factory _SettingsModel(
       {final String username,
       final String location,
-      final double radius,
-      final int designIndex,
-      final String shareFavoritesCodeIdentifier,
-      final String listNameToImport,
-      final String importCode}) = _$SettingsModelImpl;
-
-  factory _SettingsModel.fromJson(Map<String, dynamic> json) =
-      _$SettingsModelImpl.fromJson;
+      final int designIndex}) = _$SettingsModelImpl;
 
   @override
   String get username;
   @override
   String get location;
   @override
-  double get radius;
-  @override
   int get designIndex;
-  @override
-  String get shareFavoritesCodeIdentifier;
-  @override
-  String get listNameToImport;
-  @override
-  String get importCode;
   @override
   @JsonKey(ignore: true)
   _$$SettingsModelImplCopyWith<_$SettingsModelImpl> get copyWith =>

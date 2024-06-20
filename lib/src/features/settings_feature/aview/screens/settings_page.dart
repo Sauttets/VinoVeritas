@@ -6,10 +6,21 @@ import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_user
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/design_selector.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/src/features/settings_feature/controller/bloc/settings_bloc.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+// Import or define the missing widgets here
+// import 'package:your_package/display_and_copy_text.dart';
+// import 'package:your_package/new_widget.dart';
+
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key? key}) : super(key: key); // Corrected here
+
+  @override
+  SettingsPageState createState() => SettingsPageState();
+}
+
+class SettingsPageState extends State<SettingsPage> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +47,41 @@ class SettingsPage extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     child: SetLocation(),
                   ),
-                  BlocBuilder<SettingsBloc, SettingsState>(
-                    builder: (context, state) {
-                      return DesignSelector(
-                        selectedIndex: state.selectedIndex,
-                        onTabSelected: (index) {
-                          context.read<SettingsBloc>().add(SelectIndex(index));
-                          print(index);
-                        },
-                      );
+                  DesignSelector(
+                    selectedIndex: selectedIndex,
+                    onTabSelected: (index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      context.read<SettingsCubit>().setDesign(index);
                     },
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: DisplayAndCopyText(
-                        text: '22218db8778892345732845uihfh9823823'),
+                  BlocBuilder<SettingsCubit, SettingsCubitState>(
+                    builder: (context, state) {
+                      if (state is Initial) {
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: DisplayAndCopyText(
+                            text:
+                                'init', // replace `someField` with the actual field you want to display
+                          ),
+                        );
+                      } else if (state is SettingUsername) {
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: DisplayAndCopyText(
+                            text: 'Another State Text',
+                          ),
+                        );
+                      } else {
+                        return const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: DisplayAndCopyText(
+                            text: 'design State',
+                          ),
+                        );
+                      }
+                    },
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),

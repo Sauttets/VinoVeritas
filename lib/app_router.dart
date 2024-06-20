@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/screens/settings_page.dart';
+import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
 import 'package:vinoveritas/src/screens/lexikon_page.dart';
 
 final GoRouter router = GoRouter(

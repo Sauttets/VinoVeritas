@@ -5,17 +5,11 @@ part 'settings_model.freezed.dart';
 part 'settings_model.g.dart';
 
 @freezed
+@JsonSerializable()
 class SettingsModel with _$SettingsModel {
   const factory SettingsModel({
     @Default('user') String username,
-    @Default('') String location,
-    @Default(0) double radius,
-    @Default(0) int designIndex,
-    @Default('') String shareFavoritesCodeIdentifier,
-    @Default('friends favorites') String listNameToImport,
-    @Default('') String importCode,
+    @Default('nowhere') String location,
+    @Default(1) int designIndex,
   }) = _SettingsModel;
-
-  factory SettingsModel.fromJson(Map<String, dynamic> json) =>
-      _$SettingsModelFromJson(json);
 }
