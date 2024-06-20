@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/tasteMaps.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_maps.dart';
 
 class FilterSortTaste extends StatefulWidget {
   const FilterSortTaste({super.key});
