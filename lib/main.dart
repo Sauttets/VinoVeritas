@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/app_router.dart' as app_router;
 
@@ -11,29 +10,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SettingsCubit(),
-      child: MaterialApp(
-        home: MaterialApp.router(
-          routerConfig: app_router.router,
-          builder: (context, router) {
-            return Scaffold(
-              resizeToAvoidBottomInset: false,
-              body: Stack(
-                children: [
-                  Positioned.fill(
-                    child: router!,
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: CustomNavBar(goRouter: app_router.router),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+    return MaterialApp.router(
+      routerConfig: app_router.router,
+      builder: (context, router) {
+        return router!;
+      },
+    );
+  }
+}
+
+class CustomNavBarWrapper extends StatelessWidget {
+  final Widget child;
+  const CustomNavBarWrapper({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final hideNavBarRoutes = ['/']; // List of routes to hide the NavBar
+    final currentLocation = GoRouter.of(context).location; // Use the extension
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: child,
+      bottomNavigationBar: !hideNavBarRoutes.contains(currentLocation)
+          ? CustomNavBar(goRouter: GoRouter.of(context))
+          : null,
     );
   }
 }
