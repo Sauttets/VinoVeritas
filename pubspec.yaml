@@ -67,18 +67,25 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/images/Logo_Edeka.png
     - assets/images/wine.png
     - assets/images/wine2.jpg
     - assets/images/wine3.jpg
     - assets/images/wine4.jpg
     - assets/images/RotweinGlas.png
-    - assets/images/WeißweinGlas.png
+    - assets/images/WeissweinGlas.png
     - assets/images/RoseweinGlas.png
     - assets/images/RotweinFlasche.png
     - assets/images/RoseweinFlasche.png
-    - assets/images/WeißweinFlasche.png
+    - assets/images/WeissweinFlasche.png
     - assets/images/VinoVeritas-Logo.png
+    - assets/images/Edeka.png
+    - assets/images/Netto.png
+    - assets/images/REWE.png
+    - assets/images/Kaufland.png
+    - assets/images/Aldi.png
+    - assets/images/Lidl.png
+    - assets/images/Penny.png
+    - assets/images/Generic_Supermarket.png
   #   - images/a_dot_ham.jpeg
 
 

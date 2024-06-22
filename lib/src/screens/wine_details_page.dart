@@ -39,7 +39,6 @@ class WineDetailsPage extends StatelessWidget {
                 ...wine.supermarkets.map((supermarket) => Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: SupermarketSelector(
-                    imagePath: supermarket.img,
                     name: supermarket.name,
                     address: '${supermarket.street} ${supermarket.houseNumber}, ${supermarket.city}',
                     postalCode: supermarket.postalCode,

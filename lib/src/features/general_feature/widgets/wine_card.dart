@@ -22,7 +22,7 @@ class WineCard extends StatelessWidget {
     String glassImage;
     switch (wine.type.toLowerCase()) {
       case 'weiss':
-        glassImage = 'assets/images/WeißweinGlas.png';
+        glassImage = 'assets/images/WeissweinGlas.png';
         break;
       case 'rose':
         glassImage = 'assets/images/RoseweinGlas.png';
@@ -37,7 +37,7 @@ class WineCard extends StatelessWidget {
     String bottleImage;
     switch (wine.type.toLowerCase()) {
       case 'weiss':
-        bottleImage = 'assets/images/WeißweinFlasche.png';
+        bottleImage = 'assets/images/WeissweinFlasche.png';
         break;
       case 'rose':
         bottleImage = 'assets/images/RoseweinFlasche.png';

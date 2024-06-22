@@ -4,19 +4,39 @@ import 'package:vinoveritas/util/spacings.dart';
 
 // Widget für das Bild
 class SupermarketImg extends StatelessWidget {
-  final String imagePath;
+  final String name;
 
-  const SupermarketImg({super.key, required this.imagePath});
+  const SupermarketImg({super.key, required this.name});
+
+String _getImagePath(String name) {
+  if (name.toLowerCase().contains('edeka')) {
+    return 'assets/images/Edeka.png';
+  } else if (name.toLowerCase().contains('netto')) {
+    return 'assets/images/Netto.png';
+  } else if (name.toLowerCase().contains('rewe')) {
+    return 'assets/images/Rewe.png';
+  } else if (name.toLowerCase().contains('kaufland')) {
+    return 'assets/images/Kaufland.png';
+  } else if (name.toLowerCase().contains('aldi')) {
+    return 'assets/images/Aldi.png';
+  } else if (name.toLowerCase().contains('lidl')) {
+    return 'assets/images/Lidl.png';
+  } else if (name.toLowerCase().contains('penny')) {
+    return 'assets/images/Penny.png';
+  } else {
+    return 'assets/images/Generic_Supermarket.png';
+  }
+}
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
       ),
       clipBehavior: Clip.antiAlias, // Ensures the child is clipped within the border radius
       child: Image.asset(
-        imagePath,
+        _getImagePath(name),
         width: Spacings.supermarketLogo,
         height: Spacings.supermarketLogo,
         fit: BoxFit.cover,
@@ -88,7 +108,6 @@ class SupermarketText extends StatelessWidget {
 
 // Widget für die Supermarket-Informationen
 class SupermarketSelector extends StatelessWidget {
-  final String imagePath;
   final String name;
   final String address;
   final String postalCode;
@@ -97,7 +116,6 @@ class SupermarketSelector extends StatelessWidget {
 
   const SupermarketSelector({
     super.key,
-    required this.imagePath,
     required this.name,
     required this.address,
     required this.postalCode,
@@ -120,7 +138,7 @@ class SupermarketSelector extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SupermarketImg(imagePath: imagePath),
+            SupermarketImg(name: name),
             const SizedBox(width: Spacings.horizontal),
             Expanded(
               child: SupermarketText(
@@ -143,4 +161,3 @@ class SupermarketSelector extends StatelessWidget {
     );
   }
 }
-
