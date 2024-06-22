@@ -10,7 +10,7 @@ class FavListe {
   late String name;
   IsarLinks<Wine> wines = IsarLinks<Wine>();
 
-  @Backlink(to: 'favLists')
+  @Backlink(to: 'userList')
   final user = IsarLinks<User>();
 
   FavListe({

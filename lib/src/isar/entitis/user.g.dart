@@ -20,8 +20,7 @@ const UserSchema = CollectionSchema(
     r'colorMode': PropertySchema(
       id: 0,
       name: r'colorMode',
-      type: IsarType.byte,
-      enumMap: _UsercolorModeEnumValueMap,
+      type: IsarType.long,
     ),
     r'name': PropertySchema(
       id: 1,
@@ -82,7 +81,7 @@ void _userSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeByte(offsets[0], object.colorMode.index);
+  writer.writeLong(offsets[0], object.colorMode);
   writer.writeString(offsets[1], object.name);
   writer.writeLong(offsets[2], object.plz);
   writer.writeDouble(offsets[3], object.radius);
@@ -99,9 +98,7 @@ User _userDeserialize(
     name: reader.readString(offsets[1]),
     shareCode: reader.readString(offsets[4]),
   );
-  object.colorMode =
-      _UsercolorModeValueEnumMap[reader.readByteOrNull(offsets[0])] ??
-          ColorMode.auto;
+  object.colorMode = reader.readLong(offsets[0]);
   object.id = id;
   object.plz = reader.readLong(offsets[2]);
   object.radius = reader.readDouble(offsets[3]);
@@ -116,8 +113,7 @@ P _userDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (_UsercolorModeValueEnumMap[reader.readByteOrNull(offset)] ??
-          ColorMode.auto) as P;
+      return (reader.readLong(offset)) as P;
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
@@ -130,17 +126,6 @@ P _userDeserializeProp<P>(
       throw IsarError('Unknown property with id $propertyId');
   }
 }
-
-const _UsercolorModeEnumValueMap = {
-  'auto': 0,
-  'light': 1,
-  'dark': 2,
-};
-const _UsercolorModeValueEnumMap = {
-  0: ColorMode.auto,
-  1: ColorMode.light,
-  2: ColorMode.dark,
-};
 
 Id _userGetId(User object) {
   return object.id;
@@ -231,8 +216,7 @@ extension UserQueryWhere on QueryBuilder<User, User, QWhereClause> {
 }
 
 extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
-  QueryBuilder<User, User, QAfterFilterCondition> colorModeEqualTo(
-      ColorMode value) {
+  QueryBuilder<User, User, QAfterFilterCondition> colorModeEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'colorMode',
@@ -242,7 +226,7 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
   }
 
   QueryBuilder<User, User, QAfterFilterCondition> colorModeGreaterThan(
-    ColorMode value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -255,7 +239,7 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
   }
 
   QueryBuilder<User, User, QAfterFilterCondition> colorModeLessThan(
-    ColorMode value, {
+    int value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -268,8 +252,8 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
   }
 
   QueryBuilder<User, User, QAfterFilterCondition> colorModeBetween(
-    ColorMode lower,
-    ColorMode upper, {
+    int lower,
+    int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -903,7 +887,7 @@ extension UserQueryProperty on QueryBuilder<User, User, QQueryProperty> {
     });
   }
 
-  QueryBuilder<User, ColorMode, QQueryOperations> colorModeProperty() {
+  QueryBuilder<User, int, QQueryOperations> colorModeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'colorMode');
     });

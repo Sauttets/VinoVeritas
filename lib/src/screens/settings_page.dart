@@ -4,6 +4,8 @@ import 'package:vinoveritas/src/features/settings_feature/widgets/location_setti
 import 'package:vinoveritas/src/features/settings_feature/widgets/set_username.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/design_selector.dart';
 import 'package:vinoveritas/src/features/settings_feature/widgets/share_favorites.dart';
+import 'package:vinoveritas/src/isar/IsarService.dart';
+import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -15,6 +17,8 @@ class SettingsPage extends StatefulWidget {
 
 class SettingsPageState extends State<SettingsPage> {
   int selectedIndex = 0;
+  final IsarServiceInterface _isarService = IsarService();
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +37,13 @@ class SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment:
                     MainAxisAlignment.center, // Center the children vertically
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: SetUsername(),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: SetLocation(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SetLocation(isarService: _isarService),
                   ),
                   DesignSelector(
                     selectedIndex: selectedIndex,
@@ -48,6 +52,7 @@ class SettingsPageState extends State<SettingsPage> {
                         selectedIndex = index;
                       });
                     },
+                    isarService: _isarService,
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),

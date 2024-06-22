@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/isar/IsarService.dart';
+import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SetUsername extends StatelessWidget {
-  const SetUsername({super.key});
+  final IsarServiceInterface _isarService = IsarService();
+  void _updateUser(int id, String? name, int? plz, double? radius, int? colorMode) {
+    _isarService.updateUser(id, name, plz, radius, colorMode);
+  }
+  SetUsername({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -35,6 +35,13 @@ const FavListeSchema = CollectionSchema(
       name: r'wines',
       target: r'Wine',
       single: false,
+    ),
+    r'user': LinkSchema(
+      id: 4266610277235563824,
+      name: r'user',
+      target: r'User',
+      single: false,
+      linkName: r'userList',
     )
   },
   embeddedSchemas: {},
@@ -95,12 +102,13 @@ Id _favListeGetId(FavListe object) {
 }
 
 List<IsarLinkBase<dynamic>> _favListeGetLinks(FavListe object) {
-  return [object.wines];
+  return [object.wines, object.user];
 }
 
 void _favListeAttach(IsarCollection<dynamic> col, Id id, FavListe object) {
   object.id = id;
   object.wines.attach(col, col.isar.collection<Wine>(), r'wines', id);
+  object.user.attach(col, col.isar.collection<User>(), r'user', id);
 }
 
 extension FavListeQueryWhereSort on QueryBuilder<FavListe, FavListe, QWhere> {
@@ -422,6 +430,62 @@ extension FavListeQueryLinks
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(
           r'wines', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> user(
+      FilterQuery<User> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'user');
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userLengthEqualTo(
+      int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'user', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'user', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'user', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'user', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'user', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<FavListe, FavListe, QAfterFilterCondition> userLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'user', lower, includeLower, upper, includeUpper);
     });
   }
 }

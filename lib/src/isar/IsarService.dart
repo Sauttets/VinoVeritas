@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
@@ -6,7 +5,6 @@ import 'package:vinoveritas/src/isar/entitis/favList.dart';
 import 'package:vinoveritas/src/isar/entitis/user.dart';
 import 'package:vinoveritas/src/isar/entitis/wine.dart';
 
-import 'entitis/user.dart';
 
 class IsarService implements IsarServiceInterface {
   late Future<Isar> db;
@@ -42,7 +40,7 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<void> updateUser(int id, String? name, int? plz, double? radius,
-      ColorMode? colorMode) async {
+      int? colorMode) async {
     final isar = await db;
     final user = await isar.users.get(id);
     if (user != null) {

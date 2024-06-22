@@ -1,5 +1,4 @@
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:vinoveritas/src/isar/entitis/favList.dart';
 
 part 'user.g.dart';
@@ -11,7 +10,7 @@ class User {
 	late int plz;
 	double radius = 5;
   @enumerated
-	ColorMode colorMode = ColorMode.auto;
+	int colorMode = 0;
 	String shareCode;
   final userList = IsarLink<FavListe>();
 
@@ -23,12 +22,3 @@ class User {
 
   
 }
-
-enum ColorMode{
-    auto,
-    light, 
-    dark
-}
-
-
-
