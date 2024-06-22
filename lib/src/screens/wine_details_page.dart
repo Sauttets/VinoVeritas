@@ -15,7 +15,6 @@ class WineDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(wine.name),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -54,64 +53,4 @@ class WineDetailsPage extends StatelessWidget {
       ),
     );
   }
-}
-
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wine App'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => WineDetailsPage(
-                  wine: Wine(
-                    id: 1,
-                    name: 'Châteauneuf-du-Pape',
-                    year: 2020,
-                    country: 'France',
-                    type: 'Red',
-                    description: 'A full-bodied red wine...',
-                    imageURL: 'https://example.com/wine.png',
-                    volume: 750,
-                    volAlc: 14.5,
-                    isLiked: true,
-                    dryness: 0.2,
-                    acidity: 0.5,
-                    tanninLevel: 0.6,
-                    flavours: ['Fruchtig', 'Blumig', 'Erdig'],
-                    fitsTo: ['Käse', 'Fisch', 'Rindfleisch'],
-                    supermarkets: [
-                      Supermarket(
-                        name: 'Supermarket A',
-                        street: 'Street',
-                        postalCode: '12345',
-                        city: 'City',
-                        houseNumber: '1',
-                        price: 42.00,
-                        img: 'assets/images/Logo_Edeka.png',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-          child: const Text('Go to Wine Details'),
-        ),
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: HomePage(),
-  ));
 }

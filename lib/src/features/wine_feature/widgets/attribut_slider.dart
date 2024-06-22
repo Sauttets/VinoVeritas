@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
 
@@ -87,7 +88,7 @@ class AttSlider extends StatelessWidget {
                         height: 8,
                         width: 8,
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: AppColors.heartRed,
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),

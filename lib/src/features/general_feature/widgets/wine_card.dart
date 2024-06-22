@@ -1,41 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
 import 'package:vinoveritas/util/spacings.dart';
-
-class WineEntry {
-  final String year;
-  final String name;
-  final String volume;
-  final String price;
-  final String? wineImagePath;
-  final String? glassImagePath;
-
-  WineEntry({
-    required this.year,
-    required this.name,
-    required this.volume,
-    required this.price,
-    this.wineImagePath,
-    this.glassImagePath,
-  });
-}
+import 'package:go_router/go_router.dart';
 
 class WineCard extends StatelessWidget {
-  final String year;
-  final String name;
-  final String volume;
-  final String price;
-  final String? wineImagePath;
-  final String? overlayImagePath;
+  final Wine wine;
 
   const WineCard({
     super.key,
-    required this.year,
-    required this.name,
-    required this.volume,
-    required this.price,
-    this.wineImagePath,
-    this.overlayImagePath,
+    required this.wine,
   });
 
   @override
@@ -44,133 +18,167 @@ class WineCard extends StatelessWidget {
     final cardWidth = screenWidth / 2;
     final cardHeight = cardWidth * 6 / 5;
 
-    return Container(
-      width: cardWidth,
-      height: cardHeight,
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              HeartButton(),
-            ],
-            )
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                
-                Text(
-                  year,
-                  style: const TextStyle(
-                    fontSize: Spacings.textFontSize,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: Spacings.titleFontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  volume,
-                  style: const TextStyle(
-                    fontSize: Spacings.textFontSize,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
+    // Determine the appropriate glass image based on wine type
+    String glassImage;
+    switch (wine.type.toLowerCase()) {
+      case 'weiss':
+        glassImage = 'assets/images/WeißweinGlas.png';
+        break;
+      case 'rose':
+        glassImage = 'assets/images/RoseweinGlas.png';
+        break;
+      case 'rot':
+      default:
+        glassImage = 'assets/images/RotweinGlas.png';
+        break;
+    }
+
+    // Determine the appropriate fallback bottle image based on wine type
+    String bottleImage;
+    switch (wine.type.toLowerCase()) {
+      case 'weiss':
+        bottleImage = 'assets/images/WeißweinFlasche.png';
+        break;
+      case 'rose':
+        bottleImage = 'assets/images/RoseweinFlasche.png';
+        break;
+      case 'rot':
+      default:
+        bottleImage = 'assets/images/RotweinFlasche.png';
+        break;
+    }
+
+    return GestureDetector(
+      onTap: () {
+        context.push('/wine-details', extra: wine);
+      },
+      child: Container(
+        width: cardWidth,
+        height: cardHeight,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-          ),
-          Positioned(
-            bottom: 16,
-            left: 16,
-            child: Text(
-              price,
-              style: const TextStyle(
-                fontSize: Spacings.titleFontSize,
-                fontWeight: FontWeight.bold,
+          ],
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  HeartButton(isLiked: wine.isLiked,),
+                ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 50.0, bottom: 12.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Image.asset(
-                overlayImagePath ?? 'assets/images/RotweinGlas.png',
-                height: cardHeight * 3 / 10,
-                fit: BoxFit.contain,
-                colorBlendMode: BlendMode.modulate,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    wine.year.toString(),
+                    style: const TextStyle(
+                      fontSize: Spacings.textFontSize,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    wine.name,
+                    style: const TextStyle(
+                      fontSize: Spacings.titleFontSize,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${wine.volume} ml',
+                    style: const TextStyle(
+                      fontSize: Spacings.textFontSize,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 25.0, bottom: 12.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Image.asset(
-                wineImagePath ?? 'assets/images/RotweinFlasche.png',
-                height: cardHeight * 1/2,
-                fit: BoxFit.contain,
+            Positioned(
+              bottom: 16,
+              left: 16,
+              child: Text(
+                '\$${wine.supermarkets.first.price.toStringAsFixed(2)}',
+                style: const TextStyle(
+                  fontSize: Spacings.titleFontSize,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(right: 50.0, bottom: 12.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  glassImage,
+                  height: cardHeight * 3 / 10,
+                  fit: BoxFit.contain,
+                  colorBlendMode: BlendMode.modulate,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 25.0, bottom: 12.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Image.network(
+                  wine.imageURL,
+                  height: cardHeight * 1 / 2,
+                  fit: BoxFit.contain,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      bottleImage,
+                      height: cardHeight * 1 / 2,
+                      fit: BoxFit.contain,
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 class WinePage extends StatelessWidget {
-  final List<WineEntry> wineEntries;
+  final List<Wine> wines;
 
-  const WinePage({super.key, required this.wineEntries});
+  const WinePage({super.key, required this.wines});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: GridView.builder(
-          padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16.0,
-            mainAxisSpacing: 16.0,
-            childAspectRatio: 0.83, // 5:6 aspect ratio
-          ),
-          itemCount: wineEntries.length,
-          itemBuilder: (context, index) {
-            final wineEntry = wineEntries[index];
-            return WineCard(
-              year: wineEntry.year,
-              name: wineEntry.name,
-              volume: wineEntry.volume,
-              price: wineEntry.price,
-              wineImagePath: wineEntry.wineImagePath,
-              overlayImagePath: wineEntry.glassImagePath,
-            );
-          },
+      body: GridView.builder(
+        padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+          childAspectRatio: 0.83, // 5:6 aspect ratio
         ),
-      );
+        itemCount: wines.length,
+        itemBuilder: (context, index) {
+          final wine = wines[index];
+          return WineCard(wine: wine);
+        },
+      ),
+    );
   }
 }

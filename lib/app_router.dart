@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
 import 'package:vinoveritas/src/screens/home_page.dart';
 import 'package:vinoveritas/src/screens/like_page.dart';
 import 'package:vinoveritas/src/screens/login_page.dart';
 import 'package:vinoveritas/src/screens/settings_page.dart';
 import 'package:vinoveritas/src/screens/lexikon_page.dart';
-import 'package:vinoveritas/main.dart'; // Ensure this import exists for the wrapper
+import 'package:vinoveritas/main.dart';
+import 'package:vinoveritas/src/screens/wine_details_page.dart'; // Ensure this import exists for the wrapper
 
 class NoTransitionPage<T> extends CustomTransitionPage<T> {
   NoTransitionPage({
@@ -60,6 +62,13 @@ final GoRouter router = GoRouter(
           child: SettingsPage(),
         ),
       ),
+    ),
+    GoRoute(
+      path: '/wine-details',
+      builder: (context, state) {
+        final wine = state.extra as Wine;
+        return WineDetailsPage(wine: wine);
+      },
     ),
   ],
 );
