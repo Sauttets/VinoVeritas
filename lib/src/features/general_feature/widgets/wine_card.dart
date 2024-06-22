@@ -48,6 +48,10 @@ class WineCard extends StatelessWidget {
         break;
     }
 
+    double cheapestPrice = wine.supermarkets
+        .map((supermarket) => supermarket.price)
+        .reduce((value, element) => value < element ? value : element);
+
     return GestureDetector(
       onTap: () {
         context.push('/wine-details', extra: wine);
@@ -113,7 +117,7 @@ class WineCard extends StatelessWidget {
               bottom: 16,
               left: 16,
               child: Text(
-                '\$${wine.supermarkets.first.price.toStringAsFixed(2)}',
+                '\$${cheapestPrice.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,

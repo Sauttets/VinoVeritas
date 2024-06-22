@@ -85,6 +85,14 @@ final wines = [
         houseNumber: '2',
         price: 29.00,
       ),
+      Supermarket(
+        name: 'Supermarket B',
+        street: '456 Wine Rd',
+        postalCode: '67890',
+        city: 'Grapeville',
+        houseNumber: '2',
+        price: 99.00,
+      ),
     ],
   ),
 ];
