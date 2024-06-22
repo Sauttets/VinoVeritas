@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/tasteMaps.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/taste_maps.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-
 class TastePallet extends StatelessWidget {
   final String flavor1;
   final String? flavor2;
@@ -11,8 +10,6 @@ class TastePallet extends StatelessWidget {
   final String fit1;
   final String? fit2;
   final String? fit3;
-
-  
 
   const TastePallet({
     super.key,
@@ -26,43 +23,40 @@ class TastePallet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: double.infinity,
-            child: Card(
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(Spacings.cornerRadius),
-              ),
-              color: AppColors.primaryWhite,
-              child: Padding(
-                padding: const EdgeInsets.all(Spacings.horizontal),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxHeight: 200.0), // Set your desired max height here
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: _buildColumn("Geschmacksnoten:", flavor1, flavor2, flavor3, true)),
-                        Container(
-                          width: 1.0,
-                          color: AppColors.primaryGrey,
-                          margin: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
-                        ),
-                        Expanded(child: _buildColumn("Passt gut zu:", fit1, fit2, fit3, false)),
-                      ],
-                    ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: Card(
+            elevation: 0.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Spacings.cornerRadius),
+            ),
+            color: AppColors.primaryWhite,
+            child: Padding(
+              padding: const EdgeInsets.all(Spacings.horizontal),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 200.0), // Set your desired max height here
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _buildColumn("Geschmack:", flavor1, flavor2, flavor3, true)),
+                      Container(
+                        width: 1.0,
+                        color: AppColors.primaryGrey,
+                        margin: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
+                      ),
+                      Expanded(child: _buildColumn("Passt zu:", fit1, fit2, fit3, false)),
+                    ],
                   ),
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

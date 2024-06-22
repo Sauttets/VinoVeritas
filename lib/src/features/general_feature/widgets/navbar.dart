@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/app_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class CustomNavBar extends StatefulWidget {
@@ -14,6 +15,29 @@ class CustomNavBar extends StatefulWidget {
 class CustomNavBarState extends State<CustomNavBar> {
   int _selectedIndex = 0;
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateSelectedIndex();
+  }
+
+  void _updateSelectedIndex() {
+    final currentLocation = GoRouter.of(context).location; // Use the extension
+    int newIndex = 0;
+    if (currentLocation.startsWith('/home')) {
+      newIndex = 0;
+    } else if (currentLocation.startsWith('/page1')) {
+      newIndex = 1;
+    } else if (currentLocation.startsWith('/page2')) {
+      newIndex = 2;
+    } else if (currentLocation.startsWith('/page3')) {
+      newIndex = 3;
+    }
+    setState(() {
+      _selectedIndex = newIndex;
+    });
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -21,16 +45,16 @@ class CustomNavBarState extends State<CustomNavBar> {
 
     switch (index) {
       case 0:
-        widget.goRouter.go('/home');
+        widget.goRouter.push('/home');
         break;
       case 1:
-        widget.goRouter.go('/page1');
+        widget.goRouter.push('/page1');
         break;
       case 2:
-        widget.goRouter.go('/page2');
+        widget.goRouter.push('/page2');
         break;
       case 3:
-        widget.goRouter.go('/page3');
+        widget.goRouter.push('/page3');
         break;
     }
   }

@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class HeartButton extends StatefulWidget {
-  const HeartButton({super.key});
+  final bool isLiked;
+
+  const HeartButton({super.key, required this.isLiked});
 
   @override
   HeartButtonState createState() => HeartButtonState();
 }
 
 class HeartButtonState extends State<HeartButton> {
-  bool isPressed = false;
+  late bool isPressed;
+
+  @override
+  void initState() {
+    super.initState();
+    isPressed = widget.isLiked;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +28,15 @@ class HeartButtonState extends State<HeartButton> {
         });
       },
       child: Container(
-        width: 40,
-        height: 40,
+        width: 33,
+        height: 33,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.primaryGrey,
         ),
         child: Center(
           child: Transform.translate(
-            offset: const Offset(0, 3), // Move the heart 2 pixels down
+            offset: const Offset(0, 1), // Move the heart 2 pixels down
             child: Icon(
               Icons.favorite,
               color: isPressed ? AppColors.heartRed : AppColors.primaryWhite,

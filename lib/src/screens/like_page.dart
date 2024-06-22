@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/filter_sort_taste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
 
 class LikePageLayout extends StatefulWidget {
   const LikePageLayout({super.key});
@@ -11,86 +12,76 @@ class LikePageLayout extends StatefulWidget {
 }
 
 class LikePageLayoutState extends State<LikePageLayout> {
-  List<WineEntry> _wineEntries = [];
+  List<Wine> _wines = [];
 
   @override
   void initState() {
     super.initState();
-    _wineEntries = _getWineEntries('1'); // Initialize with the first wine list
+    _wines = _getWines('1'); // Initialize with the first wine list
   }
 
-  List<WineEntry> _getWineEntries(String id) {
-    // Replace with actual logic to get wine entries based on id
+  List<Wine> _getWines(String id) {
+    // Replace with actual logic to get wines based on id
     if (id == '1') {
       return [
-        WineEntry(
-          year: '2019',
+        Wine(
+          id: 1,
           name: 'Tanz der Tanine',
-          volume: '750ml',
-          price: '34,00€',
-          wineImagePath: 'assets/images/RotweinFlasche.png',
-          glassImagePath: 'assets/images/RotweinGlas.png',
-        ),
-        WineEntry(
-          year: '2019',
-          name: 'Tanz der Tanine',
-          volume: '750ml',
-          price: '34,00€',
-          wineImagePath: 'assets/images/RotweinFlasche.png',
-          glassImagePath: 'assets/images/RotweinGlas.png',
+          year: 2019,
+          country: 'Germany',
+          type: 'rot',
+          description: 'A rich red wine with a hint of oak.',
+          imageURL: 'assets/images/RotweinFlasche.png',
+          volume: 750,
+          volAlc: 13.5,
+          isLiked: true,
+          dryness: 5.0,
+          acidity: 4.5,
+          tanninLevel: 4.0,
+          flavours: ['Fruchtig', 'Kräutrig', 'Buttrig'],
+          fitsTo: ['Rindfleisch', 'Lamm', 'Käse'],
+          supermarkets: [
+            Supermarket(
+              name: 'Supermarket A',
+              street: '123 Wine St',
+              postalCode: '12345',
+              city: 'Wineland',
+              houseNumber: '1',
+              price: 34.00,
+              img: 'assets/images/Logo_Edeka.png',
+            ),
+          ],
         ),
       ];
     } else if (id == '2') {
       return [
-        WineEntry(
-          year: '2020',
+        Wine(
+          id: 2,
           name: 'Bilbos Best',
-          volume: '750ml',
-          price: '40,00€',
-          wineImagePath: 'assets/images/WeißweinFlasche.png',
-          glassImagePath: 'assets/images/WeißweinGlas.png',
-        ),
-        WineEntry(
-          year: '2020',
-          name: 'Bilbos Best',
-          volume: '750ml',
-          price: '40,00€',
-          wineImagePath: 'assets/images/WeißweinFlasche.png',
-          glassImagePath: 'assets/images/WeißweinGlas.png',
-        ),
-      ];
-    } else if (id == '3') {
-      return [
-        WineEntry(
-          year: '2021',
-          name: 'Frodos Favorite',
-          volume: '750ml',
-          price: '50,00€',
-          wineImagePath: 'assets/images/RoseweinFlasche.png',
-          glassImagePath: 'assets/images/RoseweinGlas.png',
-        ),
-        WineEntry(
-          year: '2021',
-          name: 'Frodos Favorite',
-          volume: '750ml',
-          price: '50,00€',
-          wineImagePath: 'assets/images/RoseweinFlasche.png',
-          glassImagePath: 'assets/images/RoseweinGlas.png',
-        ),
-      ];
-    } else if (id == '4') {
-      return [
-        WineEntry(
-          year: '2022',
-          name: 'Sams Selection',
-          volume: '750ml',
-          price: '60,00€',
-        ),
-        WineEntry(
-          year: '2022',
-          name: 'Sams Selection',
-          volume: '750ml',
-          price: '60,00€',
+          year: 2020,
+          country: 'Germany',
+          type: 'weiss',
+          description: 'A smooth white wine with floral notes.',
+          imageURL: 'assets/images/WeißweinFlasche.png',
+          volume: 750,
+          volAlc: 12.0,
+          isLiked: true,
+          dryness: 0.4,
+          acidity: 0.2,
+          tanninLevel: 0.87,
+          flavours: ['Fruchtig', 'Kräutrig', 'Buttrig'],
+          fitsTo: ['Rindfleisch', 'Lamm', 'Käse'],
+          supermarkets: [
+            Supermarket(
+              name: 'Supermarket B',
+              street: '456 Wine Rd',
+              postalCode: '67890',
+              city: 'Grapeville',
+              houseNumber: '2',
+              price: 40.00,
+              img: 'assets/images/Logo_Edeka.png',
+            ),
+          ],
         ),
       ];
     } else {
@@ -100,7 +91,7 @@ class LikePageLayoutState extends State<LikePageLayout> {
 
   void _onWineListChanged(FavlistTupel selectedWineList) {
     setState(() {
-      _wineEntries = _getWineEntries(selectedWineList.id);
+      _wines = _getWines(selectedWineList.id);
     });
   }
 
@@ -121,7 +112,7 @@ class LikePageLayoutState extends State<LikePageLayout> {
             const FilterSortTaste(),
             WineDropdown(wineLists: wineLists, onChanged: _onWineListChanged),
             Expanded(
-              child: WinePage(wineEntries: _wineEntries),
+              child: WinePage(wines: _wines),
             ),
           ],
         ),
