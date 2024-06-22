@@ -131,7 +131,7 @@ class WineCard extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Image.asset(
                 wineImagePath ?? 'assets/images/RotweinFlasche.png',
-                height: cardHeight * 10 / 20,
+                height: cardHeight * 1/2,
                 fit: BoxFit.contain,
               ),
             ),
