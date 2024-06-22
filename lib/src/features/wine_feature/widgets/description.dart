@@ -12,14 +12,11 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
-    child: Column(
-      // Wrap the Card with a Column to control the vertical space
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          width: double.infinity, // Breite der Karte auf maximale Breite setzen
+          width: double.infinity,
           child: Card(
             elevation: 0.0,
             shape: RoundedRectangleBorder(
@@ -52,9 +49,6 @@ class Description extends StatelessWidget {
           ),
         ),
       ],
-    ),
-  );
-}
-
-
+    );
+  }
 }

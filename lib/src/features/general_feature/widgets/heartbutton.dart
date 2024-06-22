@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class HeartButton extends StatefulWidget {
-  const HeartButton({super.key});
+  final bool isLiked;
+
+  const HeartButton({super.key, required this.isLiked});
 
   @override
   HeartButtonState createState() => HeartButtonState();
 }
 
 class HeartButtonState extends State<HeartButton> {
-  bool isPressed = false;
+  late bool isPressed;
+
+  @override
+  void initState() {
+    super.initState();
+    isPressed = widget.isLiked;
+  }
 
   @override
   Widget build(BuildContext context) {
