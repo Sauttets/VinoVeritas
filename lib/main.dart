@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
 import 'package:vinoveritas/app_router.dart' as app_router;
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -43,6 +43,9 @@ dependencies:
   flutter_bloc: ^8.1.6
   bloc: ^8.1.4
   json_annotation: ^4.9.0
+  isar: ^2.1.4
+  isar_flutter_libs: ^2.1.4
+  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_test:
