@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:vinoveritas/src/isar/entitis/favList.dart';
+import 'package:vinoveritas/src/services/persistence_service/entitis/favList.dart';
 
 part 'wine.g.dart';
 

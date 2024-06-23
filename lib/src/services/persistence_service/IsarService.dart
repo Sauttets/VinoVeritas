@@ -1,10 +1,10 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
-import 'package:vinoveritas/src/isar/entitis/favList.dart';
-import 'package:vinoveritas/src/isar/entitis/user.dart';
-import 'package:vinoveritas/src/isar/entitis/wine.dart';
-
+import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/persistence_service/entitis/favList.dart';
+import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
+import 'package:vinoveritas/src/services/persistence_service/entitis/user.dart';
+import 'package:vinoveritas/src/services/persistence_service/entitis/wine.dart';
 
 class IsarService implements IsarServiceInterface {
   late Future<Isar> db;
@@ -17,7 +17,7 @@ class IsarService implements IsarServiceInterface {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [FavListeSchema, WineSchema, UserSchema],
+        [FavListeSchema, WineSchema, SettingsSchema],
         inspector: true,
         directory: dir.path,
       );
@@ -25,22 +25,19 @@ class IsarService implements IsarServiceInterface {
     return Future.value(Isar.getInstance());
   }
 
-
-
- 
-
   @override
   Future<int> addUser(String name, String shareCode) async {
     final isar = await db;
     final favList = FavListe(name: name);
     isar.writeTxnSync<int>(() => isar.favListes.putSync(favList));
-    final user = User(name: name, shareCode: shareCode)..userList.value = favList;
+    final user = User(name: name, shareCode: shareCode)
+      ..userList.value = favList;
     return isar.writeTxnSync<int>(() => isar.users.putSync(user));
   }
 
   @override
-  Future<void> updateUser(int id, String? name, int? plz, double? radius,
-      int? colorMode) async {
+  Future<void> updateUser(
+      int id, String? name, int? plz, double? radius, int? colorMode) async {
     final isar = await db;
     final user = await isar.users.get(id);
     if (user != null) {
@@ -92,7 +89,7 @@ class IsarService implements IsarServiceInterface {
     throw UnimplementedError();
   }
 
-   @override
+  @override
   Future<List<Wine>> getFavoriteWines(int userId) async {
     final isar = await db;
     final user = await isar.users.get(userId);
@@ -117,7 +114,7 @@ class IsarService implements IsarServiceInterface {
     throw UnimplementedError();
   }
 
-   @override
+  @override
   Future<void> removeInFavList(Wine wine, int id) async {
     final isar = await db;
     final favList = await isar.favListes.get(id);
@@ -131,5 +128,24 @@ class IsarService implements IsarServiceInterface {
     }
   }
 
-  
+  @override
+  Future<Settings?> saveSettings(Settings settings) async {
+    final isar = await db;
+    await isar.writeTxn(() async {
+      // Lösche alle vorhandenen Settings, bevor du neue speicherst.
+      await isar.settings.clear();
+      // Speichere das neue Settings-Objekt.
+      await isar.settings.put(settings);
+    });
+    return settings;
+  }
+
+  @override
+  Future<Settings?> getSettings() async {
+    final isar = await db;
+    // Da wir sicherstellen, dass immer nur ein Settings-Objekt gespeichert wird,
+    // können wir das erste Objekt aus der Datenbank abrufen.
+    final settings = await isar.settings.where().findFirst();
+    return settings;
+  }
 }

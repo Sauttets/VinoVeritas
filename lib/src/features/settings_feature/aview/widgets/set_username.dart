@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/isar/IsarService.dart';
-import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SetUsername extends StatelessWidget {
-  final IsarServiceInterface _isarService = IsarService();
-  void _updateUser(int id, String? name, int? plz, double? radius, int? colorMode) {
-    _isarService.updateUser(id, name, plz, radius, colorMode);
-  }
-  SetUsername({super.key});
+  const SetUsername({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +21,11 @@ class SetUsername extends StatelessWidget {
           width: 391.0,
           height: 44.0,
           child: TextField(
+            onSubmitted: (value) {
+              // Trigger the state change here
+              context.read<SettingsCubit>().loadSettings();
+              print('inthere.............................');
+            },
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.primaryWhite,
