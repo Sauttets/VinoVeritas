@@ -49,6 +49,7 @@ class SettingsPage extends StatelessWidget {
                           onTabSelected: (index) {
                             context.read<SettingsCubit>().updateSelectedIndex(
                                 index); // This method should update the state with the new index
+                            context.read<SettingsCubit>().loadSettings();
                           },
                         );
                       },
@@ -59,13 +60,21 @@ class SettingsPage extends StatelessWidget {
                           return Padding(
                             padding: EdgeInsets.all(8.0),
                             child: DisplayAndCopyText(
-                                text: state.specificVariable),
+                                text: state.specificVariable +
+                                    ' ' +
+                                    state.getselectedIndex.toString()),
                           );
-                        } else {
+                        } else if (state is SettingsInit) {
                           // Handle other states or show a placeholder
                           return Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
+                            child: DisplayAndCopyText(
+                                text: 'initstate: ${state.getselectedIndex}'),
+                          );
+                        } else {
+                          return const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: DisplayAndCopyText(text: 'otherstate'),
                           );
                         }
                       },

@@ -13,20 +13,24 @@ class SettingsCubit extends Cubit<SettingsState> {
     loadSettings();
   }
 
-  void updateSelectedIndex(int index) {
+  void updateSelectedIndex(int index) async {
     // Assuming `settings` is your current settings model instance
-    final SettingsModel = settingsModel.copyWith(colorMode: index);
+    final updatedSettingsModel = settingsModel.copyWith(colorMode: index);
 
-    // Optionally, save the updatedSettings to a persistent storage
+    // Save the updatedSettings to a persistent storage
+    await _settingsRepository.saveSettingsModel(updatedSettingsModel);
+
+    // Update the local settingsModel with the updated model
+    settingsModel = updatedSettingsModel;
 
     // Emit a new state with the updated settings model
     emit(ShowSettings(
-        SettingsModel)); // Adjust according to your actual state class
+        settingsModel)); // Adjust according to your actual state class
   }
 
   Future<void> loadSettings() async {
     try {
-      final settingsModel = await _settingsRepository.loadSettingsModel();
+      settingsModel = await _settingsRepository.loadSettingsModel();
       emit(ShowSettings(settingsModel));
     } catch (e) {
       // Handle error, possibly emit an error state

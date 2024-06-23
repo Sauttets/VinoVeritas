@@ -17,7 +17,7 @@ class IsarService implements IsarServiceInterface {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [FavListeSchema, WineSchema, SettingsSchema],
+        [FavListeSchema, WineSchema, UserSchema, SettingsSchema],
         inspector: true,
         directory: dir.path,
       );
