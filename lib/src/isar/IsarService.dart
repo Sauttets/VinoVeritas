@@ -130,6 +130,12 @@ class IsarService implements IsarServiceInterface {
       throw Exception('FavList with id $id not found');
     }
   }
+  
+  @override
+  Future<String> getUserName(int id) async {
+    final isar = await db;
+    return isar.users.get(id).then((value) => value!.name);
+  }
 
   
 }
