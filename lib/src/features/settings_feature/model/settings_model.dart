@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
-part 'settings_model.freezed.dart';
+part 'settings_model.freezedimportent.dart';
 
 @freezed
 class SettingsModel with _$SettingsModel {

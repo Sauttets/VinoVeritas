@@ -5,14 +5,22 @@ import 'package:vinoveritas/src/services/persistence_service/entitis/settings.da
 
 class SettingsRepository {
   final IsarServiceInterface _isarService = IsarService();
-  late SettingsModel settingsModel = const SettingsModel();
 
   SettingsRepository();
 
   Future<SettingsModel> loadSettingsModel() async {
     Settings? settingsIsar = await _isarService.getSettings();
-    settingsModel = SettingsModel.fromIsarSettings(settingsIsar!);
+    if (settingsIsar != null) {
+      return SettingsModel.fromIsarSettings(settingsIsar);
+    } else {
+      // Handle the case where no settings are found. Perhaps return a default SettingsModel instance.
+      return const SettingsModel();
+    }
+  }
 
-    return settingsModel;
+  Future<void> saveSettingsModel(SettingsModel settingsModel) async {
+    // Convert SettingsModel to Settings entity required by IsarService
+    Settings settings = settingsModel.toIsarSettings();
+    await _isarService.saveSettings(settings);
   }
 }

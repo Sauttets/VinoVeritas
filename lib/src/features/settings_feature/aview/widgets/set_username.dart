@@ -8,35 +8,43 @@ class SetUsername extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          '  Nutzername:',
-          style: TextStyle(
-            fontSize: 15,
-          ),
-        ),
-        SizedBox(
-          width: 391.0,
-          height: 44.0,
-          child: TextField(
-            onSubmitted: (value) {
-              // Trigger the state change here
-              context.read<SettingsCubit>().loadSettings();
-              print('inthere.............................');
-            },
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.primaryWhite,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.black),
+    // Wrap the UI in a BlocBuilder to listen for SettingsCubit state changes
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        // You can check the state and return different widgets accordingly
+        // For simplicity, the example below just returns the original UI
+        // regardless of the state. Adjust based on your state management.
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '  Nutzername:',
+              style: TextStyle(
+                fontSize: 15,
               ),
             ),
-          ),
-        ),
-      ],
+            SizedBox(
+              width: 391.0,
+              height: 44.0,
+              child: TextField(
+                onSubmitted: (value) {
+                  // Trigger the state change here
+                  context.read<SettingsCubit>().loadSettings();
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: AppColors.primaryWhite,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: const BorderSide(color: Colors.black),
+                  ),
+                  hintText: 'Enter your username', // Placeholder text
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
