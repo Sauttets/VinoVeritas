@@ -4,16 +4,12 @@ import 'package:vinoveritas/src/features/settings_feature/controller/cubit/setti
 import 'package:vinoveritas/util/app_colors.dart';
 
 class SetUsername extends StatelessWidget {
-  const SetUsername({Key? key}) : super(key: key);
+  const SetUsername({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Wrap the UI in a BlocBuilder to listen for SettingsCubit state changes
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-        // You can check the state and return different widgets accordingly
-        // For simplicity, the example below just returns the original UI
-        // regardless of the state. Adjust based on your state management.
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,8 +24,7 @@ class SetUsername extends StatelessWidget {
               height: 44.0,
               child: TextField(
                 onSubmitted: (value) {
-                  // Trigger the state change here
-                  context.read<SettingsCubit>().loadSettings();
+                  context.read<SettingsCubit>().updateUsername(value);
                 },
                 decoration: InputDecoration(
                   filled: true,
@@ -38,7 +33,10 @@ class SetUsername extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(color: Colors.black),
                   ),
-                  hintText: 'Enter your username', // Placeholder text
+                  // Use a ternary operator for conditional assignment
+                  hintText: state is ShowSettings
+                      ? state.getusername
+                      : 'Nutzername eingeben',
                 ),
               ),
             ),

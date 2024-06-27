@@ -17,6 +17,7 @@ class ShowSettings extends SettingsState {
 
   String get specificVariable => settings.shareCode;
   int get getselectedIndex => settings.colorMode;
+  String get getusername => settings.username;
 }
 
 class SettingsLoad extends SettingsState {

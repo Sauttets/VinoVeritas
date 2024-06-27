@@ -1,10 +1,10 @@
+import 'package:get_it/get_it.dart';
 import 'package:vinoveritas/src/features/settings_feature/model/settings_model.dart';
-import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
 class SettingsRepository {
-  final IsarServiceInterface _isarService = IsarService();
+  final _isarService = GetIt.I<IsarServiceInterface>();
 
   SettingsRepository();
 

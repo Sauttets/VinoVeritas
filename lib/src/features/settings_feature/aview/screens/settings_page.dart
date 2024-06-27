@@ -29,12 +29,12 @@ class SettingsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment
                       .center, // Center the children vertically
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: SetUsername(),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                     ),
                     BlocBuilder<SettingsCubit, SettingsState>(
                       builder: (context, state) {
@@ -58,16 +58,14 @@ class SettingsPage extends StatelessWidget {
                       builder: (context, state) {
                         if (state is ShowSettings) {
                           return Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: DisplayAndCopyText(
-                                text: state.specificVariable +
-                                    ' ' +
-                                    state.getselectedIndex.toString()),
+                                text: '${state.specificVariable} ${state.getselectedIndex}'),
                           );
                         } else if (state is SettingsInit) {
                           // Handle other states or show a placeholder
                           return Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: DisplayAndCopyText(
                                 text: 'initstate: ${state.getselectedIndex}'),
                           );

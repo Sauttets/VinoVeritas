@@ -12,6 +12,20 @@ class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(SettingsInit()) {
     loadSettings();
   }
+  void updateUsername(String username) {
+    final updatedSettingsModel = settingsModel.copyWith(username: username);
+    saveSettings(updatedSettingsModel);
+  }
+
+  void updateLocation(int plz) {
+    final updatedSettingsModel = settingsModel.copyWith(plz: plz);
+    saveSettings(updatedSettingsModel);
+  }
+
+  void updateRadius(double radius) {
+    final updatedSettingsModel = settingsModel.copyWith(radius: radius);
+    saveSettings(updatedSettingsModel);
+  }
 
   void updateSelectedIndex(int index) async {
     // Assuming `settings` is your current settings model instance
@@ -34,6 +48,22 @@ class SettingsCubit extends Cubit<SettingsState> {
       emit(ShowSettings(settingsModel));
     } catch (e) {
       // Handle error, possibly emit an error state
+    }
+  }
+
+  Future<void> saveSettings(SettingsModel newSettingsModel) async {
+    try {
+      // Save the new settings model to the repository
+      await _settingsRepository.saveSettingsModel(newSettingsModel);
+
+      // Update the local settings model with the new model
+      settingsModel = newSettingsModel;
+
+      // Emit a new state with the updated settings model
+      emit(ShowSettings(settingsModel));
+    } catch (e) {
+      // Handle error, possibly emit an error state
+      // For example: emit(SettingsError("Failed to save settings"));
     }
   }
 }
