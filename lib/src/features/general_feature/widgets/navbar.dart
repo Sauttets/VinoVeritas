@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/app_router.dart';
+import 'package:vinoveritas/src/services/router_service/app_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class CustomNavBar extends StatefulWidget {

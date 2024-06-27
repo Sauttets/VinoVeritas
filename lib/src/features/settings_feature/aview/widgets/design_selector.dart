@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class DesignSelector extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onTabSelected;
-  final IsarServiceInterface isarService;
-  
-  void _updateUser(
-      int id, String? name, int? plz, double? radius, int? colorMode) {
-    isarService.updateUser(id, name, plz, radius, colorMode);
-  }
 
   const DesignSelector({
     super.key,
     required this.selectedIndex,
-    required this.onTabSelected, 
-    required this.isarService,
+    required this.onTabSelected,
   });
 
   @override
@@ -73,7 +65,6 @@ class DesignSelector extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           onTabSelected(index);
-          _updateUser(0, null, null, null, index);
         },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10),

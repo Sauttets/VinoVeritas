@@ -43,7 +43,6 @@ class Supermarket {
   final String city;
   final String houseNumber;
   final double price;
-  final String img;
 
   Supermarket({
     required this.name,
@@ -52,6 +51,5 @@ class Supermarket {
     required this.city,
     required this.houseNumber,
     required this.price,
-    required this.img,
   });
 }

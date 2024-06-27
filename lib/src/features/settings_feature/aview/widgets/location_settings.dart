@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/src/isar/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 
 class SetLocation extends StatefulWidget {
   final IsarServiceInterface isarService;
 
-  const SetLocation({
-    super.key, 
-    required this.isarService
-  });
+  const SetLocation({super.key, required this.isarService});
 
   @override
   SetLocationState createState() => SetLocationState();
@@ -16,11 +13,10 @@ class SetLocation extends StatefulWidget {
 
 class SetLocationState extends State<SetLocation> {
   double _currentSliderValue = 0;
-  
 
   void _updateUser(
       int id, String? name, int? plz, double? radius, int? colorMode) {
-      widget.isarService.updateUser(id, name, plz, radius, colorMode);
+    widget.isarService.updateUser(id, name, plz, radius, colorMode);
   }
 
   @override

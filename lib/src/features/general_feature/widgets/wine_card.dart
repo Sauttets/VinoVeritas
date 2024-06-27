@@ -22,7 +22,7 @@ class WineCard extends StatelessWidget {
     String glassImage;
     switch (wine.type.toLowerCase()) {
       case 'weiss':
-        glassImage = 'assets/images/WeißweinGlas.png';
+        glassImage = 'assets/images/WeissweinGlas.png';
         break;
       case 'rose':
         glassImage = 'assets/images/RoseweinGlas.png';
@@ -37,7 +37,7 @@ class WineCard extends StatelessWidget {
     String bottleImage;
     switch (wine.type.toLowerCase()) {
       case 'weiss':
-        bottleImage = 'assets/images/WeißweinFlasche.png';
+        bottleImage = 'assets/images/WeissweinFlasche.png';
         break;
       case 'rose':
         bottleImage = 'assets/images/RoseweinFlasche.png';
@@ -47,6 +47,10 @@ class WineCard extends StatelessWidget {
         bottleImage = 'assets/images/RotweinFlasche.png';
         break;
     }
+
+    double cheapestPrice = wine.supermarkets
+        .map((supermarket) => supermarket.price)
+        .reduce((value, element) => value < element ? value : element);
 
     return GestureDetector(
       onTap: () {
@@ -113,7 +117,7 @@ class WineCard extends StatelessWidget {
               bottom: 16,
               left: 16,
               child: Text(
-                '\$${wine.supermarkets.first.price.toStringAsFixed(2)}',
+                '\$${cheapestPrice.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,

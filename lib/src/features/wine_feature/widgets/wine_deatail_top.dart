@@ -13,13 +13,18 @@ class WineDetailTop extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double topPadding = screenWidth * 0.25;
 
+    // Find the cheapest price from the list of supermarkets
+    double cheapestPrice = wine.supermarkets.isNotEmpty
+        ? wine.supermarkets.map((supermarket) => supermarket.price).reduce((value, element) => value < element ? value : element)
+        : 0.0;
+
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
         Padding(
           padding: EdgeInsets.only(top: topPadding),
           child: AttSlider(
-            price: wine.supermarkets.isNotEmpty ? wine.supermarkets[0].price : 0.0,
+            price: cheapestPrice,
             volume: wine.volume,
             trockenValue: wine.dryness,
             sauerValue: wine.acidity,
