@@ -1,5 +1,4 @@
 import 'package:isar/isar.dart';
-import 'package:vinoveritas/src/services/persistence_service/entitis/favList.dart';
 
 part 'settings.g.dart';
 
@@ -12,6 +11,5 @@ class Settings {
   @enumerated
   int colorMode = 0;
   String shareCode = '##this is a database share code ##';
-  final userList = IsarLink<FavListe>();
-  final impportList = IsarLink<FavListe>();
+  
 }

@@ -49,20 +49,7 @@ const SettingsSchema = CollectionSchema(
   deserializeProp: _settingsDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {
-    r'userList': LinkSchema(
-      id: -9017313785970287391,
-      name: r'userList',
-      target: r'FavListe',
-      single: true,
-    ),
-    r'impportList': LinkSchema(
-      id: 574761200259330707,
-      name: r'impportList',
-      target: r'FavListe',
-      single: true,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _settingsGetId,
   getLinks: _settingsGetLinks,
@@ -137,14 +124,11 @@ Id _settingsGetId(Settings object) {
 }
 
 List<IsarLinkBase<dynamic>> _settingsGetLinks(Settings object) {
-  return [object.userList, object.impportList];
+  return [];
 }
 
 void _settingsAttach(IsarCollection<dynamic> col, Id id, Settings object) {
   object.id = id;
-  object.userList.attach(col, col.isar.collection<FavListe>(), r'userList', id);
-  object.impportList
-      .attach(col, col.isar.collection<FavListe>(), r'impportList', id);
 }
 
 extension SettingsQueryWhereSort on QueryBuilder<Settings, Settings, QWhere> {
@@ -710,33 +694,7 @@ extension SettingsQueryObject
     on QueryBuilder<Settings, Settings, QFilterCondition> {}
 
 extension SettingsQueryLinks
-    on QueryBuilder<Settings, Settings, QFilterCondition> {
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> userList(
-      FilterQuery<FavListe> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'userList');
-    });
-  }
-
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> userListIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'userList', 0, true, 0, true);
-    });
-  }
-
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> impportList(
-      FilterQuery<FavListe> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'impportList');
-    });
-  }
-
-  QueryBuilder<Settings, Settings, QAfterFilterCondition> impportListIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'impportList', 0, true, 0, true);
-    });
-  }
-}
+    on QueryBuilder<Settings, Settings, QFilterCondition> {}
 
 extension SettingsQuerySortBy on QueryBuilder<Settings, Settings, QSortBy> {
   QueryBuilder<Settings, Settings, QAfterSortBy> sortByColorMode() {

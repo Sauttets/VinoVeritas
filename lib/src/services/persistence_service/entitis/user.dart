@@ -1,5 +1,4 @@
 import 'package:isar/isar.dart';
-import 'package:vinoveritas/src/services/persistence_service/entitis/favList.dart';
 
 part 'user.g.dart';
 
@@ -12,7 +11,6 @@ class User {
   @enumerated
   int colorMode = 0;
   String shareCode;
-  final userList = IsarLink<FavListe>();
 
   User({
     required this.name,

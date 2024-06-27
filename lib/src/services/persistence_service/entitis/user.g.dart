@@ -49,14 +49,7 @@ const UserSchema = CollectionSchema(
   deserializeProp: _userDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {
-    r'userList': LinkSchema(
-      id: -5672384151389813547,
-      name: r'userList',
-      target: r'FavListe',
-      single: true,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _userGetId,
   getLinks: _userGetLinks,
@@ -132,12 +125,11 @@ Id _userGetId(User object) {
 }
 
 List<IsarLinkBase<dynamic>> _userGetLinks(User object) {
-  return [object.userList];
+  return [];
 }
 
 void _userAttach(IsarCollection<dynamic> col, Id id, User object) {
   object.id = id;
-  object.userList.attach(col, col.isar.collection<FavListe>(), r'userList', id);
 }
 
 extension UserQueryWhereSort on QueryBuilder<User, User, QWhere> {
@@ -695,20 +687,7 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
 
 extension UserQueryObject on QueryBuilder<User, User, QFilterCondition> {}
 
-extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {
-  QueryBuilder<User, User, QAfterFilterCondition> userList(
-      FilterQuery<FavListe> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'userList');
-    });
-  }
-
-  QueryBuilder<User, User, QAfterFilterCondition> userListIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'userList', 0, true, 0, true);
-    });
-  }
-}
+extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {}
 
 extension UserQuerySortBy on QueryBuilder<User, User, QSortBy> {
   QueryBuilder<User, User, QAfterSortBy> sortByColorMode() {
