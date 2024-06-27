@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/attribut_slider.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/bottle_widget.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
 
 class WineDetailTop extends StatelessWidget {
   final Wine wine;
@@ -25,7 +25,7 @@ class WineDetailTop extends StatelessWidget {
           padding: EdgeInsets.only(top: topPadding),
           child: AttSlider(
             price: cheapestPrice,
-            volume: wine.volume,
+            volume: wine.volume.toInt(),
             trockenValue: wine.dryness,
             sauerValue: wine.acidity,
             tanninValue: wine.tanninLevel,

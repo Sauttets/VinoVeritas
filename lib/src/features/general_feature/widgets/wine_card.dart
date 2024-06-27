@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:go_router/go_router.dart';
 
@@ -48,9 +48,12 @@ class WineCard extends StatelessWidget {
         break;
     }
 
-    double cheapestPrice = wine.supermarkets
-        .map((supermarket) => supermarket.price)
-        .reduce((value, element) => value < element ? value : element);
+    double? cheapestPrice;
+    if (wine.supermarkets.isNotEmpty) {
+      cheapestPrice = wine.supermarkets
+          .map((supermarket) => supermarket.price)
+          .reduce((value, element) => value < element ? value : element);
+    }
 
     return GestureDetector(
       onTap: () {
@@ -113,17 +116,18 @@ class WineCard extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-              bottom: 16,
-              left: 16,
-              child: Text(
-                '\$${cheapestPrice.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: Spacings.titleFontSize,
-                  fontWeight: FontWeight.bold,
+            if (cheapestPrice != null)
+              Positioned(
+                bottom: 16,
+                left: 16,
+                child: Text(
+                  '\$${cheapestPrice.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: Spacings.titleFontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.only(right: 50.0, bottom: 12.0),
               child: Align(
@@ -160,6 +164,7 @@ class WineCard extends StatelessWidget {
     );
   }
 }
+
 
 class WinePage extends StatelessWidget {
   final List<Wine> wines;
