@@ -10,4 +10,5 @@ abstract class IsarServiceInterface {
       int id, String? name, int? plz, double? radius, int? colorMode);
 
   Future<String> getUserName(int id);
+  Future<int> getID();
 }

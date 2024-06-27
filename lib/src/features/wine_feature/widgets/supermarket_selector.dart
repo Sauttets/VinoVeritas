@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
@@ -8,25 +9,25 @@ class SupermarketImg extends StatelessWidget {
 
   const SupermarketImg({super.key, required this.name});
 
-String _getImagePath(String name) {
-  if (name.toLowerCase().contains('edeka')) {
-    return 'assets/images/Edeka.png';
-  } else if (name.toLowerCase().contains('netto')) {
-    return 'assets/images/Netto.png';
-  } else if (name.toLowerCase().contains('rewe')) {
-    return 'assets/images/Rewe.png';
-  } else if (name.toLowerCase().contains('kaufland')) {
-    return 'assets/images/Kaufland.png';
-  } else if (name.toLowerCase().contains('aldi')) {
-    return 'assets/images/Aldi.png';
-  } else if (name.toLowerCase().contains('lidl')) {
-    return 'assets/images/Lidl.png';
-  } else if (name.toLowerCase().contains('penny')) {
-    return 'assets/images/Penny.png';
-  } else {
-    return 'assets/images/Generic_Supermarket.png';
+  String _getImagePath(String name) {
+    if (name.toLowerCase().contains('edeka')) {
+      return 'assets/images/Edeka.png';
+    } else if (name.toLowerCase().contains('netto')) {
+      return 'assets/images/Netto.png';
+    } else if (name.toLowerCase().contains('rewe')) {
+      return 'assets/images/Rewe.png';
+    } else if (name.toLowerCase().contains('kaufland')) {
+      return 'assets/images/Kaufland.png';
+    } else if (name.toLowerCase().contains('aldi')) {
+      return 'assets/images/Aldi.png';
+    } else if (name.toLowerCase().contains('lidl')) {
+      return 'assets/images/Lidl.png';
+    } else if (name.toLowerCase().contains('penny')) {
+      return 'assets/images/Penny.png';
+    } else {
+      return 'assets/images/Generic_Supermarket.png';
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ String _getImagePath(String name) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
       ),
-      clipBehavior: Clip.antiAlias, // Ensures the child is clipped within the border radius
+      clipBehavior: Clip
+          .antiAlias, // Ensures the child is clipped within the border radius
       child: Image.asset(
         _getImagePath(name),
         width: Spacings.supermarketLogo,
@@ -64,44 +66,44 @@ class SupermarketText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryText,
-              fontSize: Spacings.titleFontSize,
-            ),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          name,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryText,
+            fontSize: Spacings.titleFontSize,
           ),
-          Text(
-            '$address · $postalCode',
-            style: const TextStyle(
-              color: AppColors.primaryText,
-              fontSize: Spacings.textFontSize,
-            ),
+        ),
+        Text(
+          '$address · $postalCode',
+          style: const TextStyle(
+            color: AppColors.primaryText,
+            fontSize: Spacings.textFontSize,
           ),
-          const SizedBox(height: Spacings.vertical),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Preis: $price',
-                style: const TextStyle(
-                  color: AppColors.primaryText,
-                  fontSize: Spacings.textFontSize,
-                ),
+        ),
+        const SizedBox(height: Spacings.vertical),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Preis: $price',
+              style: const TextStyle(
+                color: AppColors.primaryText,
+                fontSize: Spacings.textFontSize,
               ),
-              Text(
-                distance,
-                style: const TextStyle(
-                  color: AppColors.primaryText,
-                  fontSize: Spacings.textFontSize,
-                ),
+            ),
+            Text(
+              distance,
+              style: const TextStyle(
+                color: AppColors.primaryText,
+                fontSize: Spacings.textFontSize,
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -123,8 +125,24 @@ class SupermarketSelector extends StatelessWidget {
     required this.distance,
   });
 
+  Future<void> openGoogleMaps(String address) async {
+    String query = Uri.encodeComponent(address);
+    String googleMapsUrl =
+        "https://www.google.com/maps/search/?api=1&query=$query";
+    Uri url = Uri.parse(googleMapsUrl);
+
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
+    String mapsAddress = 'Edeka Baur, Reichenaustraße 36, 78467 Konstanz';
+    //String mapsAddress = '$name, $address, $postalCode';
     return Card(
       elevation: 0.0,
       color: AppColors.primaryWhite,
@@ -150,10 +168,13 @@ class SupermarketSelector extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 40),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.primaryGrey,
-              size: Spacings.iconSizeXS,
+            GestureDetector(
+              onTap: () => openGoogleMaps(mapsAddress),
+              child: const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.primaryGrey,
+                size: Spacings.iconSizeXS,
+              ),
             ),
           ],
         ),

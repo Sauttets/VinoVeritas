@@ -8,7 +8,6 @@ class User {
   String name;
   late int plz;
   double radius = 5;
-  @enumerated
   int colorMode = 0;
   String shareCode;
 
