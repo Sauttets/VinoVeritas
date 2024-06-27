@@ -60,6 +60,7 @@ class IsarService implements IsarServiceInterface {
     }
   }
 
+// Add wine to favorit list database
   @override
   Future<int> addWine(Wine wine) async {
     final isar = await db;

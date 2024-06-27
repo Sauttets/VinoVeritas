@@ -1,3 +1,4 @@
+// wine_fact_card.dart
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
@@ -29,7 +30,7 @@ class WineFactCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Weinfakt des Tages:',
+            'Wine Fact of the Day:',
             style: TextStyle(
               color: AppColors.black,
               fontSize: Spacings.titleFontSize,
