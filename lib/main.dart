@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
-import 'package:vinoveritas/app_router.dart' as app_router;
+import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
+import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/router_service/app_router.dart'
+    as app_router;
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding
+      .ensureInitialized(); // Ensure plugin services are initialized
+  await setupLocator(); // Setup service locator and initialize services
+  runApp(const MyApp());
+}
+
+Future<void> setupLocator() async {
+  final persistenceService = IsarService();
+  GetIt.I.registerSingleton<IsarServiceInterface>(persistenceService);
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

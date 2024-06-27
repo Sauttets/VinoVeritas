@@ -40,7 +40,8 @@ class DesignSelector extends StatelessWidget {
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(50), // Same corner radius as buttons
+                  borderRadius: BorderRadius.circular(
+                      50), // Same corner radius as buttons
                 ),
                 child: Row(
                   children: [

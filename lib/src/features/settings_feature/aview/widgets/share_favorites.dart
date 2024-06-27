@@ -5,6 +5,7 @@ import 'package:vinoveritas/util/spacings.dart';
 
 class DisplayAndCopyText extends StatelessWidget {
   final String text;
+  
 
   const DisplayAndCopyText({super.key, required this.text});
 
