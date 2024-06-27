@@ -33,7 +33,6 @@ class SettingsCubit extends Cubit<SettingsState> {
 
     // Save the updatedSettings to a persistent storage
     await _settingsRepository.saveSettingsModel(updatedSettingsModel);
-
     // Update the local settingsModel with the updated model
     settingsModel = updatedSettingsModel;
 

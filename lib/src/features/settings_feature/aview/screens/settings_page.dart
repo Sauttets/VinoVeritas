@@ -60,7 +60,8 @@ class SettingsPage extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: DisplayAndCopyText(
-                                text: '${state.specificVariable} ${state.getselectedIndex}'),
+                                text:
+                                    '${state.specificVariable} ${state.getselectedIndex}'),
                           );
                         } else if (state is SettingsInit) {
                           // Handle other states or show a placeholder
