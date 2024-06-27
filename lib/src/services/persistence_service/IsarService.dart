@@ -66,22 +66,13 @@ Future<int> addUser(String username, String returnedUsername) async {
     }
   }
 
- 
+
   @override
   Future<void> deleteUser(int id) async {
     final isar = await db;
     await isar.writeTxn(() async {
       await isar.users.delete(id);
     });
-  }
-
-  
- 
-
-  @override
-  Future<String> getUserName(int id) async {
-    final isar = await db;
-    return isar.users.get(id).then((value) => value!.name);
   }
 
   @override
@@ -106,8 +97,27 @@ Future<int> addUser(String username, String returnedUsername) async {
   }
   
   @override
-  Future<int> getID() {
-    // TODO: implement getID
-    throw UnimplementedError();
-  }
+  Future<int> getID() async{
+    final isar = await db;  // UserSchema durch Ihr tatsächliches Schema ersetzen
+    final user = await isar.users.where().findFirst(); // 'users' durch Ihre tatsächliche Collection ersetzen
+
+    if (user != null) {
+      return user.id;
+    } else {
+      throw Exception('No user found in the database');
+    }
+    }
+    
+    @override
+    Future<String> getUserName(int id) async {
+      final isar = await db;  
+      final user = await isar.users.get(id); 
+
+      if (user != null) {
+        return user.name; 
+      } else {
+        throw Exception('User not found');
+      }
+    }
 }
+   

@@ -5,7 +5,7 @@ import 'package:vinoveritas/src/screens/home_page.dart';
 import 'package:vinoveritas/src/screens/like_page.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/login_page.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
-import 'package:vinoveritas/src/screens/lexikon_page.dart';
+import 'package:vinoveritas/src/features/facts_feature/aview/screens/lexikon_page.dart';
 import 'package:vinoveritas/main.dart';
 import 'package:vinoveritas/src/screens/wine_details_page.dart'; // Ensure this import exists for the wrapper
 

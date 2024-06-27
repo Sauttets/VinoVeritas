@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/expandable_wine_fact_card.dart';
+import 'package:vinoveritas/src/features/facts_feature/aview/widgets/expandable_wine_fact_card.dart';
 
 class WineFactsTab extends StatelessWidget {
   final List<Map<String, String>> wineFacts;

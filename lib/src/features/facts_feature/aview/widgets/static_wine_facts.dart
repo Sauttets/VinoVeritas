@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/expandable_wine_facts_list.dart';
-import 'package:vinoveritas/src/features/facts_feature/widgets/wine_facts_selector.dart';
+import 'package:vinoveritas/src/features/facts_feature/aview/widgets/expandable_wine_facts_list.dart';
+import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_facts_selector.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 class StaticWineFacts extends StatefulWidget {
