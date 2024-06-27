@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_wine_facts.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/controller/wine_fact_cubit.dart';
+import 'package:vinoveritas/src/features/facts_feature/wine_fact_repository.dart';
 
 class LexiconPage extends StatelessWidget {
   const LexiconPage({super.key});
@@ -13,7 +14,7 @@ class LexiconPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => WineFactCubit()..fetchWineFact(),
+          create: (context) => WineFactCubit(wineFactRepository: WineFactRepository())..fetchWineFact(),
           child: const Padding(
             padding: EdgeInsets.only(top: 16.0), // Additional padding above
             child: Column(
@@ -45,10 +46,8 @@ class WineFactCardSection extends StatelessWidget {
           return const CircularProgressIndicator();
         } else if (state is WineFactLoaded) {
           return WineFactCard(fact: state.wineFact.fact);
-        } else if (state is WineFactError) {
-          return Text(state.message);
         } else {
-          return const SizedBox.shrink();
+          return const Text('Failed to fetch wine fact');
         }
       },
     );
