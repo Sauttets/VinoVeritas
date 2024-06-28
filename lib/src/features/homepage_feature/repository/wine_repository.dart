@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 
+
 class WineRepository {
   final String apiUrl = 'https://api.gargelkarg.com/getFullWine';
 
@@ -13,6 +14,15 @@ class WineRepository {
       return jsonList.map((json) => Wine.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load wines');
+    }
+  }
+
+  Future<bool> isImageValid(String url) async {
+    try {
+      final response = await http.head(Uri.parse(url));
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
     }
   }
 }

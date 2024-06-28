@@ -49,10 +49,10 @@ class WineGridView extends StatefulWidget {
   const WineGridView({super.key, required this.wines, required this.hasReachedMax});
 
   @override
-  WineGridViewState createState() => WineGridViewState();
+  _WineGridViewState createState() => _WineGridViewState();
 }
 
-class WineGridViewState extends State<WineGridView> {
+class _WineGridViewState extends State<WineGridView> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -88,7 +88,7 @@ class WineGridViewState extends State<WineGridView> {
       itemCount: widget.hasReachedMax ? widget.wines.length : widget.wines.length + 1,
       itemBuilder: (context, index) {
         if (index >= widget.wines.length) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: Text('No more wines'));
         } else {
           return WineCard(wine: widget.wines[index]);
         }
