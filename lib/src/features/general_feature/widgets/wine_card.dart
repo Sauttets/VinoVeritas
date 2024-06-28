@@ -33,13 +33,13 @@ class _WineCardState extends State<WineCard> {
     // Determine the appropriate glass image based on wine type
     String glassImage;
     switch (widget.wine.type.toLowerCase()) {
-      case 'weiss':
+      case 'white':
         glassImage = 'assets/images/WeissweinGlas.png';
         break;
       case 'rose':
         glassImage = 'assets/images/RoseweinGlas.png';
         break;
-      case 'rot':
+      case 'red':
       default:
         glassImage = 'assets/images/RotweinGlas.png';
         break;
@@ -48,13 +48,13 @@ class _WineCardState extends State<WineCard> {
     // Determine the appropriate fallback bottle image based on wine type
     String bottleImage;
     switch (widget.wine.type.toLowerCase()) {
-      case 'weiss':
+      case 'white':
         bottleImage = 'assets/images/WeissweinFlasche.png';
         break;
       case 'rose':
         bottleImage = 'assets/images/RoseweinFlasche.png';
         break;
-      case 'rot':
+      case 'red':
       default:
         bottleImage = 'assets/images/RotweinFlasche.png';
         break;
@@ -159,7 +159,7 @@ class _WineCardState extends State<WineCard> {
                   future: _isImageValid,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     } else if (snapshot.hasError || !snapshot.data!) {
                       return Image.asset(
                         bottleImage,
