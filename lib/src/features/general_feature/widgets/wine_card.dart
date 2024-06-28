@@ -93,7 +93,7 @@ class _WineCardState extends State<WineCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  HeartButton(isLiked: widget.wine.isLiked),
+                  HeartButton(wine: widget.wine),
                 ],
               ),
             ),
@@ -186,34 +186,6 @@ class _WineCardState extends State<WineCard> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-
-
-class WinePage extends StatelessWidget {
-  final List<Wine> wines;
-
-  const WinePage({super.key, required this.wines});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
-          childAspectRatio: 0.83, // 5:6 aspect ratio
-        ),
-        itemCount: wines.length,
-        itemBuilder: (context, index) {
-          final wine = wines[index];
-          return WineCard(wine: wine);
-        },
       ),
     );
   }

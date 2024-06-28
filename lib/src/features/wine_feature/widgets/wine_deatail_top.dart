@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/attribut_slider.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/bottle_widget.dart';
+import 'attribut_slider.dart';
+import 'bottle_widget.dart';
 
 class WineDetailTop extends StatelessWidget {
   final Wine wine;
@@ -35,9 +35,7 @@ class WineDetailTop extends StatelessWidget {
           left: 16.0,
           bottom: 0,
           child: BottleWidget(
-            title: wine.name,
-            imagePath: wine.imageURL,
-            isLiked: wine.isLiked,  
+            wine: wine,
           ),
         ),
       ],
