@@ -98,8 +98,8 @@ Future<int> addUser(String username, String returnedUsername) async {
   
   @override
   Future<int> getID() async{
-    final isar = await db;  // UserSchema durch Ihr tatsächliches Schema ersetzen
-    final user = await isar.users.where().findFirst(); // 'users' durch Ihre tatsächliche Collection ersetzen
+    final isar = await db;  
+    final user = await isar.users.where().findFirst(); 
 
     if (user != null) {
       return user.id;
