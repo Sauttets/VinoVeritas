@@ -3,12 +3,11 @@ import 'package:vinoveritas/src/features/homepage_feature/controller/wine_state.
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
 
-
 class WineCubit extends Cubit<WineState> {
   final WineRepository wineRepository;
   final int userId = 1;  // Assuming user_id is always 1 as per your requirement
-  int currentStartRange = 1;
-  final int rangeIncrement = 20;
+  int offset = 1;
+  final int limit = 20;
 
   WineCubit({required this.wineRepository}) : super(WineInitial());
 
@@ -17,11 +16,11 @@ class WineCubit extends Cubit<WineState> {
 
     try {
       emit(WineLoading(state.wines));
-      final newWines = await wineRepository.fetchWines(currentStartRange, currentStartRange + rangeIncrement - 1);
+      final newWines = await wineRepository.fetchWines(offset, limit);
       if (newWines.isEmpty) {
         emit(WineLoaded(state.wines, hasReachedMax: true));
       } else {
-        currentStartRange += rangeIncrement;
+        offset += limit;
         emit(WineLoaded(List.from(state.wines)..addAll(newWines)));
       }
     } catch (e) {

@@ -3,10 +3,10 @@ import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart'
 import 'dart:convert';
 
 class WineRepository {
-  final String apiUrl = 'https://api.gargelkarg.com/getFullWine';
+  final String apiUrl = 'https://api.gargelkarg.com/getWines';
 
-  Future<List<Wine>> fetchWines(int startRange, int endRange) async {
-    final response = await http.get(Uri.parse('$apiUrl?range=$startRange:$endRange&user_id=1'));
+  Future<List<Wine>> fetchWines(int offset, int limit) async {
+    final response = await http.get(Uri.parse('$apiUrl?user_id=1&range=$offset:$limit'));
     if (response.statusCode == 200) {
       List<dynamic> jsonList = json.decode(response.body);
       return jsonList.map((json) => Wine.fromJson(json)).toList();
