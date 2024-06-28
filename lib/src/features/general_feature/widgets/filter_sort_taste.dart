@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_maps.dart';
+import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
 
 class FilterSortTaste extends StatefulWidget {
   const FilterSortTaste({super.key});
@@ -11,8 +13,8 @@ class FilterSortTaste extends StatefulWidget {
 }
 
 class FilterSortTasteState extends State<FilterSortTaste> {
-  String? selectedWineType = 'Alle';
-  String? selectedSortOption = 'Beliebteste zuerst';
+  String? selectedWineType = 'all';
+  String? selectedSortOption = 'most-liked';
   bool isFilterSortExpanded = false;
   bool isTasteMenuExpanded = false;
   String selectedCategory = 'Essen';
@@ -37,24 +39,39 @@ class FilterSortTasteState extends State<FilterSortTaste> {
   void selectWineType(String type) {
     setState(() {
       if (selectedWineType == type) {
-        selectedWineType = 'Alle'; // Default selection
+        selectedWineType = 'all'; // Default selection
       } else {
         selectedWineType = type; // Selection
       }
+      context.read<WineCubit>().applyFilters(color: selectedWineType);
     });
   }
 
   void selectSortOption(String option) {
     setState(() {
       if (selectedSortOption == option) {
-        selectedSortOption = 'Beliebteste zuerst'; // Default selection
+        selectedSortOption = 'most-liked'; // Default selection
       } else {
         selectedSortOption = option; // Selection
       }
+      context.read<WineCubit>().applyFilters(sort: selectedSortOption);
     });
   }
 
-  void toggleSelection(String option) => setState(() => selectedOption = selectedOption == option ? null : option);
+  void toggleSelection(String option) {
+    setState(() {
+      if (selectedOption == option) {
+        selectedOption = null; // Deselect if already selected
+      } else {
+        selectedOption = option; // Select new option
+      }
+      if (selectedCategory == 'Essen') {
+        context.read<WineCubit>().applyFilters(fit: selectedOption);
+      } else {
+        context.read<WineCubit>().applyFilters(flavour: selectedOption);
+      }
+    });
+  }
 
   Widget buildOptionChip(String option) {
     bool isSelected = selectedOption == option;
@@ -110,7 +127,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
     );
   }
 
-  Widget buildFilterOption(String text, String? selectedValue, Function(String) onSelect) {
+  Widget buildFilterOption(String text, String selectedValue, Function(String) onSelect) {
     bool isSelected = text == selectedValue;
     return GestureDetector(
       onTap: () => onSelect(text),
@@ -123,7 +140,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
           border: Border.all(color: isSelected ? AppColors.primaryRed : AppColors.primaryGrey),
         ),
         child: Text(
-          text,
+          _getDisplayName(text),
           style: TextStyle(
             color: isSelected ? AppColors.primaryWhite : Colors.black,
           ),
@@ -132,164 +149,184 @@ class FilterSortTasteState extends State<FilterSortTaste> {
     );
   }
 
+  String _getDisplayName(String value) {
+    switch (value) {
+      case 'all':
+        return 'Alle';
+      case 'red':
+        return 'Rotwein';
+      case 'white':
+        return 'Weißwein';
+      case 'rose':
+        return 'Rosé';
+      case 'most-liked':
+        return 'Beliebteste zuerst';
+      case 'low-high':
+        return 'Preis (Niedrig - Hoch)';
+      case 'high-low':
+        return 'Preis (Hoch - Niedrig)';
+      default:
+        return value;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.all(Spacings.horizontal),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap: toggleTasteMenuExpansion,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryWhite,
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(color: AppColors.primaryGrey),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'Essen & Geschmack',
-                          style: TextStyle(color: AppColors.primaryText, fontSize: Spacings.textFontSize),
-                        ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          isTasteMenuExpanded ? Icons.expand_less : Icons.expand_more,
-                          color: AppColors.primaryGrey,
-                        ),
-                      ],
-                    ),
+    return Padding(
+      padding: const EdgeInsets.all(Spacings.horizontal),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: toggleTasteMenuExpansion,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryWhite,
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: AppColors.primaryGrey),
                   ),
-                ),
-                const SizedBox(width: 8),
-                GestureDetector(
-                  onTap: toggleFilterSortExpansion,
-                  child: IntrinsicWidth(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryWhite,
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: AppColors.primaryGrey),
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Sortieren  ',
-                            style: TextStyle(fontSize: Spacings.textFontSize),
-                          ),
-                          Icon(Icons.tune, color: AppColors.primaryGrey),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            if (isFilterSortExpanded) ...[
-              const SizedBox(height: Spacings.horizontal), // Vertical spacing
-              Container(
-                padding: const EdgeInsets.all(Spacings.horizontal),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: AppColors.primaryGrey),
-                ),
-                child: IntrinsicHeight(
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            buildFilterOption('Alle', selectedWineType, selectWineType),
-                            const SizedBox(height: Spacings.buttonSpacing),
-                            buildFilterOption('Rotwein', selectedWineType, selectWineType),
-                            const SizedBox(height: Spacings.buttonSpacing),
-                            buildFilterOption('Weißwein', selectedWineType, selectWineType),
-                            const SizedBox(height: Spacings.buttonSpacing),
-                            buildFilterOption('Rosé', selectedWineType, selectWineType),
-                          ],
-                        ),
+                      const Text(
+                        'Essen & Geschmack',
+                        style: TextStyle(color: AppColors.primaryText, fontSize: Spacings.textFontSize),
                       ),
-                      const VerticalDivider(
-                        thickness: 1,
+                      const SizedBox(width: 8),
+                      Icon(
+                        isTasteMenuExpanded ? Icons.expand_less : Icons.expand_more,
                         color: AppColors.primaryGrey,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            buildFilterOption('Beliebteste zuerst', selectedSortOption, selectSortOption),
-                            const SizedBox(height: Spacings.buttonSpacing),
-                            buildFilterOption('Preis (Niedrig - Hoch)', selectedSortOption, selectSortOption),
-                            const SizedBox(height: Spacings.buttonSpacing),
-                            buildFilterOption('Preis (Hoch - Niedrig)', selectedSortOption, selectSortOption),
-                          ],
-                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ],
-            if (isTasteMenuExpanded) ...[
-              const SizedBox(height: Spacings.horizontal),
-              Container(
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: AppColors.primaryGrey),
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: toggleFilterSortExpansion,
+                child: IntrinsicWidth(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryWhite,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: AppColors.primaryGrey),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Sortieren  ',
+                          style: TextStyle(fontSize: Spacings.textFontSize),
+                        ),
+                        Icon(Icons.tune, color: AppColors.primaryGrey),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Column(
+              ),
+            ],
+          ),
+          if (isFilterSortExpanded) ...[
+            const SizedBox(height: Spacings.horizontal), // Vertical spacing
+            Container(
+              padding: const EdgeInsets.all(Spacings.horizontal),
+              decoration: BoxDecoration(
+                color: AppColors.primaryWhite,
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: AppColors.primaryGrey),
+              ),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.primaryGrey), // Add border here
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
+                    Expanded(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          buildCategoryButton('Essen'),
-                          const SizedBox(width: 8),
-                          buildCategoryButton('Geschmack'),
+                          buildFilterOption('all', selectedWineType!, selectWineType),
+                          const SizedBox(height: Spacings.buttonSpacing),
+                          buildFilterOption('red', selectedWineType!, selectWineType),
+                          const SizedBox(height: Spacings.buttonSpacing),
+                          buildFilterOption('white', selectedWineType!, selectWineType),
+                          const SizedBox(height: Spacings.buttonSpacing),
+                          buildFilterOption('rose', selectedWineType!, selectWineType),
                         ],
                       ),
                     ),
-                    const SizedBox(height: Spacings.vertical),
-                    Wrap(
-                      spacing: 8.0,
-                      runSpacing: 8.0,
-                      children: [
-                        for (int i = 0; i < options.length; i += 2)
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(child: buildOptionChip(options[i])),
-                              const SizedBox(width: 8),
-                              if (i + 1 < options.length)
-                                Expanded(child: buildOptionChip(options[i + 1])),
-                            ],
-                          ),
-                      ],
+                    const VerticalDivider(
+                      thickness: 1,
+                      color: AppColors.primaryGrey,
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          buildFilterOption('most-liked', selectedSortOption!, selectSortOption),
+                          const SizedBox(height: Spacings.buttonSpacing),
+                          buildFilterOption('low-high', selectedSortOption!, selectSortOption),
+                          const SizedBox(height: Spacings.buttonSpacing),
+                          buildFilterOption('high-low', selectedSortOption!, selectSortOption),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
+            ),
           ],
-        ),
-      );
+          if (isTasteMenuExpanded) ...[
+            const SizedBox(height: Spacings.horizontal),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primaryWhite,
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: AppColors.primaryGrey),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.primaryGrey), // Add border here
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        buildCategoryButton('Essen'),
+                        const SizedBox(width: 8),
+                        buildCategoryButton('Geschmack'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: Spacings.vertical),
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: [
+                      for (int i = 0; i < options.length; i += 2)
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(child: buildOptionChip(options[i])),
+                            const SizedBox(width: 8),
+                            if (i + 1 < options.length)
+                              Expanded(child: buildOptionChip(options[i + 1])),
+                          ],
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }

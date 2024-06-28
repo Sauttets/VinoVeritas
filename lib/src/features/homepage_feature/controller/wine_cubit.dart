@@ -9,14 +9,31 @@ class WineCubit extends Cubit<WineState> {
   int offset = 1;
   final int limit = 20;
 
+  String color = 'all';
+  String sort = 'most-liked';
+  String? fit;
+  String? flavour;
+
   WineCubit({required this.wineRepository}) : super(WineInitial());
 
-  Future<void> fetchWines() async {
+  Future<void> fetchWines({bool resetList = false}) async {
     if (state is WineLoading) return;
+
+    if (resetList) {
+      offset = 1;
+      emit(WineInitial());
+    }
 
     try {
       emit(WineLoading(state.wines));
-      final newWines = await wineRepository.fetchWines(offset, limit);
+      final newWines = await wineRepository.fetchWines(
+        offset: offset,
+        limit: limit,
+        color: color,
+        sort: sort,
+        fit: fit,
+        flavour: flavour,
+      );
       if (newWines.isEmpty) {
         emit(WineLoaded(state.wines, hasReachedMax: true));
       } else {
@@ -26,6 +43,20 @@ class WineCubit extends Cubit<WineState> {
     } catch (e) {
       emit(WineError("Failed to fetch wines", state.wines));
     }
+  }
+
+  Future<void> applyFilters({
+    String? color,
+    String? sort,
+    String? fit,
+    String? flavour,
+  }) async {
+    if (color != null) this.color = color;
+    if (sort != null) this.sort = sort;
+    if (fit != null) this.fit = fit;
+    if (flavour != null) this.flavour = flavour;
+
+    await fetchWines(resetList: true);
   }
 
   Future<void> toggleFavorite(Wine wine) async {

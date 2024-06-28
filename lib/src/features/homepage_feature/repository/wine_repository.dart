@@ -5,8 +5,24 @@ import 'dart:convert';
 class WineRepository {
   final String apiUrl = 'https://api.gargelkarg.com/getWines';
 
-  Future<List<Wine>> fetchWines(int offset, int limit) async {
-    final response = await http.get(Uri.parse('$apiUrl?user_id=1&range=$offset:$limit'));
+  Future<List<Wine>> fetchWines({
+    required int offset,
+    required int limit,
+    String color = 'all',
+    String sort = 'most-liked',
+    String? fit,
+    String? flavour,
+  }) async {
+    final uri = Uri.parse(apiUrl).replace(queryParameters: {
+      'user_id': '1',
+      'range': '$offset:$limit',
+      if (color != 'all') 'color': color,
+      if (sort != 'most-liked') 'sort': sort,
+      if (fit != null) 'fit': fit,
+      if (flavour != null) 'flavour': flavour,
+    });
+
+    final response = await http.get(uri);
     if (response.statusCode == 200) {
       List<dynamic> jsonList = json.decode(response.body);
       return jsonList.map((json) => Wine.fromJson(json)).toList();
