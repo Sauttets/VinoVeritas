@@ -43,10 +43,11 @@ Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser 
 
 ### Lexikon
 
-!["Wine lexicon"](assets/readme/lexicon_page.png)
+| !["Wine lexicon"](assets/readme/lexicon_page.png) | Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br> Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt. |
 
-Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br>
-Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt.
+
+
+
 
 ### Favoritenliste
 
