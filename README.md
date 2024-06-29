@@ -43,7 +43,7 @@ Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser 
 
 ### Lexikon
 
-<img alt="Wine lexicon" src="assets/readme/lexicon_page.png">
+<img alt="Wine lexicon" src="assets/readme/lexicon_page.png" hight="100" wight=auto>
 
 Im Lexikon gibt es oben ebenfalls eine Suchleiste, wenn nach einem bestimmten Begriff und dessen Erklärung gesucht wird. <br>
 Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br>
