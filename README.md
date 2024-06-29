@@ -45,7 +45,6 @@ Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser 
 
 <img alt="Wine lexicon" src="assets/readme/lexicon_page.png" hight="100" wight=auto>
 
-Im Lexikon gibt es oben ebenfalls eine Suchleiste, wenn nach einem bestimmten Begriff und dessen Erklärung gesucht wird. <br>
 Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br>
 Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt.
 
@@ -59,3 +58,8 @@ Hier werden nur die Weine angezeigt, die mit dem Herz markiert wurden. Bei einem
 Unter "Benutzername" kann ein neuer Benutzername zugewiesen werden. <br>
 Unter "Design" kann zwischen dem hellen und dem dunklen Modus gewählt werden. <br>
 Unter "Teilen mit deinen Favoriten" findet der Nutzer seinen persönlichen Code, den er an seine Freunde senden kann, damit diese auf die eigene Liste zugreifen können. Unten drunter gibt es die Möglichkeit, zugesendete Codes einzugeben (unter Weincode), und unter "Name der Liste" kann der importierten Liste ein Name gegeben werden, um die Übersicht zu behalten. Mit einem Tab auf "Importieren" wird dann die Liste importiert.
+
+## Architektur 
+
+### Hier steht die grobe beschreibung 
+### Hier kommt das Schaubild hin
