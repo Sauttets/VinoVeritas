@@ -16,7 +16,7 @@ class SetLocationState extends State<SetLocation> {
 
   void _updateUser(
       int id, String? name, int? plz, double? radius, int? colorMode) {
-    widget.isarService.updateUser(id, name, plz, radius, colorMode);
+    widget.isarService.updateSettings(id, name, plz, radius, colorMode);
   }
 
   @override

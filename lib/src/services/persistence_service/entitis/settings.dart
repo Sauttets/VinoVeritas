@@ -4,11 +4,17 @@ part 'settings.g.dart';
 
 @collection
 class Settings {
-  Id id = Isar.autoIncrement;
+  late Id id;
   late String username;
   late int plz;
   double radius = 5;
   int colorMode = 0;
-  String shareCode = '##this is a database share code ##';
-  
+  late String shareCode;
+  List<Sharedlist> sharedWith = [];
+}
+
+@embedded
+class Sharedlist {
+  late String name;
+  late String shareCode;
 }

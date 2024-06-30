@@ -1,14 +1,24 @@
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
 abstract class IsarServiceInterface {
-  //Settings_functions
+  //Comunicate with the backend to create a new user and save the user settings in the local database
+  Future<int> addUserSettings(String username);
+  //Save the user settings in the local database
   Future<Settings?> saveSettings(Settings settings);
+  //Get the user settings from the local database
   Future<Settings?> getSettings();
-  Future<int> addUser(String name, String shareCode);
-  Future<void> deleteUser(int id);
-  Future<void> updateUser(
+  //Update the user settings in the local database
+  Future<void> updateSettings(
       int id, String? name, int? plz, double? radius, int? colorMode);
-
-  Future<String> getUserName(int id);
+  //Get the user name from the local database
+  Future<String> getUserName();
+  //Get the user id from the local database
   Future<int> getID();
+
+  //Add a new shared list to the local database
+  Future<void> addSharedList(String name, String shareCode);
+  //Get all shared lists Names from the local database
+  Future<List<String>> getAllSharedNames();
+  //Get the share code from a shared list by name
+  Future<String> getSharedCodeFrom(String name);
 }
