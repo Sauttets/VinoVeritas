@@ -7,7 +7,8 @@ Deutsche Version der Dokumentation, Englisch folgt, wenn die Deutsche passt:
 ## Abstract
 
 VinoVeritas ist eine App, die eine stressfreie und gelungene Auswahl von Weinen ermöglicht. Sie bietet verschiedene Filtermöglichkeiten, eine eigene Favoritenliste, die Möglichkeit, Favoriten zu teilen, sowie ein Mini-Lexikon, um mit dem Fachjargon besser zurechtzukommen und das Wissen zu erweitern.
-Beschreibung
+
+## Beschreibung
 
 Fast jeder kennt es: Man steht vor einem überfüllten Regal und weiß nicht, was man nehmen soll. Ob für eine Geburtstagsfeier, einen romantischen Abend zu zweit, für die Kollegen oder einfach für ein entspanntes Abendessen mit der Familie – der richtige Wein macht den Anlass noch besser. Doch die Frage ist: Welcher Wein soll es sein?
 
@@ -40,6 +41,7 @@ Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle S
 In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
 Unter dem Bild befindet sich eine ausklappbare Informationspalette. Hier werden die Geschmackskomponenten des Weines, passende Gerichte und eine textuelle Beschreibung angezeigt. <br>
 Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.
+!["Wine lexicon"](assets/readme/lexicon_page_small.png)
 
 ### Lexikon
 | Screen | Description |
@@ -62,6 +64,10 @@ Unter "Design" kann zwischen dem hellen und dem dunklen Modus gewählt werden. <
 Unter "Teilen mit deinen Favoriten" findet der Nutzer seinen persönlichen Code, den er an seine Freunde senden kann, damit diese auf die eigene Liste zugreifen können. Unten drunter gibt es die Möglichkeit, zugesendete Codes einzugeben (unter Weincode), und unter "Name der Liste" kann der importierten Liste ein Name gegeben werden, um die Übersicht zu behalten. Mit einem Tab auf "Importieren" wird dann die Liste importiert.
 
 ## Architektur 
+
+Architektur
+→ Beschreibung des Aufbaus der App inklusive Schaubild der Layers (View, Model, Controller,
+Repository Services etc. je nachdem was verwendet wurde)
 
 ### Hier steht die grobe beschreibung 
 ### Hier kommt das Schaubild hin

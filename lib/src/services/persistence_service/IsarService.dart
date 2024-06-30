@@ -106,18 +106,18 @@ Future<int> addUser(String username, String returnedUsername) async {
     } else {
       throw Exception('No user found in the database');
     }
-    }
+  }
     
-    @override
-    Future<String> getUserName(int id) async {
-      final isar = await db;  
-      final user = await isar.users.get(id); 
+  @override
+  Future<String> getUserName(int id) async {
+    final isar = await db;  
+    final user = await isar.users.get(id); 
 
-      if (user != null) {
-        return user.name; 
-      } else {
-        throw Exception('User not found');
-      }
+    if (user != null) {
+      return user.name; 
+    } else {
+      throw Exception('User not found');
     }
+  }
 }
    
