@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
+import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:go_router/go_router.dart';
 
-class WineCard extends StatelessWidget {
+class WineCard extends StatefulWidget {
   final Wine wine;
 
-  const WineCard({
-    super.key,
-    required this.wine,
-  });
+  const WineCard({super.key, required this.wine});
+
+  @override
+  _WineCardState createState() => _WineCardState();
+}
+
+class _WineCardState extends State<WineCard> {
+  late Future<bool> _isImageValid;
+  final WineRepository wineRepository = WineRepository();
+
+  @override
+  void initState() {
+    super.initState();
+    _isImageValid = wineRepository.isImageValid(widget.wine.imageURL);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +32,14 @@ class WineCard extends StatelessWidget {
 
     // Determine the appropriate glass image based on wine type
     String glassImage;
-    switch (wine.type.toLowerCase()) {
-      case 'weiss':
+    switch (widget.wine.type.toLowerCase()) {
+      case 'white':
         glassImage = 'assets/images/WeissweinGlas.png';
         break;
       case 'rose':
         glassImage = 'assets/images/RoseweinGlas.png';
         break;
-      case 'rot':
+      case 'red':
       default:
         glassImage = 'assets/images/RotweinGlas.png';
         break;
@@ -35,26 +47,29 @@ class WineCard extends StatelessWidget {
 
     // Determine the appropriate fallback bottle image based on wine type
     String bottleImage;
-    switch (wine.type.toLowerCase()) {
-      case 'weiss':
+    switch (widget.wine.type.toLowerCase()) {
+      case 'white':
         bottleImage = 'assets/images/WeissweinFlasche.png';
         break;
       case 'rose':
         bottleImage = 'assets/images/RoseweinFlasche.png';
         break;
-      case 'rot':
+      case 'red':
       default:
         bottleImage = 'assets/images/RotweinFlasche.png';
         break;
     }
 
-    double cheapestPrice = wine.supermarkets
-        .map((supermarket) => supermarket.price)
-        .reduce((value, element) => value < element ? value : element);
+    double? cheapestPrice;
+    if (widget.wine.supermarkets.isNotEmpty) {
+      cheapestPrice = widget.wine.supermarkets
+          .map((supermarket) => supermarket.price)
+          .reduce((value, element) => value < element ? value : element);
+    }
 
     return GestureDetector(
       onTap: () {
-        context.push('/wine-details', extra: wine);
+        context.push('/wine-details', extra: widget.wine);
       },
       child: Container(
         width: cardWidth,
@@ -78,7 +93,7 @@ class WineCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  HeartButton(isLiked: wine.isLiked,),
+                  HeartButton(wine: widget.wine),
                 ],
               ),
             ),
@@ -88,7 +103,7 @@ class WineCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    wine.year.toString(),
+                    widget.wine.year.toString(),
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
                       color: Colors.grey,
@@ -96,7 +111,7 @@ class WineCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    wine.name,
+                    widget.wine.name,
                     style: const TextStyle(
                       fontSize: Spacings.titleFontSize,
                       fontWeight: FontWeight.bold,
@@ -104,7 +119,7 @@ class WineCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${wine.volume} ml',
+                    '${widget.wine.volume} ml',
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
                       color: Colors.grey,
@@ -117,7 +132,7 @@ class WineCard extends StatelessWidget {
               bottom: 16,
               left: 16,
               child: Text(
-                '\$${cheapestPrice.toStringAsFixed(2)}',
+                '\$${cheapestPrice?.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,
@@ -140,48 +155,37 @@ class WineCard extends StatelessWidget {
               padding: const EdgeInsets.only(right: 25.0, bottom: 12.0),
               child: Align(
                 alignment: Alignment.bottomRight,
-                child: Image.network(
-                  wine.imageURL,
-                  height: cardHeight * 1 / 2,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      bottleImage,
-                      height: cardHeight * 1 / 2,
-                      fit: BoxFit.contain,
-                    );
+                child: FutureBuilder<bool>(
+                  future: _isImageValid,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError || !snapshot.data!) {
+                      return Image.asset(
+                        bottleImage,
+                        height: cardHeight * 1 / 2,
+                        fit: BoxFit.contain,
+                      );
+                    } else {
+                      return Image.network(
+                        widget.wine.imageURL,
+                        height: cardHeight * 1 / 2,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            bottleImage,
+                            height: cardHeight * 1 / 2,
+                            fit: BoxFit.contain,
+                          );
+                        },
+                      );
+                    }
                   },
                 ),
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class WinePage extends StatelessWidget {
-  final List<Wine> wines;
-
-  const WinePage({super.key, required this.wines});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
-          childAspectRatio: 0.83, // 5:6 aspect ratio
-        ),
-        itemCount: wines.length,
-        itemBuilder: (context, index) {
-          final wine = wines[index];
-          return WineCard(wine: wine);
-        },
       ),
     );
   }

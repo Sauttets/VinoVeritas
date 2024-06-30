@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/filter_sort_taste.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 
 class LikePageLayout extends StatefulWidget {
   const LikePageLayout({super.key});

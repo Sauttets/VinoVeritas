@@ -37,8 +37,14 @@ const SettingsSchema = CollectionSchema(
       name: r'shareCode',
       type: IsarType.string,
     ),
-    r'username': PropertySchema(
+    r'sharedWith': PropertySchema(
       id: 4,
+      name: r'sharedWith',
+      type: IsarType.objectList,
+      target: r'Sharedlist',
+    ),
+    r'username': PropertySchema(
+      id: 5,
       name: r'username',
       type: IsarType.string,
     )
@@ -50,7 +56,7 @@ const SettingsSchema = CollectionSchema(
   idName: r'id',
   indexes: {},
   links: {},
-  embeddedSchemas: {},
+  embeddedSchemas: {r'Sharedlist': SharedlistSchema},
   getId: _settingsGetId,
   getLinks: _settingsGetLinks,
   attach: _settingsAttach,
@@ -64,6 +70,14 @@ int _settingsEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.shareCode.length * 3;
+  bytesCount += 3 + object.sharedWith.length * 3;
+  {
+    final offsets = allOffsets[Sharedlist]!;
+    for (var i = 0; i < object.sharedWith.length; i++) {
+      final value = object.sharedWith[i];
+      bytesCount += SharedlistSchema.estimateSize(value, offsets, allOffsets);
+    }
+  }
   bytesCount += 3 + object.username.length * 3;
   return bytesCount;
 }
@@ -78,7 +92,13 @@ void _settingsSerialize(
   writer.writeLong(offsets[1], object.plz);
   writer.writeDouble(offsets[2], object.radius);
   writer.writeString(offsets[3], object.shareCode);
-  writer.writeString(offsets[4], object.username);
+  writer.writeObjectList<Sharedlist>(
+    offsets[4],
+    allOffsets,
+    SharedlistSchema.serialize,
+    object.sharedWith,
+  );
+  writer.writeString(offsets[5], object.username);
 }
 
 Settings _settingsDeserialize(
@@ -93,7 +113,14 @@ Settings _settingsDeserialize(
   object.plz = reader.readLong(offsets[1]);
   object.radius = reader.readDouble(offsets[2]);
   object.shareCode = reader.readString(offsets[3]);
-  object.username = reader.readString(offsets[4]);
+  object.sharedWith = reader.readObjectList<Sharedlist>(
+        offsets[4],
+        SharedlistSchema.deserialize,
+        allOffsets,
+        Sharedlist(),
+      ) ??
+      [];
+  object.username = reader.readString(offsets[5]);
   return object;
 }
 
@@ -113,6 +140,14 @@ P _settingsDeserializeProp<P>(
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
+      return (reader.readObjectList<Sharedlist>(
+            offset,
+            SharedlistSchema.deserialize,
+            allOffsets,
+            Sharedlist(),
+          ) ??
+          []) as P;
+    case 5:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -559,6 +594,94 @@ extension SettingsQueryFilter
     });
   }
 
+  QueryBuilder<Settings, Settings, QAfterFilterCondition>
+      sharedWithLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition> sharedWithIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition>
+      sharedWithIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition>
+      sharedWithLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition>
+      sharedWithLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<Settings, Settings, QAfterFilterCondition>
+      sharedWithLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'sharedWith',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
   QueryBuilder<Settings, Settings, QAfterFilterCondition> usernameEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -691,7 +814,14 @@ extension SettingsQueryFilter
 }
 
 extension SettingsQueryObject
-    on QueryBuilder<Settings, Settings, QFilterCondition> {}
+    on QueryBuilder<Settings, Settings, QFilterCondition> {
+  QueryBuilder<Settings, Settings, QAfterFilterCondition> sharedWithElement(
+      FilterQuery<Sharedlist> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'sharedWith');
+    });
+  }
+}
 
 extension SettingsQueryLinks
     on QueryBuilder<Settings, Settings, QFilterCondition> {}
@@ -900,9 +1030,363 @@ extension SettingsQueryProperty
     });
   }
 
+  QueryBuilder<Settings, List<Sharedlist>, QQueryOperations>
+      sharedWithProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'sharedWith');
+    });
+  }
+
   QueryBuilder<Settings, String, QQueryOperations> usernameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'username');
     });
   }
 }
+
+// **************************************************************************
+// IsarEmbeddedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+
+const SharedlistSchema = Schema(
+  name: r'Sharedlist',
+  id: -1757637974210611828,
+  properties: {
+    r'name': PropertySchema(
+      id: 0,
+      name: r'name',
+      type: IsarType.string,
+    ),
+    r'shareCode': PropertySchema(
+      id: 1,
+      name: r'shareCode',
+      type: IsarType.string,
+    )
+  },
+  estimateSize: _sharedlistEstimateSize,
+  serialize: _sharedlistSerialize,
+  deserialize: _sharedlistDeserialize,
+  deserializeProp: _sharedlistDeserializeProp,
+);
+
+int _sharedlistEstimateSize(
+  Sharedlist object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  bytesCount += 3 + object.name.length * 3;
+  bytesCount += 3 + object.shareCode.length * 3;
+  return bytesCount;
+}
+
+void _sharedlistSerialize(
+  Sharedlist object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeString(offsets[0], object.name);
+  writer.writeString(offsets[1], object.shareCode);
+}
+
+Sharedlist _sharedlistDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = Sharedlist();
+  object.name = reader.readString(offsets[0]);
+  object.shareCode = reader.readString(offsets[1]);
+  return object;
+}
+
+P _sharedlistDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readString(offset)) as P;
+    case 1:
+      return (reader.readString(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
+  }
+}
+
+extension SharedlistQueryFilter
+    on QueryBuilder<Sharedlist, Sharedlist, QFilterCondition> {
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition>
+      shareCodeGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'shareCode',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition>
+      shareCodeStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'shareCode',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition> shareCodeMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'shareCode',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition>
+      shareCodeIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'shareCode',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Sharedlist, Sharedlist, QAfterFilterCondition>
+      shareCodeIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'shareCode',
+        value: '',
+      ));
+    });
+  }
+}
+
+extension SharedlistQueryObject
+    on QueryBuilder<Sharedlist, Sharedlist, QFilterCondition> {}

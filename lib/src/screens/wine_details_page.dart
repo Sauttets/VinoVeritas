@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_data.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/wine_deatail_top.dart';

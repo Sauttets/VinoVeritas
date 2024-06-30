@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
 class BottleWidget extends StatelessWidget {
-  final String title;
-  final String? imagePath;
-  final bool isLiked;
+  final Wine wine;
 
   const BottleWidget({
     super.key,
-    required this.title,
-    this.imagePath,
-    required this.isLiked,
+    required this.wine,
   });
 
   @override
@@ -31,7 +28,7 @@ class BottleWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.network(
-                  imagePath ?? 'assets/images/RotweinFlasche.png',
+                  wine.imageURL,
                   height: bottleHeight, // Dynamic height based on screen width
                   errorBuilder: (context, error, stackTrace) {
                     return Image.asset(
@@ -48,7 +45,7 @@ class BottleWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0), // Padding from the top side
                         child: Text(
-                          title,
+                          wine.name,
                           style: const TextStyle(
                             fontSize: Spacings.titleFontSize * 1.2, // You can adjust the font size as needed
                             fontWeight: FontWeight.bold,
@@ -64,7 +61,7 @@ class BottleWidget extends StatelessWidget {
             Positioned(
               right: 60,
               top: 110,
-              child: HeartButton(isLiked: isLiked),
+              child: HeartButton(wine: wine),
             ),
           ],
         ),
