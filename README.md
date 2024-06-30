@@ -35,8 +35,7 @@ Beim ersten Öffnen der App wird der Anmelde-Screen angezeigt. Hier wird der Ben
 | Description | Screen|
 | -------| --------|
 | Das Herzstück dieser App ist die Homepage. Hier wird sofort eine bunte Mischung verschiedenster Weine mit übersichtlichen Informationen angezeigt. Um den richtigen Wein zu finden, können die verschiedenen Filterfunktionen verwendet werden. Unter Essen & Geschmack kann ausgewählt werden, zu welchem Essen der Wein passen soll oder welche Geschmacksnote enthalten sein soll. Auch können die angezeigten Weine nach Farbe oder Preis sortiert werden. <br>
-Interessiert einen ein Wein, kann man mit einem Tab auf ihn weitere Informationen erhalten (siehe auch Detailansicht Wein). <br>
-Über den Filtern befindet sich eine Suchleiste, wenn nach einem bestimmten Wein gesucht werden soll. 
+Interessiert einen ein Wein, kann man mit einem Tab auf ihn weitere Informationen erhalten (siehe auch Detailansicht Wein). <br> Über den Filtern befindet sich eine Suchleiste, wenn nach einem bestimmten Wein gesucht werden soll. 
 Mit einem Tab auf das Herz an jedem Wein lässt sich der ausgewählte Wein der eigenen Favoritenliste ganz einfach hinzufügen und durch einen weiteren Tab auf das Herz wieder entfernen. <br>
 Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle Seite wird durch eine rote Hintergrundfarbe gekennzeichnet. Die erste Seite mit dem Weinglas-Icon ist die Homepage, eins weiter rechts gelangt man zum Lexikon (Buch-Icon). Bei einem Tab auf das Herz gelangt man zu seiner Favoritenliste und zuletzt gibt es noch die Einstellungsseite mit dem Personen-Icon. | !["Wine lexicon"](assets/readme/home_page.png) 
 
