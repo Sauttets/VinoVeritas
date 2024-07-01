@@ -14,14 +14,14 @@ class WineCubit extends Cubit<WineState> {
   String? fit;
   String? flavour;
 
-  WineCubit({required this.wineRepository}) : super(WineInitial());
+  WineCubit({required this.wineRepository}) : super(const WineInitial());
 
   Future<void> fetchWines({bool resetList = false}) async {
     if (state is WineLoading) return;
 
     if (resetList) {
       offset = 1;
-      emit(WineInitial());
+      emit(const WineInitial());
     }
 
     try {

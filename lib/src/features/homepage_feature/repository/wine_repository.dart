@@ -14,7 +14,7 @@ class WineRepository {
     String? flavour,
   }) async {
     final uri = Uri.parse(apiUrl).replace(queryParameters: {
-      'user_id': '1',
+      'shareCode': '177b77ab',
       'range': '$offset:$limit',
       if (color != 'all') 'color': color,
       if (sort != 'most-liked') 'sort': sort,

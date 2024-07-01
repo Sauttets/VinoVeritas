@@ -11,10 +11,10 @@ class WineCard extends StatefulWidget {
   const WineCard({super.key, required this.wine});
 
   @override
-  _WineCardState createState() => _WineCardState();
+  WineCardState createState() => WineCardState();
 }
 
-class _WineCardState extends State<WineCard> {
+class WineCardState extends State<WineCard> {
   late Future<bool> _isImageValid;
   final WineRepository wineRepository = WineRepository();
 

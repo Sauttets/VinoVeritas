@@ -52,7 +52,6 @@ class SupermarketText extends StatelessWidget {
   final String address;
   final String postalCode;
   final String price;
-  final String distance;
 
   const SupermarketText({
     super.key,
@@ -60,7 +59,6 @@ class SupermarketText extends StatelessWidget {
     required this.address,
     required this.postalCode,
     required this.price,
-    required this.distance,
   });
 
   @override
@@ -94,13 +92,6 @@ class SupermarketText extends StatelessWidget {
                 fontSize: Spacings.textFontSize,
               ),
             ),
-            Text(
-              distance,
-              style: const TextStyle(
-                color: AppColors.primaryText,
-                fontSize: Spacings.textFontSize,
-              ),
-            ),
           ],
         ),
       ],
@@ -114,7 +105,6 @@ class SupermarketSelector extends StatelessWidget {
   final String address;
   final String postalCode;
   final String price;
-  final String distance;
 
   const SupermarketSelector({
     super.key,
@@ -122,7 +112,6 @@ class SupermarketSelector extends StatelessWidget {
     required this.address,
     required this.postalCode,
     required this.price,
-    required this.distance,
   });
 
   Future<void> openGoogleMaps(String address) async {
@@ -164,7 +153,6 @@ class SupermarketSelector extends StatelessWidget {
                 address: address,
                 postalCode: postalCode,
                 price: price,
-                distance: distance,
               ),
             ),
             const SizedBox(width: 40),
