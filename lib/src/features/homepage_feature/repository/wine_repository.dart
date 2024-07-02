@@ -12,6 +12,7 @@ class WineRepository {
     String sort = 'most-liked',
     String? fit,
     String? flavour,
+    bool favlist = false,
   }) async {
     final uri = Uri.parse(apiUrl).replace(queryParameters: {
       'shareCode': '177b77ab',
@@ -20,6 +21,7 @@ class WineRepository {
       if (sort != 'most-liked') 'sort': sort,
       if (fit != null) 'fit': fit,
       if (flavour != null) 'flavour': flavour,
+      if (favlist) 'favlist': 'true',
     });
 
     final response = await http.get(uri);

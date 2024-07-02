@@ -13,6 +13,7 @@ class WineCubit extends Cubit<WineState> {
   String sort = 'most-liked';
   String? fit;
   String? flavour;
+  bool favlist = false;
 
   WineCubit({required this.wineRepository}) : super(const WineInitial());
 
@@ -33,6 +34,7 @@ class WineCubit extends Cubit<WineState> {
         sort: sort,
         fit: fit,
         flavour: flavour,
+        favlist: favlist,
       );
       if (newWines.isEmpty) {
         emit(WineLoaded(state.wines, hasReachedMax: true));
@@ -56,6 +58,11 @@ class WineCubit extends Cubit<WineState> {
     if (fit != null) this.fit = fit;
     if (flavour != null) this.flavour = flavour;
 
+    await fetchWines(resetList: true);
+  }
+
+  Future<void> fetchFavlistWines(String favlistId) async {
+    favlist = true;
     await fetchWines(resetList: true);
   }
 
