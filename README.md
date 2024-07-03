@@ -41,10 +41,11 @@ Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle S
 
 ### Detailansicht Wein
 
-In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
+| In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
 Unter dem Bild befindet sich eine ausklappbare Informationspalette. Hier werden die Geschmackskomponenten des Weines, passende Gerichte und eine textuelle Beschreibung angezeigt. <br>
-Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.<br>
-!["Wine lexicon"](assets/readme/lexicon_page_small.png)
+Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.<br> |
+!["Wine lexicon"](assets/readme/lexicon_page_small.png)|
+| ---- |---- |
 
 ### Lexikon
 | Screen | Description |

@@ -13,16 +13,5 @@ class AppColors {
   static const Color primaryText = Color(0xff000000);
 
   static void updateColors(ThemeMode themeMode) {
-    if (themeMode == ThemeMode.dark) {
-      backgroundColor = black;
-      primaryColor = primaryRed;
-      secondaryColor = heartRed;
-      textColor = primaryWhite;
-    } else {
-      backgroundColor = Color(0xfff5f5f5);
-      primaryColor = primaryRed;
-      secondaryColor = primaryGrey;
-      textColor = primaryText;
-    }
   }
 }
