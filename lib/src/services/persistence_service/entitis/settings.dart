@@ -18,3 +18,5 @@ class Sharedlist {
   late String name;
   late String shareCode;
 }
+
+

@@ -4,6 +4,7 @@ import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterfac
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:tuple/tuple.dart';
 
 class IsarService implements IsarServiceInterface {
   late Future<Isar> db;
@@ -171,6 +172,33 @@ Future<String> getSharedCodeFrom(String name) async {
     throw Exception('User not found');
   }
 }
+
+  @override
+  Future<String> getUserShareCode() async {
+    final isar = await db;  
+    final id = await getID();
+    final user = await isar.settings.get(id); 
+
+    if (user != null) {
+      return user.shareCode; 
+    } else {
+      throw Exception('User not found');
+    }
+  }
+  
+  @override
+  Future<List<Tuple2<String, String>>> getSharedLists() async {
+    final isar = await db;  
+    final id = await getID();
+    final user = await isar.settings.get(id); 
+
+    if (user == null) {
+      return [];
+    }
+
+    return user.sharedWith.map((shared) => Tuple2(shared.shareCode, shared.name)).toList();
+  }
+
 
 }
    
