@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_card.dart';
 
 class WineGridView extends StatefulWidget {
   final List<Wine> wines;
