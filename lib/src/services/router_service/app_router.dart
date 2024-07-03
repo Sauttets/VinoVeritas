@@ -34,7 +34,7 @@ final GoRouter router = GoRouter(
       path: '/home',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(showFavList: true)
+          child: WinePageLayout(showFavList: false)
         ),
       ),
     ),
@@ -49,8 +49,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/page2',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: CustomNavBarWrapper(
-          child: placeholderPage("xxx"),//LikePageLayout(),
+        child: const CustomNavBarWrapper(
+          child: WinePageLayout(showFavList: true)
         ),
       ),
     ),

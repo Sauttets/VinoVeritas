@@ -13,9 +13,10 @@ class WineRepository {
     String? fit,
     String? flavour,
     bool favlist = false,
+    required String shareCode,
   }) async {
     final uri = Uri.parse(apiUrl).replace(queryParameters: {
-      'shareCode': '177b77ab',
+      'shareCode': shareCode,
       'range': '$offset:$limit',
       if (color != 'all') 'color': color,
       if (sort != 'most-liked') 'sort': sort,
@@ -42,15 +43,15 @@ class WineRepository {
     }
   }
 
-  Future<void> addToFavorites(int userId, int wineId) async {
-    final response = await http.post(Uri.parse('https://api.gargelkarg.com/AddToFavList?user_id=$userId&wine_id=$wineId'));
+  Future<void> addToFavorites(String shareCode, int wineId) async {
+    final response = await http.post(Uri.parse('https://api.gargelkarg.com/AddToFavList?shareCode=$shareCode&wine_id=$wineId'));
     if (response.statusCode != 200) {
       throw Exception('Failed to add to favorites');
     }
   }
 
-  Future<void> removeFromFavorites(int userId, int wineId) async {
-    final response = await http.post(Uri.parse('https://api.gargelkarg.com/deleteFromFavList?user_id=$userId&wine_id=$wineId'));
+  Future<void> removeFromFavorites(String shareCode, int wineId) async {
+    final response = await http.post(Uri.parse('https://api.gargelkarg.com/deleteFromFavList?shareCode=$shareCode&wine_id=$wineId'));
     if (response.statusCode != 200) {
       throw Exception('Failed to remove from favorites');
     }

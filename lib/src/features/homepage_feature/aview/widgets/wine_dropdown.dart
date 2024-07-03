@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
-
-class FavlistTupel {
-  final String shareCode;
-  final String name;
-
-  FavlistTupel({required this.shareCode, required this.name});
-}
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 
 class WineDropdown extends StatefulWidget {
   const WineDropdown({super.key});
@@ -65,9 +59,9 @@ class WineDropdownState extends State<WineDropdown> {
   }
 
   List<FavlistTupel> wineLists = [
-    FavlistTupel(shareCode: '1', name: 'Gandalfs Weinliste'),
-    FavlistTupel(shareCode: '2', name: 'Bilbos Weinliste'),
-    FavlistTupel(shareCode: '3', name: 'Frodos Weinliste'),
-    FavlistTupel(shareCode: '4', name: 'Sams Weinliste'),
+    FavlistTupel(shareCode: '177b77ab', name: 'Gandalfs Weinliste'),
+    FavlistTupel(shareCode: '46f5d57f', name: 'Bilbos Weinliste'),
+    FavlistTupel(shareCode: 'aeac23ce', name: 'Frodos Weinliste'),
+    FavlistTupel(shareCode: '98817475', name: 'Sams Weinliste'),
   ];
 }
