@@ -32,29 +32,26 @@ Beim ersten Öffnen der App wird der Anmelde-Screen angezeigt. Hier wird der Ben
 
 ### Homepage
 
-| Description | Screen|
-| -------| --------|
-| Das Herzstück dieser App ist die Homepage. Hier wird sofort eine bunte Mischung verschiedenster Weine mit übersichtlichen Informationen angezeigt. Um den richtigen Wein zu finden, können die verschiedenen Filterfunktionen verwendet werden. Unter Essen & Geschmack kann ausgewählt werden, zu welchem Essen der Wein passen soll oder welche Geschmacksnote enthalten sein soll. Auch können die angezeigten Weine nach Farbe oder Preis sortiert werden. <br>
+!["Wine lexicon"](assets/readme/home_page.png)<br>
+
+Das Herzstück dieser App ist die Homepage. Hier wird sofort eine bunte Mischung verschiedenster Weine mit übersichtlichen Informationen angezeigt. Um den richtigen Wein zu finden, können die verschiedenen Filterfunktionen verwendet werden. Unter Essen & Geschmack kann ausgewählt werden, zu welchem Essen der Wein passen soll oder welche Geschmacksnote enthalten sein soll. Auch können die angezeigten Weine nach Farbe oder Preis sortiert werden. <br>
 Interessiert einen ein Wein, kann man mit einem Tab auf ihn weitere Informationen erhalten (siehe auch Detailansicht Wein). <br> Über den Filtern befindet sich eine Suchleiste, wenn nach einem bestimmten Wein gesucht werden soll. 
 Mit einem Tab auf das Herz an jedem Wein lässt sich der ausgewählte Wein der eigenen Favoritenliste ganz einfach hinzufügen und durch einen weiteren Tab auf das Herz wieder entfernen. <br>
-Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle Seite wird durch eine rote Hintergrundfarbe gekennzeichnet. Die erste Seite mit dem Weinglas-Icon ist die Homepage, eins weiter rechts gelangt man zum Lexikon (Buch-Icon). Bei einem Tab auf das Herz gelangt man zu seiner Favoritenliste und zuletzt gibt es noch die Einstellungsseite mit dem Personen-Icon. | !["Wine lexicon"](assets/readme/home_page.png) 
+Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle Seite wird durch eine rote Hintergrundfarbe gekennzeichnet. Die erste Seite mit dem Weinglas-Icon ist die Homepage, eins weiter rechts gelangt man zum Lexikon (Buch-Icon). Bei einem Tab auf das Herz gelangt man zu seiner Favoritenliste und zuletzt gibt es noch die Einstellungsseite mit dem Personen-Icon. 
 
 ### Detailansicht Wein
 
-| In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
+!["Wine lexicon"](assets/readme/lexicon_page_small.png)<br>
+
+In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
 Unter dem Bild befindet sich eine ausklappbare Informationspalette. Hier werden die Geschmackskomponenten des Weines, passende Gerichte und eine textuelle Beschreibung angezeigt. <br>
-Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.<br> |
-!["Wine lexicon"](assets/readme/lexicon_page_small.png)|
-| ---- |---- |
+Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.<br>
+
 
 ### Lexikon
-| Screen | Description |
-| -------| --------|
-| !["Wine lexicon"](assets/readme/lexicon_page.png) | Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br> Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt. |
+!["Wine lexicon"](assets/readme/lexicon_page.png)<br>
 
-
-
-
+Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br> Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt. |
 
 ### Favoritenliste
 
@@ -63,8 +60,9 @@ Hier werden nur die Weine angezeigt, die mit dem Herz markiert wurden. Bei einem
 
 ### Einstellungen
 
-Unter "Benutzername" kann ein neuer Benutzername zugewiesen werden. <br>
 !["Wine lexicon"](assets/readme/settings_page.png)<b>
+
+Unter "Benutzername" kann ein neuer Benutzername zugewiesen werden. <br>
 Unter "Design" kann zwischen dem hellen und dem dunklen Modus gewählt werden. <br>
 Unter "Teilen mit deinen Favoriten" findet der Nutzer seinen persönlichen Code, den er an seine Freunde senden kann, damit diese auf die eigene Liste zugreifen können. Unten drunter gibt es die Möglichkeit, zugesendete Codes einzugeben (unter Weincode), und unter "Name der Liste" kann der importierten Liste ein Name gegeben werden, um die Übersicht zu behalten. Mit einem Tab auf "Importieren" wird dann die Liste importiert.
 
