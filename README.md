@@ -1,80 +1,82 @@
 # VinoVeritas
 
-Wir verwenden das Unterstrich-Namenskonvention ("_") mit ausschließlich Kleinbuchstaben.
+We use the underscore naming convention ("_") with lowercase letters only.
 
-Deutsche Version der Dokumentation, Englisch folgt, wenn die Deutsche passt:
+German version of the documentation, English will follow when the German version fits:
 
 ## Abstract
 
-VinoVeritas ist eine App, die eine stressfreie und gelungene Auswahl von Weinen ermöglicht. Sie bietet verschiedene Filtermöglichkeiten, eine eigene Favoritenliste, die Möglichkeit, Favoriten zu teilen, sowie ein Mini-Lexikon, um mit dem Fachjargon besser zurechtzukommen und das Wissen zu erweitern.
+VinoVeritas is an app that enables a stress-free and successful selection of wines. It offers various filtering options, its own favorites list, the ability to share favorites, and a mini-encyclopedia to help you get to grips with the technical jargon and expand your knowledge.
 
-## Beschreibung
+## Description
 
-Fast jeder kennt es: Man steht vor einem überfüllten Regal und weiß nicht, was man nehmen soll. Ob für eine Geburtstagsfeier, einen romantischen Abend zu zweit, für die Kollegen oder einfach für ein entspanntes Abendessen mit der Familie – der richtige Wein macht den Anlass noch besser. Doch die Frage ist: Welcher Wein soll es sein?
+Almost everyone knows it: you're standing in front of a crowded shelf and don't know what to take. Whether for a birthday party, a romantic evening for two, for colleagues or simply for a relaxed dinner with the family - the right wine makes the occasion even better. But the question is: which wine should it be?
 
-In den meisten Supermärkten gibt es eine unglaubliche Auswahl an Weinen, und meist gibt es nicht nur einen Supermarkt in der Stadt. Diese schier unendliche Auswahl an Weinen aus verschiedensten Herkunftsländern ist der Entstehungsgrund für diese App. Die App soll dafür sorgen, dass Menschen, die nicht die Zeit haben, sich intensiver mit dem Thema Wein auseinanderzusetzen, auch einen Wein finden können, der genau ihren Ansprüchen entspricht.
+Most supermarkets have an incredible selection of wines, and there is usually not just one supermarket in town. This seemingly endless selection of wines from a wide variety of countries of origin is the reason why this app was created. The app is intended to ensure that people who do not have the time to delve deeper into the subject of wine can find a wine that exactly meets their requirements.
 
-Diese App richtet sich vornehmlich an Menschen, die leicht passenden Wein zu guten Preisen erwerben möchten. Sie bietet Informationen über Weine vom niedrigen bis mittleren Preissegment sowie die Standorte, wo dieser Wein in einem Supermarkt erhältlich ist. Durch verschiedene Filter- und Sortieroptionen (Essen, Geschmack, Farbe und Preis) können Nutzerinnen und Nutzer ganz nach ihrem Geschmack und Anlass den perfekten Wein finden.
+This app is primarily aimed at people who want to easily buy suitable wine at good prices. It provides information on wines from the low to medium price segment as well as the locations where this wine is available in a supermarket. With various filtering and sorting options (food, taste, color and price), users can find the perfect wine to suit their taste and occasion.
 
-Damit man nicht jedes Mal neu suchen muss, können Lieblingsweine in der persönlichen Favoritenliste abgespeichert werden. So hat man die Lieblingsweine immer schnell zur Hand. Auch die Lieblingsweine von Freunden können leicht angeschaut werden, indem Favoritenlisten miteinander geteilt werden.
+Favorite wines can be saved in the personal favorites list so that you don't have to search every time. This means you always have your favorite wines to hand. Friends' favorite wines can also be easily viewed by sharing favorites lists with each other.
 
-Süß, trocken, Blanc de Noir, kräftig, mit Tanninen, holzig, Pinot Gris, Eichenfass, Grauburgunder, Kork, etc. Das alles sind Begriffe, die auf Weinflaschen und in der App zu finden sind. Doch was steckt hinter diesen Begriffen? Das und vieles mehr wird im kleinen Wein-Lexikon erklärt. Hier können Begriffe nachgelesen werden, die in der App, auf Flaschen oder bei anderen Gelegenheiten aufgeschnappt wurden. So wird ohne viel Zeitaufwand mehr Hintergrundwissen geschaffen, um ein besseres Verständnis zu ermöglichen, was zu einer besseren Weinauswahl führen kann.
+Sweet, dry, Blanc de Noir, strong, with tannins, woody, Pinot Gris, oak barrel, Pinot Gris, cork, etc. These are all terms that can be found on wine bottles and in the app. But what is behind these terms? This and much more is explained in the small wine lexicon. Here you can look up terms that have been picked up in the app, on bottles or on other occasions. In this way, more background knowledge is created without spending a lot of time to enable a better understanding, which can lead to a better wine selection.
 
-## Screens & Funktionen
+## Screens & functions
 
-Im Folgenden wird kurz erläutert, welche Screens die App beinhaltet und welche Funktionen es dort gibt.
-
-### Anmelden
+The following section briefly explains which screens the app contains and which functions are available there.
+### Sign in
 
 !["Sign in"](assets/readme/loggin_page.png)<br>
 
-Beim ersten Öffnen der App wird der Anmelde-Screen angezeigt. Hier wird der Benutzername eingegeben, und dann kann es auch schon losgehen.
+When you open the app for the first time, the login screen is displayed. The user name is entered here and then you can get started.
 
 ### Homepage
 
 !["Wine lexicon"](assets/readme/home_page.png)<br>
 
-Das Herzstück dieser App ist die Homepage. Hier wird sofort eine bunte Mischung verschiedenster Weine mit übersichtlichen Informationen angezeigt. Um den richtigen Wein zu finden, können die verschiedenen Filterfunktionen verwendet werden. Unter Essen & Geschmack kann ausgewählt werden, zu welchem Essen der Wein passen soll oder welche Geschmacksnote enthalten sein soll. Auch können die angezeigten Weine nach Farbe oder Preis sortiert werden. <br>
-Interessiert einen ein Wein, kann man mit einem Tab auf ihn weitere Informationen erhalten (siehe auch Detailansicht Wein). <br> Über den Filtern befindet sich eine Suchleiste, wenn nach einem bestimmten Wein gesucht werden soll. 
-Mit einem Tab auf das Herz an jedem Wein lässt sich der ausgewählte Wein der eigenen Favoritenliste ganz einfach hinzufügen und durch einen weiteren Tab auf das Herz wieder entfernen. <br>
-Unten auf dem Screen befindet sich die Navigationsleiste der App. Die aktuelle Seite wird durch eine rote Hintergrundfarbe gekennzeichnet. Die erste Seite mit dem Weinglas-Icon ist die Homepage, eins weiter rechts gelangt man zum Lexikon (Buch-Icon). Bei einem Tab auf das Herz gelangt man zu seiner Favoritenliste und zuletzt gibt es noch die Einstellungsseite mit dem Personen-Icon. 
+The centrepiece of this App is our Homepage. A colourful mixture of different wines with clear information is immediately displayed here. 
+The various filter functions can be used to find the right wine. Under Food & Flavour, you can select which food the wine should go with or which flavour note should be included. The wines displayed can also be sorted by colour or price. <br>
+If you are interested in a wine, you can obtain further information by clicking on it (see also detailed view of wine). 
+<br> 
+There is a search bar above the filters if you are looking for a specific wine. 
+With a tab on the heart next to each wine, you can easily add the selected wine to your favourites list and remove it again with another tab on the heart. <br>
+The app's navigation bar is located at the bottom of the screen. The current page is indicated by a red background colour. The first page with the wine glass icon is the homepage, one further to the right takes you to the encyclopaedia (book icon). A tab on the heart takes you to your favourites list and finally there is the settings page with the person icon. 
 
-### Detailansicht Wein
+### Detailed view of wine
 
 !["Wine lexicon"](assets/readme/lexicon_page_small.png)<br>
 
-In der Detailansicht eines Weines wird dieser noch einmal ausführlicher vorgestellt. Es werden Informationen über Preis, Größe, Trockenheit, Süße und Tanningehalt angezeigt. <br>
-Unter dem Bild befindet sich eine ausklappbare Informationspalette. Hier werden die Geschmackskomponenten des Weines, passende Gerichte und eine textuelle Beschreibung angezeigt. <br>
-Unter den Beschreibungen des Weines befinden sich Supermärkte, in denen dieser Wein erhältlich ist. Die Adresse sowie der Preis in diesem Laden werden angezeigt. Mit einem Klick auf den Pfeil verlässt man die App und gelangt auf Google Maps mit dem gekennzeichneten Supermarkt. So spart sich der Nutzer eine umständliche Suche nach dem entsprechenden Supermarkt.<br>
+In the detailed view of a wine, it is presented in more detail. Information on price, size, dryness, sweetness and tannin content is displayed. <br>
+Below the image is a fold-out information palette. The flavour components of the wine, matching dishes and a textual description are displayed here. <br>
+Below the descriptions of the wine are supermarkets where this wine is available. The address and the price in this shop are displayed. Click on the arrow to exit the app and go to Google Maps with the supermarket labelled. This saves the user a time-consuming search for the relevant supermarket.<br>
 
 
 ### Lexikon
 !["Wine lexicon"](assets/readme/lexicon_page.png)<br>
 
-Direkt darunter befindet sich der Wein-Fakt des Tages. Hier gibt es täglich einen neuen spannenden Fakt über Wein. Das ermöglicht Wissensvermittlung, ohne dass der Nutzer sich durch das Lexikon klicken muss. <br> Unter dem Fakt des Tages befinden sich verschiedene Kategorien von Weinbau bis hin zum fertigen Wein im Glas. So kann gezielter nach Informationen innerhalb der verschiedenen Stadien gesucht werden, um zu lernen, welche verschiedenen Aspekte ein Wein mit sich bringt. Durch die Dropdowns können schnell Themen gefunden werden, die einen interessieren, und durch das Ausklappen werden die Informationen angezeigt. |
+Directly below is the wine fact of the day. Every day there is a new exciting fact about wine. This enables knowledge transfer without the user having to click through the encyclopaedia. <br> 
+Under the fact of the day, there are various categories from viticulture to the finished wine in the glass. This makes it possible to search for specific information within the various stages in order to learn about the different aspects of a wine. The dropdowns allow you to quickly find topics that interest you, and the information is displayed when you expand them.
 
-### Favoritenliste
+### Favourites list
 
-Die Favoriten Seite ist sehr ähnlich der Homepage. Hinzu kommt jedoch die Auswahlmöglichkeit (mittels Dropdown-Auswahl), welche Favoritenliste angezeigt werden soll, da auch mit Freunden die Listen geteilt und angesehen werden können. <br>
-Hier werden nur die Weine angezeigt, die mit dem Herz markiert wurden. Bei einem Tab auf den Wein gelangt man hier ebenfalls auf die Detailansicht des Weines.
+The favourites page is very similar to the homepage. However, there is also the option (via drop-down selection) to choose which favourites list should be displayed, as the lists can also be shared and viewed with friends. <br>
+Only the wines marked with the heart are displayed here. A tab on the wine also takes you to the detailed view of the wine.
 
-### Einstellungen
+### Settings
 
 !["Wine lexicon"](assets/readme/settings_page.png)<b>
 
-Unter "Benutzername" kann ein neuer Benutzername zugewiesen werden. <br>
-Unter "Design" kann zwischen dem hellen und dem dunklen Modus gewählt werden. <br>
-Unter "Teilen mit deinen Favoriten" findet der Nutzer seinen persönlichen Code, den er an seine Freunde senden kann, damit diese auf die eigene Liste zugreifen können. Unten drunter gibt es die Möglichkeit, zugesendete Codes einzugeben (unter Weincode), und unter "Name der Liste" kann der importierten Liste ein Name gegeben werden, um die Übersicht zu behalten. Mit einem Tab auf "Importieren" wird dann die Liste importiert.
+A new user name can be assigned under "User name". <br>
+In the "Design" section, users can choose between light and dark mode.
+Under "Share with your favourites", users can find their personal code, which they can send to their friends so that they can access their own list. Below this, there is the option to enter codes that have been sent (under wine code), and under "Name of the list", the imported list can be given a name in order to maintain an overview. The list is then imported by clicking on "Import".
 
-## Architektur 
+## Architecture 
 
-Architektur
-→ Beschreibung des Aufbaus der App inklusive Schaubild der Layers (View, Model, Controller,
-Repository Services etc. je nachdem was verwendet wurde)
+Architecture
+Description of the structure of the app including a diagram of the layers (View, Model, Controller,
+Repository Services etc. depending on what was used)
 
-### Hier steht die grobe beschreibung 
-### Hier kommt das Schaubild hin
-
+### Here is the rough description 
+### This is where the diagram goes
 
 
 ## Installation
