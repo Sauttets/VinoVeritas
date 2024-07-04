@@ -65,10 +65,11 @@ class FilterSortTasteState extends State<FilterSortTaste> {
       } else {
         selectedOption = option; // Select new option
       }
+
       if (selectedCategory == 'Essen') {
-        context.read<WineCubit>().applyFilters(fit: selectedOption);
+        context.read<WineCubit>().applyFilters(fit: selectedOption, flavour: null);
       } else {
-        context.read<WineCubit>().applyFilters(flavour: selectedOption);
+        context.read<WineCubit>().applyFilters(flavour: selectedOption, fit: null);
       }
     });
   }
@@ -109,7 +110,13 @@ class FilterSortTasteState extends State<FilterSortTaste> {
   Widget buildCategoryButton(String category) {
     bool isSelected = selectedCategory == category;
     return GestureDetector(
-      onTap: () => setState(() => selectedCategory = category),
+      onTap: () {
+        setState(() {
+          selectedCategory = category;
+          selectedOption = null; // Deselect the current option when category changes
+        });
+        context.read<WineCubit>().applyFilters(fit: null, flavour: null);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: Spacings.buttonSpacing),
         decoration: BoxDecoration(

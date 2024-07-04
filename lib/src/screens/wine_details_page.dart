@@ -36,16 +36,13 @@ class WineDetailsPage extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               if (wine.supermarkets.isNotEmpty)
-                ...wine.supermarkets.map((supermarket) => Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: SupermarketSelector(
-                    name: supermarket.name,
-                    address: '${supermarket.street} ${supermarket.houseNumber}, ${supermarket.city}',
-                    postalCode: supermarket.postalCode,
-                    price: '${supermarket.price.toStringAsFixed(2)}€',
-                    distance: '0.5 km', // Example distance
-                  ),
-                )),
+                ...wine.supermarkets.map((supermarket) => SupermarketSelector(
+                  name: supermarket.name,
+                  address: '${supermarket.street} ${supermarket.houseNumber}, ${supermarket.city}',
+                  postalCode: supermarket.postalCode,
+                  price: '${supermarket.price.toStringAsFixed(2)}€',
+                )
+              ),
             ],
           ),
         ),

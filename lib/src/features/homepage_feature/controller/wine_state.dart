@@ -12,11 +12,11 @@ class WineInitial extends WineState {
 }
 
 class WineLoading extends WineState {
-  const WineLoading(List<Wine> wines) : super(wines);
+  const WineLoading(super.wines);
 }
 
 class WineLoaded extends WineState {
-  const WineLoaded(List<Wine> wines, {bool hasReachedMax = false}) : super(wines, hasReachedMax: hasReachedMax);
+  const WineLoaded(super.wines, {super.hasReachedMax});
 }
 
 class WineError extends WineState {
