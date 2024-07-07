@@ -31,6 +31,8 @@ When you open the app for the first time, the login screen is displayed. The use
 
 ### Homepage
 
+TODO Bild mit Filtermöglichkeiten hinzufügen und Homepage Bild austauschen
+
 !["Wine lexicon"](assets/readme/home_page.png)<br>
 
 The centrepiece of this App is our Homepage. A colourful mixture of different wines with clear information is immediately displayed here. 
@@ -58,6 +60,8 @@ Under the fact of the day, there are various categories from viticulture to the 
 
 ### Favourites list
 
+TODO Bild hinzufügen
+
 The favourites page is very similar to the homepage. However, there is also the option (via drop-down selection) to choose which favourites list should be displayed, as the lists can also be shared and viewed with friends. <br>
 Only the wines marked with the heart are displayed here. A tab on the wine also takes you to the detailed view of the wine.
 
@@ -69,6 +73,7 @@ A new user name can be assigned under "User name". <br>
 In the "Design" section, users can choose between light and dark mode.
 Under "Share with your favourites", users can find their personal code, which they can send to their friends so that they can access their own list. Below this, there is the option to enter codes that have been sent (under wine code), and under "Name of the list", the imported list can be given a name in order to maintain an overview. The list is then imported by clicking on "Import".
 
+TODO This is Nicks Part
 ## Architecture 
 
 Architecture
