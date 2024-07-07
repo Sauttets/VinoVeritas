@@ -6,24 +6,60 @@ import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_dro
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_grid_view.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_state.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
+import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
 
-class WinePageLayout extends StatelessWidget {
+class WinePageLayout extends StatefulWidget {
   final bool showFavList;
 
   const WinePageLayout({super.key, required this.showFavList});
+
+  @override
+  WinePageLayoutState createState() => WinePageLayoutState();
+}
+
+class WinePageLayoutState extends State<WinePageLayout> {
+  late Future<List<FavlistTupel>> _wineLists;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.showFavList) {
+      _wineLists = IsarService().getSharedLists();
+    } else {
+      _wineLists = Future.value([]);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: BlocProvider(
-          create: (context) => WineCubit(wineRepository: WineRepository())..fetchWines(),
+          create: (context) => WineCubit(
+            wineRepository: WineRepository(),
+            favlist: widget.showFavList,
+          )..fetchWines(),
           child: Column(
             children: [
               const WineSearchBar(),
               const FilterSortTaste(),
-              if (showFavList) const WineDropdown(),
+              if (widget.showFavList)
+                FutureBuilder<List<FavlistTupel>>(
+                  future: _wineLists,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Text('No wine lists available');
+                    } else {
+                      return WineDropdown(wineLists: snapshot.data!);
+                    }
+                  },
+                ),
               Expanded(
                 child: BlocBuilder<WineCubit, WineState>(
                   builder: (context, state) {

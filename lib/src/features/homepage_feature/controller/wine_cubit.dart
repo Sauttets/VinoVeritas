@@ -12,10 +12,10 @@ class WineCubit extends Cubit<WineState> {
   String sort = 'most-liked';
   String? fit;
   String? flavour;
-  bool favlist = false;
-  String shareCode = '46f5d57f'; // Default static share code
+  bool favlist;
+  String shareCode = '46f5d57f';
 
-  WineCubit({required this.wineRepository}) : super(const WineInitial());
+  WineCubit({required this.wineRepository, this.favlist = false}) : super(const WineInitial());
 
   Future<void> fetchWines({bool resetList = false}) async {
     if (state is WineLoading) return;

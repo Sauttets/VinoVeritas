@@ -4,7 +4,9 @@ import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.
 import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 
 class WineDropdown extends StatefulWidget {
-  const WineDropdown({super.key});
+  final List<FavlistTupel> wineLists;
+
+  const WineDropdown({super.key, required this.wineLists});
 
   @override
   WineDropdownState createState() => WineDropdownState();
@@ -16,7 +18,7 @@ class WineDropdownState extends State<WineDropdown> {
   @override
   void initState() {
     super.initState();
-    _selectedWineList = wineLists.first.name;
+    _selectedWineList = widget.wineLists.first.name;
   }
 
   @override
@@ -42,11 +44,11 @@ class WineDropdownState extends State<WineDropdown> {
             onChanged: (String? newValue) {
               setState(() {
                 _selectedWineList = newValue!;
-                final selectedWineList = wineLists.firstWhere((wineList) => wineList.name == newValue);
+                final selectedWineList = widget.wineLists.firstWhere((wineList) => wineList.name == newValue);
                 context.read<WineCubit>().fetchFavlistWines(selectedWineList.shareCode);
               });
             },
-            items: wineLists.map<DropdownMenuItem<String>>((FavlistTupel favlistTupel) {
+            items: widget.wineLists.map<DropdownMenuItem<String>>((FavlistTupel favlistTupel) {
               return DropdownMenuItem<String>(
                 value: favlistTupel.name,
                 child: Text(favlistTupel.name),
@@ -57,11 +59,4 @@ class WineDropdownState extends State<WineDropdown> {
       ),
     );
   }
-
-  List<FavlistTupel> wineLists = [
-    FavlistTupel(shareCode: '177b77ab', name: 'Gandalfs Weinliste'),
-    FavlistTupel(shareCode: '46f5d57f', name: 'Bilbos Weinliste'),
-    FavlistTupel(shareCode: 'aeac23ce', name: 'Frodos Weinliste'),
-    FavlistTupel(shareCode: '98817475', name: 'Sams Weinliste'),
-  ];
 }

@@ -1,4 +1,4 @@
-import 'package:tuple/tuple.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
 abstract class IsarServiceInterface {
@@ -25,5 +25,5 @@ abstract class IsarServiceInterface {
   //Get the share code from a shared list by name
   Future<String> getSharedCodeFrom(String name);
   //Get all shared list with names as a tupel (shareCode, name)
-  Future<List<Tuple2<String, String>>>getSharedLists();
+  Future<List<FavlistTupel>>getSharedLists();
 }

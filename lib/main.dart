@@ -17,6 +17,13 @@ void main() async {
 Future<void> setupLocator() async {
   final persistenceService = IsarService();
   GetIt.I.registerSingleton<IsarServiceInterface>(persistenceService);
+  await addTestEntries(persistenceService); // Add this line to call the function
+}
+
+Future<void> addTestEntries(IsarServiceInterface isarService) async {
+  await isarService.addSharedList('TestList1', '46f5d57f');
+  await isarService.addSharedList('TestList2', '177b77ab');
+  await isarService.addSharedList('TestList3', 'aeac23ce');
 }
 
 class MyApp extends StatelessWidget {

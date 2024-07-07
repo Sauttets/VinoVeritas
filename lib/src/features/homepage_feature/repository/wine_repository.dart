@@ -28,8 +28,13 @@ class WineRepository {
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       List<dynamic> jsonList = json.decode(response.body);
+      fit = null;
+      flavour = null;
       return jsonList.map((json) => Wine.fromJson(json)).toList();
+      
     } else {
+      fit = null;
+      flavour = null;
       throw Exception('Failed to load wines');
     }
   }
