@@ -39,13 +39,12 @@ class IsarService implements IsarServiceInterface {
       final isar = await db;
       await isar.writeTxn(() async {
         await isar.settings.put(Settings()
-          ..id =  userId
+          ..id = userId
           ..username = username
           ..shareCode = userShareCode
         );
       });
 
-      // Hier kannst du die userId und returnedUsername weiterverarbeiten
       return userId;
     } else {
       throw Exception('Failed to create user');
@@ -81,9 +80,7 @@ class IsarService implements IsarServiceInterface {
   Future<Settings?> saveSettings(Settings settings) async {
     final isar = await db;
     await isar.writeTxn(() async {
-      // Lösche alle vorhandenen Settings, bevor du neue speicherst.
       await isar.settings.clear();
-      // Speichere das neue Settings-Objekt.
       await isar.settings.put(settings);
     });
     return settings;
@@ -92,16 +89,14 @@ class IsarService implements IsarServiceInterface {
   @override
   Future<Settings?> getSettings() async {
     final isar = await db;
-    // Da wir sicherstellen, dass immer nur ein Settings-Objekt gespeichert wird,
-    // können wir das erste Objekt aus der Datenbank abrufen.
     final settings = await isar.settings.where().findFirst();
     return settings;
   }
-  
+
   @override
-  Future<int> getID() async{
-    final isar = await db;  
-    final user = await isar.settings.where().findFirst(); 
+  Future<int> getID() async {
+    final isar = await db;
+    final user = await isar.settings.where().findFirst();
 
     if (user != null) {
       return user.id;
@@ -109,15 +104,15 @@ class IsarService implements IsarServiceInterface {
       throw Exception('No user found in the database');
     }
   }
-    
+
   @override
   Future<String> getUserName() async {
-    final isar = await db;  
+    final isar = await db;
     final id = await getID();
-    final user = await isar.settings.get(id); 
+    final user = await isar.settings.get(id);
 
     if (user != null) {
-      return user.username; 
+      return user.username;
     } else {
       throw Exception('User not found');
     }
@@ -125,7 +120,7 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<void> addSharedList(String name, String shareCode) async {
-    final isar = await db; 
+    final isar = await db;
     final id = await getID();
     final user = await isar.settings.get(id);
 
@@ -136,7 +131,7 @@ class IsarService implements IsarServiceInterface {
           ..shareCode = shareCode
         );
         user.sharedWith = newList;
-        await isar.settings.put(user); // Ensure changes are saved
+        await isar.settings.put(user);
       });
     } else {
       throw Exception('User not found');
@@ -145,8 +140,8 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<List<String>> getAllSharedNames() async {
-    final isar = await db; 
-    final id = await getID(); 
+    final isar = await db;
+    final id = await getID();
     final user = await isar.settings.get(id);
 
     if (user != null) {
@@ -158,13 +153,13 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<String> getSharedCodeFrom(String name) async {
-    final isar = await db; 
+    final isar = await db;
     final id = await getID();
     final user = await isar.settings.get(id);
 
     if (user != null) {
       final entry = user.sharedWith.firstWhere((entry) => entry.name == name);
-      return entry.shareCode;    
+      return entry.shareCode;
     } else {
       throw Exception('User not found');
     }
@@ -172,27 +167,43 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<String> getUserShareCode() async {
-    final isar = await db;  
+    final isar = await db;
     final id = await getID();
-    final user = await isar.settings.get(id); 
+    final user = await isar.settings.get(id);
 
     if (user != null) {
-      return user.shareCode; 
+      return user.shareCode;
     } else {
       throw Exception('User not found');
     }
   }
-  
+
   @override
   Future<List<FavlistTupel>> getSharedLists() async {
-    final isar = await db;  
+    final isar = await db;
     final id = await getID();
-    final user = await isar.settings.get(id); 
+    final user = await isar.settings.get(id);
 
     if (user == null) {
       return [];
     }
 
     return user.sharedWith.map((shared) => FavlistTupel(shareCode: shared.shareCode, name: shared.name)).toList();
+  }
+
+    @override
+  Future<void> clearSharedLists() async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
+
+    if (user != null) {
+      await isar.writeTxn(() async {
+        user.sharedWith = []; // Assign a new growable list
+        await isar.settings.put(user);
+      });
+    } else {
+      throw Exception('User not found');
+    }
   }
 }

@@ -26,4 +26,7 @@ abstract class IsarServiceInterface {
   Future<String> getSharedCodeFrom(String name);
   //Get all shared list with names as a tupel (shareCode, name)
   Future<List<FavlistTupel>>getSharedLists();
+
+    Future<void> clearSharedLists();
+
 }

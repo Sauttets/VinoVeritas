@@ -19,8 +19,8 @@ Future<void> setupLocator() async {
   GetIt.I.registerSingleton<IsarServiceInterface>(persistenceService);
   await addTestEntries(persistenceService); // Add this line to call the function
 }
-
 Future<void> addTestEntries(IsarServiceInterface isarService) async {
+  await isarService.clearSharedLists(); // Clear existing entries
   await isarService.addSharedList('TestList1', '46f5d57f');
   await isarService.addSharedList('TestList2', '177b77ab');
   await isarService.addSharedList('TestList3', 'aeac23ce');
