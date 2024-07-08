@@ -41,9 +41,10 @@ class IsarService implements IsarServiceInterface {
         await isar.settings.put(Settings()
           ..id = userId
           ..username = username
-          ..shareCode = userShareCode
-        );
+          ..shareCode = userShareCode);
       });
+
+      addSharedList(username, userShareCode);
 
       return userId;
     } else {
@@ -126,10 +127,10 @@ class IsarService implements IsarServiceInterface {
 
     if (user != null) {
       await isar.writeTxn(() async {
-        final newList = List<Sharedlist>.from(user.sharedWith)..add(Sharedlist()
-          ..name = name
-          ..shareCode = shareCode
-        );
+        final newList = List<Sharedlist>.from(user.sharedWith)
+          ..add(Sharedlist()
+            ..name = name
+            ..shareCode = shareCode);
         user.sharedWith = newList;
         await isar.settings.put(user);
       });
@@ -188,10 +189,13 @@ class IsarService implements IsarServiceInterface {
       return [];
     }
 
-    return user.sharedWith.map((shared) => FavlistTupel(shareCode: shared.shareCode, name: shared.name)).toList();
+    return user.sharedWith
+        .map((shared) =>
+            FavlistTupel(shareCode: shared.shareCode, name: shared.name))
+        .toList();
   }
 
-    @override
+  @override
   Future<void> clearSharedLists() async {
     final isar = await db;
     final id = await getID();
