@@ -117,7 +117,7 @@ class _NewWidgetState extends State<NewWidget> {
                     ),
                     onPressed: () => context
                         .read<SettingsCubit>()
-                        .importFavorites(weincode, listName),
+                        .importFavorites(listName, weincode),
                     child: const Text(
                       'Importieren',
                       style: TextStyle(
