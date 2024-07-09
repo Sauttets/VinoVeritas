@@ -1,3 +1,4 @@
+import 'package:http/http.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
@@ -24,33 +25,51 @@ class IsarService implements IsarServiceInterface {
     return Future.value(Isar.getInstance());
   }
 
+  @override
+  Future<bool> isDatabaseEmpty() async {
+    final isar = await db;
+    final count = await isar.settings.count();
+    return count == 0;
+  }
 
   @override
-  Future<int> addUserSettings(String username) async {
-    final response = await http.post(
-      Uri.parse('https://api.gargeklarg.com/newUser?username=$username'),
-    );
+  Future<String> addUserSettings(String username) async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://api.gargelkarg.com/newUser?username=$username'),
+      );
 
-    if (response.statusCode == 200) {
-      final jsonResponse = json.decode(response.body);
-      final userId = jsonResponse['id'];
-      final userShareCode = jsonResponse['shareCode'];
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
 
-      final isar = await db;
-      await isar.writeTxn(() async {
-        await isar.settings.put(Settings()
-          ..id =  userId
-          ..username = username
-          ..shareCode = userShareCode
-        );
-      });
+        // Print the entire response body or specific parts of it
+        print(
+            'Server response: ${response.body}'); // For debugging: prints the entire response body
 
-      // Hier kannst du die userId und returnedUsername weiterverarbeiten
-      return userId;
-    } else {
-      throw Exception('Failed to create user');
+        final userId = jsonResponse['id'];
+        final userShareCode = jsonResponse['shareCode'];
+
+        // Assuming the server includes a 'message' field in the successful response
+        print(
+            'Server message: ${jsonResponse['message']}'); // This line prints the message
+        final isar = await db;
+        await isar.writeTxn(() async {
+          await isar.settings.put(Settings()
+            ..id = userId
+            ..username = username
+            ..shareCode = userShareCode);
+        });
+
+        return userShareCode;
+      } else {
+        throw Exception('Failed to create user');
+      }
+    } on ClientException catch (e) {
+      // Handle the ClientException, possibly by logging or notifying the user
+      print('Failed to connect to the server: $e');
+      throw Exception('Network error: Unable to connect to the server.');
     }
-}
+  }
 
   @override
   Future<void> updateSettings(
@@ -77,7 +96,6 @@ class IsarService implements IsarServiceInterface {
     }
   }
 
-
   @override
   Future<Settings?> saveSettings(Settings settings) async {
     final isar = await db;
@@ -98,11 +116,11 @@ class IsarService implements IsarServiceInterface {
     final settings = await isar.settings.where().findFirst();
     return settings;
   }
-  
+
   @override
-  Future<int> getID() async{
-    final isar = await db;  
-    final user = await isar.settings.where().findFirst(); 
+  Future<int> getID() async {
+    final isar = await db;
+    final user = await isar.settings.where().findFirst();
 
     if (user != null) {
       return user.id;
@@ -110,15 +128,15 @@ class IsarService implements IsarServiceInterface {
       throw Exception('No user found in the database');
     }
   }
-    
+
   @override
   Future<String> getUserName() async {
-    final isar = await db;  
+    final isar = await db;
     final id = await getID();
-    final user = await isar.settings.get(id); 
+    final user = await isar.settings.get(id);
 
     if (user != null) {
-      return user.username; 
+      return user.username;
     } else {
       throw Exception('User not found');
     }
@@ -126,51 +144,47 @@ class IsarService implements IsarServiceInterface {
 
   @override
   Future<void> addSharedList(String name, String shareCode) async {
-    final isar = await db; 
+    final isar = await db;
     final id = await getID();
     final user = await isar.settings.get(id);
 
     if (user != null) {
       await isar.writeTxn(() async {
         user.sharedWith.add(Sharedlist()
-        ..name = name
-        ..shareCode = shareCode
-        );
-        await isar.settings.put(user); // Sicherstellen, dass die Änderungen gespeichert werden
+          ..name = name
+          ..shareCode = shareCode);
+        await isar.settings
+            .put(user); // Sicherstellen, dass die Änderungen gespeichert werden
       });
     } else {
       throw Exception('User not found');
     }
   }
 
-
-    
   @override
-Future<List<String>> getAllSharedNames() async {
-  final isar = await db; 
-  final id = await getID(); 
-  final user = await isar.settings.get(id);
+  Future<List<String>> getAllSharedNames() async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
 
-  if (user != null) {
-    return user.sharedWith.map((entry) => entry.name).toList();
-  } else {
-    return [];
+    if (user != null) {
+      return user.sharedWith.map((entry) => entry.name).toList();
+    } else {
+      return [];
+    }
+  }
+
+  @override
+  Future<String> getSharedCodeFrom(String name) async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
+
+    if (user != null) {
+      final entry = user.sharedWith.firstWhere((entry) => entry.name == name);
+      return entry.shareCode;
+    } else {
+      throw Exception('User not found');
+    }
   }
 }
-
-@override
-Future<String> getSharedCodeFrom(String name) async {
-  final isar = await db; 
-  final id = await getID();
-  final user = await isar.settings.get(id);
-
-  if (user != null) {
-    final entry = user.sharedWith.firstWhere((entry) => entry.name == name);
-    return entry.shareCode;    
-  } else {
-    throw Exception('User not found');
-  }
-}
-
-}
-   

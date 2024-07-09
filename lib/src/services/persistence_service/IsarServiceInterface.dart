@@ -2,7 +2,7 @@ import 'package:vinoveritas/src/services/persistence_service/entitis/settings.da
 
 abstract class IsarServiceInterface {
   //Comunicate with the backend to create a new user and save the user settings in the local database
-  Future<int> addUserSettings(String username);
+  Future<String> addUserSettings(String username);
   //Save the user settings in the local database
   Future<Settings?> saveSettings(Settings settings);
   //Get the user settings from the local database
@@ -21,4 +21,5 @@ abstract class IsarServiceInterface {
   Future<List<String>> getAllSharedNames();
   //Get the share code from a shared list by name
   Future<String> getSharedCodeFrom(String name);
+  Future<bool> isDatabaseEmpty();
 }

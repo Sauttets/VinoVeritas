@@ -6,12 +6,30 @@ part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepository _settingsRepository = SettingsRepository();
-  SettingsModel settingsModel = const SettingsModel();
+  late SettingsModel settingsModel = SettingsModel();
   int selectedIndex = 2;
+  Future<bool> get isDatabaseEmpty => _settingsRepository.isDatabaseEmpty();
 
   SettingsCubit() : super(SettingsInit()) {
+    Future<bool> loggedIn = isDatabaseEmpty;
+    loggedIn.then((value) {
+      if (value) {
+        emit(NotLoggedIn(settingsModel));
+      } else {
+        loadSettings();
+      }
+    });
+  }
+
+  void importFavorites(String weincode, String listName) {
+    _settingsRepository.importFavorites(weincode, listName);
+  }
+
+  void login(String username) async {
+    await _settingsRepository.registerNewUser(username);
     loadSettings();
   }
+
   void updateUsername(String username) {
     final updatedSettingsModel = settingsModel.copyWith(username: username);
     saveSettings(updatedSettingsModel);

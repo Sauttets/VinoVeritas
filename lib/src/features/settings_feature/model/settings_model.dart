@@ -9,11 +9,11 @@ part 'settings_model.freezedimportent.dart';
 class SettingsModel with _$SettingsModel {
   const factory SettingsModel({
     @Default(0) String id,
-    @Default('user') String username,
-    @Default(71720) int plz,
+    @Default('NoUser') String username,
+    @Default(0000) int plz,
     double? radius,
     @Default(0) int colorMode,
-    @Default('##this is a share code##') String shareCode,
+    @Default('NoUser') String shareCode,
     // Note: Isar relationships like IsarLink<FavListe> cannot be directly represented in Freezed models.
     // You might need to handle these separately or convert them manually.
   }) = _SettingsModel;
@@ -21,8 +21,7 @@ class SettingsModel with _$SettingsModel {
   // Convert SettingsModel to Settings (Isar object) as an instance method
   Settings toIsarSettings() {
     final settings = Settings()
-      ..id = int.tryParse(id) ??
-          Isar.autoIncrement // Assuming `id` is a string that can be parsed to int
+      ..id = id as Id
       ..username = username
       ..plz = plz
       ..radius = radius ?? 5.0
@@ -38,6 +37,7 @@ class SettingsModel with _$SettingsModel {
       id: settings.id.toString(),
       username: settings.username,
       plz: settings.plz,
+      shareCode: settings.shareCode,
       // Continue mapping the rest of the fields...
     );
   }
