@@ -2,10 +2,10 @@ import 'package:http/http.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
-import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
 
 class IsarService implements IsarServiceInterface {
   late Future<Isar> db;
@@ -43,16 +43,9 @@ class IsarService implements IsarServiceInterface {
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
 
-        // Print the entire response body or specific parts of it
-        print(
-            'Server response: ${response.body}'); // For debugging: prints the entire response body
-
         final userId = jsonResponse['id'];
         final userShareCode = jsonResponse['shareCode'];
 
-        // Assuming the server includes a 'message' field in the successful response
-        print(
-            'Server message: ${jsonResponse['message']}'); // This line prints the message
         final isar = await db;
         await isar.writeTxn(() async {
           await isar.settings.put(Settings()
@@ -66,8 +59,6 @@ class IsarService implements IsarServiceInterface {
         throw Exception('Failed to create user');
       }
     } on ClientException catch (e) {
-      // Handle the ClientException, possibly by logging or notifying the user
-      print('Failed to connect to the server: $e');
       throw Exception('Network error: Unable to connect to the server.');
     }
   }
@@ -153,7 +144,6 @@ class IsarService implements IsarServiceInterface {
             ..shareCode = shareCode);
         user.sharedWith = newList;
         await isar.settings.put(user);
-
       });
     } else {
       throw Exception('User not found');
@@ -197,9 +187,9 @@ class IsarService implements IsarServiceInterface {
       return user.shareCode;
     } else {
       throw Exception('User not found');
-
     }
   }
+
   @override
   Future<List<FavlistTupel>> getSharedLists() async {
     final isar = await db;

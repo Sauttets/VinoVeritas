@@ -14,8 +14,6 @@ class SettingsModel with _$SettingsModel {
     double? radius,
     @Default(0) int colorMode,
     @Default('NoUser') String shareCode,
-    // Note: Isar relationships like IsarLink<FavListe> cannot be directly represented in Freezed models.
-    // You might need to handle these separately or convert them manually.
   }) = _SettingsModel;
 
   // Convert SettingsModel to Settings (Isar object) as an instance method
@@ -38,7 +36,7 @@ class SettingsModel with _$SettingsModel {
       username: settings.username,
       plz: settings.plz,
       shareCode: settings.shareCode,
-      // Continue mapping the rest of the fields...
+      // Continue if needed.
     );
   }
 }
