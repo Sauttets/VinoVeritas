@@ -23,4 +23,29 @@ class SettingsRepository {
     Settings settings = settingsModel.toIsarSettings();
     await _isarService.saveSettings(settings);
   }
+
+  Future<bool> isDatabaseEmpty() async {
+    bool isempty = await _isarService.isDatabaseEmpty();
+    return isempty;
+  }
+
+  Future<SettingsModel> registerNewUser(String username) async {
+    // Assuming you have a method to register a new user in your IsarService
+    // and it returns a Settings instance
+    int id = await _isarService.addUserSettings(username);
+    SettingsModel newUser = SettingsModel(
+      id: id.toString(),
+      username: username,
+      shareCode: 0.toString(),
+    );
+    Settings settings = newUser.toIsarSettings();
+    await _isarService.saveSettings(settings);
+    Settings? settingsIsar = await _isarService.getSettings();
+    if (settingsIsar != null) {
+      return SettingsModel.fromIsarSettings(settingsIsar);
+    } else {
+      // Handle the case where no settings are found. Perhaps return a default SettingsModel instance.
+      return const SettingsModel();
+    }
+  }
 }

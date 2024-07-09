@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/general_feature/widgets/navbar.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 import 'package:vinoveritas/src/services/router_service/app_router.dart'
@@ -17,6 +18,7 @@ void main() async {
 Future<void> setupLocator() async {
   final persistenceService = IsarService();
   GetIt.I.registerSingleton<IsarServiceInterface>(persistenceService);
+  GetIt.I.registerSingleton<SettingsCubit>(SettingsCubit());
 }
 
 class MyApp extends StatelessWidget {

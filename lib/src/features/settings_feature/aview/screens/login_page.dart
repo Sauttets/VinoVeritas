@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+
+final _settingsCubit = GetIt.I<SettingsCubit>();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,6 +21,10 @@ class LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _usernameController.addListener(_checkIfButtonShouldBeEnabled);
+  }
+
+  void _onTextChanged(String text) {
+    _settingsCubit.login(text);
   }
 
   void _checkIfButtonShouldBeEnabled() {
@@ -44,7 +52,8 @@ class LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                const SizedBox(height: 50), // To ensure there is some space at the top
+                const SizedBox(
+                    height: 50), // To ensure there is some space at the top
                 Image.asset(
                   'assets/images/VinoVeritas-Logo.png',
                   height: 300,
@@ -52,7 +61,8 @@ class LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 const Center(
                   child: SizedBox(
-                    width: 220, // Adjust this value to set the width of the divider
+                    width:
+                        220, // Adjust this value to set the width of the divider
                     child: Divider(
                       color: Colors.grey,
                       thickness: 3,
@@ -77,7 +87,8 @@ class LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                const SizedBox(height: 80), // Added extra space before the TextField
+                const SizedBox(
+                    height: 80), // Added extra space before the TextField
                 TextField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
@@ -86,11 +97,14 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     labelText: 'Username',
                   ),
+                  onChanged: _onTextChanged,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: _isButtonEnabled ? AppColors.primaryRed : AppColors.secondaryGrey,
+                    backgroundColor: _isButtonEnabled
+                        ? AppColors.primaryRed
+                        : AppColors.secondaryGrey,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),

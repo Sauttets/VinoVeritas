@@ -21,4 +21,5 @@ abstract class IsarServiceInterface {
   Future<List<String>> getAllSharedNames();
   //Get the share code from a shared list by name
   Future<String> getSharedCodeFrom(String name);
+  Future<bool> isDatabaseEmpty();
 }
