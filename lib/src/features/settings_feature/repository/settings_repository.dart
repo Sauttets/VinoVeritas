@@ -40,6 +40,11 @@ class SettingsRepository {
       uri,
       headers: {'Content-Type': 'application/json'},
     );
+    print(
+        '.......................................................................................');
+    print(uri);
+    print(
+        '.......................................................................................');
 
     if (response.statusCode == 200) {
       try {

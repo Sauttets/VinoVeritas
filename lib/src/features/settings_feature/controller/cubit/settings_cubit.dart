@@ -13,7 +13,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(SettingsInit()) {
     Future<bool> loggedIn = isDatabaseEmpty;
     loggedIn.then((value) {
-      if (true) {
+      if (value) {
         emit(NotLoggedIn(settingsModel));
       } else {
         loadSettings();
