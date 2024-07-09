@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
 
 class SetLocation extends StatefulWidget {
   final IsarServiceInterface isarService;

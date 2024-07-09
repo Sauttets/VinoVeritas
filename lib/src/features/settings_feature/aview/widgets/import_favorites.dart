@@ -15,7 +15,7 @@ class ImportFavorites extends StatelessWidget {
           children: [
             BlocBuilder<SettingsCubit, SettingsState>(
               builder: (context, state) {
-                return NewWidget();
+                return const NewWidget();
               },
             ),
           ],

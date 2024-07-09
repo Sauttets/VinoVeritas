@@ -6,7 +6,7 @@ part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepository _settingsRepository = SettingsRepository();
-  late SettingsModel settingsModel = SettingsModel();
+  late SettingsModel settingsModel = const SettingsModel();
   int selectedIndex = 2;
   Future<bool> get isDatabaseEmpty => _settingsRepository.isDatabaseEmpty();
 

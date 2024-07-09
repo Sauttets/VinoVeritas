@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vinoveritas/src/features/settings_feature/model/settings_model.dart';
-import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
 class SettingsRepository {

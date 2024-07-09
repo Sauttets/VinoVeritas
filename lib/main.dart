@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
-import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
+import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
 import 'package:vinoveritas/src/services/router_service/app_router.dart'
     as app_router;
 
