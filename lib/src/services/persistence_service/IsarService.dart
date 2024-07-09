@@ -59,7 +59,7 @@ class IsarService implements IsarServiceInterface {
         throw Exception('Failed to create user');
       }
     } on ClientException catch (e) {
-      throw Exception('Network error: Unable to connect to the server.');
+      throw Exception('Network error: ${e.message}');
     }
   }
 
