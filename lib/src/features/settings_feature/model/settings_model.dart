@@ -37,6 +37,7 @@ class SettingsModel with _$SettingsModel {
       id: settings.id.toString(),
       username: settings.username,
       plz: settings.plz,
+      shareCode: settings.shareCode,
       // Continue mapping the rest of the fields...
     );
   }

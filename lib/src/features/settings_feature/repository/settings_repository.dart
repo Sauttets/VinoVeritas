@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:vinoveritas/src/features/settings_feature/model/settings_model.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
@@ -10,12 +12,7 @@ class SettingsRepository {
 
   Future<SettingsModel> loadSettingsModel() async {
     Settings? settingsIsar = await _isarService.getSettings();
-    if (settingsIsar != null) {
-      return SettingsModel.fromIsarSettings(settingsIsar);
-    } else {
-      // Handle the case where no settings are found. Perhaps return a default SettingsModel instance.
-      return const SettingsModel();
-    }
+    return SettingsModel.fromIsarSettings(settingsIsar!);
   }
 
   Future<void> saveSettingsModel(SettingsModel settingsModel) async {
@@ -29,23 +26,31 @@ class SettingsRepository {
     return isempty;
   }
 
-  Future<SettingsModel> registerNewUser(String username) async {
+  Future<void> registerNewUser(String username) async {
     // Assuming you have a method to register a new user in your IsarService
     // and it returns a Settings instance
-    int id = await _isarService.addUserSettings(username);
-    SettingsModel newUser = SettingsModel(
-      id: id.toString(),
-      username: username,
-      shareCode: 0.toString(),
+    await _isarService.addUserSettings(username);
+  }
+
+  Future<void> importFavorites(String wineId, String userId) async {
+    final uri = Uri.parse(
+        'http://api.gargelkarg.com/AddToFavList?user_id=$userId&wine_id=$wineId');
+
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
     );
-    Settings settings = newUser.toIsarSettings();
-    await _isarService.saveSettings(settings);
-    Settings? settingsIsar = await _isarService.getSettings();
-    if (settingsIsar != null) {
-      return SettingsModel.fromIsarSettings(settingsIsar);
+
+    if (response.statusCode == 200) {
+      try {
+        final responseBody = json.decode(response.body);
+        print(responseBody[
+            'message']); // "Wine added to favorite list successfully!"
+      } catch (e) {
+        print('Failed to parse response as JSON: $e');
+      }
     } else {
-      // Handle the case where no settings are found. Perhaps return a default SettingsModel instance.
-      return const SettingsModel();
+      print('Failed to add wine to favorites: ${response.body}');
     }
   }
 }

@@ -97,7 +97,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     labelText: 'Username',
                   ),
-                  onChanged: _onTextChanged,
+                  onSubmitted: _onTextChanged,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(

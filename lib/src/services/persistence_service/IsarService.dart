@@ -33,17 +33,25 @@ class IsarService implements IsarServiceInterface {
   }
 
   @override
-  Future<int> addUserSettings(String username) async {
+  Future<String> addUserSettings(String username) async {
     try {
       final response = await http.post(
-        Uri.parse('https://api.gargeklarg.com/newUser?username=$username'),
+        Uri.parse('https://api.gargelkarg.com/newUser?username=$username'),
       );
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
+
+        // Print the entire response body or specific parts of it
+        print(
+            'Server response: ${response.body}'); // For debugging: prints the entire response body
+
         final userId = jsonResponse['id'];
         final userShareCode = jsonResponse['shareCode'];
 
+        // Assuming the server includes a 'message' field in the successful response
+        print(
+            'Server message: ${jsonResponse['message']}'); // This line prints the message
         final isar = await db;
         await isar.writeTxn(() async {
           await isar.settings.put(Settings()

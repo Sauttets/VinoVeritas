@@ -6,14 +6,14 @@ part 'settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepository _settingsRepository = SettingsRepository();
-  SettingsModel settingsModel = const SettingsModel();
+  late SettingsModel settingsModel = SettingsModel();
   int selectedIndex = 2;
   Future<bool> get isDatabaseEmpty => _settingsRepository.isDatabaseEmpty();
 
   SettingsCubit() : super(SettingsInit()) {
     Future<bool> loggedIn = isDatabaseEmpty;
     loggedIn.then((value) {
-      if (value) {
+      if (true) {
         emit(NotLoggedIn(settingsModel));
       } else {
         loadSettings();
@@ -21,13 +21,12 @@ class SettingsCubit extends Cubit<SettingsState> {
     });
   }
 
+  void importFavorites(String weincode, String listName) {
+    _settingsRepository.importFavorites(weincode, listName);
+  }
+
   void login(String username) async {
-    //is triggered if a login name is entered in the login page
-    // register new user( get the id, and sharecode)
-    final newUser = await _settingsRepository.registerNewUser(username);
-    settingsModel =
-        settingsModel.copyWith(id: newUser.id, shareCode: newUser.shareCode);
-    await _settingsRepository.saveSettingsModel(settingsModel);
+    await _settingsRepository.registerNewUser(username);
     loadSettings();
   }
 

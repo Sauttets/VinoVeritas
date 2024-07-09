@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 
 class ImportFavorites extends StatelessWidget {
@@ -6,13 +8,16 @@ class ImportFavorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // Your existing widgets here...
-            NewWidget(),
+            BlocBuilder<SettingsCubit, SettingsState>(
+              builder: (context, state) {
+                return NewWidget();
+              },
+            ),
           ],
         ),
       ),
@@ -20,8 +25,17 @@ class ImportFavorites extends StatelessWidget {
   }
 }
 
-class NewWidget extends StatelessWidget {
+class NewWidget extends StatefulWidget {
   const NewWidget({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _NewWidgetState createState() => _NewWidgetState();
+}
+
+class _NewWidgetState extends State<NewWidget> {
+  String weincode = '';
+  String listName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +59,11 @@ class NewWidget extends StatelessWidget {
               width: 391.0,
               height: 44.0,
               child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    weincode = value;
+                  });
+                },
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.primaryWhite,
@@ -55,7 +74,7 @@ class NewWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Add more space
+            const SizedBox(height: 20),
             const Text(
               '  Name der Liste:',
               style: TextStyle(
@@ -66,17 +85,22 @@ class NewWidget extends StatelessWidget {
               width: 391.0,
               height: 44.0,
               child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    listName = value;
+                  });
+                },
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColors.primaryWhite,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: AppColors.black),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Add more space
+            const SizedBox(height: 20),
             Align(
               alignment: Alignment.centerRight,
               child: FractionallySizedBox(
@@ -91,7 +115,9 @@ class NewWidget extends StatelessWidget {
                         const StadiumBorder(),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => context
+                        .read<SettingsCubit>()
+                        .importFavorites(weincode, listName),
                     child: const Text(
                       'Importieren',
                       style: TextStyle(

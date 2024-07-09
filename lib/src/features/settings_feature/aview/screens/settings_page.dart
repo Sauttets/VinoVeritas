@@ -61,20 +61,13 @@ class SettingsPage extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: DisplayAndCopyText(
-                                text:
-                                    '${state.specificVariable} ${state.getselectedIndex}'),
-                          );
-                        } else if (state is SettingsInit) {
-                          // Handle other states or show a placeholder
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DisplayAndCopyText(
-                                text: 'initstate: ${state.getselectedIndex}'),
+                                text: state.settings.shareCode),
                           );
                         } else {
                           return const Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: DisplayAndCopyText(text: 'otherstate'),
+                            child: DisplayAndCopyText(
+                                text: 'noshareCode available'),
                           );
                         }
                       },

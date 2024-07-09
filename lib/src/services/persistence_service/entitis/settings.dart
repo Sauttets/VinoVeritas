@@ -6,7 +6,7 @@ part 'settings.g.dart';
 class Settings {
   late Id id;
   late String username;
-  late int plz;
+  int plz = 0000;
   double radius = 5;
   int colorMode = 0;
   late String shareCode;
