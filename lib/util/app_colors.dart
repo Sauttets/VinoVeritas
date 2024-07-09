@@ -11,4 +11,7 @@ class AppColors {
   static const Color black = Color(0xff000000);
   static const Color transparent = Color(0x00000000);
   static const Color primaryText = Color(0xff000000);
+
+  static void updateColors(ThemeMode themeMode) {
+  }
 }

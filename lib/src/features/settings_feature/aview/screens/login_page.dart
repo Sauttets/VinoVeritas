@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+
+final _settingsCubit = GetIt.I<SettingsCubit>();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +24,10 @@ class LoginScreenState extends State<LoginScreen> {
     _usernameController.addListener(_checkIfButtonShouldBeEnabled);
   }
 
+  void _onTextChanged(String text) {
+    _settingsCubit.login(text);
+  }
+
   void _checkIfButtonShouldBeEnabled() {
     setState(() {
       _isButtonEnabled = _usernameController.text.isNotEmpty;
@@ -34,83 +43,94 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const SizedBox(height: 50), // To ensure there is some space at the top
-                Image.asset(
-                  'assets/images/VinoVeritas-Logo.png',
-                  height: 300,
-                ),
-                const SizedBox(height: 20),
-                const Center(
-                  child: SizedBox(
-                    width: 220, // Adjust this value to set the width of the divider
-                    child: Divider(
-                      color: Colors.grey,
-                      thickness: 3,
-                      endIndent: BorderSide.strokeAlignCenter,
+    return BlocListener<SettingsCubit, SettingsState>(
+      bloc: _settingsCubit,
+      listener: (context, state) {
+        if (state is! NotLoggedIn) {
+          context.go('/home');
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  const SizedBox(height: 50),
+                  Image.asset(
+                    'assets/images/VinoVeritas-Logo.png',
+                    height: 300,
+                  ),
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: SizedBox(
+                      width: 220,
+                      child: Divider(
+                        color: Colors.grey,
+                        thickness: 3,
+                        endIndent: BorderSide.strokeAlignCenter,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'V  I  N  O',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  'VERITAS',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                const SizedBox(height: 80), // Added extra space before the TextField
-                TextField(
-                  controller: _usernameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                    ),
-                    labelText: 'Username',
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _isButtonEnabled ? AppColors.primaryRed : AppColors.secondaryGrey,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                  ),
-                  onPressed: _isButtonEnabled
-                      ? () {
-                          context.go('/home'); // Navigate to the HomePage
-                        }
-                      : null,
-                  child: const Text(
-                    'Los Gehts!',
+                  const SizedBox(height: 10),
+                  const Text(
+                    'V  I  N  O',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.primaryWhite, // Text color
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                const SizedBox(height: 20), // To replace the Spacer
-              ],
+                  const Text(
+                    'VERITAS',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  TextField(
+                    controller: _usernameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                      ),
+                      labelText: 'Username',
+                    ),
+                    onSubmitted: _onTextChanged,
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _isButtonEnabled
+                          ? AppColors.primaryRed
+                          : AppColors.secondaryGrey,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    onPressed: _isButtonEnabled
+                        ? () {
+                            context.go('/home');
+                          }
+                        : null,
+                    child: const Text(
+                      'Los Gehts!',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: AppColors.primaryWhite,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),

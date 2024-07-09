@@ -20,6 +20,12 @@ class ShowSettings extends SettingsState {
   String get getusername => settings.username;
 }
 
+class NotLoggedIn extends SettingsState {
+  final SettingsModel settings;
+
+  NotLoggedIn(this.settings);
+}
+
 class SettingsLoad extends SettingsState {
   final SettingsModel settings;
 
