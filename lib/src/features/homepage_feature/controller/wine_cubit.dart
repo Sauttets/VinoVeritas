@@ -5,7 +5,6 @@ import 'package:vinoveritas/src/features/homepage_feature/repository/wine_reposi
 
 class WineCubit extends Cubit<WineState> {
   final WineRepository wineRepository;
-  final int userId = 1;  // Assuming user_id is always 1 as per your requirement
   int offset = 1;
   final int limit = 20;
 
@@ -13,8 +12,10 @@ class WineCubit extends Cubit<WineState> {
   String sort = 'most-liked';
   String? fit;
   String? flavour;
+  bool favlist;
+  String shareCode = '46f5d57f';
 
-  WineCubit({required this.wineRepository}) : super(const WineInitial());
+  WineCubit({required this.wineRepository, this.favlist = false}) : super(const WineInitial());
 
   Future<void> fetchWines({bool resetList = false}) async {
     if (state is WineLoading) return;
@@ -33,6 +34,8 @@ class WineCubit extends Cubit<WineState> {
         sort: sort,
         fit: fit,
         flavour: flavour,
+        favlist: favlist,
+        shareCode: shareCode,
       );
       if (newWines.isEmpty) {
         emit(WineLoaded(state.wines, hasReachedMax: true));
@@ -59,12 +62,18 @@ class WineCubit extends Cubit<WineState> {
     await fetchWines(resetList: true);
   }
 
+  Future<void> fetchFavlistWines(String favlistShareCode) async {
+    favlist = true;
+    shareCode = favlistShareCode;
+    await fetchWines(resetList: true);
+  }
+
   Future<void> toggleFavorite(Wine wine) async {
     try {
       if (wine.isLiked) {
-        await wineRepository.removeFromFavorites(userId, wine.id);
+        await wineRepository.removeFromFavorites(shareCode, wine.id);
       } else {
-        await wineRepository.addToFavorites(userId, wine.id);
+        await wineRepository.addToFavorites(shareCode, wine.id);
       }
 
       final updatedWines = state.wines.map((w) {

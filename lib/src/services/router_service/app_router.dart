@@ -6,6 +6,7 @@ import 'package:vinoveritas/src/features/settings_feature/aview/screens/login_pa
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/screens/lexikon_page.dart';
 import 'package:vinoveritas/main.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/screens/wine_details_page.dart';
 import 'package:vinoveritas/src/screens/wine_details_page.dart';
 
 class NoTransitionPage<T> extends CustomTransitionPage<T> {
@@ -34,7 +35,7 @@ final GoRouter router = GoRouter(
       path: '/home',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(),
+          child: WinePageLayout(showFavList: false)
         ),
       ),
     ),
@@ -49,8 +50,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/page2',
       pageBuilder: (context, state) => NoTransitionPage(
-        child: CustomNavBarWrapper(
-          child: placeholderPage("xxx"), //LikePageLayout(),
+        child: const CustomNavBarWrapper(
+          child: WinePageLayout(showFavList: true)
+
         ),
       ),
     ),

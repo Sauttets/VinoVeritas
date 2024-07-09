@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/screens/like_page.dart.old';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 
 class WineDropdown extends StatefulWidget {
   final List<FavlistTupel> wineLists;
@@ -42,6 +44,8 @@ class WineDropdownState extends State<WineDropdown> {
             onChanged: (String? newValue) {
               setState(() {
                 _selectedWineList = newValue!;
+                final selectedWineList = widget.wineLists.firstWhere((wineList) => wineList.name == newValue);
+                context.read<WineCubit>().fetchFavlistWines(selectedWineList.shareCode);
               });
             },
             items: widget.wineLists.map<DropdownMenuItem<String>>((FavlistTupel favlistTupel) {

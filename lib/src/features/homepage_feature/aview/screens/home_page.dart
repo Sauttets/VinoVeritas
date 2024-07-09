@@ -1,26 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/filter_sort_taste.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/search_bar.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/wine_card.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/filter_sort_taste.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/search_bar.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_dropdown.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_grid_view.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_state.dart';
-import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
+import 'package:vinoveritas/src/services/persistence_service/IsarService.dart';
 
-class WinePageLayout extends StatelessWidget {
-  const WinePageLayout({super.key});
+class WinePageLayout extends StatefulWidget {
+  final bool showFavList;
+
+  const WinePageLayout({super.key, required this.showFavList});
+
+  @override
+  WinePageLayoutState createState() => WinePageLayoutState();
+}
+
+class WinePageLayoutState extends State<WinePageLayout> {
+  late Future<List<FavlistTupel>> _wineLists;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.showFavList) {
+      _wineLists = IsarService().getSharedLists();
+    } else {
+      _wineLists = Future.value([]);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: BlocProvider(
-          create: (context) => WineCubit(wineRepository: WineRepository())..fetchWines(),
+          create: (context) => WineCubit(
+            wineRepository: WineRepository(),
+            favlist: widget.showFavList,
+          )..fetchWines(),
           child: Column(
             children: [
               const WineSearchBar(),
               const FilterSortTaste(),
+              if (widget.showFavList)
+                FutureBuilder<List<FavlistTupel>>(
+                  future: _wineLists,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return const Text('No wine lists available');
+                    } else {
+                      return WineDropdown(wineLists: snapshot.data!);
+                    }
+                  },
+                ),
               Expanded(
                 child: BlocBuilder<WineCubit, WineState>(
                   builder: (context, state) {
@@ -39,66 +78,5 @@ class WinePageLayout extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class WineGridView extends StatefulWidget {
-  final List<Wine> wines;
-  final bool hasReachedMax;
-
-  const WineGridView({super.key, required this.wines, required this.hasReachedMax});
-
-  @override
-  WineGridViewState createState() => WineGridViewState();
-}
-
-class WineGridViewState extends State<WineGridView> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    if (_isBottom) {
-      context.read<WineCubit>().fetchWines();
-    }
-  }
-
-  bool get _isBottom {
-    if (!_scrollController.hasClients) return false;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-    return currentScroll >= (maxScroll * 0.9);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      controller: _scrollController,
-      padding: const EdgeInsets.all(8.0),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
-        childAspectRatio: 0.75,
-      ),
-      itemCount: widget.hasReachedMax ? widget.wines.length : widget.wines.length + 1,
-      itemBuilder: (context, index) {
-        if (index >= widget.wines.length) {
-          return const Center(child: Text('No more wines'));
-        } else {
-          return WineCard(wine: widget.wines[index]);
-        }
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

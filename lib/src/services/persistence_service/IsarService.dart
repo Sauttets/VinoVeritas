@@ -1,6 +1,7 @@
 import 'package:http/http.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/services/persistence_service/IsarServiceInterface.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 import 'dart:convert';
@@ -100,9 +101,7 @@ class IsarService implements IsarServiceInterface {
   Future<Settings?> saveSettings(Settings settings) async {
     final isar = await db;
     await isar.writeTxn(() async {
-      // Lösche alle vorhandenen Settings, bevor du neue speicherst.
       await isar.settings.clear();
-      // Speichere das neue Settings-Objekt.
       await isar.settings.put(settings);
     });
     return settings;
@@ -111,8 +110,6 @@ class IsarService implements IsarServiceInterface {
   @override
   Future<Settings?> getSettings() async {
     final isar = await db;
-    // Da wir sicherstellen, dass immer nur ein Settings-Objekt gespeichert wird,
-    // können wir das erste Objekt aus der Datenbank abrufen.
     final settings = await isar.settings.where().findFirst();
     return settings;
   }
@@ -150,11 +147,13 @@ class IsarService implements IsarServiceInterface {
 
     if (user != null) {
       await isar.writeTxn(() async {
-        user.sharedWith.add(Sharedlist()
-          ..name = name
-          ..shareCode = shareCode);
-        await isar.settings
-            .put(user); // Sicherstellen, dass die Änderungen gespeichert werden
+        final newList = List<Sharedlist>.from(user.sharedWith)
+          ..add(Sharedlist()
+            ..name = name
+            ..shareCode = shareCode);
+        user.sharedWith = newList;
+        await isar.settings.put(user);
+
       });
     } else {
       throw Exception('User not found');
@@ -183,6 +182,51 @@ class IsarService implements IsarServiceInterface {
     if (user != null) {
       final entry = user.sharedWith.firstWhere((entry) => entry.name == name);
       return entry.shareCode;
+    } else {
+      throw Exception('User not found');
+    }
+  }
+
+  @override
+  Future<String> getUserShareCode() async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
+
+    if (user != null) {
+      return user.shareCode;
+    } else {
+      throw Exception('User not found');
+
+    }
+  }
+  @override
+  Future<List<FavlistTupel>> getSharedLists() async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
+
+    if (user == null) {
+      return [];
+    }
+
+    return user.sharedWith
+        .map((shared) =>
+            FavlistTupel(shareCode: shared.shareCode, name: shared.name))
+        .toList();
+  }
+
+  @override
+  Future<void> clearSharedLists() async {
+    final isar = await db;
+    final id = await getID();
+    final user = await isar.settings.get(id);
+
+    if (user != null) {
+      await isar.writeTxn(() async {
+        user.sharedWith = []; // Assign a new growable list
+        await isar.settings.put(user);
+      });
     } else {
       throw Exception('User not found');
     }

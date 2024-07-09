@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/general_feature/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
