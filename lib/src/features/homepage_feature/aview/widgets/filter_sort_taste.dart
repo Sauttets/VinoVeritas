@@ -65,12 +65,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
       } else {
         selectedOption = option; // Select new option
       }
-
-      if (selectedCategory == 'Essen') {
-        context.read<WineCubit>().applyFilters(fit: selectedOption, flavour: null);
-      } else {
-        context.read<WineCubit>().applyFilters(flavour: selectedOption, fit: null);
-      }
+      context.read<WineCubit>().applyFilters(fitOrFlavour: selectedOption);
     });
   }
 
@@ -115,7 +110,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
           selectedCategory = category;
           selectedOption = null; // Deselect the current option when category changes
         });
-        context.read<WineCubit>().applyFilters(fit: null, flavour: null);
+        context.read<WineCubit>().applyFilters(fitOrFlavour: null);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: Spacings.buttonSpacing),

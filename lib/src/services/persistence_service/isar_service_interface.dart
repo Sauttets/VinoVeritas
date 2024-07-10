@@ -15,15 +15,8 @@ abstract class IsarServiceInterface {
   Future<String> getUserName();
   //Get the user id from the local database
   Future<int> getID();
-  //Get the user share code from the local database
-  Future<String> getUserShareCode();
-
   //Add a new shared list to the local database
   Future<void> addSharedList(String name, String shareCode);
-  //Get all shared lists Names from the local database
-  Future<List<String>> getAllSharedNames();
-  //Get the share code from a shared list by name
-  Future<String> getSharedCodeFrom(String name);
   //Get all shared list with names as a tupel (shareCode, name)
   Future<List<FavlistTupel>>getSharedLists();
 

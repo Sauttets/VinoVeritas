@@ -8,7 +8,7 @@ class WineSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal),
+      padding: const EdgeInsets.only(left: Spacings.horizontal, right: Spacings.horizontal, top: 28),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.primaryWhite,

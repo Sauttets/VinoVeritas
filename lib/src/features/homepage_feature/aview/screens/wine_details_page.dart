@@ -8,51 +8,93 @@ import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart'
 import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/wine_feature/widgets/wine_deatail_top.dart';
+import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 
-class WineDetailsPage extends StatelessWidget {
+class WineDetailsPage extends StatefulWidget {
   final Wine wine;
+  final bool favlist;
 
-  const WineDetailsPage({super.key, required this.wine});
+  const WineDetailsPage({
+    super.key,
+    required this.wine,
+    required this.favlist,
+  });
+
+  @override
+  _WineDetailsPageState createState() => _WineDetailsPageState();
+}
+
+class _WineDetailsPageState extends State<WineDetailsPage> {
+  late Future<String> _shareCodeFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _shareCodeFuture = _getShareCode();
+  }
+
+  Future<String> _getShareCode() async {
+    final lists = await IsarService().getSharedLists();
+    return lists.isNotEmpty ? lists.first.shareCode : '';
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => WineCubit(wineRepository: WineRepository()),
-      child: Scaffold(
-        appBar: AppBar(
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                WineDetailTop(wine: wine),
-                FullDescription(
-                  tastePallet: TastePallet(
-                    flavor1: wine.flavours.isNotEmpty ? wine.flavours[0] : '',
-                    flavor2: wine.flavours.length > 1 ? wine.flavours[1] : null,
-                    flavor3: wine.flavours.length > 2 ? wine.flavours[2] : null,
-                    fit1: wine.fitsTo.isNotEmpty ? wine.fitsTo[0] : '',
-                    fit2: wine.fitsTo.length > 1 ? wine.fitsTo[1] : null,
-                    fit3: wine.fitsTo.length > 2 ? wine.fitsTo[2] : null,
-                  ),
-                  description: Description(description: wine.description),
-                ),
-                const SizedBox(height: 16.0),
-                if (wine.supermarkets.isNotEmpty)
-                  ...wine.supermarkets.map((supermarket) => SupermarketSelector(
-                    name: supermarket.name,
-                    address: '${supermarket.street} ${supermarket.houseNumber}, ${supermarket.city}',
-                    postalCode: supermarket.postalCode,
-                    price: '${supermarket.price.toStringAsFixed(2)}€',
-                  )
-                ),
-              ],
+    return FutureBuilder<String>(
+      future: _shareCodeFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No share code available'));
+        } else {
+          final shareCode = snapshot.data!;
+          return BlocProvider(
+            create: (context) => WineCubit(
+              wineRepository: WineRepository(),
+              favlist: widget.favlist,
+              shareCode: shareCode,
             ),
-          ),
-        ),
-      ),
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(widget.wine.name),
+              ),
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      WineDetailTop(wine: widget.wine),
+                      FullDescription(
+                        tastePallet: TastePallet(
+                          flavor1: widget.wine.flavours.isNotEmpty ? widget.wine.flavours[0] : '',
+                          flavor2: widget.wine.flavours.length > 1 ? widget.wine.flavours[1] : null,
+                          flavor3: widget.wine.flavours.length > 2 ? widget.wine.flavours[2] : null,
+                          fit1: widget.wine.fitsTo.isNotEmpty ? widget.wine.fitsTo[0] : '',
+                          fit2: widget.wine.fitsTo.length > 1 ? widget.wine.fitsTo[1] : null,
+                          fit3: widget.wine.fitsTo.length > 2 ? widget.wine.fitsTo[2] : null,
+                        ),
+                        description: Description(description: widget.wine.description),
+                      ),
+                      const SizedBox(height: 16.0),
+                      if (widget.wine.supermarkets.isNotEmpty)
+                        ...widget.wine.supermarkets.map((supermarket) => SupermarketSelector(
+                              name: supermarket.name,
+                              address: '${supermarket.street} ${supermarket.houseNumber}, ${supermarket.city}',
+                              postalCode: supermarket.postalCode,
+                              price: '${supermarket.price.toStringAsFixed(2)}€',
+                            )),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }

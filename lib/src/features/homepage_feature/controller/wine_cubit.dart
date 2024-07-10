@@ -10,12 +10,11 @@ class WineCubit extends Cubit<WineState> {
 
   String color = 'all';
   String sort = 'most-liked';
-  String? fit;
-  String? flavour;
+  String? fitOrFlavour;
   bool favlist;
-  String shareCode = '46f5d57f';
+  String shareCode;
 
-  WineCubit({required this.wineRepository, this.favlist = false}) : super(const WineInitial());
+  WineCubit({required this.wineRepository, required this.favlist, required this.shareCode}) : super(const WineInitial());
 
   Future<void> fetchWines({bool resetList = false}) async {
     if (state is WineLoading) return;
@@ -32,8 +31,7 @@ class WineCubit extends Cubit<WineState> {
         limit: limit,
         color: color,
         sort: sort,
-        fit: fit,
-        flavour: flavour,
+        fitOrFlavour: fitOrFlavour,
         favlist: favlist,
         shareCode: shareCode,
       );
@@ -44,20 +42,18 @@ class WineCubit extends Cubit<WineState> {
         emit(WineLoaded(List.from(state.wines)..addAll(newWines)));
       }
     } catch (e) {
-      emit(WineError("Failed to fetch wines", state.wines));
+      emit(WineError("Bitte gehen sie weiter, hier gibt es nichts zu sehen!", state.wines));
     }
   }
 
   Future<void> applyFilters({
     String? color,
     String? sort,
-    String? fit,
-    String? flavour,
+    String? fitOrFlavour,
   }) async {
     if (color != null) this.color = color;
     if (sort != null) this.sort = sort;
-    if (fit != null) this.fit = fit;
-    if (flavour != null) this.flavour = flavour;
+    if (fitOrFlavour != null) this.fitOrFlavour = fitOrFlavour;
 
     await fetchWines(resetList: true);
   }

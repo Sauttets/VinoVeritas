@@ -150,45 +150,7 @@ class IsarService implements IsarServiceInterface {
     }
   }
 
-  @override
-  Future<List<String>> getAllSharedNames() async {
-    final isar = await db;
-    final id = await getID();
-    final user = await isar.settings.get(id);
 
-    if (user != null) {
-      return user.sharedWith.map((entry) => entry.name).toList();
-    } else {
-      return [];
-    }
-  }
-
-  @override
-  Future<String> getSharedCodeFrom(String name) async {
-    final isar = await db;
-    final id = await getID();
-    final user = await isar.settings.get(id);
-
-    if (user != null) {
-      final entry = user.sharedWith.firstWhere((entry) => entry.name == name);
-      return entry.shareCode;
-    } else {
-      throw Exception('User not found');
-    }
-  }
-
-  @override
-  Future<String> getUserShareCode() async {
-    final isar = await db;
-    final id = await getID();
-    final user = await isar.settings.get(id);
-
-    if (user != null) {
-      return user.shareCode;
-    } else {
-      throw Exception('User not found');
-    }
-  }
 
   @override
   Future<List<FavlistTupel>> getSharedLists() async {

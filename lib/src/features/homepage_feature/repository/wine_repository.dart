@@ -10,8 +10,7 @@ class WineRepository {
     required int limit,
     String color = 'all',
     String sort = 'most-liked',
-    String? fit,
-    String? flavour,
+    String? fitOrFlavour,
     bool favlist = false,
     required String shareCode,
   }) async {
@@ -20,21 +19,15 @@ class WineRepository {
       'range': '$offset:$limit',
       if (color != 'all') 'color': color,
       if (sort != 'most-liked') 'sort': sort,
-      if (fit != null) 'fit': fit,
-      if (flavour != null) 'flavour': flavour,
+      if (fitOrFlavour != null) 'fitOrFlavour': fitOrFlavour,
       if (favlist) 'favlist': 'true',
     });
 
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       List<dynamic> jsonList = json.decode(response.body);
-      fit = null;
-      flavour = null;
       return jsonList.map((json) => Wine.fromJson(json)).toList();
-      
     } else {
-      fit = null;
-      flavour = null;
       throw Exception('Failed to load wines');
     }
   }

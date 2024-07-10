@@ -26,7 +26,8 @@ class HeartButtonState extends State<HeartButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.read<WineCubit>().toggleFavorite(widget.wine);
+        final cubit = context.read<WineCubit>();
+        cubit.toggleFavorite(widget.wine);
         setState(() {
           isPressed = !isPressed;
         });

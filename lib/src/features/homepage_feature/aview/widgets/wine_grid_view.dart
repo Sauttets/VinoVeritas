@@ -50,7 +50,7 @@ class WineGridViewState extends State<WineGridView> {
       itemCount: widget.hasReachedMax ? widget.wines.length : widget.wines.length + 1,
       itemBuilder: (context, index) {
         if (index >= widget.wines.length) {
-          return const Center(child: Text('No more wines'));
+          return const Center(child: Text(''));
         } else {
           return WineCard(wine: widget.wines[index]);
         }

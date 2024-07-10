@@ -67,7 +67,7 @@ final GoRouter router = GoRouter(
       path: '/wine-details',
       builder: (context, state) {
         final wine = state.extra as Wine;
-        return WineDetailsPage(wine: wine);
+        return WineDetailsPage(wine: wine, favlist: false);
       },
     ),
   ],
