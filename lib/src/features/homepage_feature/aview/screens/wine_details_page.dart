@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/homepage_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/full_description.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/supermarket_selector.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/wine_deatail_top.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/description.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/taste_pallet.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/full_description.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/supermarket_selector.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_deatail_top.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 
 class WineDetailsPage extends StatefulWidget {

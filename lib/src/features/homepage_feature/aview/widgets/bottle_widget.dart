@@ -31,8 +31,21 @@ class BottleWidget extends StatelessWidget {
                   wine.imageURL,
                   height: bottleHeight, // Dynamic height based on screen width
                   errorBuilder: (context, error, stackTrace) {
+                    String bottleImage;
+                    switch (wine.type.toLowerCase()) {
+                      case 'white':
+                        bottleImage = 'assets/images/WeissweinFlasche.png';
+                        break;
+                      case 'rose':
+                        bottleImage = 'assets/images/RoseweinFlasche.png';
+                        break;
+                      case 'red':
+                      default:
+                        bottleImage = 'assets/images/RotweinFlasche.png';
+                        break;
+                    }
                     return Image.asset(
-                      'assets/images/RotweinFlasche.png',
+                      bottleImage,
                       height: bottleHeight,
                     );
                   },

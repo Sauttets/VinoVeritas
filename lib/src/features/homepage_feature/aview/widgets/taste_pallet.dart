@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/taste_maps.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/taste_maps.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 class TastePallet extends StatelessWidget {

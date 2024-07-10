@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/dropdown_line.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/taste_pallet.dart';
-import 'package:vinoveritas/src/features/wine_feature/widgets/description.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/dropdown_line.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/taste_pallet.dart';
+import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/description.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
 class FullDescription extends StatefulWidget {
