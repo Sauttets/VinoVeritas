@@ -89,13 +89,23 @@ class IsarService implements IsarServiceInterface {
   }
 
   @override
-  Future<Settings?> saveSettings(Settings settings) async {
+  Future<Settings> saveSettings(Settings settings) async {
     final isar = await db;
     await isar.writeTxn(() async {
+      // Holen der aktuellen Einstellungen
+      final Settings? currentSettings = await isar.settings.where().findFirst();
+
+      // Wenn aktuelle Einstellungen existieren, füge deren sharedWith Liste zu den neuen Einstellungen hinzu
+      if (currentSettings != null && currentSettings.sharedWith.isNotEmpty) {
+        // Vermeidung von Duplikaten könnte erforderlich sein, abhängig von der Geschäftslogik
+        settings.sharedWith.addAll(currentSettings.sharedWith);
+      }
+
+      // Löschen der alten Einstellungen und Speichern der neuen Einstellungen
       await isar.settings.clear();
       await isar.settings.put(settings);
     });
-    return settings;
+    return settings; // Return the updated settings object
   }
 
   @override
@@ -149,8 +159,6 @@ class IsarService implements IsarServiceInterface {
       throw Exception('User not found');
     }
   }
-
-
 
   @override
   Future<List<FavlistTupel>> getSharedLists() async {
