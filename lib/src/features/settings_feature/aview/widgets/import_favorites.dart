@@ -29,13 +29,42 @@ class NewWidget extends StatefulWidget {
   const NewWidget({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _NewWidgetState createState() => _NewWidgetState();
 }
 
 class _NewWidgetState extends State<NewWidget> {
-  String weincode = '';
-  String listName = '';
+  final TextEditingController weincodeController = TextEditingController();
+  final TextEditingController listNameController = TextEditingController();
+
+  bool get isButtonEnabled =>
+      weincodeController.text.isNotEmpty && listNameController.text.isNotEmpty;
+
+  @override
+  void dispose() {
+    weincodeController.dispose();
+    listNameController.dispose();
+    super.dispose();
+  }
+
+  void _onImportPressed(BuildContext context) {
+    // Import logic
+    context.read<SettingsCubit>().importFavorites(
+          listNameController.text,
+          weincodeController.text,
+        );
+
+    // Clear the text fields
+    weincodeController.clear();
+    listNameController.clear();
+
+    // Show feedback
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Favorites imported successfully!')),
+    );
+
+    // Update the button state
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +88,9 @@ class _NewWidgetState extends State<NewWidget> {
               width: 391.0,
               height: 44.0,
               child: TextField(
+                controller: weincodeController,
                 onChanged: (value) {
-                  setState(() {
-                    weincode = value;
-                  });
+                  setState(() {});
                 },
                 decoration: InputDecoration(
                   filled: true,
@@ -85,10 +113,9 @@ class _NewWidgetState extends State<NewWidget> {
               width: 391.0,
               height: 44.0,
               child: TextField(
+                controller: listNameController,
                 onChanged: (value) {
-                  setState(() {
-                    listName = value;
-                  });
+                  setState(() {});
                 },
                 decoration: InputDecoration(
                   filled: true,
@@ -103,25 +130,36 @@ class _NewWidgetState extends State<NewWidget> {
             const SizedBox(height: 20),
             Align(
               alignment: Alignment.centerRight,
-              child: FractionallySizedBox(
-                widthFactor: 1 / 3,
-                child: SizedBox(
-                  height: 30.0,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(AppColors.primaryGrey),
-                      shape: WidgetStateProperty.all<OutlinedBorder>(
-                        const StadiumBorder(),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  minWidth: 0,
+                  maxWidth: double.infinity,
+                ),
+                child: IntrinsicWidth(
+                  child: SizedBox(
+                    height: 30.0,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                            return isButtonEnabled
+                                ? AppColors.primaryRed // Button is red when enabled
+                                : AppColors.primaryGrey; // Button is grey when disabled
+                          },
+                        ),
+                        shape: WidgetStateProperty.all<OutlinedBorder>(
+                          const StadiumBorder(),
+                        ),
                       ),
-                    ),
-                    onPressed: () => context
-                        .read<SettingsCubit>()
-                        .importFavorites(listName, weincode),
-                    child: const Text(
-                      'Importieren',
-                      style: TextStyle(
-                        color: AppColors.primaryWhite,
+                      onPressed: isButtonEnabled
+                          ? () => _onImportPressed(context)
+                          : null, // Button is only clickable when enabled
+                      child: const Text(
+                        'Importieren',
+                        style: TextStyle(
+                          color: AppColors.primaryWhite,
+                        ),
                       ),
                     ),
                   ),

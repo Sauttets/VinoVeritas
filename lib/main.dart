@@ -5,12 +5,11 @@ import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/navbar.d
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
-import 'package:vinoveritas/src/services/router_service/app_router.dart'
-    as app_router;
+import 'package:vinoveritas/src/services/router_service/app_router.dart' as app_router;
+import 'package:vinoveritas/util/app_colors.dart';
 
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Ensure plugin services are initialized
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin services are initialized
   await setupLocator(); // Setup service locator and initialize services
   runApp(const MyApp());
 }
@@ -27,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: app_router.router,
       builder: (context, router) {
         return router!;
@@ -45,10 +45,11 @@ class CustomNavBarWrapper extends StatelessWidget {
     final currentLocation = GoRouter.of(context).location; // Use the extension
 
     return Scaffold(
+      backgroundColor: AppColors.primaryWhite,
       resizeToAvoidBottomInset: false,
-      body: child,
+      body: SafeArea(child: child), // Wrap the body in SafeArea
       bottomNavigationBar: !hideNavBarRoutes.contains(currentLocation)
-          ? CustomNavBar(goRouter: GoRouter.of(context))
+          ? SafeArea(child: CustomNavBar(goRouter: GoRouter.of(context))) // Wrap the NavBar in SafeArea
           : null,
     );
   }

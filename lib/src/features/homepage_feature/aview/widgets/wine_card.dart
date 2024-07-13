@@ -132,7 +132,7 @@ class WineCardState extends State<WineCard> {
               bottom: 16,
               left: 16,
               child: Text(
-                '\$${cheapestPrice?.toStringAsFixed(2)}',
+                '${cheapestPrice?.toStringAsFixed(2)}€',
                 style: const TextStyle(
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,

@@ -185,7 +185,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
               GestureDetector(
                 onTap: toggleTasteMenuExpansion,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   decoration: BoxDecoration(
                     color: AppColors.primaryWhite,
                     borderRadius: BorderRadius.circular(50),

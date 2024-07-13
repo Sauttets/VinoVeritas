@@ -5,6 +5,7 @@ import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_wine
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_fact_card.dart';
 import 'package:vinoveritas/src/features/facts_feature/controller/wine_fact_cubit.dart';
 import 'package:vinoveritas/src/features/facts_feature/wine_fact_repository.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class LexiconPage extends StatelessWidget {
   const LexiconPage({super.key});
@@ -12,6 +13,7 @@ class LexiconPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryWhite,
       body: SafeArea(
         child: BlocProvider(
           create: (context) => WineFactCubit(wineFactRepository: WineFactRepository())..fetchWineFact(),

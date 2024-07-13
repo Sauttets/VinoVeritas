@@ -134,7 +134,7 @@ class SupermarketSelector extends StatelessWidget {
     //String mapsAddress = '$name, $address, $postalCode';
     return Card(
       elevation: 0.0,
-      color: AppColors.primaryWhite,
+      color: AppColors.widgetGrey,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
       ),

@@ -9,6 +9,7 @@ import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/full_des
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/supermarket_selector.dart';
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/wine_deatail_top.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class WineDetailsPage extends StatefulWidget {
   final Wine wine;
@@ -21,10 +22,10 @@ class WineDetailsPage extends StatefulWidget {
   });
 
   @override
-  _WineDetailsPageState createState() => _WineDetailsPageState();
+  WineDetailsPageState createState() => WineDetailsPageState();
 }
 
-class _WineDetailsPageState extends State<WineDetailsPage> {
+class WineDetailsPageState extends State<WineDetailsPage> {
   late Future<String> _shareCodeFuture;
 
   @override
@@ -58,8 +59,8 @@ class _WineDetailsPageState extends State<WineDetailsPage> {
               shareCode: shareCode,
             ),
             child: Scaffold(
+              backgroundColor: AppColors.primaryWhite, // Set your desired background color here
               appBar: AppBar(
-                title: Text(widget.wine.name),
               ),
               body: SingleChildScrollView(
                 child: Padding(

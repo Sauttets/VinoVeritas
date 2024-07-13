@@ -9,6 +9,7 @@ import 'package:vinoveritas/src/features/homepage_feature/controller/wine_state.
 import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 
 class WinePageLayout extends StatefulWidget {
   final bool showFavList;
@@ -40,6 +41,7 @@ class WinePageLayoutState extends State<WinePageLayout> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.primaryWhite, // Set your desired background color here
         body: FutureBuilder<List<FavlistTupel>>(
           future: _wineLists,
           builder: (context, snapshot) {

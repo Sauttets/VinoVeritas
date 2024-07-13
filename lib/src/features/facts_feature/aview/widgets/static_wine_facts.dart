@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/expandable_wine_facts_list.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_facts_selector.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 class StaticWineFacts extends StatefulWidget {
@@ -18,11 +19,12 @@ class StaticWineFactsState extends State<StaticWineFacts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryWhite,
       appBar: AppBar(
         automaticallyImplyLeading: false, // This line removes the back button
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0.0),
-          child: WineFactsSelector(
+          child: WineFactsSelector( 
             selectedIndex: selectedIndex,
             onTabSelected: (index) {
               setState(() {
