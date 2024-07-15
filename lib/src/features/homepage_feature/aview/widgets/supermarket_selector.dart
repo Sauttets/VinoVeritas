@@ -133,8 +133,8 @@ class SupermarketSelector extends StatelessWidget {
     String mapsAddress = 'Edeka Baur, Reichenaustraße 36, 78467 Konstanz';
     //String mapsAddress = '$name, $address, $postalCode';
     return Card(
-      elevation: 0.0,
-      color: AppColors.widgetGrey,
+      elevation: 5.0, // Add elevation to make it elevated
+      color: Colors.white, // Set the color to white
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Spacings.cornerRadius),
       ),

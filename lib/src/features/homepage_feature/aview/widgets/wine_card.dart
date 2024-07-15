@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/heartbutton.dart';
 import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/homepage_feature/repository/wine_repository.dart';
+import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:go_router/go_router.dart';
 
@@ -75,7 +76,7 @@ class WineCardState extends State<WineCard> {
         width: cardWidth,
         height: cardHeight,
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: AppColors.primaryWhite,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -106,7 +107,7 @@ class WineCardState extends State<WineCard> {
                     widget.wine.year.toString(),
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
-                      color: Colors.grey,
+                      color:AppColors.primaryGrey,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -122,7 +123,7 @@ class WineCardState extends State<WineCard> {
                     '${widget.wine.volume} ml',
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
-                      color: Colors.grey,
+                      color: AppColors.primaryGrey,
                     ),
                   ),
                 ],

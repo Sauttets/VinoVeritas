@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
-
 class AttSlider extends StatelessWidget {
   final double price;
   final int volume;
@@ -27,6 +26,7 @@ class AttSlider extends StatelessWidget {
 
     return Card(
       elevation: 5,
+      color: AppColors.primaryWhite, // Change this to your desired color
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -39,10 +39,10 @@ class WinePageLayoutState extends State<WinePageLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.primaryWhite, // Set your desired background color here
-        body: FutureBuilder<List<FavlistTupel>>(
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor, // Set your desired background color here
+      body: SafeArea(
+        child: FutureBuilder<List<FavlistTupel>>(
           future: _wineLists,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {

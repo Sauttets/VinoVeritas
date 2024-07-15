@@ -16,29 +16,26 @@ class WineFactsSelector extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double buttonWidth = screenWidth / 4 - 5; 
 
-    return Container(
-      color: Colors.white, // Set the background color to white
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              color: AppColors.widgetGrey,
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildButton(0, 'Weinbau', buttonWidth),
-                _buildButton(1, 'Kellerei', buttonWidth),
-                _buildButton(2, 'Geschmack', buttonWidth),
-                _buildButton(3, 'Sonstiges', buttonWidth),
-              ],
-            ),
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: AppColors.widgetGrey,
+            borderRadius: BorderRadius.circular(50),
           ),
-          const SizedBox(height: 8),
-        ],
-      ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildButton(0, 'Weinbau', buttonWidth),
+              _buildButton(1, 'Kellerei', buttonWidth),
+              _buildButton(2, 'Geschmack', buttonWidth),
+              _buildButton(3, 'Sonstiges', buttonWidth),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+      ],
     );
   }
 

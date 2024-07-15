@@ -18,7 +18,7 @@ class Description extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: Card(
-            elevation: 0.0,
+            elevation: 5.0, // Elevation set to 5.0
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Spacings.cornerRadius),
             ),

@@ -59,8 +59,9 @@ class WineDetailsPageState extends State<WineDetailsPage> {
               shareCode: shareCode,
             ),
             child: Scaffold(
-              backgroundColor: AppColors.primaryWhite, // Set your desired background color here
+              backgroundColor: AppColors.backgroundColor,
               appBar: AppBar(
+                backgroundColor: AppColors.backgroundColor,
               ),
               body: SingleChildScrollView(
                 child: Padding(

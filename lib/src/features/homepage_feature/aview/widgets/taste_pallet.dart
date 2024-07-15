@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/taste_maps.dart';
+import 'package:vinoveritas/util/taste_maps.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+
 class TastePallet extends StatelessWidget {
   final String flavor1;
   final String? flavor2;
@@ -29,7 +30,7 @@ class TastePallet extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: Card(
-            elevation: 0.0,
+            elevation: 5.0, // Elevation set to 5.0
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Spacings.cornerRadius),
             ),

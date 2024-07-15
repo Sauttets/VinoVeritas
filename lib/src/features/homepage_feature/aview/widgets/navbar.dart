@@ -61,7 +61,9 @@ class CustomNavBarState extends State<CustomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
+    return bottomInset == 0 ? Container(
       constraints: const BoxConstraints.expand(height: 78.0),
       decoration: const BoxDecoration(
         border: Border(
@@ -95,7 +97,7 @@ class CustomNavBarState extends State<CustomNavBar> {
         showUnselectedLabels: false,
         elevation: 0,
       ),
-    );
+    ) : const SizedBox.shrink();
   }
 
   Widget _buildIcon(IconData icon, int index) {

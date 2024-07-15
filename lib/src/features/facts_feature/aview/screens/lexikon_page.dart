@@ -13,12 +13,12 @@ class LexiconPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: BlocProvider(
           create: (context) => WineFactCubit(wineFactRepository: WineFactRepository())..fetchWineFact(),
           child: const Padding(
-            padding: EdgeInsets.only(top: 16.0), // Additional padding above
+            padding: EdgeInsets.only(top: 16.0),
             child: Column(
               children: [
                 Padding(

@@ -19,8 +19,9 @@ class StaticWineFactsState extends State<StaticWineFacts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
         automaticallyImplyLeading: false, // This line removes the back button
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0.0),
@@ -34,7 +35,8 @@ class StaticWineFactsState extends State<StaticWineFacts> {
           ),
         ),
       ),
-      body: Padding(
+      body: Container(
+        color: AppColors.backgroundColor,
         padding: const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
         child: WineFactsTab(wineFacts: wineFactsTab[selectedIndex], tabIndex: selectedIndex),
       ),

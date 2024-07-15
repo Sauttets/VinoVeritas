@@ -9,18 +9,18 @@ class WineSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
+        top: Spacings.vertical,
         left: Spacings.horizontal, 
         right: Spacings.horizontal, 
-        top: 28
       ),
       child: Container(
-        height: 40.0, // Set the desired height here
+        height: 40.0,
         decoration: BoxDecoration(
           color: AppColors.primaryWhite,
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
-            color: AppColors.primaryGrey, // Set the border color here
-            width: 1.0, // Set the border width here
+            color: AppColors.primaryGrey,
+            width: 1.0,
           ),
         ),
         child: const TextField(
@@ -28,7 +28,7 @@ class WineSearchBar extends StatelessWidget {
             hintText: 'Suche...',
             prefixIcon: Icon(Icons.search),
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 10.0), // Adjust vertical padding as needed
+            contentPadding: EdgeInsets.symmetric(vertical: 10.0),
           ),
         ),
       ),

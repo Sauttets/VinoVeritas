@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Add this import for SystemChrome
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/navbar.dart';
@@ -11,6 +12,9 @@ import 'package:vinoveritas/util/app_colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin services are initialized
   await setupLocator(); // Setup service locator and initialize services
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: AppColors.backgroundColor, // Set your desired color here
+  ));
   runApp(const MyApp());
 }
 
@@ -22,7 +26,7 @@ Future<void> setupLocator() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
