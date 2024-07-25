@@ -19,7 +19,6 @@ class IsarService implements IsarServiceInterface {
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
         [SettingsSchema],
-        inspector: true,
         directory: dir.path,
       );
     }

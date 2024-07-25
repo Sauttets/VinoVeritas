@@ -16,4 +16,13 @@ class Spacings {
   static const double lineVerticalThickness = 2.0;
   static const double lineHorizontalThickness = 2.0;
   static const double lineBorder = 4.0;
+
+
+  static const double widgetVertical = 10.0;
+  static const double widgetHorizontal = 10.0;
+  static const double widgetPaddingAll = 10.0;
+  static const double edge = 5.0;
+  static const double roundCorner = 50.0;
+  static const double textFieldHeight = 44.0;
+
 }

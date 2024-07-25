@@ -5,6 +5,7 @@ import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_fact_o
 import 'package:vinoveritas/src/features/facts_feature/controller/wine_fact_cubit.dart';
 import 'package:vinoveritas/src/features/facts_feature/wine_fact_repository.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class LexiconPage extends StatelessWidget {
   const LexiconPage({super.key});
@@ -19,7 +20,7 @@ class LexiconPage extends StatelessWidget {
             child: const Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                   child: WineFactCardSection(),
                 ),
                 Expanded(

@@ -7,6 +7,7 @@ import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_user
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -21,7 +22,7 @@ class SettingsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(
-                top: 16.0,
+                top: Spacings.widgetVertical,
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Center(
@@ -30,11 +31,11 @@ class SettingsPage extends StatelessWidget {
                       .center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                       child: SetUsername(),
                     ),
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                     ),
                     BlocBuilder<SettingsCubit, SettingsState>(
                       builder: (context, state) {
@@ -58,13 +59,13 @@ class SettingsPage extends StatelessWidget {
                       builder: (context, state) {
                         if (state is ShowSettings) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
                                 text: state.settings.shareCode),
                           );
                         } else {
                           return const Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
                                 text: 'noshareCode available'),
                           );
@@ -72,7 +73,7 @@ class SettingsPage extends StatelessWidget {
                       },
                     ),
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                       child: NewWidget(),
                     ),
                   ],

@@ -10,5 +10,4 @@ analyzer:
 linter:
   rules:
     - cancel_subscriptions
-    - avoid_redundant_argument_values
     - prefer_const_declarations

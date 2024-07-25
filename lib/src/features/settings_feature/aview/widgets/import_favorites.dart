@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class ImportFavorites extends StatelessWidget {
   const ImportFavorites({super.key});
@@ -9,9 +10,7 @@ class ImportFavorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
+      body: Column(
           children: [
             BlocBuilder<SettingsCubit, SettingsState>(
               builder: (context, state) {
@@ -20,7 +19,7 @@ class ImportFavorites extends StatelessWidget {
             ),
           ],
         ),
-      ),
+
     );
   }
 }
@@ -63,23 +62,22 @@ class NewWidgetState extends State<NewWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(Spacings.cornerRadius),
         color: AppColors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               '  Weincode:',
               style: TextStyle(
-                fontSize: 15,
+                fontSize: Spacings.textFontSize,
               ),
             ),
             SizedBox(
-              width: 391.0,
-              height: 44.0,
+              height: Spacings.textFieldHeight,
               child: TextField(
                 controller: weincodeController,
                 onChanged: (value) {
@@ -89,22 +87,21 @@ class NewWidgetState extends State<NewWidget> {
                   filled: true,
                   fillColor: AppColors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(Spacings.cornerRadius),
                     borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: Spacings.widgetVertical),
             const Text(
               '  Name der Liste:',
               style: TextStyle(
-                fontSize: 15,
+                fontSize: Spacings.textFontSize,
               ),
             ),
             SizedBox(
-              width: 391.0,
-              height: 44.0,
+              height: Spacings.textFieldHeight,
               child: TextField(
                 controller: listNameController,
                 onChanged: (value) {
@@ -114,23 +111,17 @@ class NewWidgetState extends State<NewWidget> {
                   filled: true,
                   fillColor: AppColors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(Spacings.cornerRadius),
                     borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: Spacings.widgetVertical),
             Align(
               alignment: Alignment.centerRight,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  minWidth: 0,
-                  maxWidth: double.infinity,
-                ),
                 child: IntrinsicWidth(
                   child: SizedBox(
-                    height: 30.0,
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
@@ -157,7 +148,6 @@ class NewWidgetState extends State<NewWidget> {
                     ),
                   ),
                 ),
-              ),
             ),
           ],
         ),

@@ -20,7 +20,6 @@ class WineSearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
             color: AppColors.primaryGrey,
-            width: 1.0,
           ),
         ),
         child: const TextField(

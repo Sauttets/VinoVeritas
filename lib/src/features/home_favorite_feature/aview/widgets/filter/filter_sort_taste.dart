@@ -110,7 +110,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
           selectedCategory = category;
           selectedOption = null;
         });
-        context.read<WineCubit>().applyFilters(fitOrFlavour: null);
+        context.read<WineCubit>().applyFilters();
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: Spacings.buttonSpacing),

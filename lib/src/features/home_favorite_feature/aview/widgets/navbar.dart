@@ -67,7 +67,8 @@ class CustomNavBarState extends State<CustomNavBar> {
       constraints: const BoxConstraints.expand(height: 78.0),
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(color: AppColors.black, width: 1),
+          // ignore: avoid_redundant_argument_values
+          top: BorderSide(color: AppColors.black),
         ),
       ),
       child: BottomNavigationBar(
@@ -106,7 +107,6 @@ class CustomNavBarState extends State<CustomNavBar> {
         color: _selectedIndex == index
             ? AppColors.primaryRed
             : AppColors.transparent,
-        shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(14),
       ),
       padding: const EdgeInsets.all(8),

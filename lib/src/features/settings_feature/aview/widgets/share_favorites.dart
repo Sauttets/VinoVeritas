@@ -12,21 +12,21 @@ class DisplayAndCopyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: Spacings.widgetVertical),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             '   Teile deine Favoriten:',
             style: TextStyle(
-              fontSize: 15,
+              fontSize: Spacings.textFontSize,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: Spacings.edge),
             child: Container(
-              height: 44.0,
-                padding: const EdgeInsets.only(left: 10.0),
+              height: Spacings.textFieldHeight,
+                padding: const EdgeInsets.only(left: Spacings.widgetHorizontal),
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(Spacings.cornerRadius),
