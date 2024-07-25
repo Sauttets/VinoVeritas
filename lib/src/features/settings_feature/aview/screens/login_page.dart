@@ -51,7 +51,7 @@ class LoginScreenState extends State<LoginScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -70,7 +70,7 @@ class LoginScreenState extends State<LoginScreen> {
                     child: SizedBox(
                       width: 220,
                       child: Divider(
-                        color: Colors.grey,
+                        color: AppColors.primaryGrey,
                         thickness: 3,
                         endIndent: BorderSide.strokeAlignCenter,
                       ),
@@ -124,7 +124,7 @@ class LoginScreenState extends State<LoginScreen> {
                       'Los Gehts!',
                       style: TextStyle(
                         fontSize: 18,
-                        color: AppColors.primaryWhite,
+                        color: AppColors.white,
                       ),
                     ),
                   ),

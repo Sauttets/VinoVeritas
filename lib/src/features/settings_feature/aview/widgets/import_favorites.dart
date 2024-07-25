@@ -29,10 +29,10 @@ class NewWidget extends StatefulWidget {
   const NewWidget({super.key});
 
   @override
-  _NewWidgetState createState() => _NewWidgetState();
+  NewWidgetState createState() => NewWidgetState();
 }
 
-class _NewWidgetState extends State<NewWidget> {
+class NewWidgetState extends State<NewWidget> {
   final TextEditingController weincodeController = TextEditingController();
   final TextEditingController listNameController = TextEditingController();
 
@@ -47,22 +47,15 @@ class _NewWidgetState extends State<NewWidget> {
   }
 
   void _onImportPressed(BuildContext context) {
-    // Import logic
     context.read<SettingsCubit>().importFavorites(
           listNameController.text,
           weincodeController.text,
         );
-
-    // Clear the text fields
     weincodeController.clear();
     listNameController.clear();
-
-    // Show feedback
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Favorites imported successfully!')),
     );
-
-    // Update the button state
     setState(() {});
   }
 
@@ -71,7 +64,7 @@ class _NewWidgetState extends State<NewWidget> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: AppColors.primaryWhite,
+        color: AppColors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -94,10 +87,10 @@ class _NewWidgetState extends State<NewWidget> {
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
@@ -119,10 +112,10 @@ class _NewWidgetState extends State<NewWidget> {
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
@@ -144,8 +137,8 @@ class _NewWidgetState extends State<NewWidget> {
                             WidgetStateProperty.resolveWith<Color>(
                           (Set<WidgetState> states) {
                             return isButtonEnabled
-                                ? AppColors.primaryRed // Button is red when enabled
-                                : AppColors.primaryGrey; // Button is grey when disabled
+                                ? AppColors.primaryRed
+                                : AppColors.primaryGrey;
                           },
                         ),
                         shape: WidgetStateProperty.all<OutlinedBorder>(
@@ -154,11 +147,11 @@ class _NewWidgetState extends State<NewWidget> {
                       ),
                       onPressed: isButtonEnabled
                           ? () => _onImportPressed(context)
-                          : null, // Button is only clickable when enabled
+                          : null,
                       child: const Text(
                         'Importieren',
                         style: TextStyle(
-                          color: AppColors.primaryWhite,
+                          color: AppColors.white,
                         ),
                       ),
                     ),

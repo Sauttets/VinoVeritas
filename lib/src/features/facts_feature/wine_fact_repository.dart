@@ -9,7 +9,7 @@ class WineFactRepository {
   Future<WineFact> fetchWineFact() async {
     final response = await http.get(Uri.parse(apiUrl));
     if (response.statusCode == 200) {
-      return WineFact.fromJson(json.decode(response.body));
+      return WineFact.fromJson(json.decode(response.body) as Map<String, dynamic>);
     } else {
       throw Exception('Failed to load wine fact');
     }

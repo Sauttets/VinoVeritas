@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Add this import for SystemChrome
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/homepage_feature/aview/widgets/navbar.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/navbar.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
@@ -10,10 +10,10 @@ import 'package:vinoveritas/src/services/router_service/app_router.dart' as app_
 import 'package:vinoveritas/util/app_colors.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure plugin services are initialized
-  await setupLocator(); // Setup service locator and initialize services
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: AppColors.backgroundColor, // Set your desired color here
+    statusBarColor: AppColors.backgroundColor,
   ));
   runApp(const MyApp());
 }
@@ -29,12 +29,22 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: app_router.router,
-      builder: (context, router) {
-        return router!;
-      },
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: AppColors.backgroundColor,
+        statusBarIconBrightness: Brightness.light, // Change this based on your preference
+        statusBarBrightness: Brightness.light, // Change this based on your preference
+      ),
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: app_router.router,
+        builder: (context, router) {
+          return router!;
+        },
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.backgroundColor, // Set your desired background color here
+        ),
+      ),
     );
   }
 }
@@ -45,15 +55,15 @@ class CustomNavBarWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hideNavBarRoutes = ['/']; // List of routes to hide the NavBar
-    final currentLocation = GoRouter.of(context).location; // Use the extension
+    final hideNavBarRoutes = ['/'];
+    final currentLocation = GoRouter.of(context).location;
 
     return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(child: child), // Wrap the body in SafeArea
+      body: SafeArea(child: child),
       bottomNavigationBar: !hideNavBarRoutes.contains(currentLocation)
-          ? SafeArea(child: CustomNavBar(goRouter: GoRouter.of(context))) // Wrap the NavBar in SafeArea
+          ? SafeArea(child: CustomNavBar(goRouter: GoRouter.of(context)))
           : null,
     );
   }

@@ -1,4 +1,4 @@
-import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 
 abstract class IsarServiceInterface {

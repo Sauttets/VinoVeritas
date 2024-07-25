@@ -12,7 +12,7 @@ class DisplayAndCopyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0), // Add top and bottom padding
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,7 +28,7 @@ class DisplayAndCopyText extends StatelessWidget {
               height: 44.0,
                 padding: const EdgeInsets.only(left: 10.0),
               decoration: BoxDecoration(
-                color: AppColors.primaryWhite,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(Spacings.cornerRadius),
               ),
               child: Row(

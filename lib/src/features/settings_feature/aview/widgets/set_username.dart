@@ -28,12 +28,11 @@ class SetUsername extends StatelessWidget {
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
-                  // Use a ternary operator for conditional assignment
                   hintText: state is ShowSettings
                       ? state.getusername
                       : 'Nutzername eingeben',

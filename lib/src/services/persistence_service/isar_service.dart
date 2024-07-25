@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:vinoveritas/src/features/homepage_feature/model/favlist_tupel.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/src/services/persistence_service/entitis/settings.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -49,12 +49,12 @@ class IsarService implements IsarServiceInterface {
         final isar = await db;
         await isar.writeTxn(() async {
           await isar.settings.put(Settings()
-            ..id = userId
+            ..id = userId as int
             ..username = username
-            ..shareCode = userShareCode);
+            ..shareCode = userShareCode as String);
         });
 
-        return userShareCode;
+        return userShareCode as String;
       } else {
         throw Exception('Failed to create user');
       }
@@ -92,20 +92,15 @@ class IsarService implements IsarServiceInterface {
   Future<Settings> saveSettings(Settings settings) async {
     final isar = await db;
     await isar.writeTxn(() async {
-      // Holen der aktuellen Einstellungen
       final Settings? currentSettings = await isar.settings.where().findFirst();
-
-      // Wenn aktuelle Einstellungen existieren, füge deren sharedWith Liste zu den neuen Einstellungen hinzu
       if (currentSettings != null && currentSettings.sharedWith.isNotEmpty) {
-        // Vermeidung von Duplikaten könnte erforderlich sein, abhängig von der Geschäftslogik
         settings.sharedWith.addAll(currentSettings.sharedWith);
       }
 
-      // Löschen der alten Einstellungen und Speichern der neuen Einstellungen
       await isar.settings.clear();
       await isar.settings.put(settings);
     });
-    return settings; // Return the updated settings object
+    return settings;
   }
 
   @override
@@ -184,7 +179,7 @@ class IsarService implements IsarServiceInterface {
 
     if (user != null) {
       await isar.writeTxn(() async {
-        user.sharedWith = []; // Assign a new growable list
+        user.sharedWith = [];
         await isar.settings.put(user);
       });
     } else {

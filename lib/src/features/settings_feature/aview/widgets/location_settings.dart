@@ -24,7 +24,7 @@ class SetLocationState extends State<SetLocation> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: AppColors.primaryWhite,
+        color: AppColors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -43,15 +43,15 @@ class SetLocationState extends State<SetLocation> {
               child: TextField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Add more space
+            const SizedBox(height: 20),
             const Text(
               '  Radius:',
               style: TextStyle(

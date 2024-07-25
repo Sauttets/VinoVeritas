@@ -21,14 +21,13 @@ class SettingsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(
-                top: 16.0, // Add padding above the content
+                top: 16.0,
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Center(
-                // Wrap the Column with a Center widget
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment
-                      .center, // Center the children vertically
+                      .center,
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(8.0),
@@ -39,7 +38,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                     BlocBuilder<SettingsCubit, SettingsState>(
                       builder: (context, state) {
-                        int currentIndex = 0; // Default value
+                        int currentIndex = 0;
                         if (state is SettingsInit) {
                           currentIndex = state.getselectedIndex;
                         } else if (state is ShowSettings) {
@@ -49,7 +48,7 @@ class SettingsPage extends StatelessWidget {
                           selectedIndex: currentIndex,
                           onTabSelected: (index) {
                             context.read<SettingsCubit>().updateSelectedIndex(
-                                index); // This method should update the state with the new index
+                                index);
                             context.read<SettingsCubit>().loadSettings();
                           },
                         );
