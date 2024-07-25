@@ -1,0 +1,6 @@
+# flow.yaml
+
+appId: com.example.vinoveritas
+---
+- launchApp
+- tapOn: "Text on the screen"
