@@ -4,7 +4,7 @@ appId: com.example.vinoveritas
 ---
 - launchApp
 - extendedWaitUntil:
-    visible: "Essen & Geschmack" # or any other selector
+    visible: "Essen & Geschmack"
     timeout: 10000      
 - tapOn:
     text: "Essen & Geschmack"
@@ -31,4 +31,4 @@ appId: com.example.vinoveritas
 - tapOn:
     point: 50%, 45%
 - tapOn:
-    point: 85%, 31%
+    point: 85%, 25%
