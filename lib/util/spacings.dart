@@ -17,7 +17,8 @@ class Spacings {
   static const double lineHorizontalThickness = 2.0;
   static const double lineBorder = 4.0;
 
-
+  static const double loginTextSize1 = 40.0;
+  static const double loginTextSize2 = 28.0;
   static const double widgetVertical = 10.0;
   static const double widgetHorizontal = 10.0;
   static const double widgetPaddingAll = 10.0;

@@ -63,31 +63,6 @@ class IsarService implements IsarServiceInterface {
   }
 
   @override
-  Future<void> updateSettings(
-      int id, String? name, int? plz, double? radius, int? colorMode) async {
-    final isar = await db;
-    final user = await isar.settings.get(id);
-    if (user != null) {
-      await isar.writeTxn(() async {
-        if (name != null) {
-          user.username = name;
-        }
-        if (plz != null) {
-          user.plz = plz;
-        }
-        if (radius != null) {
-          user.radius = radius;
-        }
-        if (colorMode != null) {
-          user.colorMode = colorMode;
-        }
-      });
-    } else {
-      throw Exception('User with id $id not found');
-    }
-  }
-
-  @override
   Future<Settings> saveSettings(Settings settings) async {
     final isar = await db;
     await isar.writeTxn(() async {
@@ -168,21 +143,5 @@ class IsarService implements IsarServiceInterface {
         .map((shared) =>
             FavlistTupel(shareCode: shared.shareCode, name: shared.name))
         .toList();
-  }
-
-  @override
-  Future<void> clearSharedLists() async {
-    final isar = await db;
-    final id = await getID();
-    final user = await isar.settings.get(id);
-
-    if (user != null) {
-      await isar.writeTxn(() async {
-        user.sharedWith = [];
-        await isar.settings.put(user);
-      });
-    } else {
-      throw Exception('User not found');
-    }
   }
 }

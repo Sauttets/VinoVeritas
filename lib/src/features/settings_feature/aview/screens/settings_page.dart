@@ -67,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                           return const Padding(
                             padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
-                                text: 'noshareCode available'),
+                                text: 'no Sharecode available'),
                           );
                         }
                       },

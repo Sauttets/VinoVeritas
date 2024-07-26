@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 final _settingsCubit = GetIt.I<SettingsCubit>();
 
@@ -24,8 +25,12 @@ class LoginScreenState extends State<LoginScreen> {
     _usernameController.addListener(_checkIfButtonShouldBeEnabled);
   }
 
-  void _onTextChanged(String text) {
-    _settingsCubit.login(text);
+  void _onTextChanged() {
+    final text = _usernameController.text;
+    if (text.isNotEmpty) {
+      _settingsCubit.login(text);
+      context.go('/home');
+    }
   }
 
   void _checkIfButtonShouldBeEnabled() {
@@ -43,6 +48,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocListener<SettingsCubit, SettingsState>(
       bloc: _settingsCubit,
       listener: (context, state) {
@@ -55,33 +63,33 @@ class LoginScreenState extends State<LoginScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const SizedBox(height: 50),
+                  const SizedBox(height: Spacings.widgetHorizontal*5),
                   Image.asset(
                     'assets/images/VinoVeritas-Logo.png',
-                    height: 300,
+                    height: screenHeight / 3,
                   ),
-                  const SizedBox(height: 20),
-                  const Center(
+                  const SizedBox(height: Spacings.widgetVertical*2),
+                  Center(
                     child: SizedBox(
-                      width: 220,
-                      child: Divider(
+                      width: screenWidth / 2,
+                      child: const Divider(
                         color: AppColors.primaryGrey,
                         thickness: 3,
                         endIndent: BorderSide.strokeAlignCenter,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: Spacings.widgetHorizontal),
                   const Text(
                     'V  I  N  O',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: Spacings.loginTextSize1,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -89,46 +97,43 @@ class LoginScreenState extends State<LoginScreen> {
                     'VERITAS',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: Spacings.loginTextSize2,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: Spacings.widgetHorizontal*5),
                   TextField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderRadius: BorderRadius.all(Radius.circular(Spacings.roundCorner)),
                       ),
                       labelText: 'Username',
                     ),
-                    onSubmitted: _onTextChanged,
+                    onSubmitted: (text) => _onTextChanged(),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: Spacings.widgetHorizontal*2),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: _isButtonEnabled
                           ? AppColors.primaryRed
                           : AppColors.secondaryGrey,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal*1.5),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(Spacings.roundCorner),
                       ),
                     ),
                     onPressed: _isButtonEnabled
-                        ? () {
-                            context.go('/home');
-                          }
+                        ? _onTextChanged
                         : null,
                     child: const Text(
                       'Los Gehts!',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: Spacings.titleFontSize,
                         color: AppColors.white,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
                 ],
               ),
             ),
