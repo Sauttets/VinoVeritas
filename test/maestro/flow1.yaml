@@ -1,13 +1,11 @@
-# flow.yaml
-#192.168.0.227
+# Just execute the flow when you already started flow0.yaml
 
 appId: com.example.vinoveritas
 ---
 - launchApp
-- tapOn: "Username"
-- inputText:
-    text: "TestUser"
-- tapOn: "Los Gehts!"
+- extendedWaitUntil:
+    visible: "Essen & Geschmack" # or any other selector
+    timeout: 10000      
 - tapOn:
     text: "Essen & Geschmack"
 - tapOn:  
@@ -28,3 +26,9 @@ appId: com.example.vinoveritas
     text: "Preis (Niedrig - Hoch)"
 - tapOn:
     text: "Sortieren  "
+- tapOn:
+    point: 30,500
+- tapOn:
+    point: 50%, 45%
+- tapOn:
+    point: 85%, 31%
