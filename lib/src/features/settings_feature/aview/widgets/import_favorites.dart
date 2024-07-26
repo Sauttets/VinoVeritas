@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class ImportFavorites extends StatelessWidget {
   const ImportFavorites({super.key});
@@ -9,9 +10,7 @@ class ImportFavorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
+      body: Column(
           children: [
             BlocBuilder<SettingsCubit, SettingsState>(
               builder: (context, state) {
@@ -20,7 +19,7 @@ class ImportFavorites extends StatelessWidget {
             ),
           ],
         ),
-      ),
+
     );
   }
 }
@@ -29,104 +28,126 @@ class NewWidget extends StatefulWidget {
   const NewWidget({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _NewWidgetState createState() => _NewWidgetState();
+  NewWidgetState createState() => NewWidgetState();
 }
 
-class _NewWidgetState extends State<NewWidget> {
-  String weincode = '';
-  String listName = '';
+class NewWidgetState extends State<NewWidget> {
+  final TextEditingController weincodeController = TextEditingController();
+  final TextEditingController listNameController = TextEditingController();
+
+  bool get isButtonEnabled =>
+      weincodeController.text.isNotEmpty && listNameController.text.isNotEmpty;
+
+  @override
+  void dispose() {
+    weincodeController.dispose();
+    listNameController.dispose();
+    super.dispose();
+  }
+
+  void _onImportPressed(BuildContext context) {
+    context.read<SettingsCubit>().importFavorites(
+          listNameController.text,
+          weincodeController.text,
+        );
+    weincodeController.clear();
+    listNameController.clear();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Favorites imported successfully!')),
+    );
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: AppColors.primaryWhite,
+        borderRadius: BorderRadius.circular(Spacings.cornerRadius),
+        color: AppColors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               '  Weincode:',
               style: TextStyle(
-                fontSize: 15,
+                fontSize: Spacings.textFontSize,
               ),
             ),
             SizedBox(
-              width: 391.0,
-              height: 44.0,
+              height: Spacings.textFieldHeight,
               child: TextField(
+                controller: weincodeController,
                 onChanged: (value) {
-                  setState(() {
-                    weincode = value;
-                  });
+                  setState(() {});
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(Spacings.cornerRadius),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: Spacings.widgetVertical),
             const Text(
               '  Name der Liste:',
               style: TextStyle(
-                fontSize: 15,
+                fontSize: Spacings.textFontSize,
               ),
             ),
             SizedBox(
-              width: 391.0,
-              height: 44.0,
+              height: Spacings.textFieldHeight,
               child: TextField(
+                controller: listNameController,
                 onChanged: (value) {
-                  setState(() {
-                    listName = value;
-                  });
+                  setState(() {});
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: AppColors.primaryWhite,
+                  fillColor: AppColors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(Spacings.cornerRadius),
+                    borderSide: const BorderSide(color: AppColors.black),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: Spacings.widgetVertical),
             Align(
               alignment: Alignment.centerRight,
-              child: FractionallySizedBox(
-                widthFactor: 1 / 3,
-                child: SizedBox(
-                  height: 30.0,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(AppColors.primaryGrey),
-                      shape: WidgetStateProperty.all<OutlinedBorder>(
-                        const StadiumBorder(),
+                child: IntrinsicWidth(
+                  child: SizedBox(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                            return isButtonEnabled
+                                ? AppColors.primaryRed
+                                : AppColors.primaryGrey;
+                          },
+                        ),
+                        shape: WidgetStateProperty.all<OutlinedBorder>(
+                          const StadiumBorder(),
+                        ),
                       ),
-                    ),
-                    onPressed: () => context
-                        .read<SettingsCubit>()
-                        .importFavorites(listName, weincode),
-                    child: const Text(
-                      'Importieren',
-                      style: TextStyle(
-                        color: AppColors.primaryWhite,
+                      onPressed: isButtonEnabled
+                          ? () => _onImportPressed(context)
+                          : null,
+                      child: const Text(
+                        'Importieren',
+                        style: TextStyle(
+                          color: AppColors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
             ),
           ],
         ),

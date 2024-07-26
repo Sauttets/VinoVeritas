@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/wiebk/OneDrive/Dokumente/Studium/Konstanz/Sem_5/MobieleAnwendungen/VinoVeritas/linux"
+    "cmake.sourceDirectory": "C:/Users/wiebk/OneDrive/Dokumente/Studium/Konstanz/Sem_5/MobieleAnwendungen/VinoVeritas/linux",
+    "cmake.configureOnOpen": false
 }

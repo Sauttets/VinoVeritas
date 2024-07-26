@@ -7,6 +7,7 @@ import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_user
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -21,25 +22,24 @@ class SettingsPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(
-                top: 16.0, // Add padding above the content
+                top: Spacings.widgetVertical,
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Center(
-                // Wrap the Column with a Center widget
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment
-                      .center, // Center the children vertically
+                      .center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                       child: SetUsername(),
                     ),
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                     ),
                     BlocBuilder<SettingsCubit, SettingsState>(
                       builder: (context, state) {
-                        int currentIndex = 0; // Default value
+                        int currentIndex = 0;
                         if (state is SettingsInit) {
                           currentIndex = state.getselectedIndex;
                         } else if (state is ShowSettings) {
@@ -49,7 +49,7 @@ class SettingsPage extends StatelessWidget {
                           selectedIndex: currentIndex,
                           onTabSelected: (index) {
                             context.read<SettingsCubit>().updateSelectedIndex(
-                                index); // This method should update the state with the new index
+                                index);
                             context.read<SettingsCubit>().loadSettings();
                           },
                         );
@@ -59,21 +59,21 @@ class SettingsPage extends StatelessWidget {
                       builder: (context, state) {
                         if (state is ShowSettings) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
                                 text: state.settings.shareCode),
                           );
                         } else {
                           return const Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
-                                text: 'noshareCode available'),
+                                text: 'no Sharecode available'),
                           );
                         }
                       },
                     ),
                     const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                       child: NewWidget(),
                     ),
                   ],
