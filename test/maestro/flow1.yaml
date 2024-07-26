@@ -4,4 +4,27 @@
 appId: com.example.vinoveritas
 ---
 - launchApp
-- tapOn: "Text on the screen"
+- tapOn: "Username"
+- inputText:
+    text: "TestUser"
+- tapOn: "Los Gehts!"
+- tapOn:
+    text: "Essen & Geschmack"
+- tapOn:  
+    text: "Schokolade"
+- tapOn: 
+    text: "Geflügel"
+- tapOn: 
+    text: "Geschmack"
+- tapOn: 
+    text: "Blumig"
+- tapOn:
+    text: "Essen & Geschmack"
+- tapOn:
+    text: "Sortieren  "
+- tapOn:
+    text: "Rotwein"
+- tapOn:
+    text: "Preis (Niedrig - Hoch)"
+- tapOn:
+    text: "Sortieren  "
