@@ -56,7 +56,7 @@ class OnboaringFeatureDisclaimer extends StatelessWidget {
           SizedBox(height: Spacings.disclaimerSpacing),
           Row(
             children: [
-              Icon(Icons.menu_book),
+              Icon(Icons.book),
               SizedBox(width: Spacings.widgetVertical),
               Text(
                 StaticText.feature3Title,
