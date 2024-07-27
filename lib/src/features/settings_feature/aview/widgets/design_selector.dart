@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class DesignSelector extends StatelessWidget {
   final int selectedIndex;
@@ -24,7 +25,7 @@ class DesignSelector extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: Spacings.widgetHorizontal),
               child: const Text(
-                'Design :',
+                StaticText.design,
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: Spacings.textFontSize,
@@ -39,9 +40,9 @@ class DesignSelector extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    _buildButton(0, 'Automatisch'),
-                    _buildButton(1, 'Hellmodus'),
-                    _buildButton(2, 'Dunkelmodus'),
+                    _buildButton(0, StaticText.autoMode),
+                    _buildButton(1, StaticText.lightMode),
+                    _buildButton(2, StaticText.darkMode),
                   ],
                 ),
               ),

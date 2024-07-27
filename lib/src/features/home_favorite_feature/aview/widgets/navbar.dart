@@ -107,7 +107,7 @@ class CustomNavBarState extends State<CustomNavBar> {
         color: _selectedIndex == index
             ? AppColors.primaryRed
             : AppColors.transparent,
-        borderRadius: BorderRadius.circular(Spacings.wineCardRadius),
+        borderRadius: BorderRadius.circular(Spacings.cardBorderRadius),
       ),
       padding: const EdgeInsets.all(8),
       child: Icon(

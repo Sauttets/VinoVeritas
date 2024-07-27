@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class AttributeIndicator extends StatelessWidget {
   final double price;
@@ -44,9 +45,9 @@ class AttributeIndicator extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            _buildIndicatorRow(context, 'Trockenheit', trockenValue, indicatorWidth, leftSpaceWidth),
-            _buildIndicatorRow(context, 'Säuregehalt', sauerValue, indicatorWidth, leftSpaceWidth),
-            _buildIndicatorRow(context, 'Tannin Level', tanninValue, indicatorWidth, leftSpaceWidth),
+            _buildIndicatorRow(context, StaticText.dryness, trockenValue, indicatorWidth, leftSpaceWidth),
+            _buildIndicatorRow(context, StaticText.acidity, sauerValue, indicatorWidth, leftSpaceWidth),
+            _buildIndicatorRow(context, StaticText.tanninLevel, tanninValue, indicatorWidth, leftSpaceWidth),
           ],
         ),
       ),

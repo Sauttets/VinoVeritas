@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class Description extends StatelessWidget {
   final String description;
@@ -30,7 +31,7 @@ class Description extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Beschreibung:",
+                    StaticText.descriptionHeader,
                     style: TextStyle(
                       fontSize: Spacings.titleFontSize,
                       fontWeight: FontWeight.bold,

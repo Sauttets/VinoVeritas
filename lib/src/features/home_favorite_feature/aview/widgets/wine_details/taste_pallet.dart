@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vinoveritas/util/static_text.dart';
 import 'package:vinoveritas/util/taste_maps.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
@@ -41,13 +42,13 @@ class TastePallet extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child: _buildColumn("Geschmack:", flavor1, flavor2, flavor3, true)),
+                      Expanded(child: _buildColumn(StaticText.taste, flavor1, flavor2, flavor3, true)),
                       Container(
                         width: 1.0,
                         color: AppColors.primaryGrey,
                         margin: const EdgeInsets.symmetric(horizontal: Spacings.horizontal),
                       ),
-                      Expanded(child: _buildColumn("Passt zu:", fit1, fit2, fit3, false)),
+                      Expanded(child: _buildColumn(StaticText.fitsTo, fit1, fit2, fit3, false)),
                     ],
                   ),
                 ),

@@ -65,7 +65,7 @@ class WineCardState extends State<WineCard> {
         height: cardHeight,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(Spacings.wineCardRadius),
+          borderRadius: BorderRadius.circular(Spacings.cardBorderRadius),
           boxShadow: [
             BoxShadow(
               color: AppColors.black.withOpacity(0.1),

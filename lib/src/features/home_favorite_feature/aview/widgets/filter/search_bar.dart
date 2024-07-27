@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class WineSearchBar extends StatelessWidget {
   const WineSearchBar({super.key});
@@ -24,7 +25,7 @@ class WineSearchBar extends StatelessWidget {
         ),
         child: const TextField(
           decoration: InputDecoration(
-            hintText: 'Suche...',
+            hintText: StaticText.searchHint,
             prefixIcon: Icon(Icons.search),
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal),

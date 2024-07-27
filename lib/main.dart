@@ -55,7 +55,7 @@ class CustomNavBarWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hideNavBarRoutes = ['/'];
+    final hideNavBarRoutes = ['/', '/disclaimer'];
     final currentLocation = GoRouter.of(context).location;
 
     return Scaffold(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class SetUsername extends StatelessWidget {
   const SetUsername({super.key});
@@ -15,7 +16,7 @@ class SetUsername extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              '  Nutzername:',
+              StaticText.username,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
               ),

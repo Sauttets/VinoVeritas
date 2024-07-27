@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/static_text.dart';
 import 'package:vinoveritas/util/taste_maps.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
 
@@ -154,19 +155,19 @@ class FilterSortTasteState extends State<FilterSortTaste> {
   String _getDisplayName(String value) {
     switch (value) {
       case 'all':
-        return 'Alle';
+        return StaticText.sortAll;
       case 'red':
-        return 'Rotwein';
+        return StaticText.sortRed;
       case 'white':
-        return 'Weißwein';
+        return StaticText.sortWhite;
       case 'rose':
-        return 'Rosé';
+        return StaticText.sortRose;
       case 'most-liked':
-        return 'Beliebteste zuerst';
+        return StaticText.mostPopular;
       case 'low-high':
-        return 'Preis (Niedrig - Hoch)';
+        return StaticText.priceLowToHigh;
       case 'high-low':
-        return 'Preis (Hoch - Niedrig)';
+        return StaticText.priceHighToLow;
       default:
         return value;
     }
@@ -195,7 +196,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        'Essen & Geschmack',
+                        StaticText.filterLabel,
                         style: TextStyle(color: AppColors.primaryText, fontSize: Spacings.textFontSize),
                       ),
                       Icon(
@@ -221,7 +222,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Sortieren  ',
+                          StaticText.sortLabel,
                           style: TextStyle(fontSize: Spacings.textFontSize),
                         ),
                         Icon(Icons.tune, color: AppColors.primaryGrey),
@@ -298,9 +299,9 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildCategoryButton('Essen'),
+                        buildCategoryButton(StaticText.food),
                         const SizedBox(width: 8),
-                        buildCategoryButton('Geschmack'),
+                        buildCategoryButton(StaticText.tasteProfile),
                       ],
                     ),
                   ),

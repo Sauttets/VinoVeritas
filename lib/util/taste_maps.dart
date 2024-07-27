@@ -6,10 +6,10 @@ final Map<String, IconData> tasteIcons = {
   'Erdig': Icons.terrain,
   'Kräutrig': Icons.grass,
   'Gewürzig': Icons.local_dining,
-  'Holzig': Icons.account_tree,
+  'Holzig': Icons.park,
   'Nussig': Icons.eco,
   'Buttrig': Icons.local_pizza,
-  'Süß': Icons.cake,
+  'Süß': Icons.icecream,
   'Mineralisch': Icons.grain,
 };
 

@@ -24,11 +24,12 @@ class Spacings {
   static const double widgetVertical = 10.0;
   static const double widgetHorizontal = 10.0;
   static const double widgetPaddingAll = 10.0;
+  static const double disclaimerSpacing = 16.0;
 
   static const double edge = 5.0;
   static const double roundEnd = 50.0;
   static const double filterCorner = 20.0;
-  static const double wineCardRadius = 10.0;
+  static const double cardBorderRadius = 10.0;
   static const double wineCardPadding = 16.0;
   static const double textFieldHeight = 44.0;
 

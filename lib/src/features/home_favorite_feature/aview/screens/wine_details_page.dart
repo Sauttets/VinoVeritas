@@ -7,10 +7,11 @@ import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/win
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/taste_pallet.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/full_wine_description.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/supermarket_selector.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/wine_deatail_top.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/wine_deatail_header.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class WineDetailsPage extends StatefulWidget {
   final Wine wine;
@@ -52,7 +53,7 @@ class WineDetailsPageState extends State<WineDetailsPage> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No share code available'));
+          return const Center(child: Text(StaticText.noShareCode));
         } else {
           final shareCode = snapshot.data!;
           return BlocProvider(
