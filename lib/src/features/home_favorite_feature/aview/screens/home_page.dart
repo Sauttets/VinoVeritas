@@ -46,7 +46,9 @@ class WinePageLayoutState extends State<WinePageLayout> {
           future: _wineLists,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+              ));
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -67,7 +69,9 @@ class WinePageLayoutState extends State<WinePageLayout> {
                       child: BlocBuilder<WineCubit, WineState>(
                         builder: (context, state) {
                           if (state is WineLoading && state.wines.isEmpty) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+                            ));
                           } else if (state is WineError && state.wines.isEmpty) {
                             return Center(child: Text(state.message));
                           } else {

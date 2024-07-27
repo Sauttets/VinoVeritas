@@ -171,4 +171,6 @@ class StaticText {
 
   static String wineFactOTD =
       "Wusstest du, dass die ältesten Hinweise auf Weinherstellung etwa 8.000 Jahre alt sind? Archäologische Funde deuten darauf hin, dass die Weinproduktion bereits in der Neusteinzeit begann, als Menschen begannen, Trauben anzubauen und zu fermentieren.";
+
+
 }

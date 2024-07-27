@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'attribut_slider.dart';
+import 'package:vinoveritas/util/spacings.dart';
+import 'attribut_indicator.dart';
 import 'bottle_widget.dart';
 
-class WineDetailTop extends StatelessWidget {
+class WineDetailsHeader extends StatelessWidget {
   final Wine wine;
 
-  const WineDetailTop({super.key, required this.wine});
+  const WineDetailsHeader({super.key, required this.wine});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class WineDetailTop extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(top: topPadding),
-          child: AttSlider(
+          child: AttributeIndicator(
             price: cheapestPrice,
             volume: wine.volume.toInt(),
             trockenValue: wine.dryness,
@@ -31,8 +32,7 @@ class WineDetailTop extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 16.0,
-          bottom: 0,
+          left: Spacings.widgetHorizontal,
           child: BottleWidget(
             wine: wine,
           ),

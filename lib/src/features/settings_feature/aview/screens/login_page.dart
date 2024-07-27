@@ -106,7 +106,7 @@ class LoginScreenState extends State<LoginScreen> {
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(Spacings.roundCorner)),
+                        borderRadius: BorderRadius.all(Radius.circular(Spacings.roundEnd)),
                       ),
                       labelText: 'Username',
                     ),
@@ -120,7 +120,7 @@ class LoginScreenState extends State<LoginScreen> {
                           : AppColors.secondaryGrey,
                       padding: const EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal*1.5),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(Spacings.roundCorner),
+                        borderRadius: BorderRadius.circular(Spacings.roundEnd),
                       ),
                     ),
                     onPressed: _isButtonEnabled

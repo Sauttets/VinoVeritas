@@ -31,30 +31,20 @@ class WineCardState extends State<WineCard> {
     final cardWidth = screenWidth / 2;
     final cardHeight = cardWidth * 6 / 5;
 
+    String bottleImage;
     String glassImage;
     switch (widget.wine.type.toLowerCase()) {
       case 'white':
         glassImage = 'assets/images/WeissweinGlas.png';
-        break;
-      case 'rose':
-        glassImage = 'assets/images/RoseweinGlas.png';
-        break;
-      case 'red':
-      default:
-        glassImage = 'assets/images/RotweinGlas.png';
-        break;
-    }
-
-    String bottleImage;
-    switch (widget.wine.type.toLowerCase()) {
-      case 'white':
         bottleImage = 'assets/images/WeissweinFlasche.png';
         break;
       case 'rose':
+        glassImage = 'assets/images/RoseweinGlas.png';
         bottleImage = 'assets/images/RoseweinFlasche.png';
         break;
       case 'red':
       default:
+        glassImage = 'assets/images/RotweinGlas.png';
         bottleImage = 'assets/images/RotweinFlasche.png';
         break;
     }
@@ -75,7 +65,7 @@ class WineCardState extends State<WineCard> {
         height: cardHeight,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(Spacings.wineCardRadius),
           boxShadow: [
             BoxShadow(
               color: AppColors.black.withOpacity(0.1),
@@ -88,7 +78,7 @@ class WineCardState extends State<WineCard> {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(Spacings.buttonSpacing),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -97,7 +87,7 @@ class WineCardState extends State<WineCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(Spacings.wineCardPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -105,10 +95,10 @@ class WineCardState extends State<WineCard> {
                     widget.wine.year.toString(),
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
-                      color:AppColors.primaryGrey,
+                      color: AppColors.primaryGrey,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: Spacings.widgetVertical),
                   Text(
                     widget.wine.name,
                     style: const TextStyle(
@@ -116,7 +106,7 @@ class WineCardState extends State<WineCard> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: Spacings.widgetVertical),
                   Text(
                     '${widget.wine.volume} ml',
                     style: const TextStyle(
@@ -128,8 +118,8 @@ class WineCardState extends State<WineCard> {
               ),
             ),
             Positioned(
-              bottom: 16,
-              left: 16,
+              bottom: Spacings.wineCardPadding,
+              left: Spacings.wineCardPadding,
               child: Text(
                 '${cheapestPrice?.toStringAsFixed(2)}€',
                 style: const TextStyle(
@@ -139,7 +129,7 @@ class WineCardState extends State<WineCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 50.0, bottom: 12.0),
+              padding: EdgeInsets.only(right: cardWidth / 4.5, bottom: Spacings.widgetVertical),
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Image.asset(
@@ -151,29 +141,31 @@ class WineCardState extends State<WineCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 25.0, bottom: 12.0),
+              padding: EdgeInsets.only(right: cardWidth / 9, bottom: Spacings.widgetVertical),
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: FutureBuilder<bool>(
                   future: _isImageValid,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
+                      return const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryGrey),
+                      );
                     } else if (snapshot.hasError || !snapshot.data!) {
                       return Image.asset(
                         bottleImage,
-                        height: cardHeight * 1 / 2,
+                        height: cardHeight / 2,
                         fit: BoxFit.contain,
                       );
                     } else {
                       return Image.network(
                         widget.wine.imageURL,
-                        height: cardHeight * 1 / 2,
+                        height: cardHeight / 2,
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
                             bottleImage,
-                            height: cardHeight * 1 / 2,
+                            height: cardHeight / 2,
                             fit: BoxFit.contain,
                           );
                         },

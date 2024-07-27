@@ -36,9 +36,7 @@ class TastePallet extends StatelessWidget {
             ),
             color: AppColors.white,
             child: Padding(
-              padding: const EdgeInsets.all(Spacings.horizontal),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 200.0),
+              padding: const EdgeInsets.all(Spacings.horizontal),                
                 child: IntrinsicHeight(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +51,6 @@ class TastePallet extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
             ),
           ),
         ),
@@ -72,11 +69,11 @@ class TastePallet extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: Spacings.widgetVertical),
         _buildItem(item1, isFlavorColumn),
-        if (item2 != null || item3 != null) const Divider(color: AppColors.primaryGrey, height: 20.0),
+        if (item2 != null || item3 != null) const Divider(color: AppColors.primaryGrey),
         _buildItem(item2, isFlavorColumn),
-        if (item3 != null) const Divider(color: AppColors.primaryGrey, height: 20.0),
+        if (item3 != null) const Divider(color: AppColors.primaryGrey),
         _buildItem(item3, isFlavorColumn),
       ],
     );
@@ -91,9 +88,9 @@ class TastePallet extends StatelessWidget {
         Icon(
           iconData,
           color: iconColor,
-          size: 20.0,
+          size: Spacings.sortIconSize,
         ),
-        const SizedBox(width: 8.0),
+        const SizedBox(width: Spacings.widgetHorizontal),
         Text(item),
       ],
     );

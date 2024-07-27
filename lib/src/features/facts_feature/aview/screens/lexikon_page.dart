@@ -42,7 +42,9 @@ class WineFactCardSection extends StatelessWidget {
     return BlocBuilder<WineFactCubit, WineFactState>(
       builder: (context, state) {
         if (state is WineFactLoading) {
-          return const CircularProgressIndicator();
+          return const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+          );
         } else if (state is WineFactLoaded) {
           return WineFactOfTheDay(fact: state.wineFact.fact);
         } else {

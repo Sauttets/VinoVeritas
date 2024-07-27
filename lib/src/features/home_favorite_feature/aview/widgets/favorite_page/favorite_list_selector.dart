@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/favlist_tupel.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class FavoriteListSelector extends StatefulWidget {
   final List<FavlistTupel> wineLists;
@@ -26,20 +27,19 @@ class FavoriteListSelectorState extends State<FavoriteListSelector> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerRight,
-      padding: const EdgeInsets.only(right: 10, bottom: 10),
+      padding: const EdgeInsets.only(right: Spacings.widgetHorizontal, bottom: Spacings.widgetVertical),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.primaryGrey),
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
           color: AppColors.white,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal, vertical: Spacings.edge),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
             value: _selectedWineList,
             icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: AppColors.black, fontSize: 16),
+            style: const TextStyle(color: AppColors.black, fontSize: Spacings.textFontSize),
             isDense: true,
             onChanged: (String? newValue) {
               setState(() {

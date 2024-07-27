@@ -10,6 +10,7 @@ import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/win
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/wine_deatail_top.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class WineDetailsPage extends StatefulWidget {
   final Wine wine;
@@ -45,7 +46,9 @@ class WineDetailsPageState extends State<WineDetailsPage> {
       future: _shareCodeFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+          ));
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -69,7 +72,7 @@ class WineDetailsPageState extends State<WineDetailsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      WineDetailTop(wine: widget.wine),
+                      WineDetailsHeader(wine: widget.wine),
                       FullWineDescription(
                         tastePallet: TastePallet(
                           flavor1: widget.wine.flavours.isNotEmpty ? widget.wine.flavours[0] : '',
@@ -81,7 +84,7 @@ class WineDetailsPageState extends State<WineDetailsPage> {
                         ),
                         description: Description(description: widget.wine.description),
                       ),
-                      const SizedBox(height: 16.0),
+                      const SizedBox(height: Spacings.widgetVertical),
                       if (widget.wine.supermarkets.isNotEmpty)
                         ...widget.wine.supermarkets.map((supermarket) => SupermarketSelector(
                               name: supermarket.name,

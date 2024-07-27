@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/services/router_service/app_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class CustomNavBar extends StatefulWidget {
   final GoRouter goRouter;
@@ -67,7 +68,6 @@ class CustomNavBarState extends State<CustomNavBar> {
       constraints: const BoxConstraints.expand(height: 78.0),
       decoration: const BoxDecoration(
         border: Border(
-          // ignore: avoid_redundant_argument_values
           top: BorderSide(color: AppColors.black),
         ),
       ),
@@ -107,7 +107,7 @@ class CustomNavBarState extends State<CustomNavBar> {
         color: _selectedIndex == index
             ? AppColors.primaryRed
             : AppColors.transparent,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(Spacings.wineCardRadius),
       ),
       padding: const EdgeInsets.all(8),
       child: Icon(

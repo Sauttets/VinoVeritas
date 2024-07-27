@@ -35,7 +35,7 @@ class DesignSelector extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(Spacings.roundCorner),
+                  borderRadius: BorderRadius.circular(Spacings.roundEnd),
                 ),
                 child: Row(
                   children: [

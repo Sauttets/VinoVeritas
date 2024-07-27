@@ -17,7 +17,7 @@ class WineSearchBar extends StatelessWidget {
         height: 40.0,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
           border: Border.all(
             color: AppColors.primaryGrey,
           ),
@@ -27,7 +27,7 @@ class WineSearchBar extends StatelessWidget {
             hintText: 'Suche...',
             prefixIcon: Icon(Icons.search),
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+            contentPadding: EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal),
           ),
         ),
       ),
