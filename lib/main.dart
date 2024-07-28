@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/navbar.dart';
+import 'package:vinoveritas/src/features/global_widgets/navbar.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service_interface.dart';
