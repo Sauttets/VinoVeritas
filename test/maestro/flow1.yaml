@@ -1,0 +1,34 @@
+# Just execute the flow when you already started flow0.yaml
+
+appId: com.example.vinoveritas
+---
+- launchApp
+- extendedWaitUntil:
+    visible: "Essen & Geschmack"
+    timeout: 10000      
+- tapOn:
+    text: "Essen & Geschmack"
+- tapOn:  
+    text: "Schokolade"
+- tapOn: 
+    text: "Geflügel"
+- tapOn: 
+    text: "Geschmack"
+- tapOn: 
+    text: "Blumig"
+- tapOn:
+    text: "Essen & Geschmack"
+- tapOn:
+    text: "Sortieren  "
+- tapOn:
+    text: "Rotwein"
+- tapOn:
+    text: "Preis (Niedrig - Hoch)"
+- tapOn:
+    text: "Sortieren  "
+- tapOn:
+    point: 30,500
+- tapOn:
+    point: 50%, 45%
+- tapOn:
+    point: 85%, 25%
