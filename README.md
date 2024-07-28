@@ -91,9 +91,5 @@ Service: Verantwortlich für das Abrufen und Speichern von Daten, z.B. über den
 
 !["Architektur"](assets/readme/architecture.png)<b>
 
-### Here is the rough description 
-### This is where the diagram goes
-
-
 ## Installation
 Here is a pretty usefull text that should explain how to install this awesome App but it donsnt do anything else than fuks you up.
