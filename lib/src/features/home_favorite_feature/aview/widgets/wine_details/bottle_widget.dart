@@ -21,7 +21,7 @@ class BottleWidget extends StatelessWidget {
       width: screenWidth,
       color: AppColors.transparent,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -51,17 +51,17 @@ class BottleWidget extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(width: 16.0),
+                const SizedBox(width: Spacings.widgetHorizontal),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
+                        padding: const EdgeInsets.only(top: Spacings.widgetVertical),
                         child: Text(
                           wine.name,
                           style: const TextStyle(
-                            fontSize: Spacings.titleFontSize * 1.2,
+                            fontSize: Spacings.loginTextSize2,
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.left,
@@ -73,8 +73,8 @@ class BottleWidget extends StatelessWidget {
               ],
             ),
             Positioned(
-              right: 60,
-              top: 110,
+              right: screenWidth * 0.15,
+              top: bottleHeight * 0.4,
               child: HeartButton(wine: wine),
             ),
           ],

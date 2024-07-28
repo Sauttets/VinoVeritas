@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_card.dart';
+import 'package:vinoveritas/util/spacings.dart';
 
 class WineCardGrid extends StatefulWidget {
   final List<Wine> wines;
@@ -43,8 +44,8 @@ class WineCardGridState extends State<WineCardGrid> {
       padding: const EdgeInsets.all(8.0),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
+        crossAxisSpacing: Spacings.widgetHorizontal,
+        mainAxisSpacing: Spacings.widgetVertical,
         childAspectRatio: 0.75,
       ),
       itemCount: widget.hasReachedMax ? widget.wines.length : widget.wines.length + 1,

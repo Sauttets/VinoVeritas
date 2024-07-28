@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vinoveritas/src/features/disclaimer_feature/aview/screens/onboarding_screen.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/home_page.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/login_page.dart';
@@ -31,10 +32,18 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
+      path: '/disclaimer',
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: const CustomNavBarWrapper(
+          child: OnboardingScreen(),
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/home',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(showFavList: false)
+          child: HomeFavPage(showFavList: false)
         ),
       ),
     ),
@@ -50,7 +59,7 @@ final GoRouter router = GoRouter(
       path: '/page2',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(showFavList: true)
+          child: HomeFavPage(showFavList: true)
 
         ),
       ),

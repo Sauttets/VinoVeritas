@@ -10,17 +10,18 @@ import 'package:vinoveritas/src/features/home_favorite_feature/model/favlist_tup
 import 'package:vinoveritas/src/features/home_favorite_feature/repository/wine_repository.dart';
 import 'package:vinoveritas/src/services/persistence_service/isar_service.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
-class WinePageLayout extends StatefulWidget {
+class HomeFavPage extends StatefulWidget {
   final bool showFavList;
 
-  const WinePageLayout({super.key, required this.showFavList});
+  const HomeFavPage({super.key, required this.showFavList});
 
   @override
-  WinePageLayoutState createState() => WinePageLayoutState();
+  HomeFavPageState createState() => HomeFavPageState();
 }
 
-class WinePageLayoutState extends State<WinePageLayout> {
+class HomeFavPageState extends State<HomeFavPage> {
   late Future<List<FavlistTupel>> _wineLists;
   late String initialShareCode;
 
@@ -46,11 +47,13 @@ class WinePageLayoutState extends State<WinePageLayout> {
           future: _wineLists,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+              ));
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No wine lists available'));
+              return const Center(child: Text(StaticText.noWineLists));
             } else {
               return BlocProvider(
                 create: (context) => WineCubit(
@@ -67,7 +70,9 @@ class WinePageLayoutState extends State<WinePageLayout> {
                       child: BlocBuilder<WineCubit, WineState>(
                         builder: (context, state) {
                           if (state is WineLoading && state.wines.isEmpty) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryRed),
+                            ));
                           } else if (state is WineError && state.wines.isEmpty) {
                             return Center(child: Text(state.message));
                           } else {

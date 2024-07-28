@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class ImportFavorites extends StatelessWidget {
   const ImportFavorites({super.key});
@@ -53,7 +54,7 @@ class NewWidgetState extends State<NewWidget> {
     weincodeController.clear();
     listNameController.clear();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Favorites imported successfully!')),
+      const SnackBar(content: Text(StaticText.succsessfulImport)),
     );
     setState(() {});
   }
@@ -71,7 +72,7 @@ class NewWidgetState extends State<NewWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              '  Weincode:',
+              StaticText.weincode,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
               ),
@@ -96,7 +97,7 @@ class NewWidgetState extends State<NewWidget> {
             ),
             const SizedBox(height: Spacings.widgetVertical),
             const Text(
-              '  Name der Liste:',
+              StaticText.listName,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
               ),
@@ -142,7 +143,7 @@ class NewWidgetState extends State<NewWidget> {
                           ? () => _onImportPressed(context)
                           : null,
                       child: const Text(
-                        'Importieren',
+                        StaticText.importButton,
                         style: TextStyle(
                           color: AppColors.white,
                         ),

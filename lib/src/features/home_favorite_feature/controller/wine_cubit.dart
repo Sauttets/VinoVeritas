@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_state.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/repository/wine_repository.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class WineCubit extends Cubit<WineState> {
   final WineRepository wineRepository;
@@ -42,7 +43,7 @@ class WineCubit extends Cubit<WineState> {
         emit(WineLoaded(List.from(state.wines)..addAll(newWines)));
       }
     } catch (e) {
-      emit(WineError("Bitte gehen sie weiter, hier gibt es nichts zu sehen!", state.wines));
+      emit(WineError(StaticText.emptyFavList, state.wines));
     }
   }
 
@@ -99,7 +100,7 @@ class WineCubit extends Cubit<WineState> {
 
       emit(WineLoaded(updatedWines, hasReachedMax: state.hasReachedMax));
     } catch (e) {
-      emit(WineError("Failed to update favorite status", state.wines));
+      emit(WineError(StaticText.updateFavoritesFailed, state.wines));
     }
   }
 }

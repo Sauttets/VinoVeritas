@@ -1,4 +1,65 @@
 class StaticText {
+
+  static const String appTitleTop = 'V I N O';
+  static const String appTitleBottom = 'VERITAS';
+  static const String username = '  Nutzername';
+  static const String letsGo = 'Los Gehts!';
+
+  static const String ageVerification = 'Hiermit bestätige ich das ich mindestens 16 Jahre alt bin';
+  static const String ageVerificationTitle = 'Wichtiger Hinweis:';
+  static const String ageVerificationText1 = 'Uns liegt verantwortungsvoller Genuss sehr am Herzen. Bitte denke daran, Wein immer bewusst und mit Maß zu trinken.';
+  static const String ageVerificationText2 = 'Der Konsum von Alkohol ist erst ab 16 Jahren erlaubt. Trinke verantwortungsvoll und vermeide riskante Entscheidungen, wenn du Alkohol getrunken hast.';
+  static const String featureDisclaimerTitle = 'Wir freuen uns riesig, dass du hier bist und wünschen dir jede Menge Spaß beim Entdecken neuer Weine und Teilen deiner Favoriten.';
+  static const String feature1Title = 'Neue Weine finden:';
+  static const String feature1Text = 'Stöbere durch unsere riesige Auswahl und entdecke Weine, die genau deinem Geschmack entsprechen.';
+  static const String feature2Title = 'Favoriten teilen:';
+  static const String feature2Text = 'Teile deine Lieblingsweine mit Freunden und Familie und sieh, welche Weine ihnen gefallen.';
+  static const String feature3Title = 'Neues lernen:';
+  static const String feature3Text = 'Lerne alles rund um das Thema Wein. Von Anbaugebieten über Rebsorten bis hin zu Verkostungstipps.';
+  static const String ageVerificationButton = 'Weine entdecken';
+
+  static const String design = '  Design:';
+  static const String autoMode = 'Automatisch';
+  static const String lightMode = 'Hellmodus';
+  static const String darkMode = 'Dunkelmodus';
+  static const String shareFavorites = '    Teile deine Favoriten:';
+
+  static const String weincode = 'Weincode:';
+  static const String importButton = 'Importieren';
+  static const String listName = 'Name der Liste:';
+  static const String succsessfulImport = 'Favorites imported successfully!';
+
+  static const String searchHint = 'Suche...';
+  static const String dryness = 'Trockenheit';
+  static const String acidity = 'Säuregehalt';
+  static const String tanninLevel = 'Tannin Level';
+  static const String descriptionHeader = 'Beschreibung:';
+  static const String fallbackAddress = 'Edeka Baur, Reichenaustraße 36, 78467 Konstanz';
+  static const String price = 'Preis: ';
+  static const String taste = 'Geschmack:';
+  static const String fitsTo = 'Passt zu:';
+  static const String noWineLists = 'Keine Weinlisten gefunden';
+  static const String noShareCode = 'Kein Share-Code gefunden';
+  static const String emptyFavList = 'Bitte gehen sie weiter, hier gibt es nichts zu sehen!';
+  static const String updateFavoritesFailed = 'Failed to update favorite status';
+
+  static const String sortLabel = 'Sortieren  ';
+  static const String filterLabel = 'Essen & Geschmack';
+  static const String food = 'Essen';
+  static const String tasteProfile = 'Geschmack';
+
+  static const String sortAll = 'Alle';
+  static const String sortRed = 'Rotwein';
+  static const String sortWhite = 'Weißwein';
+  static const String sortRose = 'Roséwein';
+
+  static const String mostPopular = 'Beliebteste zuerst';
+  static const String priceLowToHigh = 'Preis aufsteigend';
+  static const String priceHighToLow = 'Preis absteigend';
+
+  static const String wineFactOTD =
+      "Wusstest du, dass die ältesten Hinweise auf Weinherstellung etwa 8.000 Jahre alt sind? Archäologische Funde deuten darauf hin, dass die Weinproduktion bereits in der Neusteinzeit begann, als Menschen begannen, Trauben anzubauen und zu fermentieren.";  
+  
   final List<List<Map<String, String>>> wineFactsTabs = [
     [
       {
@@ -169,6 +230,8 @@ class StaticText {
     ],
   ];
 
-  static String wineFactOTD =
-      "Wusstest du, dass die ältesten Hinweise auf Weinherstellung etwa 8.000 Jahre alt sind? Archäologische Funde deuten darauf hin, dass die Weinproduktion bereits in der Neusteinzeit begann, als Menschen begannen, Trauben anzubauen und zu fermentieren.";
+  
+
+  
+
 }

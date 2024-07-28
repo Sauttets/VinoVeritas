@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class DisplayAndCopyText extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class DisplayAndCopyText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            '   Teile deine Favoriten:',
+            StaticText.shareFavorites,
             style: TextStyle(
               fontSize: Spacings.textFontSize,
             ),

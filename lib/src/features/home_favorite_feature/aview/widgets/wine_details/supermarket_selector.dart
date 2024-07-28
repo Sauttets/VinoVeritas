@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class SupermarketImg extends StatelessWidget {
   final String name;
@@ -85,7 +86,7 @@ class SupermarketText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Preis: $price',
+              StaticText.price + price,
               style: const TextStyle(
                 color: AppColors.primaryText,
                 fontSize: Spacings.textFontSize,
@@ -128,7 +129,7 @@ class SupermarketSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String mapsAddress = 'Edeka Baur, Reichenaustraße 36, 78467 Konstanz';
+    String mapsAddress = StaticText.fallbackAddress;
     return Card(
       elevation: 5.0,
       color: AppColors.white, 

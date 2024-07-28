@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/static_text.dart';
 import 'package:vinoveritas/util/taste_maps.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
 
@@ -74,11 +75,11 @@ class FilterSortTasteState extends State<FilterSortTaste> {
     return GestureDetector(
       onTap: () => toggleSelection(option),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: Spacings.buttonSpacing),
+        padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal, vertical: Spacings.buttonSpacing),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
           border: Border.all(color: isSelected ? AppColors.primaryRed : AppColors.primaryGrey),
         ),
         child: Row(
@@ -87,9 +88,9 @@ class FilterSortTasteState extends State<FilterSortTaste> {
             Icon(
               selectedCategory == 'Essen' ? fitsforIcons[option] : tasteIcons[option],
               color: selectedCategory == 'Essen' ? fitsColors[option] : tasteColors[option],
-              size: 20.0,
+              size: Spacings.sortIconSize,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: Spacings.widgetHorizontal),
             Text(
               option,
               style: TextStyle(
@@ -113,10 +114,10 @@ class FilterSortTasteState extends State<FilterSortTaste> {
         context.read<WineCubit>().applyFilters();
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: Spacings.buttonSpacing),
+        padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal, vertical: Spacings.buttonSpacing),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
         ),
         child: Text(
           category,
@@ -134,17 +135,17 @@ class FilterSortTasteState extends State<FilterSortTaste> {
     return GestureDetector(
       onTap: () => onSelect(text),
       child: Container(
-        padding: const EdgeInsets.only(left: 15, right: 15, top: Spacings.buttonSpacing, bottom: Spacings.buttonSpacing),
+        padding: const EdgeInsets.only(left: Spacings.widgetPaddingAll, right: Spacings.widgetPaddingAll, top: Spacings.buttonSpacing, bottom: Spacings.buttonSpacing),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
           border: Border.all(color: isSelected ? AppColors.primaryRed : AppColors.primaryGrey),
         ),
         child: Text(
           _getDisplayName(text),
           style: TextStyle(
-            color: isSelected ? AppColors.white : AppColors.black,
+            color: isSelected ? AppColors.white : AppColors.primaryText,
           ),
         ),
       ),
@@ -154,19 +155,19 @@ class FilterSortTasteState extends State<FilterSortTaste> {
   String _getDisplayName(String value) {
     switch (value) {
       case 'all':
-        return 'Alle';
+        return StaticText.sortAll;
       case 'red':
-        return 'Rotwein';
+        return StaticText.sortRed;
       case 'white':
-        return 'Weißwein';
+        return StaticText.sortWhite;
       case 'rose':
-        return 'Rosé';
+        return StaticText.sortRose;
       case 'most-liked':
-        return 'Beliebteste zuerst';
+        return StaticText.mostPopular;
       case 'low-high':
-        return 'Preis (Niedrig - Hoch)';
+        return StaticText.priceLowToHigh;
       case 'high-low':
-        return 'Preis (Hoch - Niedrig)';
+        return StaticText.priceHighToLow;
       default:
         return value;
     }
@@ -185,20 +186,19 @@ class FilterSortTasteState extends State<FilterSortTaste> {
               GestureDetector(
                 onTap: toggleTasteMenuExpansion,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal, vertical: Spacings.widgetVertical/2),
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(Spacings.roundEnd),
                     border: Border.all(color: AppColors.primaryGrey),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        'Essen & Geschmack',
+                        StaticText.filterLabel,
                         style: TextStyle(color: AppColors.primaryText, fontSize: Spacings.textFontSize),
                       ),
-                      const SizedBox(width: 8),
                       Icon(
                         isTasteMenuExpanded ? Icons.expand_less : Icons.expand_more,
                         color: AppColors.primaryGrey,
@@ -207,22 +207,22 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: Spacings.widgetHorizontal),
               GestureDetector(
                 onTap: toggleFilterSortExpansion,
                 child: IntrinsicWidth(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal, vertical: Spacings.widgetVertical/2),
                     decoration: BoxDecoration(
                       color: AppColors.white,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(Spacings.roundEnd),
                       border: Border.all(color: AppColors.primaryGrey),
                     ),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Sortieren  ',
+                          StaticText.sortLabel,
                           style: TextStyle(fontSize: Spacings.textFontSize),
                         ),
                         Icon(Icons.tune, color: AppColors.primaryGrey),
@@ -239,7 +239,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
               padding: const EdgeInsets.all(Spacings.horizontal),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Spacings.filterCorner),
                 border: Border.all(color: AppColors.primaryGrey),
               ),
               child: IntrinsicHeight(
@@ -261,7 +261,6 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                       ),
                     ),
                     const VerticalDivider(
-                      thickness: 1,
                       color: AppColors.primaryGrey,
                     ),
                     Expanded(
@@ -284,10 +283,10 @@ class FilterSortTasteState extends State<FilterSortTaste> {
           if (isTasteMenuExpanded) ...[
             const SizedBox(height: Spacings.horizontal),
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Spacings.filterCorner),
                 border: Border.all(color: AppColors.primaryGrey),
               ),
               child: Column(
@@ -295,21 +294,20 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: AppColors.primaryGrey),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(Spacings.roundEnd),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        buildCategoryButton('Essen'),
+                        buildCategoryButton(StaticText.food),
                         const SizedBox(width: 8),
-                        buildCategoryButton('Geschmack'),
+                        buildCategoryButton(StaticText.tasteProfile),
                       ],
                     ),
                   ),
                   const SizedBox(height: Spacings.vertical),
                   Wrap(
-                    spacing: 8.0,
-                    runSpacing: 8.0,
+                    runSpacing: Spacings.buttonSpacing,
                     children: [
                       for (int i = 0; i < options.length; i += 2)
                         Row(

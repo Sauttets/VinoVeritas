@@ -8,6 +8,7 @@ import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_fa
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -67,7 +68,7 @@ class SettingsPage extends StatelessWidget {
                           return const Padding(
                             padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                             child: DisplayAndCopyText(
-                                text: 'no Sharecode available'),
+                                text: StaticText.noShareCode),
                           );
                         }
                       },

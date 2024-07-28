@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 final _settingsCubit = GetIt.I<SettingsCubit>();
 
@@ -29,7 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
     final text = _usernameController.text;
     if (text.isNotEmpty) {
       _settingsCubit.login(text);
-      context.go('/home');
+      context.go('/disclaimer');
     }
   }
 
@@ -86,7 +87,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: Spacings.widgetHorizontal),
                   const Text(
-                    'V  I  N  O',
+                    StaticText.appTitleTop,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: Spacings.loginTextSize1,
@@ -94,7 +95,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const Text(
-                    'VERITAS',
+                    StaticText.appTitleBottom,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: Spacings.loginTextSize2,
@@ -106,9 +107,9 @@ class LoginScreenState extends State<LoginScreen> {
                     controller: _usernameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(Spacings.roundCorner)),
+                        borderRadius: BorderRadius.all(Radius.circular(Spacings.roundEnd)),
                       ),
-                      labelText: 'Username',
+                      labelText: StaticText.username,
                     ),
                     onSubmitted: (text) => _onTextChanged(),
                   ),
@@ -120,14 +121,14 @@ class LoginScreenState extends State<LoginScreen> {
                           : AppColors.secondaryGrey,
                       padding: const EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal*1.5),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(Spacings.roundCorner),
+                        borderRadius: BorderRadius.circular(Spacings.roundEnd),
                       ),
                     ),
                     onPressed: _isButtonEnabled
                         ? _onTextChanged
                         : null,
                     child: const Text(
-                      'Los Gehts!',
+                      StaticText.letsGo,
                       style: TextStyle(
                         fontSize: Spacings.titleFontSize,
                         color: AppColors.white,

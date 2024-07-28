@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: AppColors.backgroundColor,
-        statusBarIconBrightness: Brightness.light, // Change this based on your preference
-        statusBarBrightness: Brightness.light, // Change this based on your preference
+        statusBarIconBrightness: Brightness.light, 
+        statusBarBrightness: Brightness.light,
       ),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           return router!;
         },
         theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.backgroundColor, // Set your desired background color here
+          scaffoldBackgroundColor: AppColors.backgroundColor,
         ),
       ),
     );
@@ -55,7 +55,7 @@ class CustomNavBarWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hideNavBarRoutes = ['/'];
+    final hideNavBarRoutes = ['/', '/disclaimer'];
     final currentLocation = GoRouter.of(context).location;
 
     return Scaffold(
