@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/disclaimer_feature/aview/screens/onboarding_screen.dart';
+import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/screens/onboarding_screen.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/home_page.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/screens/login_page.dart';
+import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/screens/login_page.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/screens/lexikon_page.dart';
 import 'package:vinoveritas/main.dart';
