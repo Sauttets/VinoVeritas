@@ -18,6 +18,8 @@ class StaticText {
   static const String feature3Text = 'Lerne alles rund um das Thema Wein. Von Anbaugebieten über Rebsorten bis hin zu Verkostungstipps.';
   static const String ageVerificationButton = 'Weine entdecken';
 
+  static const String wineFactOfTheDay = 'Wine Fact of the Day:';
+
   static const String design = '  Design:';
   static const String autoMode = 'Automatisch';
   static const String lightMode = 'Hellmodus';

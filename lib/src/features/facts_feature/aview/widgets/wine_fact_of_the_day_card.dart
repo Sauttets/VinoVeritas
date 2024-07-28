@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class WineFactOfTheDay extends StatelessWidget {
   final String fact;
@@ -14,7 +15,7 @@ class WineFactOfTheDay extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(Spacings.cornerRadius),
         boxShadow: [
           BoxShadow(
             color: AppColors.black.withOpacity(0.1),
@@ -29,7 +30,7 @@ class WineFactOfTheDay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Wine Fact of the Day:',
+            StaticText.wineFactOfTheDay,
             style: TextStyle(
               color: AppColors.black,
               fontSize: Spacings.titleFontSize,
