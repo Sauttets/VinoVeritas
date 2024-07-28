@@ -73,12 +73,23 @@ A new user name can be assigned under "User name". <br>
 In the "Design" section, users can choose between light and dark mode.
 Under "Share with your favourites", users can find their personal code, which they can send to their friends so that they can access their own list. Below this, there is the option to enter codes that have been sent (under wine code), and under "Name of the list", the imported list can be given a name in order to maintain an overview. The list is then imported by clicking on "Import".
 
-TODO This is Nicks Part
 ## Architecture 
 
-Architecture
-Description of the structure of the app including a diagram of the layers (View, Model, Controller,
-Repository Services etc. depending on what was used)
+Die Architektur der App basiert auf einem Feature-First-Ansatz mit einer MVC+S-Struktur (Model-View-Controller + Service) unter Verwendung von Cubit als Controller und go_router für das Routing sowie einem Persistence-Service mit Isar. Jedes Feature hat eine eigene View, einen Controller und ein Model. Die View teilt sich in Screens und Widgets auf. Zusätzlich wurde teilweise eine Repository-Schicht eingeführt, um die Logik für die Kommunikation zwischen dem Controller und dem Persistence-Service zu extrahieren.
+
+Hier ist eine grobe Beschreibung der Struktur:
+
+View: Besteht aus den Screens und Widgets, die die Benutzeroberfläche darstellen.
+
+Controller (Cubit): Verwaltet den Zustand und die Geschäftslogik der App.
+
+Model: Enthält die Datenklassen und die Logik zum Verwalten der Daten.
+
+Repository: Verantwortlich für die Abstraktion der Datenzugriffslogik, vermittelt zwischen Controller und Persistence-Service.
+
+Service: Verantwortlich für das Abrufen und Speichern von Daten, z.B. über den Isar-Persistence-Service.
+
+!["Architektur"](assets/readme/architecture.png)<b>
 
 ### Here is the rough description 
 ### This is where the diagram goes

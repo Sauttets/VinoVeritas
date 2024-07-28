@@ -5,8 +5,8 @@ class WineFact {
   WineFact({required this.fact});
 
   factory WineFact.fromJson(Map<String, dynamic> json) {
-    return WineFact(
-      fact: json['fact'],
-    );
+      return WineFact(
+          fact: json['fact'] as String,
+      );
   }
 }

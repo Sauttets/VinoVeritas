@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/homepage_feature/aview/screens/home_page.dart';
-import 'package:vinoveritas/src/features/homepage_feature/model/wine_model.dart';
+import 'package:vinoveritas/src/features/disclaimer_feature/aview/screens/onboarding_screen.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/home_page.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/login_page.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/screens/lexikon_page.dart';
 import 'package:vinoveritas/main.dart';
-import 'package:vinoveritas/src/features/homepage_feature/aview/screens/wine_details_page.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/wine_details_page.dart';
 
 class NoTransitionPage<T> extends CustomTransitionPage<T> {
   NoTransitionPage({
@@ -31,10 +32,18 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
+      path: '/disclaimer',
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: const CustomNavBarWrapper(
+          child: OnboardingScreen(),
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/home',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(showFavList: false)
+          child: HomeFavPage(showFavList: false)
         ),
       ),
     ),
@@ -50,7 +59,7 @@ final GoRouter router = GoRouter(
       path: '/page2',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
-          child: WinePageLayout(showFavList: true)
+          child: HomeFavPage(showFavList: true)
 
         ),
       ),
@@ -67,7 +76,7 @@ final GoRouter router = GoRouter(
       path: '/wine-details',
       builder: (context, state) {
         final wine = state.extra as Wine;
-        return WineDetailsPage(wine: wine);
+        return WineDetailsPage(wine: wine, favlist: false);
       },
     ),
   ],
@@ -91,13 +100,3 @@ void pop(BuildContext context) {
   GoRouter.of(context).pop();
 }
 
-Widget placeholderPage(String pageName) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text(pageName),
-    ),
-    body: Center(
-      child: Text('$pageName is under construction'),
-    ),
-  );
-}

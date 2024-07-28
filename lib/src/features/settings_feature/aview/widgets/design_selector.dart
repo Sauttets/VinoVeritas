@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class DesignSelector extends StatelessWidget {
   final int selectedIndex;
@@ -14,40 +16,33 @@ class DesignSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: Spacings.widgetHorizontal),
       child: SizedBox(
-        height: 80, // Adjusted height to avoid overflow
+        height: 80,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 18,
-              padding: const EdgeInsets.only(left: 10), // Add left padding here
+              padding: const EdgeInsets.only(left: Spacings.widgetHorizontal),
               child: const Text(
-                'Design :',
+                StaticText.design,
                 style: TextStyle(
                   fontFamily: 'Roboto',
-                  fontSize: 15,
+                  fontSize: Spacings.textFontSize,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
             SizedBox(
-              height: 46, // Adjusted height to accommodate all content
               child: Container(
-                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(
-                      50), // Same corner radius as buttons
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(Spacings.roundEnd),
                 ),
                 child: Row(
                   children: [
-                    _buildButton(0, 'Automatisch'),
-                    _buildButton(1, 'Hellmodus'),
-                    _buildButton(2, 'Dunkelmodus'),
+                    _buildButton(0, StaticText.autoMode),
+                    _buildButton(1, StaticText.lightMode),
+                    _buildButton(2, StaticText.darkMode),
                   ],
                 ),
               ),
@@ -67,7 +62,7 @@ class DesignSelector extends StatelessWidget {
           onTabSelected(index);
         },
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: Spacings.widgetVertical),
           decoration: BoxDecoration(
             color: isSelected ? AppColors.primaryRed : AppColors.transparent,
             borderRadius: BorderRadius.circular(50),
@@ -77,8 +72,8 @@ class DesignSelector extends StatelessWidget {
               text,
               style: TextStyle(
                 fontFamily: 'Roboto',
-                fontSize: 15,
-                color: isSelected ? AppColors.primaryWhite : AppColors.black,
+                fontSize: Spacings.textFontSize,
+                color: isSelected ? AppColors.white : AppColors.black,
               ),
             ),
           ),

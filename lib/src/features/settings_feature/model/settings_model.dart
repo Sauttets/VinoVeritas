@@ -16,7 +16,6 @@ class SettingsModel with _$SettingsModel {
     @Default('NoUser') String shareCode,
   }) = _SettingsModel;
 
-  // Convert SettingsModel to Settings (Isar object) as an instance method
   Settings toIsarSettings() {
     final settings = Settings()
       ..id = id as Id
@@ -25,18 +24,15 @@ class SettingsModel with _$SettingsModel {
       ..radius = radius ?? 5.0
       ..colorMode = colorMode
       ..shareCode = shareCode;
-    // Handle IsarLink<FavListe> fields separately if needed
     return settings;
   }
 
-  // Factory constructor to create a SettingsModel from a Settings instance
   factory SettingsModel.fromIsarSettings(Settings settings) {
     return SettingsModel(
       id: settings.id.toString(),
       username: settings.username,
       plz: settings.plz,
       shareCode: settings.shareCode,
-      // Continue if needed.
     );
   }
 }

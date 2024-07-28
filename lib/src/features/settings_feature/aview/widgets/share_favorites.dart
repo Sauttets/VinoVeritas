@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/spacings.dart';
+import 'package:vinoveritas/util/static_text.dart';
 
 class DisplayAndCopyText extends StatelessWidget {
   final String text;
@@ -12,23 +13,23 @@ class DisplayAndCopyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0), // Add top and bottom padding
+      padding: const EdgeInsets.symmetric(vertical: Spacings.widgetVertical),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            '   Teile deine Favoriten:',
+            StaticText.shareFavorites,
             style: TextStyle(
-              fontSize: 15,
+              fontSize: Spacings.textFontSize,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: Spacings.edge),
             child: Container(
-              height: 44.0,
-                padding: const EdgeInsets.only(left: 10.0),
+              height: Spacings.textFieldHeight,
+                padding: const EdgeInsets.only(left: Spacings.widgetHorizontal),
               decoration: BoxDecoration(
-                color: AppColors.primaryWhite,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(Spacings.cornerRadius),
               ),
               child: Row(
