@@ -3,7 +3,11 @@
 appId: com.example.vinoveritas
 ---
 - launchApp
-- tapOn: "Username"
+- tapOn: "  Nutzername"
 - inputText:
     text: "TestUser"
+- hideKeyboard
 - tapOn: "Los Gehts!"
+- tapOn:
+    leftOf: "Hiermit bestätige ich das ich mindestens 16 Jahre alt bin"
+- tapOn: "Weine entdecken"
