@@ -20,7 +20,6 @@ class WineFactsSelector extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(Spacings.roundEnd),
@@ -35,7 +34,7 @@ class WineFactsSelector extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: Spacings.widgetVertical),
       ],
     );
   }
@@ -52,7 +51,7 @@ class WineFactsSelector extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: Spacings.widgetVertical),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primaryRed : AppColors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(Spacings.roundEnd),
         ),
         child: Center(
           child: Text(
