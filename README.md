@@ -25,17 +25,18 @@ Sweet, dry, Blanc de Noir, strong, with tannins, woody, Pinot Gris, oak barrel, 
 The following section briefly explains which screens the app contains and which functions are available there.
 ### Sign in
 
-!["Sign in"](assets/readme/loggin_page.png)<br>
+!["Sign in"](assets/readme/login_page.png)<br>
 
 When you open the app for the first time, the login screen is displayed. The user name is entered here and then you can get started.
 
 ### Homepage
 
-TODO Bild mit Filtermöglichkeiten hinzufügen und Homepage Bild austauschen
-
-!["Wine lexicon"](assets/readme/home_page.png)<br>
+!["Home Page"](assets/readme/home_page.png)<br>
 
 The centrepiece of this App is our Homepage. A colourful mixture of different wines with clear information is immediately displayed here. 
+
+!["Home Page"](assets/readme/home_page_filter.png)<br>
+
 The various filter functions can be used to find the right wine. Under Food & Flavour, you can select which food the wine should go with or which flavour note should be included. The wines displayed can also be sorted by colour or price. <br>
 If you are interested in a wine, you can obtain further information by clicking on it (see also detailed view of wine). 
 <br> 
@@ -45,7 +46,7 @@ The app's navigation bar is located at the bottom of the screen. The current pag
 
 ### Detailed view of wine
 
-!["Wine lexicon"](assets/readme/lexicon_page_small.png)<br>
+!["Wine Details"](assets/readme/detail_page.png)<br>
 
 In the detailed view of a wine, it is presented in more detail. Information on price, size, dryness, sweetness and tannin content is displayed. <br>
 Below the image is a fold-out information palette. The flavour components of the wine, matching dishes and a textual description are displayed here. <br>
@@ -60,14 +61,17 @@ Under the fact of the day, there are various categories from viticulture to the 
 
 ### Favourites list
 
-TODO Bild hinzufügen
+!["Favorites"](assets/readme/favorites_page.png)<b>
 
 The favourites page is very similar to the homepage. However, there is also the option (via drop-down selection) to choose which favourites list should be displayed, as the lists can also be shared and viewed with friends. <br>
+
+!["Select favorites"](assets/readme/favList_select_page.png)<b>
+
 Only the wines marked with the heart are displayed here. A tab on the wine also takes you to the detailed view of the wine.
 
 ### Settings
 
-!["Wine lexicon"](assets/readme/settings_page.png)<b>
+!["Settings Page"](assets/readme/settings_page.png)<b>
 
 A new user name can be assigned under "User name". <br>
 In the "Design" section, users can choose between light and dark mode.
@@ -75,21 +79,21 @@ Under "Share with your favourites", users can find their personal code, which th
 
 ## Architecture 
 
-Die Architektur der App basiert auf einem Feature-First-Ansatz mit einer MVC+S-Struktur (Model-View-Controller + Service) unter Verwendung von Cubit als Controller und go_router für das Routing sowie einem Persistence-Service mit Isar. Jedes Feature hat eine eigene View, einen Controller und ein Model. Die View teilt sich in Screens und Widgets auf. Zusätzlich wurde teilweise eine Repository-Schicht eingeführt, um die Logik für die Kommunikation zwischen dem Controller und dem Persistence-Service zu extrahieren.
+The architecture of the app is based on a feature-first approach with an MVC+S structure (model-view-controller + service) using Cubit as the controller and go_router for routing as well as a persistence service with Isar. Each feature has its own view, a controller and a model. The view is divided into screens and widgets. In addition, a repository layer was partially introduced to extract the logic for communication between the controller and the persistence service.
 
-Hier ist eine grobe Beschreibung der Struktur:
+### Here is a rough description of the structure:
 
-View: Besteht aus den Screens und Widgets, die die Benutzeroberfläche darstellen.
+<b>View</b>: Consists of the screens and widgets that represent the user interface.
 
-Controller (Cubit): Verwaltet den Zustand und die Geschäftslogik der App.
+<b>Controller (Cubit)</b>: Manages the state and business logic of the app.
 
-Model: Enthält die Datenklassen und die Logik zum Verwalten der Daten.
+<b>Model</b>: Contains the data classes and the logic for managing the data.
 
-Repository: Verantwortlich für die Abstraktion der Datenzugriffslogik, vermittelt zwischen Controller und Persistence-Service.
+<b>Repository</b>: Responsible for the abstraction of the data access logic, mediates between controller and persistence service.
 
-Service: Verantwortlich für das Abrufen und Speichern von Daten, z.B. über den Isar-Persistence-Service.
+<b>Service</b>: Responsible for retrieving and storing data, e.g. via the Isar persistence service.
 
 !["Architektur"](assets/readme/architecture.png)<b>
 
 ## Installation
-Here is a pretty usefull text that should explain how to install this awesome App but it donsnt do anything else than fuks you up.
+The installation is trivial.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_facts/expandable_wine_facts_list.dart';
 import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_facts/wine_facts_selector.dart';
 import 'package:vinoveritas/util/app_colors.dart';
+import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 class StaticWineFacts extends StatefulWidget {
@@ -37,7 +38,7 @@ class StaticWineFactsState extends State<StaticWineFacts> {
       ),
       body: Container(
         color: AppColors.backgroundColor,
-        padding: const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
+        padding: const EdgeInsets.only(left: Spacings.widgetHorizontal, bottom: Spacings.widgetVertical, right: Spacings.widgetHorizontal),
         child: WineFactsTab(wineFacts: wineFactsTab[selectedIndex], tabIndex: selectedIndex),
       ),
     );
