@@ -1,24 +1,19 @@
 # VinoVeritas
-
-We use the underscore naming convention ("_") with lowercase letters only.
-
-German version of the documentation, English will follow when the German version fits:
-
 ## Abstract
 
 VinoVeritas is an app that enables a stress-free and successful selection of wines. It offers various filtering options, its own favorites list, the ability to share favorites, and a mini-encyclopedia to help you get to grips with the technical jargon and expand your knowledge.
 
 ## Description
+Choosing the right wine can be challenging, especially with the vast selection available in most supermarkets. Whether you're hosting a birthday party, planning a romantic evening, gathering with colleagues, or enjoying a family dinner, the perfect wine can enhance the experience. But with so many options, how do you decide which one to pick?
 
-Almost everyone knows it: you're standing in front of a crowded shelf and don't know what to take. Whether for a birthday party, a romantic evening for two, for colleagues or simply for a relaxed dinner with the family - the right wine makes the occasion even better. But the question is: which wine should it be?
+That's where this app comes in. Designed for people who don't have the time to become wine experts, the app helps you find the ideal wine for any occasion. It focuses on wines from the low to medium price range and tells you where you can find them in your local supermarket. With various filters and sorting options, you can easily choose a wine based on food pairing, taste, color, and price.
 
-Most supermarkets have an incredible selection of wines, and there is usually not just one supermarket in town. This seemingly endless selection of wines from a wide variety of countries of origin is the reason why this app was created. The app is intended to ensure that people who do not have the time to delve deeper into the subject of wine can find a wine that exactly meets their requirements.
+You can save your favorite wines in a personal favorites list, making it easy to find them again. You can also share your favorites with friends and see their top picks, making wine selection a fun and social activity.
 
-This app is primarily aimed at people who want to easily buy suitable wine at good prices. It provides information on wines from the low to medium price segment as well as the locations where this wine is available in a supermarket. With various filtering and sorting options (food, taste, color and price), users can find the perfect wine to suit their taste and occasion.
+The app includes a small wine dictionary to help you understand common wine terms like "sweet," "dry," "Blanc de Noir," "tannins," "woody," "Pinot Gris," and "oak barrel." This feature provides quick explanations, helping you build your wine knowledge without much effort, leading to better wine choices.
 
-Favorite wines can be saved in the personal favorites list so that you don't have to search every time. This means you always have your favorite wines to hand. Friends' favorite wines can also be easily viewed by sharing favorites lists with each other.
+In summary, this app is a handy tool for anyone looking to quickly and easily find great wines at good prices, with the added benefit of learning more about wine along the way.
 
-Sweet, dry, Blanc de Noir, strong, with tannins, woody, Pinot Gris, oak barrel, Pinot Gris, cork, etc. These are all terms that can be found on wine bottles and in the app. But what is behind these terms? This and much more is explained in the small wine lexicon. Here you can look up terms that have been picked up in the app, on bottles or on other occasions. In this way, more background knowledge is created without spending a lot of time to enable a better understanding, which can lead to a better wine selection.
 
 ## Screens & functions
 
