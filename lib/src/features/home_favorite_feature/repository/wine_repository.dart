@@ -11,6 +11,7 @@ class WineRepository {
     String color = 'all',
     String sort = 'most-liked',
     String? fitOrFlavour,
+    String? searchQuery,
     bool favlist = false,
     required String shareCode,
   }) async {
@@ -20,6 +21,7 @@ class WineRepository {
       if (color != 'all') 'color': color,
       if (sort != 'most-liked') 'sort': sort,
       if (fitOrFlavour != null) 'fitOrFlavour': fitOrFlavour,
+      if (searchQuery != null) 'search': searchQuery,
       if (favlist) 'favlist': 'true',
     });
 
