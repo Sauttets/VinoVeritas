@@ -1,0 +1,9 @@
+#This should be the first flow to be executed
+
+appId: com.example.vinoveritas
+---
+- launchApp
+- tapOn: "Username"
+- inputText:
+    text: "TestUser"
+- tapOn: "Los Gehts!"
