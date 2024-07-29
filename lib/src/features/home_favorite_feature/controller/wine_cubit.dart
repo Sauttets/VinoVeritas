@@ -12,6 +12,7 @@ class WineCubit extends Cubit<WineState> {
   String color = 'all';
   String sort = 'most-liked';
   String? fitOrFlavour;
+  String? searchQuery;
   bool favlist;
   String shareCode;
 
@@ -33,6 +34,7 @@ class WineCubit extends Cubit<WineState> {
         color: color,
         sort: sort,
         fitOrFlavour: fitOrFlavour,
+        searchQuery: searchQuery,
         favlist: favlist,
         shareCode: shareCode,
       );
@@ -51,10 +53,12 @@ class WineCubit extends Cubit<WineState> {
     String? color,
     String? sort,
     String? fitOrFlavour,
+    String? searchQuery,
   }) async {
     if (color != null) this.color = color;
     if (sort != null) this.sort = sort;
     if (fitOrFlavour != null) this.fitOrFlavour = fitOrFlavour;
+    if (searchQuery != null) this.searchQuery = searchQuery;
 
     await fetchWines(resetList: true);
   }

@@ -204,6 +204,7 @@ class MockWineCubit extends _i1.Mock implements _i4.WineCubit {
     String? color,
     String? sort,
     String? fitOrFlavour,
+    String? searchQuery,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
