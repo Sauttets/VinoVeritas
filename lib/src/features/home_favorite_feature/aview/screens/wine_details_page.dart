@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/repository/wine_repository.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/description.dart';
+import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/wine_description.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/taste_pallet.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/full_wine_description.dart';
 import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/supermarket_selector.dart';
@@ -83,7 +83,7 @@ class WineDetailsPageState extends State<WineDetailsPage> {
                           fit2: widget.wine.fitsTo.length > 1 ? widget.wine.fitsTo[1] : null,
                           fit3: widget.wine.fitsTo.length > 2 ? widget.wine.fitsTo[2] : null,
                         ),
-                        description: Description(description: widget.wine.description),
+                        description: WineDescription(description: widget.wine.description),
                       ),
                       const SizedBox(height: Spacings.widgetVertical),
                       if (widget.wine.supermarkets.isNotEmpty)

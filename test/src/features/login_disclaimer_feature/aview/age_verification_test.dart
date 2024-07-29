@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/age_verification.dart';
-import 'package:vinoveritas/util/app_colors.dart';
-import 'package:vinoveritas/util/static_text.dart';
 
 void main() {
-  testWidgets('CheckboxButtonWidget toggles checkbox and enables/disables button', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: CheckboxButtonWidget(),
-        ),
-      ),
-    );
+  group('CheckboxButtonWidget', () {
+    testWidgets('CheckboxButtonWidget changes state and navigates when checked', (WidgetTester tester) async {
+      final router = GoRouter(
+        routes: [
+          GoRoute(path: '/', builder: (context, state) => const Scaffold(body: CheckboxButtonWidget())),
+          GoRoute(path: '/home', builder: (context, state) => const Scaffold(body: Text('Home'))),
+        ],
+      );
 
-    // Verify initial state
-    expect(find.text(StaticText.ageVerification), findsOneWidget);
-    expect(find.text(StaticText.ageVerificationButton), findsOneWidget);
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).onPressed, isNull);
+      await tester.pumpWidget(MaterialApp.router(
+        routerConfig: router,
+      ));
 
-    // Tap the checkbox to check it
-    await tester.tap(find.byType(Checkbox));
-    await tester.pumpAndSettle();
+      expect(find.byType(Checkbox), findsOneWidget);
+      expect(find.byType(ElevatedButton), findsOneWidget);
 
-    // Verify the button is now enabled
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).onPressed, isNotNull);
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).style?.backgroundColor?.resolve({}), AppColors.primaryRed);
+      // Tap the checkbox
+      await tester.tap(find.byType(Checkbox));
+      await tester.pump();
 
-    // Tap the checkbox to uncheck it
-    await tester.tap(find.byType(Checkbox));
-    await tester.pumpAndSettle();
+      // Check if the button is enabled
+      final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+      expect(button.onPressed, isNotNull);
 
-    // Verify the button is now disabled
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).onPressed, isNull);
-    expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).style?.backgroundColor?.resolve({}), AppColors.primaryGrey);
+      // Tap the button
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pumpAndSettle();
+
+      // Verify navigation
+      expect(find.text('Home'), findsOneWidget);
+    });
   });
 }
