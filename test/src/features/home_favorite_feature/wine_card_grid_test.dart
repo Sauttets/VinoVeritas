@@ -17,7 +17,6 @@ void main() {
   });
 
   testWidgets('WineCardGrid Widget renders correctly and triggers fetchWines on scroll', (WidgetTester tester) async {
-    // Arrange
     final mockWineCubit = MockWineCubit();
     final List<Wine> wines = [
       Wine(
@@ -106,18 +105,15 @@ void main() {
       ),
     );
 
-    // Verify that the WineCards are present
     expect(find.byType(WineCard), findsNWidgets(2));
     expect(find.text('Sample Wine 1'), findsOneWidget);
     expect(find.text('Sample Wine 2'), findsOneWidget);
 
-    // Act: Scroll to the bottom to trigger _onScroll
     final scrollableFinder = find.byType(GridView);
-    final scrollable = tester.widget<GridView>(scrollableFinder);
+    tester.widget<GridView>(scrollableFinder);
     await tester.drag(scrollableFinder, const Offset(0, -500));
     await tester.pumpAndSettle();
 
-    // Verify that fetchWines was called
     verify(() => mockWineCubit.fetchWines()).called(1);
   });
 }

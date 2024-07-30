@@ -26,8 +26,7 @@ void main() {
   });
 
   testWidgets('SetUsername Widget renders correctly and updates username on submit', (WidgetTester tester) async {
-    // Definiere den initialen Zustand für den Test
-    when(() => mockSettingsCubit.state).thenReturn(ShowSettings(SettingsModel(username: 'TestUser')));
+    when(() => mockSettingsCubit.state).thenReturn(ShowSettings(const SettingsModel(username: 'TestUser')));
 
     await tester.pumpWidget(
       MaterialApp(
@@ -40,26 +39,21 @@ void main() {
       ),
     );
 
-    // Überprüfen, ob der relevante Text gerendert wird
     expect(find.text(StaticText.username), findsOneWidget);
 
-    // Überprüfen, ob das TextField korrekt angezeigt wird
     final Finder textFieldFinder = find.byType(TextField);
     expect(textFieldFinder, findsOneWidget);
 
-    // Überprüfen des HintTexts
     final TextField textField = tester.widget(textFieldFinder);
     expect(
       (textField.decoration as InputDecoration).hintText,
       'TestUser',
     );
 
-    // Simuliere die Eingabe eines neuen Nutzernamens und den Absenden-Button
     await tester.enterText(textFieldFinder, 'NewUser');
     await tester.testTextInput.receiveAction(TextInputAction.done);
     await tester.pump();
 
-    // Überprüfen, ob die updateUsername-Methode des Cubits aufgerufen wurde
     verify(() => mockSettingsCubit.updateUsername('NewUser')).called(1);
   });
 }

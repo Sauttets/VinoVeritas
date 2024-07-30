@@ -53,7 +53,6 @@ void main() {
 
     expect(find.byType(HeartButton), findsOneWidget);
 
-    // Check if the image fallback works when the image fails to load
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -63,7 +62,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // Verify fallback image is shown
     final imageFallback = find.byWidgetPredicate((widget) => widget is Image && widget.image is AssetImage);
     expect(imageFallback, findsOneWidget);
   });
