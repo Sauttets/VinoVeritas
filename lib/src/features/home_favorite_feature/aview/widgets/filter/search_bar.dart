@@ -42,7 +42,11 @@ class WineSearchBarState extends State<WineSearchBar> {
           controller: _controller,
           decoration: const InputDecoration(
             hintText: StaticText.searchHint,
-            prefixIcon: Icon(Icons.search),
+            hintStyle: TextStyle(
+              color: AppColors.primaryText,
+              fontWeight: FontWeight.normal,
+            ),
+            prefixIcon: Icon(Icons.search, color: AppColors.primaryText),
             border: InputBorder.none,
             contentPadding: EdgeInsets.symmetric(vertical: Spacings.widgetHorizontal),
           ),

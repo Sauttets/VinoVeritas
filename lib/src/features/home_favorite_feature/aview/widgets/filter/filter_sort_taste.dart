@@ -94,7 +94,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
             Text(
               option,
               style: TextStyle(
-                color: isSelected ? AppColors.white : AppColors.black,
+                color: isSelected ? AppColors.contrastOnRed : AppColors.black,
               ),
             ),
           ],
@@ -122,7 +122,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
         child: Text(
           category,
           style: TextStyle(
-            color: isSelected ? AppColors.white : AppColors.primaryText,
+            color: isSelected ? AppColors.contrastOnRed : AppColors.primaryText,
             fontSize: Spacings.textFontSize,
           ),
         ),
@@ -145,7 +145,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
         child: Text(
           _getDisplayName(text),
           style: TextStyle(
-            color: isSelected ? AppColors.white : AppColors.primaryText,
+            color: isSelected ? AppColors.contrastOnRed : AppColors.primaryText,
           ),
         ),
       ),
@@ -223,7 +223,7 @@ class FilterSortTasteState extends State<FilterSortTaste> {
                       children: [
                         Text(
                           StaticText.sortLabel,
-                          style: TextStyle(fontSize: Spacings.textFontSize),
+                          style: TextStyle(fontSize: Spacings.textFontSize, color: AppColors.primaryText),
                         ),
                         Icon(Icons.tune, color: AppColors.primaryGrey),
                       ],

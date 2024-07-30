@@ -68,6 +68,7 @@ class TastePallet extends StatelessWidget {
           style: const TextStyle(
             fontSize: Spacings.titleFontSize,
             fontWeight: FontWeight.bold,
+            color: AppColors.primaryText,
           ),
         ),
         const SizedBox(height: Spacings.widgetVertical),
@@ -92,7 +93,7 @@ class TastePallet extends StatelessWidget {
           size: Spacings.sortIconSize,
         ),
         const SizedBox(width: Spacings.widgetHorizontal),
-        Text(item),
+        Text(item, style: const TextStyle(color: AppColors.primaryText)),
       ],
     );
   }

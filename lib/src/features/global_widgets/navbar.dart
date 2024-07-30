@@ -112,7 +112,7 @@ class CustomNavBarState extends State<CustomNavBar> {
       padding: const EdgeInsets.all(8),
       child: Icon(
         icon,
-        color: _selectedIndex == index ? AppColors.white : AppColors.black,
+        color: _selectedIndex == index ? AppColors.contrastOnRed : AppColors.black,
       ),
     );
   }

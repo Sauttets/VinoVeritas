@@ -41,6 +41,14 @@ dev_dependencies:
   test: ^1.16.0
   mocktail: ^0.2.0
   bloc_test: ^9.0.3
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/VV-AppIcon.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/appIconForeground.png"
 
 flutter:
   uses-material-design: true
