@@ -3,10 +3,10 @@ import 'package:vinoveritas/util/spacings.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
-class Description extends StatelessWidget {
+class WineDescription extends StatelessWidget {
   final String description;
 
-  const Description({
+  const WineDescription({
     super.key,
     required this.description,
   });
