@@ -102,6 +102,7 @@ class WineCardState extends State<WineCard> {
                   Text(
                     widget.wine.name,
                     style: const TextStyle(
+                      color: AppColors.primaryText,
                       fontSize: Spacings.titleFontSize,
                       fontWeight: FontWeight.bold,
                     ),
@@ -123,6 +124,7 @@ class WineCardState extends State<WineCard> {
               child: Text(
                 '${cheapestPrice?.toStringAsFixed(2)}€',
                 style: const TextStyle(
+                  color: AppColors.primaryText,
                   fontSize: Spacings.titleFontSize,
                   fontWeight: FontWeight.bold,
                 ),

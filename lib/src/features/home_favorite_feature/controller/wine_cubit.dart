@@ -45,7 +45,7 @@ class WineCubit extends Cubit<WineState> {
         emit(WineLoaded(List.from(state.wines)..addAll(newWines)));
       }
     } catch (e) {
-      emit(WineError(StaticText.emptyFavList, state.wines));
+      emit(WineError(StaticText.noWineFound, state.wines));
     }
   }
 

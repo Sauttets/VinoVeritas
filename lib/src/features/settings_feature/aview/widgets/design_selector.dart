@@ -29,6 +29,7 @@ class DesignSelector extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: Spacings.textFontSize,
+                  color: AppColors.primaryText,
                 ),
               ),
             ),
@@ -73,7 +74,7 @@ class DesignSelector extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: Spacings.textFontSize,
-                color: isSelected ? AppColors.white : AppColors.black,
+                color: isSelected ? AppColors.contrastOnRed : AppColors.black,
               ),
             ),
           ),

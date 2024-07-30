@@ -40,7 +40,7 @@ class AttributeIndicator extends StatelessWidget {
                 SizedBox(width: leftSpaceWidth),
                 Text(
                   '${price.toStringAsFixed(2)}€  -  $volume ml',
-                  style: const TextStyle(fontSize: Spacings.titleFontSize, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: Spacings.titleFontSize, fontWeight: FontWeight.bold, color: AppColors.primaryText),
                 ),
               ],
             ),
@@ -64,7 +64,7 @@ class AttributeIndicator extends StatelessWidget {
             children: [
               SizedBox(width: leftSpaceWidth),
               Expanded(
-                child: Text(leftLabel),
+                child: Text(leftLabel, style: const TextStyle(color: AppColors.primaryGrey)),
               ),
             ],
           ),

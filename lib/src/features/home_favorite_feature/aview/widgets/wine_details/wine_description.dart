@@ -35,6 +35,7 @@ class WineDescription extends StatelessWidget {
                     style: TextStyle(
                       fontSize: Spacings.titleFontSize,
                       fontWeight: FontWeight.bold,
+                      color: AppColors.primaryText,
                     ),
                   ),
                   const SizedBox(height: Spacings.horizontal),
@@ -42,6 +43,7 @@ class WineDescription extends StatelessWidget {
                     description,
                     style: const TextStyle(
                       fontSize: Spacings.textFontSize,
+                      color: AppColors.primaryText,
                     ),
                   ),
                 ],

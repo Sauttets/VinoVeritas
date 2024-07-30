@@ -66,6 +66,7 @@ class WineDetailsPageState extends State<WineDetailsPage> {
               backgroundColor: AppColors.backgroundColor,
               appBar: AppBar(
                 backgroundColor: AppColors.backgroundColor,
+                iconTheme: const IconThemeData(color: AppColors.primaryText),
               ),
               body: SingleChildScrollView(
                 child: Padding(
