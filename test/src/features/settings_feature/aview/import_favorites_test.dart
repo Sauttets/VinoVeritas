@@ -11,6 +11,7 @@ class MockSettingsCubit extends MockCubit<SettingsState> implements SettingsCubi
 
 class FakeSettingsState extends Fake implements SettingsState {}
 
+
 void main() {
   late MockSettingsCubit mockSettingsCubit;
 
