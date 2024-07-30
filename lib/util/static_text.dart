@@ -42,7 +42,7 @@ class StaticText {
   static const String fitsTo = 'Passt zu:';
   static const String noWineLists = 'Keine Weinlisten gefunden';
   static const String noShareCode = 'Kein Share-Code gefunden';
-  static const String emptyFavList = 'Bitte gehen sie weiter, hier gibt es nichts zu sehen!';
+  static const String noWineFound = 'Keine Weine gefunden';
   static const String updateFavoritesFailed = 'Failed to update favorite status';
 
   static const String sortLabel = 'Sortieren  ';

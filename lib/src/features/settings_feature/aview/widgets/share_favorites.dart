@@ -21,6 +21,7 @@ class DisplayAndCopyText extends StatelessWidget {
             StaticText.shareFavorites,
             style: TextStyle(
               fontSize: Spacings.textFontSize,
+              color: AppColors.primaryText,
             ),
           ),
           Padding(

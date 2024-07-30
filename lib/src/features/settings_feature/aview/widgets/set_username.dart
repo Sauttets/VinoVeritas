@@ -19,6 +19,7 @@ class SetUsername extends StatelessWidget {
               StaticText.username,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
+                color: AppColors.primaryText,
               ),
             ),
             SizedBox(

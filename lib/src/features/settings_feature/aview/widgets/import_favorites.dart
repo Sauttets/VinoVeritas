@@ -75,6 +75,7 @@ class NewWidgetState extends State<NewWidget> {
               StaticText.weincode,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
+                color: AppColors.primaryText,
               ),
             ),
             SizedBox(
@@ -100,6 +101,7 @@ class NewWidgetState extends State<NewWidget> {
               StaticText.listName,
               style: TextStyle(
                 fontSize: Spacings.textFontSize,
+                color: AppColors.primaryText,
               ),
             ),
             SizedBox(
@@ -145,7 +147,7 @@ class NewWidgetState extends State<NewWidget> {
                       child: const Text(
                         StaticText.importButton,
                         style: TextStyle(
-                          color: AppColors.white,
+                          color: AppColors.contrastOnRed,
                         ),
                       ),
                     ),

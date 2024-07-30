@@ -54,6 +54,7 @@ class ExpandableWineFactCardState extends State<ExpandableWineFactCard> {
                           Text(
                             widget.title,
                             style: const TextStyle(
+                              color: AppColors.black,
                               fontSize: Spacings.textFontSize,
                               fontWeight: FontWeight.normal,
                             ),
