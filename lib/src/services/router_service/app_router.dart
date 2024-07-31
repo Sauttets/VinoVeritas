@@ -48,7 +48,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/page1',
+      path: '/Lexicon',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
           child: LexiconPage(),
@@ -56,7 +56,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/page2',
+      path: '/Favorites',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
           child: HomeFavPage(showFavList: true)
@@ -65,7 +65,7 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      path: '/page3',
+      path: '/Settings',
       pageBuilder: (context, state) => NoTransitionPage(
         child: const CustomNavBarWrapper(
           child: SettingsPage(),

@@ -27,11 +27,11 @@ class CustomNavBarState extends State<CustomNavBar> {
     int newIndex = 0;
     if (currentLocation.startsWith('/home')) {
       newIndex = 0;
-    } else if (currentLocation.startsWith('/page1')) {
+    } else if (currentLocation.startsWith('/Lexicon')) {
       newIndex = 1;
-    } else if (currentLocation.startsWith('/page2')) {
+    } else if (currentLocation.startsWith('/Favorites')) {
       newIndex = 2;
-    } else if (currentLocation.startsWith('/page3')) {
+    } else if (currentLocation.startsWith('/Settings')) {
       newIndex = 3;
     }
     setState(() {
@@ -49,13 +49,13 @@ class CustomNavBarState extends State<CustomNavBar> {
         widget.goRouter.push('/home');
         break;
       case 1:
-        widget.goRouter.push('/page1');
+        widget.goRouter.push('/Lexicon');
         break;
       case 2:
-        widget.goRouter.push('/page2');
+        widget.goRouter.push('/Favorites');
         break;
       case 3:
-        widget.goRouter.push('/page3');
+        widget.goRouter.push('/Settings');
         break;
     }
   }

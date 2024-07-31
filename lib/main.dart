@@ -15,7 +15,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: AppColors.backgroundColor,
   ));
-  runApp(const MyApp());
+  runApp(const VinoVeritas());
 }
 
 Future<void> setupLocator() async {
@@ -24,8 +24,8 @@ Future<void> setupLocator() async {
   GetIt.I.registerSingleton<SettingsCubit>(SettingsCubit());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class VinoVeritas extends StatelessWidget {
+  const VinoVeritas({super.key});
   
   @override
   Widget build(BuildContext context) {

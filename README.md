@@ -114,3 +114,13 @@ The architecture of the app is based on a feature-first approach with an MVC+S s
 loading dependencies: `flutter pub get`  
 loading app icon: `flutter pub run flutter_launcher_icons`  
 build apk: `flutter build apk --no-tree-shake-icons`  
+
+### Tests
+
+run tests: `flutter test`  
+  
+run maestro tests:  
+`maestro test test/maestro/flow0.yaml`  
+`maestro test test/maestro/flow1.yaml`  
+`maestro test test/maestro/flow2.yaml`  
+`maestro test test/maestro/flow3.yaml`  
