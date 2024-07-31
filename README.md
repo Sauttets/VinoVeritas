@@ -78,6 +78,8 @@ The architecture of the app is based on a feature-first approach with an MVC+S s
 
 ### Here is a rough description of the structure:
 
+!["Architektur"](assets/readme/mvcs.png)<b>
+
 <b>View</b>: Consists of the screens and widgets that represent the user interface.
 
 <b>Controller (Cubit)</b>: Manages the state and business logic of the app.
