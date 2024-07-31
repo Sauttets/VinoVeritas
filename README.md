@@ -47,7 +47,7 @@ The app's navigation bar is located at the bottom of the screen. The current pag
 
 ### Detailed view of wine
 
-| Sort             |  Filter food/taste |
+| Details Page             |  Details Expanded |
 :-------------------------:|:-------------------------:
 ![](assets/readme/detail.png)  |  ![](assets/readme/detail_expanded.png)
 
@@ -85,9 +85,9 @@ Under "Share with your favourites", users can find their personal code, which th
 
 The architecture of the app is based on a feature-first approach with an MVC+S structure (model-view-controller + service) using Cubit as the controller and go_router for routing as well as a persistence service with Isar. Each feature has its own view, a controller and a model. The view is divided into screens and widgets. In addition, a repository layer was partially introduced to extract the logic for communication between the controller and the persistence service.
 
-### Here is a rough description of the structure:
+### Architecture:
 
-!["Architektur"](assets/readme/mvcs.png)<b>
+!["Architektur"](assets/readme/Architecture-Structure.png)
 
 <b>View</b>: Consists of the screens and widgets that represent the user interface.
 
@@ -99,10 +99,10 @@ The architecture of the app is based on a feature-first approach with an MVC+S s
 
 <b>Service</b>: Responsible for retrieving and storing data, e.g. via the Isar persistence service.
 
-!["Architektur"](assets/readme/Architecture-Structure.png)
+!["Architektur"](assets/readme/mvcs.png)
 
 ## Installation
 
-loading dependencies: `flutter pub get`
-loading app icon: `flutter pub run flutter_launcher_icons`
-build apk: `flutter build apk --no-tree-shake-icons`
+loading dependencies: `flutter pub get`  
+loading app icon: `flutter pub run flutter_launcher_icons`  
+build apk: `flutter build apk --no-tree-shake-icons`  
