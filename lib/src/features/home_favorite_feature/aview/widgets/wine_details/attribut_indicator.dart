@@ -64,7 +64,7 @@ class AttributeIndicator extends StatelessWidget {
             children: [
               SizedBox(width: leftSpaceWidth),
               Expanded(
-                child: Text(leftLabel, style: const TextStyle(color: AppColors.primaryGrey)),
+                child: Text(leftLabel, style: const TextStyle(color: AppColors.primaryText)),
               ),
             ],
           ),

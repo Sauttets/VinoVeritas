@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_age_verification.dart';
+import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_age_verification_disclaimer.dart';
 import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_feature_diclaimer.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
             children: [
               OnboaringFeatureDisclaimer(),
               SizedBox(height: Spacings.widgetVertical),
-              OnboardingAgeVerification(),
+              OnboardingAgeVerificationDisclaimer(),
             ],
           ),
         ),

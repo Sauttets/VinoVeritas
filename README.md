@@ -20,7 +20,10 @@ In summary, this app is a handy tool for anyone looking to quickly and easily fi
 The following section briefly explains which screens the app contains and which functions are available there.
 ### Sign in
 
-!["Sign in"](assets/readme/login_page.png)<br>
+| Login Page             |  Disclaimer & age verification |
+:-------------------------:|:-------------------------:
+![](assets/readme/login_page.png)  |  ![](assets/readme/login_disclaimer.png )
+
 
 When you open the app for the first time, the login screen is displayed. The user name is entered here and then you can get started.
 
@@ -30,7 +33,10 @@ When you open the app for the first time, the login screen is displayed. The use
 
 The centrepiece of this App is our Homepage. A colourful mixture of different wines with clear information is immediately displayed here. 
 
-!["Home Page"](assets/readme/home_page_filter.png)<br>
+| Sort             |  Filter food/taste |
+:-------------------------:|:-------------------------:
+![](assets/readme/home_sort.png)  |  ![](assets/readme/home_filter.png )
+
 
 The various filter functions can be used to find the right wine. Under Food & Flavour, you can select which food the wine should go with or which flavour note should be included. The wines displayed can also be sorted by colour or price. <br>
 If you are interested in a wine, you can obtain further information by clicking on it (see also detailed view of wine). 
@@ -41,7 +47,10 @@ The app's navigation bar is located at the bottom of the screen. The current pag
 
 ### Detailed view of wine
 
-!["Wine Details"](assets/readme/detail_page.png)<br>
+| Sort             |  Filter food/taste |
+:-------------------------:|:-------------------------:
+![](assets/readme/detail.png)  |  ![](assets/readme/detail_expanded.png)
+
 
 In the detailed view of a wine, it is presented in more detail. Information on price, size, dryness, sweetness and tannin content is displayed. <br>
 Below the image is a fold-out information palette. The flavour components of the wine, matching dishes and a textual description are displayed here. <br>
@@ -49,24 +58,24 @@ Below the descriptions of the wine are supermarkets where this wine is available
 
 
 ### Lexikon
-!["Wine lexicon"](assets/readme/lexicon_page.png)<br>
+!["Wine lexicon"](assets/readme/lexicon.png)<br>
 
 Directly below is the wine fact of the day. Every day there is a new exciting fact about wine. This enables knowledge transfer without the user having to click through the encyclopaedia. <br> 
 Under the fact of the day, there are various categories from viticulture to the finished wine in the glass. This makes it possible to search for specific information within the various stages in order to learn about the different aspects of a wine. The dropdowns allow you to quickly find topics that interest you, and the information is displayed when you expand them.
 
 ### Favourites list
 
-!["Favorites"](assets/readme/favorites_page.png)<b>
+!["Favorites"](assets/readme/favorites.png)
 
-The favourites page is very similar to the homepage. However, there is also the option (via drop-down selection) to choose which favourites list should be displayed, as the lists can also be shared and viewed with friends. <br>
+The favourites page is very similar to the homepage. However, there is also the option (via drop-down selection) to choose which favourites list should be displayed, as the lists can also be shared and viewed with friends.
 
-!["Select favorites"](assets/readme/favList_select_page.png)<b>
+!["Select favorites"](assets/readme/favorite_select.png)
 
 Only the wines marked with the heart are displayed here. A tab on the wine also takes you to the detailed view of the wine.
 
 ### Settings
 
-!["Settings Page"](assets/readme/settings_page.png)<b>
+!["Settings Page"](assets/readme/settings_page.png)
 
 A new user name can be assigned under "User name". <br>
 In the "Design" section, users can choose between light and dark mode.
@@ -88,7 +97,10 @@ The architecture of the app is based on a feature-first approach with an MVC+S s
 
 <b>Service</b>: Responsible for retrieving and storing data, e.g. via the Isar persistence service.
 
-!["Architektur"](assets/readme/architecture.png)<b>
+!["Architektur"](assets/readme/Architecture-Structure.png)
 
 ## Installation
-The installation is trivial.
+
+loading dependencies: `flutter pub get`
+loading app icon: `flutter pub run flutter_launcher_icons`
+build apk: `flutter build apk --no-tree-shake-icons`

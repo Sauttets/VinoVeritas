@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
-class CheckboxButtonWidget extends StatefulWidget {
-  const CheckboxButtonWidget({super.key});
+class AgeVerificationCheckbox extends StatefulWidget {
+  const AgeVerificationCheckbox({super.key});
 
   @override
-  CheckboxButtonWidgetState createState() => CheckboxButtonWidgetState();
+  AgeVerificationCheckboxState createState() => AgeVerificationCheckboxState();
 }
 
-class CheckboxButtonWidgetState extends State<CheckboxButtonWidget> {
+class AgeVerificationCheckboxState extends State<AgeVerificationCheckbox> {
   bool isChecked = false;
 
   @override

@@ -8,7 +8,7 @@ void main() {
     testWidgets('CheckboxButtonWidget changes state and navigates when checked', (WidgetTester tester) async {
       final router = GoRouter(
         routes: [
-          GoRoute(path: '/', builder: (context, state) => const Scaffold(body: CheckboxButtonWidget())),
+          GoRoute(path: '/', builder: (context, state) => const Scaffold(body: AgeVerificationCheckbox())),
           GoRoute(path: '/home', builder: (context, state) => const Scaffold(body: Text('Home'))),
         ],
       );

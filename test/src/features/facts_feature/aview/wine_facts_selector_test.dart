@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_facts/wine_facts_selector.dart';
+import 'package:vinoveritas/src/features/lexicon_feature/aview/widgets/static_facts/wine_facts_selector.dart';
 
 void main() {
   testWidgets('WineFactsSelector changes tab on tap', (WidgetTester tester) async {

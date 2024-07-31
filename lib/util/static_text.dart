@@ -24,7 +24,7 @@ class StaticText {
   static const String autoMode = 'Automatisch';
   static const String lightMode = 'Hellmodus';
   static const String darkMode = 'Dunkelmodus';
-  static const String shareFavorites = '    Teile deine Favoriten:';
+  static const String shareFavorites = '  Teile deine Favoriten:';
 
   static const String weincode = 'Weincode:';
   static const String importButton = 'Importieren';

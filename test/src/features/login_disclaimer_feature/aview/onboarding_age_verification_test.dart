@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/age_verification.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_age_verification.dart';
+import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_age_verification_disclaimer.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: OnboardingAgeVerification(),
+          body: OnboardingAgeVerificationDisclaimer(),
         ),
       ),
     );
@@ -25,7 +25,7 @@ void main() {
     expect(find.text(StaticText.ageVerificationText2), findsOneWidget);
 
     // Verify the CheckboxButtonWidget is present
-    expect(find.byType(CheckboxButtonWidget), findsOneWidget);
+    expect(find.byType(AgeVerificationCheckbox), findsOneWidget);
 
     // Verify initial state of the CheckboxButtonWidget
     final checkboxFinder = find.byType(Checkbox);

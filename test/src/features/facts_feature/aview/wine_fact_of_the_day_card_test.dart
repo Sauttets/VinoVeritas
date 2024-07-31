@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/facts_feature/aview/widgets/wine_fact_of_the_day_card.dart';
+import 'package:vinoveritas/src/features/lexicon_feature/aview/widgets/wine_fact_of_the_day_card.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() {

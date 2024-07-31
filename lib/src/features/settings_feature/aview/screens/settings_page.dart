@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/widgets/design_selector.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/import_favorites.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_username.dart';
 import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
@@ -35,32 +34,11 @@ class SettingsPage extends StatelessWidget {
                       padding: EdgeInsets.all(Spacings.widgetPaddingAll),
                       child: SetUsername(),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(Spacings.widgetPaddingAll),
-                    ),
-                    BlocBuilder<SettingsCubit, SettingsState>(
-                      builder: (context, state) {
-                        int currentIndex = 0;
-                        if (state is SettingsInit) {
-                          currentIndex = state.getselectedIndex;
-                        } else if (state is ShowSettings) {
-                          currentIndex = state.getselectedIndex;
-                        }
-                        return DesignSelector(
-                          selectedIndex: currentIndex,
-                          onTabSelected: (index) {
-                            context.read<SettingsCubit>().updateSelectedIndex(
-                                index);
-                            context.read<SettingsCubit>().loadSettings();
-                          },
-                        );
-                      },
-                    ),
                     BlocBuilder<SettingsCubit, SettingsState>(
                       builder: (context, state) {
                         if (state is ShowSettings) {
                           return Padding(
-                            padding: const EdgeInsets.all(Spacings.widgetPaddingAll),
+                            padding: const EdgeInsets.symmetric(horizontal:  Spacings.widgetHorizontal),
                             child: DisplayAndCopyText(
                                 text: state.settings.shareCode),
                           );
