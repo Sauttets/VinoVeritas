@@ -15,6 +15,14 @@ The app includes a small wine dictionary to help you understand common wine term
 In summary, this app is a handy tool for anyone looking to quickly and easily find great wines at good prices, with the added benefit of learning more about wine along the way.
 
 
+## Personas
+
+Our app is designed for, among others 
+- Housewives & mums who have a stressful everyday life looking after the household, the children and themselves at the same time. There's not much time to think about which wine was or could be good, especially when you're at the supermarket with the whining children. You might also want to find a suitable wine for dinner that won't hit your wallet too hard.
+- Students who would like to drink wine from time to time as long as it doesn't put a strain on their already tight budget. The app is intended to help them not only to look at the price but also to find a reasonably priced wine that also tastes good and thus to enjoy wine more.
+- Lawyers just starting out at work or other professional groups where drinking wine is part of the social interaction between colleagues. Here, of course, you don't want to embarrass yourself by turning up with a bad wine. But not everyone at the start of their career can afford to buy wine from a specialist shop with appropriate advice. 
+
+
 ## Screens & functions
 
 The following section briefly explains which screens the app contains and which functions are available there.
