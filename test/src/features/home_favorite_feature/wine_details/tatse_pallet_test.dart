@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/taste_pallet.dart';
+import 'package:vinoveritas/src/aview/wine_detail/widgets/taste_pallet.dart';
 import 'package:vinoveritas/util/static_text.dart';
 import 'package:vinoveritas/util/taste_maps.dart';
 

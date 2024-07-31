@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/attribut_indicator.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/bottle_widget.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/wine_deatail_header.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
+import 'package:vinoveritas/src/aview/wine_detail/widgets/attribut_indicator.dart';
+import 'package:vinoveritas/src/aview/wine_detail/widgets/bottle_widget.dart';
+import 'package:vinoveritas/src/aview/wine_detail/widgets/wine_deatail_header.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart';
 import 'package:vinoveritas/util/spacings.dart';
 
 void main() {

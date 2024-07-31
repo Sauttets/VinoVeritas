@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/favorite_page/favorite_list_selector.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/favlist_tupel.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/favorite_page/favorite_list_selector.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/favlist_tupel.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_cubit.dart';
 
 class MockWineCubit extends Mock implements WineCubit {}
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/age_verification.dart';
+import 'package:vinoveritas/src/aview/login_disclaimer/widgets/age_verification.dart';
 
 void main() {
   group('CheckboxButtonWidget', () {
     testWidgets('CheckboxButtonWidget changes state and navigates when checked', (WidgetTester tester) async {
       final router = GoRouter(
         routes: [
-          GoRoute(path: '/', builder: (context, state) => const Scaffold(body: CheckboxButtonWidget())),
+          GoRoute(path: '/', builder: (context, state) => const Scaffold(body: AgeVerificationCheckboxButtonWidget())),
           GoRoute(path: '/home', builder: (context, state) => const Scaffold(body: Text('Home'))),
         ],
       );

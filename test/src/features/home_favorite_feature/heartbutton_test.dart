@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_cubit.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/heartbutton.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:mockito/annotations.dart';
 

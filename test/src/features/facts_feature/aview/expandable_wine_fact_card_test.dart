@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_facts/expandable_wine_fact_card.dart';
+import 'package:vinoveritas/src/aview/facts/widgets/static_facts/expandable_wine_fact_card.dart';
 
 void main() {
   testWidgets('ExpandableWineFactCard expands and collapses', (WidgetTester tester) async {

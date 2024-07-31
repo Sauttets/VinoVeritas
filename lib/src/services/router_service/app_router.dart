@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/screens/onboarding_screen.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/home_page.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/screens/login_page.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/screens/settings_page.dart';
-import 'package:vinoveritas/src/features/facts_feature/aview/screens/lexikon_page.dart';
+import 'package:vinoveritas/src/aview/login_disclaimer/screens/onboarding_screen.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/screens/home_page.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart';
+import 'package:vinoveritas/src/aview/login_disclaimer/screens/login_page.dart';
+import 'package:vinoveritas/src/aview/settings/screens/settings_page.dart';
+import 'package:vinoveritas/src/aview/facts/screens/lexikon_page.dart';
 import 'package:vinoveritas/main.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/screens/wine_details_page.dart';
+import 'package:vinoveritas/src/aview/wine_detail/screens/wine_details_page.dart';
 
 class NoTransitionPage<T> extends CustomTransitionPage<T> {
   NoTransitionPage({

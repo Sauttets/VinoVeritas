@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/widgets/share_favorites.dart';
+import 'package:vinoveritas/src/aview/settings/widgets/share_favorites.dart';
 
 void main() {
   testWidgets('DisplayAndCopyText Widget displays text and has a copy button', (WidgetTester tester) async {

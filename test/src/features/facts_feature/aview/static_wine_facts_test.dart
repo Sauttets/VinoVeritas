@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/facts_feature/aview/widgets/static_facts/static_wine_facts.dart';
+import 'package:vinoveritas/src/aview/facts/widgets/static_facts/static_wine_facts.dart';
 
 void main() {
   testWidgets('StaticWineFacts displays tabs and wine facts', (WidgetTester tester) async {

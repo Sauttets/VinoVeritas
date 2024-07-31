@@ -1,9 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:vinoveritas/src/features/facts_feature/controller/wine_fact_cubit.dart';
-import 'package:vinoveritas/src/features/facts_feature/model/wine_fact_model.dart';
-import 'package:vinoveritas/src/features/facts_feature/wine_fact_repository.dart';
+import 'package:vinoveritas/src/controller/facts/wine_fact_cubit.dart';
+import 'package:vinoveritas/src/model/facts/wine_fact_model.dart';
+import 'package:vinoveritas/src/repository/wine_fact_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'wine_fact_cubit_test.mocks.dart';
 

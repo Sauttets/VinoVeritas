@@ -2,11 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_card_grid.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_state.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_card.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/wine_card_grid.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_cubit.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_state.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/wine_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MockWineCubit extends MockCubit<WineState> implements WineCubit {}

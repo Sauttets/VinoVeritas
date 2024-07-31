@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/heartbutton.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/wine_details/bottle_widget.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/heartbutton.dart';
+import 'package:vinoveritas/src/aview/wine_detail/widgets/bottle_widget.dart';
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart';
 
 class MockNetworkImage extends Mock implements ImageProvider {}
 

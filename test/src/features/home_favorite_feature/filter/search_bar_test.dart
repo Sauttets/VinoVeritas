@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/aview/widgets/filter/search_bar.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart';
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_state.dart';
+import 'package:vinoveritas/src/aview/home_and_favorite/widgets/filter/search_bar.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_cubit.dart';
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_state.dart';
 import 'package:vinoveritas/util/static_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

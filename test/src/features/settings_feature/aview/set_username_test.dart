@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:vinoveritas/src/features/settings_feature/controller/cubit/settings_cubit.dart';
-import 'package:vinoveritas/src/features/settings_feature/model/settings_model.dart';
+import 'package:vinoveritas/src/controller/settings/settings_cubit.dart';
+import 'package:vinoveritas/src/model/settings/settings_model.dart';
 import 'package:vinoveritas/util/static_text.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/widgets/set_username.dart';
+import 'package:vinoveritas/src/aview/settings/widgets/set_username.dart';
 
 class MockSettingsCubit extends MockCubit<SettingsState> implements SettingsCubit {}
 

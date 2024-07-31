@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vinoveritas/src/features/login_disclaimer_feature/aview/widgets/onboarding_feature_diclaimer.dart';
+import 'package:vinoveritas/src/aview/login_disclaimer/widgets/onboarding_feature_diclaimer.dart';
 import 'package:vinoveritas/util/static_text.dart';
 
 void main() {

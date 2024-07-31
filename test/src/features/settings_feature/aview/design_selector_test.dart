@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vinoveritas/util/app_colors.dart';
 import 'package:vinoveritas/util/static_text.dart';
-import 'package:vinoveritas/src/features/settings_feature/aview/widgets/design_selector.dart';
+import 'package:vinoveritas/src/aview/settings/widgets/design_selector.dart';
 
 void main() {
   testWidgets('DesignSelector displays correct structure and reacts to taps', (WidgetTester tester) async {

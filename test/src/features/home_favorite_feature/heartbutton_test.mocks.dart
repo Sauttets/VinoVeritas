@@ -8,13 +8,13 @@ import 'dart:async' as _i6;
 import 'package:bloc/bloc.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_cubit.dart'
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_cubit.dart'
     as _i4;
-import 'package:vinoveritas/src/features/home_favorite_feature/controller/wine_state.dart'
+import 'package:vinoveritas/src/controller/home_and_favorite/wine_state.dart'
     as _i3;
-import 'package:vinoveritas/src/features/home_favorite_feature/model/wine_model.dart'
+import 'package:vinoveritas/src/model/home_and_favorite/wine_model.dart'
     as _i7;
-import 'package:vinoveritas/src/features/home_favorite_feature/repository/wine_repository.dart'
+import 'package:vinoveritas/src/repository/wine_repository.dart'
     as _i2;
 
 // ignore_for_file: type=lint
